@@ -1,7 +1,12 @@
 # CRRU Website
 
 [![Test](https://github.com/CRRU-UK/website/actions/workflows/main.yaml/badge.svg?branch=main)](https://github.com/CRRU-UK/website/actions/workflows/main.yaml)
-[![Build image](https://github.com/CRRU-UK/website/actions/workflows/build.yaml/badge.svg?branch=main)](https://github.com/CRRU-UK/website/actions/workflows/build.yaml)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=bugs)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)
 
 1. [Introduction](#introduction)
 2. [Overview](#overview)
@@ -11,7 +16,7 @@
 
 ## Introduction
 
-Website for CRRU, built in NextJS, TypeScript, React, and SCSS.
+[Website](https://crru.org.uk) for CRRU, built in NextJS, TypeScript, React, and SCSS.
 
 ## Overview
 
