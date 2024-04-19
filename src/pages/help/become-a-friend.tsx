@@ -25,7 +25,7 @@ const Page: NextPage<PageProps> = ({
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const preview = ctx?.query.preview === 'true';
-  const data = await getPageContent(sitemap['become-a-friend'].path, { preview: });
+  const data = await getPageContent(sitemap['become-a-friend'].path, { preview });
 
   return {
     props: {
