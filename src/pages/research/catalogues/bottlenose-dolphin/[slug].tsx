@@ -61,7 +61,7 @@ const Page: NextPage<PageProps> = ({
         <li>
           <Catalogue
             title={String(catalogueData.mother.id)}
-            subtitle={String(catalogueData.mother?.name) ?? undefined}
+            subtitle={catalogueData.mother?.name ? String(catalogueData.mother.name) : undefined}
             link={`/research/catalogues/bottlenose-dolphin/${catalogueData.mother.slug}`}
             image={image ?? undefined}
           />

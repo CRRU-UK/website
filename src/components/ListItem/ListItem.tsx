@@ -45,8 +45,10 @@ const ListItem = ({
     <p className={styles.description}>{description}</p>
   ) : null;
 
+  const categoryClass = category ? styles[`category-style-${category.style ?? 1}`] : null;
+
   const categoryElement = category ? (
-    <p className={`${styles.category} ${styles[`category-style-${category.style ?? 1}`]}`}>{category.text}</p>
+    <p className={`${styles.category} ${categoryClass}`}>{category.text}</p>
   ) : null;
 
   return (
