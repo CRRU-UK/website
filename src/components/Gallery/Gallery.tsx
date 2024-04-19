@@ -40,7 +40,7 @@ const Gallery = ({
 
     cachedRef.addEventListener('scroll', scrollEvent);
 
-    return () => (cachedRef as HTMLDivElement).removeEventListener('scroll', scrollEvent);
+    return () => cachedRef.removeEventListener('scroll', scrollEvent);
   }, [scrollRef]);
 
   const imagesRefs = images.map((item) => ({

@@ -49,8 +49,7 @@ const getCatalogueList = async ({
   page,
   search,
 }: GetCatalogueListOptions): Promise<CatalogueBottlenoseDolphinListAPIResponse> => {
-  // TODO: Type this properly
-  const query: any = {
+  const query = {
     content_type: ContentTypes.CatalogueBottlenoseDolphin,
     order: ['-fields.id'],
     limit: CATALOGUE_RESULTS_LIMIT,
@@ -58,9 +57,11 @@ const getCatalogueList = async ({
   };
 
   if (search) {
+    // @ts-ignore
     query['fields.slug[match]'] = search;
   }
 
+  // @ts-ignore
   const result = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>(query);
 
   const items = result.items.map((entry) => reduceCatalogueItem(entry));
