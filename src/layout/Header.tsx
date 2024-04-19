@@ -229,11 +229,10 @@ const Header = () => {
 
       <Social />
 
-      <div
+      <button
         className="burger"
         onClick={toggleMenu}
         onKeyDown={toggleMenu}
-        role="button"
       >
         <svg fill="none" height="48" viewBox="0 0 64 48" width="64" xmlns="http://www.w3.org/2000/svg" className="burger-icon">
           <path d="m2 14c2.03077 2.1662 5.46923 2.1662 7.5 0 2.0308-2.1662 5.4692-2.1662 7.5 0 2.0308 2.1662 5.4692 2.1662 7.5 0 2.0308-2.1662 5.4692-2.1662 7.5 0 2.0308 2.1662 5.4692 2.1662 7.5 0 2.0308-2.1662 5.4692-2.1662 7.5 0 2.0308 2.1662 5.4692 2.1662 7.5 0 2.0308-2.1662 5.4692-2.1662 7.5 0" stroke="#fff" strokeLinecap="round" strokeWidth="3" />
@@ -242,19 +241,18 @@ const Header = () => {
           <path d="m0 34h64v14h-64z" fill="#000" />
           <path d="m2 34c2.03077 2.1662 5.46923 2.1662 7.5 0 2.0308-2.1662 5.4692-2.1662 7.5 0 2.0308 2.1662 5.4692 2.1662 7.5 0 2.0308-2.1662 5.4692-2.1662 7.5 0 2.0308 2.1662 5.4692 2.1662 7.5 0 2.0308-2.1662 5.4692-2.1662 7.5 0 2.0308 2.1662 5.4692 2.1662 7.5 0 2.0308-2.1662 5.4692-2.1662 7.5 0" stroke="#fff" strokeLinecap="round" strokeWidth="3" />
         </svg>
-      </div>
+      </button>
 
       {submenu !== Submenus.None && (
-        <div
+        <button
           className="back"
           onClick={() => setSubmenu(Submenus.None)}
           onKeyDown={() => setSubmenu(Submenus.None)}
-          role="button"
         >
           <svg fill="none" height="64" viewBox="0 0 64 64" width="64" xmlns="http://www.w3.org/2000/svg">
             <path clipRule="evenodd" d="m49.6454 1.33894c1.8061 1.78525 1.8061 4.67972 0 6.46498l-24.4797 24.19608 24.4797 24.1961c1.8061 1.7852 1.8061 4.6797 0 6.465-1.8062 1.7852-4.7346 1.7852-6.5408 0l-27.75-27.4286c-1.8061-1.7853-1.8061-4.6797 0-6.465l27.75-27.42856c1.8062-1.785253 4.7346-1.785253 6.5408 0z" fill="#fff" fillRule="evenodd" />
           </svg>
-        </div>
+        </button>
       )}
     </header>
   );
