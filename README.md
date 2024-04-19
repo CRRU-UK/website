@@ -3,8 +3,8 @@
 [![Test](https://github.com/CRRU-UK/website/actions/workflows/main.yaml/badge.svg?branch=main)](https://github.com/CRRU-UK/website/actions/workflows/main.yaml)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)x
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=bugs)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)
 
@@ -16,7 +16,7 @@
 
 ## Introduction
 
-[Website](https://crru.org.uk) for CRRU, built in NextJS, TypeScript, React, and SCSS.
+Source code for the [CRRU website](https://crru.org.uk) – built in NextJS, TypeScript, React, and SCSS.
 
 ## Overview
 
@@ -41,22 +41,22 @@ The app is made up of the following parts:
 
 The following environment variables should be provided when running the server (an `.env` file in the root is supported – see [`.env.example`](.env.example) for an example):
 
-| Variable                                    | Description                           | Required |
-| ------------------------------------------- | ------------------------------------- | -------- |
-| `NODE_ENV`                                  | Environment the app is running on.    | False    |
-| `NODE_CONTENTFUL_SPACE_ID`                  | Contentful space ID.                  | True     |
-| `NODE_CONTENTFUL_ENVIRONMENT`               | Contentful environment.               | True     |
-| `NODE_CONTENTFUL_DELIVERY_API_TOKEN`        | Contentful Delivery API access token. | True     |
-| `NODE_CONTENTFUL_PREVIEW_API_TOKEN`         | Contentful Preview API access token.  | True     |
-| `NODE_CONTENTFUL_ENVIRONMENT`               | Contentful environment.               | True     |
-| `NEXT_PUBLIC_CLOUDFLARE_CHALLENGE_SITE_KEY` | Cloudflare Turnstile site key.        | True     |
-| `NODE_CLOUDFLARE_CHALLENGE_SECRET_KEY`      | Cloudflare Turnstile secret key.      | True     |
-| `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID`           | Google Analytics tracking ID.         | True     |
-| `NODE_SMTP_HOST`                            | SMTP host for sending emails.         | True     |
-| `NODE_SMTP_PORT`                            | SMTP port for sending emails.         | True     |
-| `NODE_SMTP_USERNAME`                        | SMTP username for sending emails.     | True     |
-| `NODE_SMTP_PASSWORD`                        | SMTP password for sending emails.     | True     |
-| `NODE_SIGHTING_EMAIL`                       | (Temporary)                           | False    |
+| Variable                                    | Description                           |
+| ------------------------------------------- | ------------------------------------- |
+| `NODE_ENV`                                  | Environment the app is running on.    |
+| `NODE_CONTENTFUL_SPACE_ID`                  | Contentful space ID.                  |
+| `NODE_CONTENTFUL_ENVIRONMENT`               | Contentful environment.               |
+| `NODE_CONTENTFUL_DELIVERY_API_TOKEN`        | Contentful Delivery API access token. |
+| `NODE_CONTENTFUL_PREVIEW_API_TOKEN`         | Contentful Preview API access token.  |
+| `NODE_CONTENTFUL_ENVIRONMENT`               | Contentful environment.               |
+| `NEXT_PUBLIC_CLOUDFLARE_CHALLENGE_SITE_KEY` | Cloudflare Turnstile site key.        |
+| `NODE_CLOUDFLARE_CHALLENGE_SECRET_KEY`      | Cloudflare Turnstile secret key.      |
+| `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID`           | Google Analytics tracking ID.         |
+| `NODE_SMTP_HOST`                            | SMTP host for sending emails.         |
+| `NODE_SMTP_PORT`                            | SMTP port for sending emails.         |
+| `NODE_SMTP_USERNAME`                        | SMTP username for sending emails.     |
+| `NODE_SMTP_PASSWORD`                        | SMTP password for sending emails.     |
+| `NODE_SIGHTING_EMAIL`                       | (Temporary)                           |
 
 ## Development
 
