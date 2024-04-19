@@ -3,7 +3,7 @@
 [![Test](https://github.com/CRRU-UK/website/actions/workflows/main.yaml/badge.svg?branch=main)](https://github.com/CRRU-UK/website/actions/workflows/main.yaml)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)x
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=bugs)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)
