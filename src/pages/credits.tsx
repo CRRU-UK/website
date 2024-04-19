@@ -23,10 +23,12 @@ const Page: NextPage<PageProps> = ({
 );
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const data = await getPageContent(sitemap.credits.path, { preview: !!ctx?.query?.preview });
+  const preview = ctx?.query.preview === 'true';
+  const data = await getPageContent(sitemap.credits.path, { preview });
 
   return {
     props: {
+      preview,
       data,
     },
   };

@@ -314,10 +314,12 @@ const Page: NextPage<PageProps> = ({
 };
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const pageData = await getPageContent(sitemap['species-identification-key'].path, { preview: !!ctx?.query?.preview });
+  const preview = ctx?.query.preview === 'true';
+  const pageData = await getPageContent(sitemap['species-identification-key'].path, { preview });
 
   return {
     props: {
+      preview,
       pageImage: pageData.image,
     },
   };

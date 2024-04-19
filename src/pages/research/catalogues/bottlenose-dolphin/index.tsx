@@ -127,13 +127,15 @@ const Page: NextPage<PageProps> = ({
 };
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
+  const preview = ctx?.query.preview === 'true';
   const pageData = await getPageContent(
     sitemap['catalogue-bottlenose-dolphin'].path,
-    { preview: !!ctx?.query?.preview },
+    { preview },
   );
 
   return {
     props: {
+      preview,
       pageData,
     },
   };

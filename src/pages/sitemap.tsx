@@ -111,13 +111,15 @@ const Page: NextPage<PageProps> = ({
 );
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
+  const preview = ctx?.query.preview === 'true';
   const [pageData, speciesData] = await Promise.all([
-    getPageContent(sitemap.sitemap.path, { preview: !!ctx?.query?.preview }),
+    getPageContent(sitemap.sitemap.path, { preview: preview }),
     getSpecies(),
   ]);
 
   return {
     props: {
+      preview,
       pageData,
       speciesData,
     },

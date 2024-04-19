@@ -70,10 +70,8 @@ const Page: NextPage<PageProps> = ({
 );
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const data = await getPageContent(sitemap['meet-the-team'].path, {
-    preview: !!ctx?.query?.preview,
-    references: true,
-  });
+  const preview = ctx?.query.preview === 'true';
+  const data = await getPageContent(sitemap['meet-the-team'].path, { preview, references: true });
 
   const {
     content,
@@ -93,6 +91,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
 
   return {
     props: {
+      preview,
       pageData: {
         content,
         image,

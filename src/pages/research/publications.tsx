@@ -127,8 +127,9 @@ const Page: NextPage<PageProps> = ({
   </CommonPage>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
-  const pageData = await getPageContent(sitemap.publications.path);
+export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
+  const preview = ctx?.query.preview === 'true';
+  const pageData = await getPageContent(sitemap.publications.path, { preview });
 
   const publicationsData = await contentfulDeliveryClient.getEntries<ContentTypeScientificPublication>({
     content_type: ContentTypes.ScientificPublication,
@@ -145,6 +146,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
 
   return {
     props: {
+      preview,
       pageData,
       publicationsData: publicationsDataReduced,
     },

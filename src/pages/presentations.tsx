@@ -34,10 +34,12 @@ const Page: NextPage<PageProps> = ({
 );
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const data = await getPageContent('/presentations', { preview: !!ctx?.query?.preview });
+  const preview = ctx?.query.preview === 'true';
+  const data = await getPageContent('/presentations', { preview });
 
   return {
     props: {
+      preview,
       data,
     },
   };

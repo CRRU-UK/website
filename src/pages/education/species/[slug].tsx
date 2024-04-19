@@ -153,9 +153,11 @@ interface PageParams extends ParsedUrlQuery {
 }
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
+  const preview = ctx?.query.preview === 'true';
+
   const { slug } = ctx.params as PageParams;
 
-  const client = ctx?.query?.preview ? contentfulPreviewClient : contentfulDeliveryClient;
+  const client = preview ? contentfulPreviewClient : contentfulDeliveryClient;
   const { items } = await client.getEntries<ContentTypeSpeciesPage>({
     content_type: ContentTypes.SpeciesPage,
     'fields.slug': slug,
@@ -170,6 +172,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
 
   return {
     props: {
+      preview,
       id: sys.id,
       name: fields.name,
       description: fields.description,

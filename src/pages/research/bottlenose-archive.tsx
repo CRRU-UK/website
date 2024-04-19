@@ -191,7 +191,8 @@ const Page: NextPage<PageProps> = ({
 };
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const pageData = await getPageContent(sitemap['bottlenose-dolphin-archive'].path, { preview: !!ctx?.query?.preview });
+  const preview = ctx?.query.preview === 'true';
+  const pageData = await getPageContent(sitemap['bottlenose-dolphin-archive'].path, { preview });
 
   const archiveData = await contentfulDeliveryClient.getEntries<ContentTypeSpeciesArchive>({
     content_type: ContentTypes.SpeciesArchive,
@@ -202,6 +203,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
 
   return {
     props: {
+      preview,
       pageData,
       archiveData: archiveData.items.map(({ fields }) => ({
         id: String(fields.id).padStart(3, '0') ?? null,

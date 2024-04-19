@@ -155,8 +155,10 @@ const Page: NextPage<PageProps> = ({
 };
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
+  const preview = ctx?.query.preview === 'true';
+
   let client = contentfulDeliveryClient;
-  if (ctx?.query?.preview) {
+  if (preview) {
     client = contentfulPreviewClient;
   }
 
@@ -192,6 +194,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
 
   return {
     props: {
+      preview,
       homepage: {
         heroVideos: fields.heroVideos.map((item) => flattenVideoAssetFields(item as Asset)),
         heroImage: flattenImageAssetFields(fields.heroImage as Asset),
