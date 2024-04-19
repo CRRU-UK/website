@@ -18,6 +18,8 @@
 
 Source code for the [CRRU website](https://crru.org.uk) – built in NextJS, TypeScript, React, and SCSS.
 
+The website primarily uses Contentful as the main source of data.
+
 ## Overview
 
 The app is made up of the following parts:
@@ -56,7 +58,7 @@ The following environment variables should be provided when running the server (
 | `NODE_SMTP_PORT`                            | SMTP port for sending emails.         |
 | `NODE_SMTP_USERNAME`                        | SMTP username for sending emails.     |
 | `NODE_SMTP_PASSWORD`                        | SMTP password for sending emails.     |
-| `NODE_SIGHTING_EMAIL`                       | (Temporary)                           |
+| `NODE_SIGHTING_EMAIL`                       | Email address to send sightings to.   |
 
 ## Development
 
