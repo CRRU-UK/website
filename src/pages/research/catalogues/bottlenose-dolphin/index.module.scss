@@ -1,0 +1,110 @@
+@import "../../../../scss/variables";
+
+.loading {
+  opacity: 0.3;
+
+  &:hover {
+    cursor: wait;
+  }
+}
+
+.info {
+  margin-bottom: $global-spacing-large / 2;
+  font-size: 16px;
+  line-height: 16px;
+  color: $global-color-body-dark;
+
+  @include breakpoint("small") {
+    margin-bottom: $global-spacing-small;
+    font-size: 12px;
+    line-height: 12px;
+  }
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: $global-spacing-large / 2;
+  row-gap: $global-spacing-large  / 2;
+  list-style: none;
+
+  @include breakpoint("medium") {
+    column-gap: $global-spacing-medium / 2;
+    row-gap: $global-spacing-medium / 2;
+  }
+
+  @include breakpoint("small") {
+    grid-template-columns: 1fr 1fr;
+    column-gap: $global-spacing-small / 2;
+    row-gap: $global-spacing-small / 2;
+  }
+}
+
+.list > li {
+  margin: 0;
+  padding: 0;
+}
+
+.pagination {
+  margin-top: $global-spacing-large;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+
+  @include breakpoint("small") {
+    margin-top: $global-spacing-small;
+  }
+}
+
+.pagination > li {
+  margin: 0 10px 10px;
+
+  @include breakpoint("small") {
+    margin: 0 5px 5px;
+  }
+
+  &:last-child {
+    margin-bottom: 10px;
+
+    @include breakpoint("small") {
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.pagination > li > button {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  line-height: 18px;
+  border: 2px solid $global-color-primary;
+  border-radius: $global-border-radius;
+  font-weight: bold;
+
+  @include breakpoint("small") {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+    line-height: 14px;
+  }
+
+  &:hover {
+    border-color: $global-color-primary-dark;
+    text-decoration: underline;
+  }
+}
+
+.current-page > button {
+  color: $global-color-background;
+  background: $global-color-primary;
+
+  &:hover {
+    border-color: inherit;
+    background: $global-color-primary-dark;
+  }
+}

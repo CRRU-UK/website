@@ -1,0 +1,58 @@
+@import "../../../scss/variables";
+
+.taxonomy {
+  $spacing: 15px;
+
+  margin: 0 auto;
+  padding: $global-padding-large / 2;
+  display: grid;
+  align-items: start;
+  justify-content: space-between;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: $spacing;
+  row-gap: $spacing;
+  width: 100%;
+  border-radius: $global-border-radius;
+  list-style: none;
+  background: $global-color-secondary;
+
+  @include breakpoint("small") {
+    padding: $global-padding-small / 2;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  > li {
+    margin: 0;
+    font-size: 16px;
+    line-height: 22px;
+    color: $global-color-body;
+
+    &:last-child {
+      padding-right: 0;
+    }
+
+    @include breakpoint("small") {
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+
+  > li > strong,
+  > li > em {
+    display: block;
+  }
+
+  > li > em {
+    @include breakpoint("small") {
+      display: inline;
+    }
+  }
+}
+
+.wide {
+  grid-column: 2 / -1;
+
+  @include breakpoint("small") {
+    grid-column: 1 / -1;
+  }
+}

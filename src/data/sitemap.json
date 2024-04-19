@@ -1,0 +1,158 @@
+{
+  "home": {
+    "title": "Home",
+    "path": "/"
+  },
+  "about": {
+    "title": "About Us",
+    "path": "/about"
+  },
+  "meet-the-team": {
+    "title": "Meet The Team",
+    "path": "/about/meet-the-team"
+  },
+  "sponsors": {
+    "title": "Funders and Sponsors",
+    "path": "/about/funders-and-sponsors"
+  },
+  "useful-links": {
+    "title": "Useful Links",
+    "path": "/about/useful-links"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "path": "/about/contact-us"
+  },
+  "research": {
+    "title": "Research",
+    "path": "/research"
+  },
+  "bottlenose-dolphin-studies": {
+    "title": "Bottlenose Dolphin Studies",
+    "path": "/research/bottlenose-dolphins"
+  },
+  "bottlenose-dolphin-archive": {
+    "title": "Bottlenose Dolphin Photo-Identification Archive",
+    "path": "/research/bottlenose-archive"
+  },
+  "catalogue-bottlenose-dolphin": {
+    "title": "Bottlenose Dolphin Catalogue",
+    "path": "/research/catalogues/bottlenose-dolphin"
+  },
+  "minke-whale-studies": {
+    "title": "Minke Whale Research",
+    "path": "/research/minke-whales"
+  },
+  "environmental-mitigation": {
+    "title": "Environmental Mitigation",
+    "path": "/research/environmental-mitigation"
+  },
+  "publications": {
+    "title": "Scientific Publications",
+    "path": "/research/publications"
+  },
+  "collaborators": {
+    "title": "Collaborators",
+    "path": "/research/collaborators"
+  },
+  "rescue": {
+    "title": "Rescue",
+    "path": "/rescue"
+  },
+  "stranded": {
+    "title": "Stranded whales and dolphins",
+    "path": "/rescue/stranded"
+  },
+  "rescue-training": {
+    "title": "Rescue training with CRRU",
+    "path": "/rescue/rescue-training"
+  },
+  "species-identification-key": {
+    "title": "Species Identification Key",
+    "path": "/rescue/species-identification-key"
+  },
+  "education": {
+    "title": "Education",
+    "path": "/education"
+  },
+  "school-visits": {
+    "title": "School Visits",
+    "path": "/education/school-visits"
+  },
+  "events-and-talks": {
+    "title": "Events and Talks",
+    "path": "/education/events-and-talks"
+  },
+  "stands-and-exhibits": {
+    "title": "Stands and Exhibits",
+    "path": "/education/stands-and-exhibits"
+  },
+  "cetacean-fact-files": {
+    "title": "Cetacean Fact Files",
+    "path": "/education/species"
+  },
+  "taxonomy": {
+    "title": "Taxonomy",
+    "path": "/education/species/taxonomy"
+  },
+  "news": {
+    "title": "News",
+    "path": "/news"
+  },
+  "training": {
+    "title": "Training",
+    "path": "/training"
+  },
+  "summer-training-placements": {
+    "title": "Summer Training Placements",
+    "path": "/training/summer-training-placements"
+  },
+  "mmo-training": {
+    "title": "JNCC-Approved Marine Mammal Observer (MMO) Training Courses",
+    "path": "/training/mmo-training"
+  },
+  "pam-training": {
+    "title": "CPD Passive Acoustic Monitoring (PAM) Training Courses",
+    "path": "/training/pam-training"
+  },
+  "gain-university-credits": {
+    "title": "Gain University Credits",
+    "path": "/training/gain-university-credits"
+  },
+  "help": {
+    "title": "How You Can Help",
+    "path": "/help"
+  },
+  "sightings": {
+    "title": "Send us your sightings",
+    "path": "/help/sightings-reports"
+  },
+  "fundraising-support": {
+    "title": "Fundraise for CRRU",
+    "path": "/help/fundraising-support"
+  },
+  "become-a-friend": {
+    "title": "Become a Friend",
+    "path": "/help/become-a-friend"
+  },
+  "bequests": {
+    "title": "Legacies & Bequests",
+    "path": "/help/bequests"
+  },
+  "donate": {
+    "title": "Make a Donation",
+    "path": "/help/donate"
+  },
+  "terms": {
+    "title": "Terms",
+    "path": "/terms"
+  },
+  "credits": {
+    "title": "Credits",
+    "path": "/credits"
+  },
+  "sitemap": {
+    "title": "Sitemap",
+    "path": "/sitemap"
+  }
+}

@@ -1,0 +1,21 @@
+# Docker
+Dockerfile
+.dockerignore
+
+# Node
+node_modules/
+npm-debug.log*
+*.tsbuildinfo
+
+# Apps
+.next/
+coverage/
+
+# Misc
+.git
+.gitignore
+.github/
+.vscode/
+.env.example
+.DS_Store
+README.md

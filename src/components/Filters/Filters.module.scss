@@ -1,0 +1,58 @@
+@import "../../scss/variables";
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 0 auto $global-spacing-large;
+  padding: $global-padding-large / 2;
+  border-radius: $global-border-radius;
+  background: $global-color-background-dark;
+
+  @include breakpoint("small") {
+    display: grid;
+    align-items: start;
+    justify-content: space-between;
+    grid-template-columns: 1fr;
+    row-gap: $global-spacing-small;
+    margin-bottom: $global-spacing-small;
+    padding: $global-padding-small / 2;
+  }
+}
+
+.dropdown,
+.search {
+  padding: 0 15px;
+  height: 50px;
+  font-size: 16px;
+  color: $global-color-body;
+  border: 2px solid $global-color-grey;
+  border-radius: $global-border-radius;
+  background: $global-color-background;
+
+  @include breakpoint("small") {
+    padding: 0 10px;
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+  }
+}
+
+.dropdown {
+  margin-right: $global-spacing-large;
+
+  @include breakpoint("small") {
+    margin-right: 0;
+  }
+}
+
+.search {
+  margin-left: auto;
+  display: block;
+  width: 250px;
+
+  @include breakpoint("small") {
+    width: 100%;
+  }
+}

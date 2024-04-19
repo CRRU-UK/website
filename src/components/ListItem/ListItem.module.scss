@@ -1,0 +1,116 @@
+@import "../../scss/variables";
+
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: $global-spacing-large / 2;
+  padding: $global-padding-large / 2;
+  border-radius: $global-border-radius;
+  border: 2px solid $global-color-background-dark;
+
+  @include breakpoint("small") {
+    align-items: flex-start;
+    margin-bottom: $global-spacing-small / 2;
+    padding: $global-padding-small / 2;
+  }
+}
+
+.side {
+  width: 150px;
+  padding-right: $global-padding-large;
+
+  @include breakpoint("small") {
+    padding-top: 5px;
+    padding-right: $global-padding-small;
+    width: 100px;
+  }
+}
+
+.main {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  @include breakpoint("small") {
+    flex-direction: column-reverse;
+    margin-bottom: 5px;
+  }
+}
+
+.title,
+.description {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+
+  @include breakpoint("small") {
+    font-size: 14px;
+    line-height: 22px;
+  }
+}
+
+.title {
+  margin: 0;
+  padding-right: 10px;
+
+  @include breakpoint("small") {
+    padding-right: 5px;
+  }
+}
+
+.description {
+  margin-top: 15px;
+
+  @include breakpoint("small") {
+    margin-top: 10px;
+  }
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.category {
+  margin: 0 0 auto;
+  padding: 6px 8px;
+  font-size: 12px;
+  line-height: 12px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700;
+
+  @include breakpoint("small") {
+    margin: 5px auto 10px 0;
+    padding: 4px 8px;
+    font-size: 10px;
+    line-height: 10px;
+  }
+}
+
+$categories: (
+  (1, #000, #dbedff, transparent),
+  (2, #fff, #000, transparent),
+  (3, #000, #78abd8, transparent),
+  (4, #000, #68be4b, transparent),
+  (5, #000, #dedede, transparent),
+  (6, #000, transparent, #636363),
+  (7, #000, #f2cb30, transparent),
+  (8, #000, #939393, transparent),
+);
+
+@each $style, $text, $background, $border in $categories {
+  .category-style-#{$style} {
+    color: $text;
+    border: 2px solid $border;
+    background: $background;
+  }
+}

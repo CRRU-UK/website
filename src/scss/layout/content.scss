@@ -1,0 +1,247 @@
+@use "sass:color";
+
+@import "../variables";
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $global-color-body;
+  font-family: $global-font-secondary;
+  font-weight: 700;
+}
+
+a {
+  font-weight: 700;
+  color: $global-color-primary-dark;
+
+  &:hover {
+    color: color.adjust($global-color-primary-dark, $blackness: 10%);
+  }
+
+  &.external::after {
+    content: "";
+    display: inline-block;
+    margin-left: 5px;
+    width: 12px;
+    height: 12px;
+    background: url("../../../public/images/icons/external.svg") center center no-repeat transparent;
+    background-size: contain;
+
+    @include breakpoint("small") {
+      width: 10px;
+      height: 10px;
+    }
+  }
+}
+
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+}
+
+h4 {
+  margin-top: 40px;
+  font-size: 32px;
+
+  @include breakpoint("small") {
+    margin-top: 30px;
+    font-size: 24px;
+  }
+}
+
+h5 {
+  margin-top: 25px;
+  font-size: 26px;
+
+  @include breakpoint("small") {
+    margin-top: 15px;
+    font-size: 20px;
+  }
+}
+
+h6 {
+  margin-top: 20px;
+  font-size: 20px;
+
+  @include breakpoint("small") {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+}
+
+p {
+  margin-top: $global-font-spacing-large;
+
+  @include breakpoint("small") {
+    margin-top: $global-font-spacing-small;
+  }
+
+  &.large,
+  &.medium,
+  &.small {
+    display: inherit;
+    margin-bottom: $global-font-spacing-large * 1.5;
+  
+    @include breakpoint("small") {
+      margin-bottom: $global-font-spacing-small * 1.5;
+    }
+  }
+
+  &.large,
+  &.medium {
+    font-weight: 700;
+  }
+
+  &.large {
+    font-size: 24px;
+    line-height: 42px;
+
+    @include breakpoint("small") {
+      font-size: 20px;
+      line-height: 32px;
+    }
+  }
+
+  &.medium {
+    font-size: 22px;
+    line-height: 38px;
+
+    @include breakpoint("small") {
+      font-size: 18px;
+      line-height: 30px;
+    }
+  }
+}
+
+ul,
+ol {
+  list-style-position: outside;
+  margin-top: $global-font-spacing-large;
+  margin-bottom: $global-font-spacing-large;
+  margin-left: $global-font-spacing-large;
+  padding-left: $global-font-spacing-large / 2;
+
+  @include breakpoint("small") {
+    margin-top: $global-font-spacing-small;
+    margin-bottom: $global-font-spacing-small;
+    margin-left: $global-font-spacing-small;
+    padding-left: $global-font-spacing-small;
+  }
+
+  &.no-list {
+    margin-left: 0;
+    padding-left: 0;
+    list-style: none;
+  }
+}
+
+ul > li,
+ol > li {
+  margin-bottom: $global-font-spacing-large;
+
+  @include breakpoint("small") {
+    margin-bottom: $global-font-spacing-small;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+blockquote {
+  margin: $global-spacing-large auto;
+  padding: $global-padding-large;
+  width: 90%;
+  border-radius: $global-border-radius;
+  color: $global-color-body;
+  background: $global-color-primary-dark;
+
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  @include breakpoint("small") {
+    margin: $global-spacing-small auto;
+    padding: $global-padding-small;
+    width: 90%;
+  }
+}
+
+hr {
+  margin: ($global-spacing-large * 1.5) auto;
+  border: 0;
+
+  @include breakpoint("small") {
+    margin: ($global-spacing-small * 1.5) auto;
+  }
+
+  &::before {
+    $size: 32px;
+
+    content: "";
+    margin: 0 auto;
+    display: block;
+    width: $size;
+    height: $size;
+    background: url("../../../public/images/icons/horizontal-rule.svg") center center no-repeat;
+    background-size: contain;
+  }
+}
+
+iframe,
+.video {
+  display: block;
+  margin: $global-spacing-large auto 0;
+  border: 0;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+
+  @include breakpoint("small") {
+    margin-top: $global-spacing-small;
+  }
+}
+
+table {
+  margin: 20px auto 40px;
+  width: 100%;
+  border-spacing: 0;
+
+  @include breakpoint("small") {
+    margin: 10px auto 20px;
+  }
+}
+
+table th,
+table td {
+  padding: 20px;
+  text-align: left;
+
+  &:first-child {
+    padding-left: 0;
+  }
+
+  &:last-child {
+    padding-right: 0;
+  }
+
+  @include breakpoint("small") {
+    padding: 8px 10px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+table td,
+table tr:last-child > td {
+  border-top: 1px solid #ccc;
+}
+
+table p {
+  margin: 0;
+  padding: 0;
+}

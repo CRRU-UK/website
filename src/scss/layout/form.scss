@@ -1,0 +1,149 @@
+@import "../variables";
+
+form:not(.paypal) {
+  width: calc(100% + ($global-padding-large * 2));
+  margin: $global-spacing-large auto;
+  margin-left: -($global-spacing-large);
+  padding: $global-padding-large;
+  border-radius: $global-border-radius;
+  background: $global-color-background-dark;
+
+  @include breakpoint($global-max-width) {
+    border-radius: 0;
+  }
+
+  @include breakpoint("small") {
+    width: calc(100% + ($global-padding-small * 2));
+    margin: $global-spacing-small auto;
+    margin-left: -($global-spacing-small);
+    padding: $global-padding-small;
+  }
+
+  &.form-loading {
+    cursor: wait;
+    opacity: 0.5;
+
+    > * {
+      pointer-events: none;
+    }
+  }
+
+  > .form-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: start;
+    justify-items: stretch;
+    column-gap: $global-spacing-large;
+    row-gap: $global-spacing-large;
+    margin-bottom: $global-spacing-large;
+
+    @include breakpoint("medium") {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include breakpoint("small") {
+      grid-template-columns: 1fr;
+      column-gap: $global-spacing-small;
+      row-gap: $global-spacing-small;
+      margin-bottom: $global-spacing-small;
+    }
+  }
+
+  label {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  label > span {
+    display: block;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+
+    @include breakpoint("small") {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    margin-top: 10px;
+    padding: 0 15px;
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    line-height: 22px;
+    color: $global-color-body;
+    border: 2px solid $global-color-grey;
+    border-radius: $global-border-radius;
+    background: $global-color-background;
+
+    @include breakpoint("small") {
+      margin-top: 5px;
+      padding: 0 10px;
+      height: 40px;
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+
+  select {
+    padding-right: 20px;
+  }
+
+  textarea {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height: inherit;
+    resize: vertical;
+  }
+
+  button {
+    margin-top: $global-spacing-large;
+    font-weight: 700;
+    border: 0;
+    color: $global-color-background;
+    background: $global-color-primary-dark;
+
+    @include breakpoint("small") {
+      margin-top: $global-spacing-small;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background: color.adjust($global-color-primary-dark, $blackness: 10%);
+    }
+  }
+  
+  .form-errors,
+  .form-success {
+    margin: $global-spacing-large auto 0;
+    padding: $global-padding-large / 2;
+    display: block;
+    font-size: 16px;
+    line-height: 16px;
+    border-radius: $global-border-radius;
+
+    @include breakpoint("small") {
+      margin-top: $global-spacing-small;
+      font-size: 14px;
+      line-height: 14px;
+    }
+  }
+
+  .form-errors {
+    padding-left: $global-padding-large;
+    color: $global-color-background;
+    background: $global-color-red;
+  }
+
+  .form-success {
+    text-align: center;
+    color: $global-color-body;
+    background: $global-color-primary;
+  }
+}

@@ -1,0 +1,36 @@
+name: Test
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test eslint
+        run: npm run test:eslint
+
+      - name: Test stylelint
+        run: npm run test:stylelint
+
+      - name: Test TypeScript
+        run: npm run test:typescript
+
+      - name: Test unit
+        run: npm run test:unit

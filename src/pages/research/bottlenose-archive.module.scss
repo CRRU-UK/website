@@ -1,0 +1,252 @@
+@import "../../scss/variables";
+
+.info {
+  margin-bottom: $global-spacing-large / 2;
+  font-size: 16px;
+  line-height: 16px;
+  color: $global-color-body-dark;
+
+  @include breakpoint("small") {
+    margin-bottom: $global-spacing-small;
+    font-size: 12px;
+    line-height: 12px;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: start;
+  justify-items: stretch;
+  column-gap: $global-spacing-large;
+  row-gap: $global-spacing-large;
+
+  @include breakpoint("medium") {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @include breakpoint("small") {
+    grid-template-columns: 1fr 1fr;
+    column-gap: $global-spacing-small;
+    row-gap: $global-spacing-small;
+  }
+}
+
+.item::before,
+.item > .icon {
+  pointer-events: none;
+  transition: opacity 1s $global-transition-ease-out-expo;
+}
+
+.item {
+  position: relative;
+  border-radius: $global-border-radius;
+  border: 2px solid $global-color-grey;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    z-index: 10;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: rgba($global-color-grey, 0.4);
+  }
+
+  &:hover,
+  &:focus {
+    border-color: $global-color-grey;
+    cursor: zoom-in;
+
+    > .icon {
+      opacity: 1;
+    }
+
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+.icon {
+  z-index: 10;
+  opacity: 0.5;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 10px;
+  background: $global-color-grey;
+  border-radius: $global-border-radius;
+
+  &::before {
+    $size: 18px;
+
+    content: "";
+    z-index: 10;
+    display: block;
+    width: $size;
+    height: $size;
+    background: url("../../../public/images/icons/search.svg") center center no-repeat transparent;
+    background-size: contain;
+  }
+}
+
+.image {
+  z-index: 0;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.zoom {
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $global-color-background;
+}
+
+$controls-size-large: 100px;
+$controls-size-medium: 80px;
+$controls-size-small: 60px;
+
+.zoom-previous,
+.zoom-next,
+.zoom-close {
+  opacity: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &::after {
+    $size: 32px;
+
+    content: "";
+    display: block;
+    width: $size;
+    height: $size;
+    background: center center no-repeat transparent;
+    background-size: contain;
+
+    @include breakpoint("medium") {
+      $size: 24px;
+      width: $size;
+      height: $size;
+    }
+
+    @include breakpoint("small") {
+      $size: 18px;
+      width: $size;
+      height: $size;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+}
+
+.zoom-previous,
+.zoom-next {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  width: $controls-size-large;
+  height: 100%;
+
+  @include breakpoint("medium") {
+    width: 80px;
+  }
+
+  @include breakpoint("small") {
+    top: auto;
+    bottom: 0;
+    width: 50%;
+    height: $controls-size-small;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &::after {
+    background-image: url("../../../public/images/icons/zoom-arrow.svg");
+  }
+}
+
+.zoom-previous {
+  left: 0;
+}
+
+.zoom-next {
+  right: 0;
+
+  &::after {
+    transform: rotate(180deg);
+  }
+}
+
+.zoom-close {
+  z-index: 20;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: $controls-size-large;
+  height: $controls-size-large;
+
+  @include breakpoint("medium") {
+    width: $controls-size-medium;
+    height: $controls-size-medium;
+  }
+
+  @include breakpoint("small") {
+    width: $controls-size-small;
+    height: $controls-size-small;
+  }
+
+  &:hover,
+  &:focus {
+    cursor: zoom-out;
+    background: $global-color-background-dark;
+  }
+
+  &::after {
+    background-image: url("../../../public/images/icons/zoom-close.svg");
+  }
+}
+
+.zoom-image-container {
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $global-padding-large $controls-size-large;
+  width: 100%;
+  height: 100%;
+
+  @include breakpoint("medium") {
+    padding: $controls-size-medium;
+  }
+
+  @include breakpoint("small") {
+    padding: $controls-size-small $global-padding-small;
+  }
+}
+
+.zoom-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

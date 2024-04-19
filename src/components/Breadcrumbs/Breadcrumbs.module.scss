@@ -1,0 +1,88 @@
+@import "../../scss/variables";
+
+.breadcrumbs-container {
+  margin: 0 auto;
+  background: $global-color-background-dark;
+}
+
+.breadcrumbs {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 $global-padding-large;
+  max-width: $global-max-width;
+  list-style: none;
+  overflow: hidden;
+
+  @include breakpoint("small") {
+    padding: 0 $global-padding-small;
+  }
+}
+
+.wide {
+  max-width: $global-max-width-wide;
+}
+
+.breadcrumbs > li {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  &::after {
+    content: "";
+    margin: 0 10px;
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: url("../../../public/images/icons/breadcrumbs-arrow.svg") center center no-repeat;
+    background-size: contain;
+
+    @include breakpoint("small") {
+      margin: 0 5px;
+      width: 8px;
+      height: 8px;
+      transform: translateY(1px);
+    }
+  }
+
+  &:last-child::after {
+    content: none;
+  }
+}
+
+.breadcrumbs > li > a,
+.breadcrumbs > li > span {
+  $font-size: 14px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  font-size: $font-size;
+  line-height: $font-size;
+  font-weight: 700;
+  color: $global-color-body;
+
+  @include breakpoint("small") {
+    $font-size: 11px;
+
+    padding: 10px 0;
+    font-size: $font-size;
+    line-height: $font-size;
+  }
+}
+
+.breadcrumbs > li > a:hover {
+  color: $global-color-primary-dark;
+}
+
+.breadcrumbs > li > span {
+  font-weight: 700;
+  color: $global-color-body;
+}

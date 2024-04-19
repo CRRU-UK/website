@@ -1,0 +1,17 @@
+# Node
+node_modules/
+npm-debug.log*
+*.tsbuildinfo
+
+# Apps
+.next/
+coverage/
+
+# Environment Variables
+.env
+
+# Ignore generated credentials from google-github-actions/auth
+gha-creds-*.json
+
+# Misc
+.DS_Store

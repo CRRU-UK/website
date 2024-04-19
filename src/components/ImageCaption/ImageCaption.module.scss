@@ -1,0 +1,127 @@
+@import "../../scss/variables";
+
+.image {
+  z-index: 0;
+  position: relative;
+  margin: $global-spacing-large auto;
+  width: 100%;
+
+  @include breakpoint("small") {
+    margin: $global-spacing-small auto;
+  }
+
+  > img {
+    z-index: 0;
+    position: relative;
+    margin: 0 auto;
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+}
+
+.image + .image {
+  margin-left: $global-spacing-large;
+
+  @include breakpoint("small") {
+    margin-left: 0;
+  }
+}
+
+$icon-size-large: 30px;
+$icon-padding-large: 20px;
+$caption-size-large: $icon-size-large + ($icon-padding-large * 2);
+
+$icon-size-small: 16px;
+$icon-padding-small: 16px;
+$caption-size-small: $icon-size-small + ($icon-padding-small * 2);
+
+.caption {
+  overflow: visible;
+  z-index: 10;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: block;
+
+  @include breakpoint("small") {
+    width: $icon-padding-small + ($icon-padding-small * 2);
+    height: $icon-padding-small + ($icon-padding-small * 2);
+  }
+}
+
+.caption-button,
+.caption-text {
+  display: block;
+}
+
+.caption-button {
+  opacity: .5;
+  z-index: 0;
+  padding: $icon-padding-large;
+  width: $caption-size-large;
+  height: $caption-size-large;
+
+  &::before {
+    content: "";
+    display: block;
+    width: $icon-size-large;
+    height: $icon-size-large;
+    background: url("../../../public/images/icons/image-caption.svg") center center no-repeat transparent;
+    background-size: contain;
+  }
+
+  @include breakpoint("small") {
+    padding: $icon-padding-small;
+    width: $caption-size-small;
+    height: $caption-size-small;
+
+    &::before {
+      width: $icon-size-small;
+      height: $icon-size-small;
+    }
+  }
+}
+
+.caption-button:hover,
+.caption-button-active {
+  opacity: 1;
+}
+
+$easing-in: 0.6s $global-transition-ease-out-expo;
+$easing-out: 0.6s $global-transition-ease-in-expo;
+
+.caption-text {
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  position: absolute;
+  right: $icon-padding-large;
+  bottom: $caption-size-large;
+  padding: 10px;
+  width: 200px;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: left;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba($global-color-body, .3);
+  background: $global-color-background;
+  transform: translateY($icon-padding-large);
+  transition: opacity $easing-in, transform $easing-in;
+
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  @include breakpoint("small") {
+    right: $icon-padding-small;
+    bottom: $caption-size-small;
+    transform: translateY($icon-padding-small);
+  }
+}
+
+.caption-text-active {
+  pointer-events: all;
+  opacity: 1;
+  transform: translateY(0%);
+}

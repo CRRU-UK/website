@@ -1,0 +1,40 @@
+@use "sass:color";
+
+@import "../../scss/variables";
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  font-size: 16px;
+  line-height: 22px;
+  border: 2px solid $global-color-primary-dark;
+  border-radius: $global-border-radius;
+  text-align: center;
+  text-decoration: none;
+
+  @include breakpoint("small") {
+    padding: 10px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  &:hover {
+    text-decoration: underline;
+    color: color.adjust($global-color-primary-dark, $blackness: 10%);
+    border-color: color.adjust($global-color-primary-dark, $blackness: 10%);
+    background: $global-color-primary-light;
+  }
+}
+
+.inline {
+  display: inline-flex;
+  margin-top: $global-spacing-large / 2;
+  padding: 10px;
+
+  @include breakpoint("small") {
+    margin-top: $global-spacing-small / 2;
+    padding: 8px;
+  }
+}

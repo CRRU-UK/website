@@ -1,0 +1,34 @@
+@import "../../../scss/variables";
+
+.contents-table {
+  $spacing: 15px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: start;
+  justify-items: stretch;
+  column-gap: $spacing;
+  row-gap: $spacing;
+  margin: $global-spacing-large auto 0;
+  padding: 0 $global-padding-large;
+  max-width: $global-max-width;
+  list-style: none;
+
+  @include breakpoint("medium") {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include breakpoint("small") {
+    $spacing: 10px;
+
+    grid-template-columns: 1fr;
+    row-gap: $spacing;
+    margin-top: $global-spacing-small;
+    padding: 0 $global-padding-small;
+  }
+}
+
+.contents-table > li {
+  margin: 0;
+  padding: 0;
+}

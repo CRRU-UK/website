@@ -1,0 +1,218 @@
+@use "sass:color";
+
+@import "variables";
+
+// Fonts
+
+@font-face {
+  font-display: swap;
+  font-family: "EB Garamond";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/EBGaramond-VariableFont_wght.ttf") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  src: url("/fonts/Poppins-Medium.ttf") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Poppins";
+  font-style: italic;
+  font-weight: 500;
+  src: url("/fonts/Poppins-MediumItalic.ttf") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/Poppins-Bold.ttf") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Poppins";
+  font-style: italic;
+  font-weight: 700;
+  src: url("/fonts/Poppins-BoldItalic.ttf") format("woff2");
+}
+
+// Imports
+
+@import "layout/header";
+
+@import "layout/footer";
+
+// Globals
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  font-weight: 500;
+  font-family: $global-font-primary;
+  font-size: $global-font-size-large;
+  line-height: $global-font-line-height;
+  color: $global-color-body;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "liga" on;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: $global-color-background;
+
+  @include breakpoint("small") {
+    font-size: $global-font-size-small;
+  }
+
+  &.menu,
+  &.no-scroll {
+    overflow: hidden;
+    height: 100%;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  outline: inherit;
+  background: none;
+}
+
+main {
+  $global-font-spacing-large: 20px;
+  $global-font-spacing-small: 10px;
+
+  margin: 0 auto;
+
+  > article {
+    margin: 0 auto;
+    max-width: $global-max-width;
+    padding: ($global-spacing-large * 1.5) $global-padding-large 0;
+    background: bottom right repeat-y transparent;
+
+    @include breakpoint("small") {
+      margin-top: $global-spacing-small * 1.5;
+      padding: 0 $global-padding-small;
+      background-size: 40%;
+      background-position-x: 85%;
+    }
+
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    &.wide {
+      max-width: $global-max-width-wide;
+    }
+  }
+
+  @import "layout/content";
+  @import "layout/form";
+  @import "layout/columns";
+}
+
+main .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: start;
+  justify-items: stretch;
+  column-gap: $global-spacing-large;
+  row-gap: $global-spacing-large * 1.5;
+
+  @include breakpoint("medium") {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include breakpoint("small") {
+    grid-template-columns: 1fr;
+    column-gap: $global-spacing-small;
+    row-gap: $global-spacing-small * 1.5;
+  }
+}
+
+main .details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: ($global-spacing-large * 0.5) auto 0;
+  padding: 0 $global-padding-large;
+  max-width: $global-max-width;
+
+  list-style: none;
+
+  @include breakpoint("small") {
+    margin-top: $global-spacing-small;
+    padding: 0 $global-padding-small;
+  }
+}
+
+main .details > li {
+  margin: 0;
+  padding: 0;
+}
+
+main .details > .date,
+main .details > .category {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: $global-spacing-large;
+  font-weight: 500;
+  color: $global-color-body;
+
+  @include breakpoint("small") {
+    margin-right: $global-spacing-small;
+    font-size: 14px;
+    line-height: 14px;
+  }
+
+  &::before {
+    $size: 24px;
+
+    content: "";
+    display: block;
+    margin-right: 8px;
+    width: $size;
+    height: $size;
+    background: center center no-repeat transparent;
+    background-size: contain;
+
+    @include breakpoint("small") {
+      $size: 14px;
+
+      margin-right: 5px;
+      width: $size;
+      height: $size;
+    }
+  }
+}
+
+main .details > .date::before {
+  background-image: url("../../public/images/icons/date.svg");
+}
+
+main .details > .category::before {
+  background-image: url("../../public/images/icons/category.svg");
+}

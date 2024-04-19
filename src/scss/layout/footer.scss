@@ -1,0 +1,277 @@
+.top-link {
+  display: table;
+  margin: ($global-spacing-large * 2) auto 0;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: center;
+
+  @include breakpoint("small") {
+    margin-top: ($global-spacing-small * 2);
+    font-size: 14px;
+    line-height: 14px;
+  }
+}
+
+.top-link > a {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  color: $global-color-body;
+
+  &::before {
+    content: "";
+    display: block;
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    background: center center no-repeat url("../../../public/images/icons/top.svg");
+    background-size: contain;
+  }
+}
+
+footer {
+  margin-top: $global-spacing-large / 2;
+
+  @include breakpoint("small") {
+    margin-top: $global-spacing-small / 2;
+  }
+}
+
+footer * {
+  font-size: 14px;
+  line-height: 14px;
+
+  @include breakpoint("small") {
+    font-size: 12px;
+    line-height: 12px;
+  }
+}
+
+footer .footer-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: $global-spacing-large $global-spacing-large $global-spacing-large;
+  color: $global-color-background;
+  background: $global-color-body;
+
+  @include breakpoint("small") {
+    padding: $global-spacing-small $global-spacing-small ($global-spacing-small * 2);
+    flex-direction: column;
+  }
+}
+
+footer .background {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  @include breakpoint("small") {
+    margin: 0 auto;
+    justify-content: center;
+  }
+}
+
+footer ul > li {
+  margin: 0;
+  padding: 0;
+
+  @include breakpoint("small") {
+    text-align: center;
+  }
+}
+
+// Footer left
+
+footer .footer-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: auto;
+  padding-right: 10px;
+
+  @include breakpoint("small") {
+    margin: 0 0 $global-spacing-small;
+    padding: 0;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+footer .footer-left > .footer-logo,
+footer .footer-left > .footer-logo > img {
+  display: block;
+}
+
+footer .footer-left > .footer-logo {
+  margin-right: $global-spacing-large;
+
+  @include breakpoint("medium") {
+    margin-right: $global-spacing-medium;
+  }
+
+  @include breakpoint("small") {
+    margin: 0 auto $global-spacing-small;
+  }
+}
+
+footer .footer-left > .footer-logo > img {
+  width: 150px;
+  height: 150px;
+
+  @include breakpoint("medium") {
+    width: 120px;
+    height: 120px;
+  }
+
+  @include breakpoint("small") {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+footer .footer-left > .footer-left-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+footer .footer-left .footer-links a,
+footer .footer-left .footer-contact a {
+  color: $global-color-background;
+}
+
+footer .footer-left .footer-links {
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+footer .footer-left .footer-links li {
+  margin-right: 20px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+footer .footer-left .footer-contact {
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+footer .footer-left .footer-contact li {
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+footer .footer-left .footer-credits {
+  line-height: 20px !important;
+
+  @include breakpoint("small") {
+    text-align: center;
+  }
+}
+
+// Footer right
+
+footer .footer-right {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+
+  @include breakpoint("small") {
+    margin: 0 auto;
+    align-items: center;
+  }
+}
+
+footer .footer-right .social-links {
+  margin-bottom: $global-spacing-large;
+
+  @include breakpoint("small") {
+    margin-bottom: $global-spacing-small;
+  }
+}
+
+footer .footer-right .social-links li,
+footer .footer-right .footer-support li {
+  margin-right: 20px;
+
+  @include breakpoint("medium") {
+    margin-right: 15px;
+  }
+
+  @include breakpoint("small") {
+    margin-right: $global-spacing-small;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+footer .footer-right .social-links li > a,
+footer .footer-right .footer-support li > a,
+footer .footer-right .social-links li > a > svg,
+footer .footer-right .footer-support li > a > svg {
+  display: block;
+}
+
+footer .footer-right .social-links li > a > svg {
+  width: 24px;
+  height: 24px;
+
+  > path.main {
+    fill: $global-color-background;
+  }
+}
+
+footer .footer-right .social-links li > a:hover > svg > path.main {
+  fill: $global-color-primary;
+}
+
+footer .footer-right .footer-support {
+  align-items: flex-end;
+}
+
+footer .footer-right .footer-support p {
+  margin: 0 0 10px;
+  text-align: right;
+
+  @include breakpoint("small") {
+    text-align: center;
+  }
+}
+
+footer .footer-right .footer-support li > a > img {
+  width: auto;
+  height: 50px;
+
+  @include breakpoint("medium") {
+    height: 40px;
+  }
+
+  @include breakpoint("small") {
+    height: 30px;
+  }
+}

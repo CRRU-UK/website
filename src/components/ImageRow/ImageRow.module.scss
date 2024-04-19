@@ -1,0 +1,20 @@
+@import "../../scss/variables";
+
+.image-row {
+  width: calc(100% + ($global-padding-large * 2));
+  margin-left: -($global-padding-large);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  @include breakpoint("small") {
+    flex-direction: column;
+    width: calc(100% + ($global-padding-small * 2));
+    margin-left: -($global-padding-small);
+  }
+}
+
+.image-row > figure.image-caption {
+  width: 100%;
+}

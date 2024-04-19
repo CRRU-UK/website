@@ -1,0 +1,114 @@
+@import "../../scss/variables";
+
+.hero {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  height: 550px;
+  position: relative;
+  padding: $global-padding-large 0 ($global-padding-large - 5px); // Remove a little bit due to line height
+
+  &:not(.hero-no-image)::before,
+  &:not(.hero-plain)::before {
+    content: "";
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(180deg, rgba($global-color-blue, 0) 0%, rgba($global-color-blue, 0.8) 100%);
+  }
+
+  @include breakpoint("medium") {
+    height: 450px;
+  }
+
+  @include breakpoint("small") {
+    padding: $global-padding-small 0 ($global-padding-small - 5px); // Remove a little bit due to line height;
+    height: 250px;
+  }
+}
+
+.hero-no-image {
+  height: 300px;
+
+  @include breakpoint("small") {
+    height: 180px;
+  }
+}
+
+.hero-plain {
+  margin-bottom: $global-spacing-large / 2;
+  padding-top: $global-spacing-large * 2;
+  padding-bottom: 0;
+  height: auto;
+  background: transparent;
+
+  @include breakpoint("small") {
+    margin-bottom: $global-spacing-small / 2;
+    padding-top: $global-spacing-small * 2;
+  }
+}
+
+.hero-container {
+  z-index: 20;
+  position: relative;
+  margin: 0 auto;
+  padding: 0 $global-padding-large;
+  width: 100%;
+  max-width: $global-max-width;
+
+  @include breakpoint("small") {
+    padding: 0 $global-padding-small;
+  }
+}
+
+.wide {
+  max-width: $global-max-width-wide;
+}
+
+.hero-container > h2,
+.hero-container > h3 {
+  margin: 0;
+  padding: 0;
+  color: $global-color-background;
+}
+
+.hero-plain > .hero-container > h2,
+.hero-plain > .hero-container > h3 {
+  color: $global-color-body;
+}
+
+.hero-container > h2 {
+  font-size: 28px;
+  line-height: 28px;
+
+  @include breakpoint("small") {
+    margin-bottom: 5px;
+    font-size: 20px;
+    line-height: 20px;
+  }
+}
+
+.hero-container > h3 {
+  font-size: 60px;
+  line-height: 72px;
+
+  @include breakpoint("small") {
+    font-size: 32px;
+    line-height: 38px;
+  }
+}
+
+.hero > img {
+  z-index: 0;
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

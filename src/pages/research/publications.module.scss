@@ -1,0 +1,118 @@
+@import "../../scss/variables";
+
+.info {
+  margin-bottom: $global-spacing-large / 2;
+  font-size: 16px;
+  line-height: 16px;
+  color: $global-color-body-dark;
+
+  @include breakpoint("small") {
+    margin-bottom: $global-spacing-small;
+    font-size: 12px;
+    line-height: 12px;
+  }
+}
+
+.item {
+  margin-bottom: $global-spacing-large / 2;
+  padding: $global-padding-large / 2;
+  border-radius: $global-border-radius;
+  border: 2px solid $global-color-background-dark;
+
+  @include breakpoint("small") {
+    margin-bottom: $global-spacing-small / 2;
+    padding: $global-padding-small / 2;
+  }
+}
+
+.item p {
+  margin-top: 0;
+  font-size: 16px;
+  line-height: 24px;
+
+  @include breakpoint("small") {
+    font-size: 14px;
+    line-height: 22px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  @include breakpoint("small") {
+    flex-direction: column-reverse;
+    margin-bottom: 5px;
+  }
+}
+
+.title {
+  margin-right: 20px;
+  font-weight: 700;
+  font-size: inherit;
+  line-height: inherit;
+
+  @include breakpoint("small") {
+    margin-right: 0;
+  }
+}
+
+.category {
+  margin-left: auto;
+  display: inline-flex;
+  align-content: center;
+  align-items: center;
+  padding: 0 10px;
+  height: 26px;
+  font-size: 12px;
+  line-height: 12px;
+  border-radius: $global-border-radius;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-weight: 700;
+
+  @include breakpoint("small") {
+    margin: 5px auto 10px 0;
+    padding: 0 8px;
+    font-size: 10px;
+    line-height: 10px;
+    height: 18px;
+    border-radius: 5px;
+  }
+}
+
+.category-peer-review {
+  color: #000;
+  background: #59d15b;
+}
+
+.category-reports {
+  color: #000;
+  border: 2px solid #636363;
+}
+
+.category-conferences {
+  color: #000;
+  background: #dedede;
+}
+
+.category-theses {
+  color: #000;
+  background: #f2cb30;
+}
+
+.download {
+  display: table;
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+
+  @include breakpoint("small") {
+    margin-left: auto;
+    font-size: 14px;
+    line-height: 22px;
+  }
+}

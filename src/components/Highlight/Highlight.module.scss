@@ -1,0 +1,63 @@
+@import "../../scss/variables";
+
+.highlight {
+  width: calc(100% + ($global-padding-large * 2));
+  margin: $global-spacing-large auto;
+  margin-left: -($global-spacing-large);
+  padding: $global-padding-large;
+  border-radius: $global-border-radius;
+  background: $global-color-secondary;
+
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+
+  > blockquote {
+    color: inherit;
+    background: inherit;
+  }
+
+  @include breakpoint($global-max-width) {
+    border-radius: 0;
+  }
+
+  @include breakpoint("small") {
+    width: calc(100% + ($global-padding-small * 2));
+    margin: $global-spacing-small auto;
+    margin-left: -($global-spacing-small);
+    padding: $global-padding-small;
+  }
+
+  &,
+  h4,
+  h5,
+  h6,
+  a {
+    color: $global-color-body;
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-family: $global-font-primary;
+    font-size: 26px;
+    line-height: 26px;
+
+    @include breakpoint("small") {
+      font-size: 22px;
+      line-height: 30px;
+    }
+  }
+
+  a:hover {
+    color: inherit;
+  }
+}
+
+.highlight-warning {
+  background: $global-color-secondary;
+}

@@ -1,0 +1,210 @@
+@use "sass:color";
+
+@import "../../../../scss/variables";
+
+$grid-spacing-large: $global-spacing-large / 2;
+$grid-spacing-medium: $global-spacing-medium / 2;
+$grid-spacing-small: $global-spacing-small / 2;
+
+// Columns
+
+.left {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  column-gap: $global-spacing-large * 2;
+  row-gap: $global-spacing-large;
+
+  @include breakpoint("medium") {
+    column-gap: $global-spacing-medium;
+    row-gap: $global-spacing-medium;
+  }
+
+  @include breakpoint("small") {
+    grid-template-columns: 1fr;
+    row-gap: $global-spacing-small;
+  }
+}
+
+.right {
+  @include breakpoint("small") {
+    order: -1;
+  }
+}
+
+// Left
+
+.description {
+  margin-bottom: $global-spacing-large;
+
+  @include breakpoint("medium") {
+    margin-bottom: $global-spacing-medium;
+  }
+
+  @include breakpoint("small") {
+    margin-bottom: $global-spacing-small;
+  }
+
+  > *:first-child {
+    margin-top: 0;
+  }
+}
+
+.unknown {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  color: $global-color-body-dark;
+
+  > span {
+    border-bottom: 1px dotted $global-color-body-dark;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    margin-right: 5px;
+    width: 18px;
+    height: 18px;
+    background: url("../../../../../public/images/icons/help.svg") center center no-repeat transparent;
+    background-size: contain;
+
+    @include breakpoint("small") {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &:hover {
+    cursor: help;
+  }
+}
+
+.info {
+  margin: 0 0 $global-spacing-large;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: $grid-spacing-large;
+  row-gap: $grid-spacing-large;
+  list-style: none;
+
+  @include breakpoint("medium") {
+    grid-template-columns: 1fr 1fr;
+    column-gap: $grid-spacing-medium;
+    row-gap: $grid-spacing-medium;
+  }
+
+  @include breakpoint("small") {
+    column-gap: $grid-spacing-small;
+    row-gap: $grid-spacing-small;
+  }
+}
+
+.info > li {
+  margin: 0;
+  padding: 0;
+  line-height: 28px;
+
+  @include breakpoint("small") {
+    line-height: 26px;
+  }
+}
+
+.info > li > b {
+  display: block;
+}
+
+.list {
+  margin: 5px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  justify-items: stretch;
+  column-gap: $grid-spacing-large;
+  row-gap: $grid-spacing-large;
+  list-style: none;
+
+  @include breakpoint("medium") {
+    column-gap: $grid-spacing-medium;
+    row-gap: $grid-spacing-medium;
+  }
+
+  @include breakpoint("small") {
+    grid-template-columns: 1fr 1fr;
+    column-gap: $grid-spacing-small;
+    row-gap: $grid-spacing-small;
+  }
+}
+
+.list > li {
+  margin: 0;
+  padding: 0;
+}
+
+.info-item-wide {
+  grid-column: 1 / -1;
+}
+
+// Right
+
+.images-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 20px;
+
+  @include breakpoint("medium") {
+    column-gap: 18px;
+    row-gap: 18px;
+  }
+
+  @include breakpoint("small") {
+    column-gap: 15px;
+    row-gap: 15px;
+  }
+
+  > .image:nth-child(1) {
+    grid-column: 1 / -1;
+
+    @include breakpoint("small") {
+      grid-column: unset;
+    }
+  }
+}
+
+.images-list > .image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.no-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  width: 100%;
+  height: 300px;
+  font-size: 26px;
+  line-height: 38px;
+  text-align: center;
+  color: $global-color-body-dark;
+  background: $global-color-background-dark;
+
+  @include breakpoint("medium") {
+    height: 250px;
+    font-size: 22px;
+    line-height: 32px;
+  }
+
+  @include breakpoint("small") {
+    padding: 20px;
+    font-size: 18px;
+    line-height: 26px;
+    height: 100px;
+  }
+}

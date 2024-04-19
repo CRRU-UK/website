@@ -1,0 +1,106 @@
+@import "../../scss/variables";
+
+.gallery {
+  position: relative;
+  margin: $global-spacing-large auto;
+  aspect-ratio: 4 / 3;
+
+  @include breakpoint("small") {
+    width: calc(100% + ($global-padding-small * 2));
+    margin-top: $global-spacing-small;
+    margin-bottom: $global-spacing-small;
+    margin-left: -($global-padding-small);
+  }
+}
+
+.container {
+  display: flex;
+  overflow: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.item {
+  display: block;
+  flex-shrink: 0;
+  width: 100%;
+  scroll-snap-align: start;
+
+  @include breakpoint("small") {
+    width: 100vw;
+  }
+
+  > figure {
+    margin: 0;
+  }
+}
+
+.pagination {
+  z-index: 10;
+  position: absolute;
+  left: 50%;
+  bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(-50%);
+
+  @include breakpoint("small") {
+    bottom: 15px;
+  }
+}
+
+.pagination-arrow,
+.pagination-item {
+  $pagination-size: 15px;
+
+  opacity: 0.5;
+  padding: $pagination-size / 2;
+  
+  &::before {
+    content: "";
+    display: block;
+    width: $pagination-size;
+    height: $pagination-size;
+  }
+
+  @include breakpoint("small") {
+    $pagination-size: 10px;
+
+    padding: $pagination-size / 2;
+
+    &::before {
+      width: $pagination-size;
+      height: $pagination-size;
+    }
+  }
+}
+
+.pagination-arrow:hover,
+.pagination-item:hover,
+.pagination-item-active {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.pagination-arrow::before {
+  background: url("../../../public/images/icons/gallery-arrow.svg") center center no-repeat;
+  background-size: contain;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.pagination-arrow-previous {
+  left: 0;
+}
+
+.pagination-arrow-next {
+  transform: rotate(180deg);
+}
+
+.pagination-item::before {
+  border-radius: 50%;
+  background: $global-color-background;
+}
