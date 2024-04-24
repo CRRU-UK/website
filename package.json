@@ -51,7 +51,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "node-mocks-http": "^1.14.1",
     "sass": "^1.75.0",
-    "stylelint": "^16.3.1",
+    "stylelint": "^16.4.0",
     "stylelint-config-sass-guidelines": "^11.1.0",
     "stylelint-order": "^6.0.4",
     "stylelint-scss": "^6.2.1",
