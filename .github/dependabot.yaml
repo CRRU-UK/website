@@ -6,7 +6,7 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      all:
+      main:
         applies-to: version-updates
         patterns:
           - "*"
@@ -19,7 +19,7 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      all:
+      main:
         applies-to: version-updates
         patterns:
           - "*"
