@@ -155,7 +155,7 @@ const UseSightingsForm = () => {
           </label>
 
           <label htmlFor="amount">
-            <span>Amount of animals present:</span>
+            <span>Number of animals present:</span>
             <input type="number" id="amount" name="amount" disabled={loading} />
           </label>
 

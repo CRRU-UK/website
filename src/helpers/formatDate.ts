@@ -12,7 +12,7 @@ dayjs.extend(localizedFormat);
 /**
  * Formats date as relative time.
  * @param date Date to format.
- * @param currentDate Current date to compared against (for testing).
+ * @param [currentDate] Current date to compared against (for testing).
  * @returns Formatted date as relative time (up to two weeks).
  */
 const formatDateRelative = (
