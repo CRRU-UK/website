@@ -104,7 +104,7 @@ const UsePublicationsContent = (data: Array<PublicationDataReduced>) => {
       />
 
       <div className={styles.info}>
-        Showing {filteredData.length} publications
+        Showing {filteredData.length} of {data.length} publications
       </div>
 
       {filteredData.length ? filteredData.map((item) => PublicationEntry(item)) : <p>No results for &quot;{search}&quot;</p>}
