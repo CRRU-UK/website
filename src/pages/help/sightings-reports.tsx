@@ -18,6 +18,10 @@ const UseSightingsForm = () => {
 
   const resetChallenge = () => (window as any)?.turnstile?.reset();
 
+  const currentDate = new Date();
+  const defaultDate = currentDate.toISOString().substring(0, 10);
+  const defaultTime = `${currentDate.getHours()}:${currentDate.getMinutes()}`;
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
 
@@ -102,17 +106,17 @@ const UseSightingsForm = () => {
 
           <label htmlFor="date">
             <span>Date of sighting: *</span>
-            <input type="date" id="date" name="date" required disabled={loading} />
+            <input type="date" id="date" name="date" defaultValue={defaultDate} required disabled={loading} />
           </label>
 
           <label htmlFor="time-start">
             <span>Time (start): *</span>
-            <input type="time" id="time-start" name="time-start" required disabled={loading} />
+            <input type="time" id="time-start" name="time-start" defaultValue={defaultTime} required disabled={loading} />
           </label>
 
           <label htmlFor="time-end">
             <span>Time (end): *</span>
-            <input type="time" id="time-end" name="time-end" required disabled={loading} />
+            <input type="time" id="time-end" name="time-end" defaultValue={defaultTime} required disabled={loading} />
           </label>
 
           <label htmlFor="location">
