@@ -79,9 +79,9 @@ const Page: NextPage<PageProps> = ({
   } else if (searchText !== '' && data?.items?.length === 0) {
     infoText = `No results for "${searchText}"`;
   } else if (searchText !== '' && data?.items) {
-    infoText = `${data.meta.totalItems} ${data?.items.length > 1 ? 'items' : 'item'} found for "${searchText}"`;
+    infoText = `${data.meta.totalItems} ${data?.items.length > 1 ? 'items' : 'item'} found for "${searchText}" (page ${page} of ${data.meta.totalPages})`;
   } else if (data?.items) {
-    infoText = `Page ${page} of ${data.meta.totalPages} (${data.meta.totalItems} total items)`;
+    infoText = `Page ${page} of ${data.meta.totalPages} (showing ${data.items.length} of ${data.meta.totalItems} items)`;
   }
 
   return (
