@@ -1,6 +1,9 @@
 /* eslint-disable no-console */
 
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiResponse } from 'next';
+import type { LogtailAPIRequest } from '@logtail/next';
+
+import { withLogtail } from '@logtail/next';
 
 import joi from 'joi';
 import nodemailer from 'nodemailer';
@@ -34,7 +37,7 @@ const mailerTransporter = nodemailer.createTransport({
 });
 
 const handler = async (
-  req: NextApiRequest,
+  req: LogtailAPIRequest,
   res: NextApiResponse,
 ) => {
   const { headers, body } = req;
@@ -90,7 +93,7 @@ const handler = async (
       html: Object.entries(body).map(([key, value]) => `<b>${key.toUpperCase()}:</b> ${value}`).join('<br />'),
     });
   } catch (error) {
-    console.error('Unable to send email:', error);
+    req.log.error('Unable to send email:', { error });
 
     return res.status(500).json({
       success: false,
@@ -105,4 +108,4 @@ const handler = async (
   });
 };
 
-export default handler;
+export default withLogtail(handler);
