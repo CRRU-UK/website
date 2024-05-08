@@ -10,13 +10,13 @@ const hostname = 'localhost';
 const port = 3000;
 
 const loggerOptions = {
-  meta: !dev,
-  colorize: dev,
+  meta: true,
+  expressFormat: true,
   transports: [
-    new winston.transports.Console()
+    new winston.transports.Console(),
   ],
   format: winston.format.combine(
-    winston.format.colorize(),
+    winston.format.timestamp(),
     winston.format.json()
   ),
 };
@@ -30,10 +30,13 @@ app.prepare().then(() => {
   if (!dev) {
     server.use(helmet());
     server.use(expressWinston.logger(loggerOptions));
-    server.use(expressWinston.errorLogger(loggerOptions));
   }
 
   server.all('*', (req, res) => handle(req, res));
+
+  if (!dev) {
+    server.use(expressWinston.errorLogger(loggerOptions));
+  }
 
   server.listen(port, () => console.log(`server listening on ${port}`));
 });
