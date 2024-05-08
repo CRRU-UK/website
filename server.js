@@ -1,6 +1,7 @@
 const next = require('next');
 const express = require('express');
 
+const helmet = require('helmet');
 const winston = require('winston');
 const expressWinston = require('express-winston');
 
@@ -26,8 +27,11 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
-  server.use(expressWinston.logger(loggerOptions));
-  server.use(expressWinston.errorLogger(loggerOptions));
+  if (!dev) {
+    server.use(helmet());
+    server.use(expressWinston.logger(loggerOptions));
+    server.use(expressWinston.errorLogger(loggerOptions));
+  }
 
   server.all('*', (req, res) => handle(req, res));
 
