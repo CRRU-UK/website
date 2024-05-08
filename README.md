@@ -59,7 +59,7 @@ The following environment variables should be provided when running the server (
 | `NODE_SMTP_USERNAME`                        | SMTP username for sending emails.     |
 | `NODE_SMTP_PASSWORD`                        | SMTP password for sending emails.     |
 | `NODE_SIGHTING_EMAIL`                       | Email address to send sightings to.   |
-| `LOGTAIL_SOURCE_TOKEN` *                    | Token for Better Stack Logs.          |
+| `LOGTAIL_SOURCE_TOKEN`                      | Token for Better Stack Logs.          |
 
 ## Development
 
