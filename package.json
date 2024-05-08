@@ -79,7 +79,8 @@
       "next.config.js",
       "jest.config.ts",
       "jest.setup.ts",
-      "jest.env.ts"
+      "jest.env.ts",
+      "server.js"
     ],
     "env": {
       "node": true,
