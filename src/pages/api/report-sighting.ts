@@ -5,8 +5,6 @@ import type { LogtailAPIRequest } from '@logtail/next';
 
 import { withLogtail } from '@logtail/next';
 
-import { log } from '@logtail/next';
-
 import joi from 'joi';
 import nodemailer from 'nodemailer';
 
@@ -95,7 +93,7 @@ const handler = async (
       html: Object.entries(body).map(([key, value]) => `<b>${key.toUpperCase()}:</b> ${value}`).join('<br />'),
     });
   } catch (error) {
-    log.error('Unable to send email:', { error });
+    req.log.error('Unable to send email:', { error });
 
     return res.status(500).json({
       success: false,
