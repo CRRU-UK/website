@@ -1,9 +1,12 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiResponse } from 'next';
+import type { LogtailAPIRequest } from '@logtail/next';
+
+import { withLogtail } from '@logtail/next';
 
 import { getCatalogueList } from '@/helpers/getBottlenoseDolphinCatalogue';
 
 const handler = async (
-  req: NextApiRequest,
+  req: LogtailAPIRequest,
   res: NextApiResponse,
 ) => {
   if (req.method !== 'GET') {
@@ -36,4 +39,4 @@ const handler = async (
   return res.json(data);
 };
 
-export default handler;
+export default withLogtail(handler);
