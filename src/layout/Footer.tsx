@@ -58,7 +58,18 @@ const Footer = () => (
 
           <div className="footer-support">
             <p>With support from:</p>
+
             <ul>
+              <li>
+                <Link href="https://www.johnlewispartnership.co.uk/foundation0.html" rel="noopener noreferrer" target="_blank">
+                  <Image
+                    src="/images/footer/logo-jlp-foundation.svg"
+                    alt="John Lewis Partnership Foundation"
+                    width={75}
+                    height={50}
+                  />
+                </Link>
+              </li>
               <li>
                 <Link href="https://www.bornfree.org.uk" rel="noopener noreferrer" target="_blank">
                   <Image
@@ -75,16 +86,6 @@ const Footer = () => (
                     src="/images/footer/logo-land-rover.svg"
                     alt="Land Rover"
                     width={95}
-                    height={50}
-                  />
-                </Link>
-              </li>
-              <li>
-                <Link href="https://johnspedanlewisfoundation.org" rel="noopener noreferrer" target="_blank">
-                  <Image
-                    src="/images/footer/logo-john-spedan-lewis.jpg"
-                    alt="John Spedan Lewis Foundation"
-                    width={75}
                     height={50}
                   />
                 </Link>
