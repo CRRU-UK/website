@@ -65,7 +65,7 @@ const Footer = () => (
                   <Image
                     src="/images/footer/logo-jlp-foundation.svg"
                     alt="John Lewis Partnership Foundation"
-                    width={75}
+                    width={144}
                     height={50}
                   />
                 </Link>
