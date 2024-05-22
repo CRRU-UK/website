@@ -68,6 +68,7 @@ const CommonPage = ({
         {...previewProps({
           entryId: previewData.sys.id as string,
           fieldId: 'content',
+          manuallyTagged: true,
         })}
       >
         {data.content && documentToReactComponents(data.content, pageRenderOptions)}

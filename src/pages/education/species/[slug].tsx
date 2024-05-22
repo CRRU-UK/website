@@ -102,45 +102,45 @@ const Page: NextPage<PageProps> = ({
         <ul className={styles.taxonomy}>
           <li>
             <strong>Order:</strong>
-            <span {...previewProps({ entryId: previewData.sys.id, fieldId: 'order' })}>
+            <span {...previewProps({ entryId: previewData.sys.id, fieldId: 'order', manuallyTagged: true })}>
               {order}
             </span>
           </li>
           <li>
             <strong>Suborder:</strong>
-            <span {...previewProps({ entryId: previewData.sys.id, fieldId: 'suborder' })}>
+            <span {...previewProps({ entryId: previewData.sys.id, fieldId: 'suborder', manuallyTagged: true })}>
               {suborder}
             </span>
           </li>
           <li>
             <strong>Family:</strong>
-            <span {...previewProps({ entryId: previewData.sys.id, fieldId: 'family' })}>
+            <span {...previewProps({ entryId: previewData.sys.id, fieldId: 'family', manuallyTagged: true })}>
               {family}
             </span>
           </li>
           {subfamily && (
             <li>
               <strong>Subfamily:</strong>
-              <span {...previewProps({ entryId: previewData.sys.id, fieldId: 'subfamily' })}>
+              <span {...previewProps({ entryId: previewData.sys.id, fieldId: 'subfamily', manuallyTagged: true })}>
                 {subfamily}
               </span>
             </li>
           )}
           <li>
             <strong>Genus:</strong>
-            <span {...previewProps({ entryId: previewData.sys.id, fieldId: 'genus' })}>
+            <span {...previewProps({ entryId: previewData.sys.id, fieldId: 'genus', manuallyTagged: true })}>
               {genus}
             </span>
           </li>
           <li className={!wide ? styles.wide : ''}>
             <strong>Species:</strong>
-            <span {...previewProps({ entryId: previewData.sys.id, fieldId: 'species' })}>
+            <span {...previewProps({ entryId: previewData.sys.id, fieldId: 'species', manuallyTagged: true })}>
               <em>{speciesName}</em> ({speciesYear}
             </span>
           </li>
         </ul>
 
-        <span {...previewProps({ entryId: previewData.sys.id, fieldId: 'content' })}>
+        <span {...previewProps({ entryId: previewData.sys.id, fieldId: 'content', manuallyTagged: true })}>
           {documentToReactComponents(content, pageRenderOptions)}
         </span>
       </article>
