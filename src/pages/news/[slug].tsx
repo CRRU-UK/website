@@ -101,13 +101,13 @@ const Page: NextPage<PageProps> = ({
         <li
           className="date"
           title={date}
-          {...previewProps({ entryId: previewData.sys.id, fieldId: 'date', manuallyTagged: true })}
+          {...previewProps({ entryId: previewData.sys.id, fieldId: 'date' })}
         >
           {formatDateRelative(date)}
         </li>
         <li
           className="category"
-          {...previewProps({ entryId: previewData.sys.id, fieldId: 'category', manuallyTagged: true })}
+          {...previewProps({ entryId: previewData.sys.id, fieldId: 'category' })}
         >
           {category}
         </li>
@@ -115,7 +115,7 @@ const Page: NextPage<PageProps> = ({
 
       <article
         className="content"
-        {...previewProps({ entryId: previewData.sys.id, fieldId: 'content', manuallyTagged: true })}
+        {...previewProps({ entryId: previewData.sys.id, fieldId: 'content' })}
       >
         {pageBody}
       </article>
