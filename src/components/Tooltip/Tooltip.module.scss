@@ -1,0 +1,74 @@
+@import "../../scss/variables";
+
+$icon-size-large: 22px;
+$icon-size-small: 16px;
+
+$tooltip-spacing: 10px;
+
+.tooltip {
+  overflow: visible;
+  z-index: 10;
+  position: relative;
+  transform: translateY(4px);
+  margin-left: 5px;
+  display: inline-block;
+  width: $icon-size-large;
+  height: $icon-size-large;
+
+  @include breakpoint("small") {
+    width: $icon-size-small;
+    height: $icon-size-small;
+  }
+}
+
+.tooltip-button,
+.tooltip-text {
+  display: block;
+}
+
+.tooltip-button {
+  opacity: .5;
+  z-index: 0;
+  width: $icon-size-large;
+  height: $icon-size-large;
+  background: url("../../../public/images/icons/tooltip.svg") center center no-repeat transparent;
+  background-size: contain;
+
+  @include breakpoint("small") {
+    width: $icon-size-small;
+    height: $icon-size-small;
+  }
+}
+
+.tooltip-button:hover,
+.tooltip-button-active {
+  opacity: 1;
+}
+
+$easing-in: 0.6s $global-transition-ease-out-expo;
+$easing-out: 0.6s $global-transition-ease-in-expo;
+
+.tooltip-text {
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  position: absolute;
+  left: -$tooltip-spacing;
+  bottom: calc(100% + $tooltip-spacing);
+  padding: 10px;
+  width: 200px;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: left;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba($global-color-body, .3);
+  background: $global-color-background;
+  transform: translateY(20%);
+  transition: opacity $easing-in, transform $easing-in;
+}
+
+.tooltip-text-active {
+  pointer-events: all;
+  opacity: 1;
+  transform: translateY(0%);
+}

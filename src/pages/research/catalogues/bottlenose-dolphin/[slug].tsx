@@ -13,7 +13,7 @@ import { formatDateMonth } from '@/helpers/formatDate';
 import { getCatalogueItem, getCatalogueItemSlug } from '@/helpers/getBottlenoseDolphinCatalogue';
 
 import Hero from '@/components/Hero/Hero';
-import { Breadcrumbs, SEO, Catalogue } from '@/components/index';
+import { Breadcrumbs, SEO, Catalogue, Tooltip } from '@/components/index';
 
 import styles from './[slug].module.scss';
 
@@ -174,16 +174,52 @@ const Page: NextPage<PageProps> = ({
             )}
 
             <ul className={styles.info}>
-              <li><b>CRRU ID #</b> {id}</li>
-              <li><b>AU ID Ref #</b> <Unknown /></li>
-              <li><b>Name</b> {name ?? <i>(None)</i>}</li>
-              <li><b>First Seen</b> {firstSeen ? formatDateMonth(firstSeen) : <Unknown />}</li>
-              <li><b>Birth Year</b> {birthYear ?? <Unknown />}</li>
-              <li><b>Age (Years)</b> {age ? ageText : <Unknown />}</li>
-              <li><b>Sex</b> {sex === 'Unknown' ? <Unknown /> : sex}</li>
-              <li className={styles['info-item-double']}><b>Total Number Of Calves</b> 5</li>
-              <li className={styles['info-item-full']}><b>Dorsal Edge Markings (DEMs)</b> {dorsalEdgeMarkings ?? 'None'}</li>
-              <li className={styles['info-item-full']}><b>Other Features</b> {otherFeatures ?? 'None'}</li>
+              <li>
+                <b>CRRU ID #</b>
+                {id}
+              </li>
+              <li>
+                <b>
+                  AU ID Ref # 
+                  <Tooltip text="ID assigned by the AULFS (Aberdeen University Lighthouse Field Station)" />
+                </b>
+                <Unknown />
+              </li>
+              <li>
+                <b>Name</b>
+                {name ?? <i>(None)</i>}
+              </li>
+              <li>
+                <b>First Seen</b>
+                {firstSeen ? formatDateMonth(firstSeen) : <Unknown />}
+              </li>
+              <li>
+                <b>Birth Year</b>
+                {birthYear ?? <Unknown />}
+              </li>
+              <li>
+                <b>Age (Years)</b>
+                {age ? ageText : <Unknown />}
+              </li>
+              <li>
+                <b>Sex</b>
+                {sex === 'Unknown' ? <Unknown /> : sex}
+              </li>
+              <li className={styles['info-item-double']}>
+                <b>
+                  Total Number Of Calves
+                  <Tooltip text="Total number of calves as identified by CRRU and AULFS" />
+                </b>
+                5
+              </li>
+              <li className={styles['info-item-full']}>
+                <b>Dorsal Edge Markings (DEMs)</b>
+                {dorsalEdgeMarkings ?? 'None'}
+              </li>
+              <li className={styles['info-item-full']}>
+                <b>Other Features</b>
+                {otherFeatures ?? 'None'}
+              </li>
             </ul>
 
             {imagesElement}

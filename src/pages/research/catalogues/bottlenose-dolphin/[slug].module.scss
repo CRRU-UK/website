@@ -60,21 +60,6 @@ $grid-spacing-small: $global-spacing-small / 2;
     border-bottom: 1px dotted $global-color-body-dark;
   }
 
-  &::before {
-    content: "";
-    display: block;
-    margin-right: 5px;
-    width: 18px;
-    height: 18px;
-    background: url("../../../../../public/images/icons/help.svg") center center no-repeat transparent;
-    background-size: contain;
-
-    @include breakpoint("small") {
-      width: 16px;
-      height: 16px;
-    }
-  }
-
   &:hover {
     cursor: help;
   }
@@ -259,20 +244,21 @@ $line-color: #CCC;
       z-index: 10;
       position: relative;
       padding: 8px 0;
+      font-weight: 700;
       font-size: 16px;
       line-height: 16px;
-      color: $global-color-body-dark;
+      color: rgba($global-color-body-dark, 0.5);
       background: $global-color-background;
     }
   }
 }
 
 .tree .mother > b::after {
-  background: linear-gradient(180deg, rgba($line-color, 1) 70%, rgba($line-color, 0) 100%);
+  background: linear-gradient(180deg, rgba($line-color, 1) 75%, rgba($line-color, 0) 100%);
 }
 
 .tree .calves > b::after {
-  background: linear-gradient(180deg, rgba($line-color, 0) 0%, rgba($line-color, 1) 30%);
+  background: linear-gradient(180deg, rgba($line-color, 0) 0%, rgba($line-color, 1) 25%);
 }
 
 .tree .mother > b {
@@ -282,7 +268,7 @@ $line-color: #CCC;
 // TODO: Re-do this
 .tree .mother a {
   margin: 0 auto;
-  width: 50%;
+  width: calc(50% - ($column-gap / 2));
 }
 
 .tree .calves > ul {
