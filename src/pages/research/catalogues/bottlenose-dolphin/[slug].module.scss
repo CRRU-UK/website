@@ -143,7 +143,11 @@ $grid-spacing-small: $global-spacing-small / 2;
   padding: 0;
 }
 
-.info-item-wide {
+.info-item-double {
+  grid-column: 2 / -1;
+}
+
+.info-item-full {
   grid-column: 1 / -1;
 }
 
@@ -151,7 +155,7 @@ $grid-spacing-small: $global-spacing-small / 2;
 
 .images-list {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   column-gap: 20px;
   row-gap: 20px;
 
@@ -166,11 +170,11 @@ $grid-spacing-small: $global-spacing-small / 2;
   }
 
   > .image:nth-child(1) {
-    grid-column: 1 / -1;
+    grid-column: 1 / 3;
+  }
 
-    @include breakpoint("small") {
-      grid-column: unset;
-    }
+  > .image:nth-child(2) {
+    grid-column: 3 / 5;
   }
 }
 
@@ -207,4 +211,136 @@ $grid-spacing-small: $global-spacing-small / 2;
     line-height: 26px;
     height: 100px;
   }
+}
+
+
+// Family tree
+
+$section-spacing: 60px;
+$row-gap: 20px;
+$column-gap: 40px;
+$line-size: 2px;
+$line-color: #CCC;
+
+.tree,
+.tree ul,
+.tree li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tree .mother,
+.tree .calves {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  > b {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    height: $section-spacing + 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &::after {
+      content: "";
+      z-index: 0;
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: $line-size;
+      height: 100%;
+    }
+
+    > span {
+      z-index: 10;
+      position: relative;
+      padding: 8px 0;
+      font-size: 16px;
+      line-height: 16px;
+      color: $global-color-body-dark;
+      background: $global-color-background;
+    }
+  }
+}
+
+.tree .mother > b::after {
+  background: linear-gradient(180deg, rgba($line-color, 1) 70%, rgba($line-color, 0) 100%);
+}
+
+.tree .calves > b::after {
+  background: linear-gradient(180deg, rgba($line-color, 0) 0%, rgba($line-color, 1) 30%);
+}
+
+.tree .mother > b {
+  order: 1;
+}
+
+// TODO: Re-do this
+.tree .mother a {
+  margin: 0 auto;
+  width: 50%;
+}
+
+.tree .calves > ul {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto;
+  row-gap: $row-gap;
+  column-gap: $column-gap;
+  overflow: hidden;
+}
+
+.tree .calves > ul > li {
+  z-index: 10;
+  position: relative;
+
+  // Row lines
+  &::before {
+    content: "";
+    z-index: 0;
+    position: absolute;
+    top: 50%;
+    display: block;
+    margin-top: -1px;
+    width: ($column-gap / 2);
+    height: $line-size;
+    background: $line-color;
+  }
+
+  &:nth-child(odd) {
+    &::before {
+      left: 100%;
+    }
+
+    // Column line
+    &::after {
+      content: "";
+      z-index: 0;
+      position: absolute;
+      right: 0 - ($column-gap / 2) - $line-size;
+      bottom: calc(50% - $line-size + 1px); // TODO: Fix single pixel offset
+      width: $line-size;
+      height: calc(100% + $row-gap);
+      background: $line-color;
+    }
+  }
+
+  &:nth-child(even) {
+    &::before {
+      right: 100%;
+    }
+  }
+}
+
+.tree .name {
+  padding: ($global-padding-large / 2) 0;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  text-align: center;
+  color: $global-color-body-dark;
 }
