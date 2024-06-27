@@ -26,15 +26,17 @@ const Unknown = () => (
   </span>
 );
 
-interface PageProps {
-  catalogueData: CatalogueBottlenoseDolphin,
+interface FamilyTreeProps {
+  name: string,
+  data: CatalogueBottlenoseDolphin,
 }
 
-const familyTree = (
-  name: string,
-  mother: CatalogueBottlenoseDolphin['mother'],
-  calves: CatalogueBottlenoseDolphin['calves'],
-) => {
+const familyTree = ({ name, data }: FamilyTreeProps) => {
+  const {
+    mother,
+    calves,
+  } = data;
+
   let motherElement = null;
   if (mother) {
     motherElement = (
@@ -44,7 +46,6 @@ const familyTree = (
           title={String(mother.id)}
           subtitle={mother?.name ? String(mother.name) : undefined}
           link={`/research/catalogues/bottlenose-dolphin/${mother.slug}`}
-          image={mother?.image ?? undefined}
         />
       </li>
     );
@@ -57,13 +58,13 @@ const familyTree = (
         <b><span>Calves</span></b>
         <ul>
           {
-            calves.map((item) => (
+            calves.map((item, index) => (
               <li key={item.id}>
+                {index === 0 && (<span className={styles.current}>Current Calf</span>)}
                 <Catalogue
                   title={item.id}
                   subtitle={item?.name ?? undefined}
                   link={item.slug}
-                  image={item?.image ?? undefined}
                 />
               </li>
             ))
@@ -90,6 +91,10 @@ const familyTree = (
   ); 
 };
 
+interface PageProps {
+  catalogueData: CatalogueBottlenoseDolphin,
+}
+
 const Page: NextPage<PageProps> = ({
   catalogueData,
 }: PageProps) => {
@@ -102,9 +107,10 @@ const Page: NextPage<PageProps> = ({
     birthYear,
     age,
     sex,
-    dorsalEdgeMarkings,
-    otherFeatures,
-    images,
+    leftDorsalFin,
+    rightDorsalFin,
+    otherImages,
+    lastUpdated,
   } = catalogueData.entry;
 
   const title = name ? `#${id} (${name})` : `#${id}`;
@@ -121,23 +127,43 @@ const Page: NextPage<PageProps> = ({
     ageText = `${age}`;
   }
 
-  let imagesElement = <div className={styles['no-image']}>No images currently available</div>;
-  if (catalogueData.entry?.images?.length > 0) {
-    imagesElement = (
-      <span className={styles['images-list']}>
-        {images.map((item) => (
-          <Image
-            key={item.url}
-            src={item.url}
-            width={item.width}
-            height={item.height}
-            alt=""
-            className={styles.image}
-          />
-        ))}
-      </span>
-    );
-  }
+  const noImage = <div className={styles['no-image']}>No image</div>;
+  const imagesElement = (
+    <div className={styles['images-list']}>
+      <div className={styles['images-list-left']}>
+        <b>Left Dorsal Fin</b>
+        {leftDorsalFin ? <Image
+          src={leftDorsalFin.url}
+          width={leftDorsalFin.width}
+          height={leftDorsalFin.height}
+          alt="Left Dorsal Fin"
+          className={styles.image}
+        /> : (noImage)}
+      </div>
+
+      <div className={styles['images-list-right']}>
+        <b>Right Dorsal Fin</b>
+        {rightDorsalFin ? <Image
+          src={rightDorsalFin.url}
+          width={rightDorsalFin.width}
+          height={rightDorsalFin.height}
+          alt="Right Dorsal Fin"
+          className={styles.image}
+        /> : (noImage)}
+      </div>
+
+      {otherImages.map((item) => (
+        <Image
+          key={item.url}
+          src={item.url}
+          width={item.width}
+          height={item.height}
+          alt=""
+          className={styles.image}
+        />
+      ))}
+    </div>
+  )
 
   return (
     <>
@@ -148,7 +174,6 @@ const Page: NextPage<PageProps> = ({
           path,
         }}
         breadcrumbs={breadcrumbs}
-        images={images?.map(({ url, width, height }) => ({ url, width, height })) ?? undefined}
       />
 
       <Hero
@@ -180,8 +205,8 @@ const Page: NextPage<PageProps> = ({
               </li>
               <li>
                 <b>
-                  AU ID Ref # 
-                  <Tooltip text="ID assigned by the AULFS (Aberdeen University Lighthouse Field Station)" />
+                  AULFS ID Ref # 
+                  <Tooltip text="Aberdeen University Lighthouse Field Station" />
                 </b>
                 <Unknown />
               </li>
@@ -210,15 +235,7 @@ const Page: NextPage<PageProps> = ({
                   Total Number Of Calves
                   <Tooltip text="Total number of calves as identified by CRRU and AULFS" />
                 </b>
-                5
-              </li>
-              <li className={styles['info-item-full']}>
-                <b>Dorsal Edge Markings (DEMs)</b>
-                {dorsalEdgeMarkings ?? 'None'}
-              </li>
-              <li className={styles['info-item-full']}>
-                <b>Other Features</b>
-                {otherFeatures ?? 'None'}
+                TBA
               </li>
             </ul>
 
@@ -226,9 +243,11 @@ const Page: NextPage<PageProps> = ({
           </section>
 
           <section className={styles.right}>
-            {familyTree(title, catalogueData.mother, catalogueData.calves)}
+            {familyTree({ name: title, data: catalogueData })}
           </section>
         </div>
+
+        <p className={styles.updated}>Last updated: {formatDateMonth(lastUpdated)}</p>
       </article>
     </>
   );

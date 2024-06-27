@@ -29,10 +29,9 @@ const Tooltip = ({
     >
       <button
         type="button"
+        title="Tooltip"
         className={buttonClasses.join(' ')}
         onKeyDown={() => {}}
-        title="Tooltip"
-        aria-label="Tooltip"
         aria-expanded={open}
         tabIndex={0}
       />

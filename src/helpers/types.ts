@@ -67,7 +67,6 @@ export type CatalogueBottlenoseDolphinBasicInfo = {
   id: string,
   name: string | null,
   slug: string,
-  image: FlattenedImage | null,
 };
 
 export type CatalogueBottlenoseDolphinListAPIResponse = {
@@ -90,9 +89,10 @@ export type CatalogueBottlenoseDolphin = {
     birthYear: string | null,
     age: number | null,
     sex: 'Unknown' | 'Female' | 'Male',
-    dorsalEdgeMarkings: string | null,
-    otherFeatures: string | null,
-    images: Array<FlattenedImage> | [],
+    leftDorsalFin: FlattenedImage | null,
+    rightDorsalFin: FlattenedImage | null,
+    otherImages: Array<FlattenedImage> | [],
+    lastUpdated: string,
   },
   mother: CatalogueBottlenoseDolphinBasicInfo | null,
   calves: Array<CatalogueBottlenoseDolphinBasicInfo> | [],
@@ -235,9 +235,9 @@ export type ContentTypeCatalogueBottlenoseDolphin = {
     birthYear?: EntryFieldTypes.Date,
     age?: EntryFieldTypes.Integer,
     sex: EntryFieldTypes.Symbol<'Unknown' | 'Female' | 'Male'>,
-    dorsalEdgeMarkings?: EntryFieldTypes.Symbol,
-    otherFeatures?: EntryFieldTypes.Symbol,
     mother?: EntryFieldTypes.EntryLink<ContentTypeCatalogueBottlenoseDolphin>,
-    images?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>,
+    leftDorsalFin?: EntryFieldTypes.AssetLink,
+    rightDorsalFin?: EntryFieldTypes.AssetLink,
+    otherImages?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>,
   },
 };

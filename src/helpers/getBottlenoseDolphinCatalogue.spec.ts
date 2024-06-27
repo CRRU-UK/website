@@ -24,7 +24,7 @@ const mockedEntries = [{
     id: 'mocked-id-2',
     name: 'mocked name 2',
     slug: 'mocked-slug-2',
-    images: ['mocked image 2'],
+    otherImages: ['mocked image 2'],
   },
 }];
 
@@ -60,12 +60,10 @@ describe('getCatalogueList', () => {
         id: 'mocked-id-1',
         name: 'mocked name 1',
         slug: 'mocked-slug-1',
-        image: null,
       }, {
         id: 'mocked-id-2',
         name: 'mocked name 2',
         slug: 'mocked-slug-2',
-        image: 'mocked image 2',
       }],
     });
   });
@@ -95,6 +93,7 @@ describe('getCatalogueItem', () => {
       items: [{
         sys: {
           id: 'mocked-entry-id',
+          updatedAt: 'mocked-updated-at',
         },
         fields: {
           id: 'mocked-id',
@@ -130,9 +129,10 @@ describe('getCatalogueItem', () => {
         birthYear: null,
         age: null,
         sex: null,
-        dorsalEdgeMarkings: null,
-        otherFeatures: null,
-        images: [],
+        leftDorsalFin: null,
+        rightDorsalFin: null,
+        otherImages: [],
+        lastUpdated: 'mocked-updated-at',
       },
       mother: null,
       calves: [],
@@ -144,6 +144,7 @@ describe('getCatalogueItem', () => {
       items: [{
         sys: {
           id: 'mocked-entry-id',
+          updatedAt: 'mocked-updated-at',
         },
         fields: {
           id: 'mocked-id',
@@ -154,17 +155,16 @@ describe('getCatalogueItem', () => {
           birthYear: 'mocked birth year',
           age: 'mocked age',
           sex: 'mocked sex',
-          dorsalEdgeMarkings: 'mocked doral edge markings',
-          otherFeatures: 'mocked other features',
+          leftDorsalFin: 'mocked-left-dorsal-fin',
+          rightDorsalFin: 'mocked-right-dorsal-fin',
+          otherImages: ['mocked-other-image-1'],
           mother: {
             fields: {
               id: 'mocked-mother-id-1',
               name: 'mocked-mother-name-1',
               slug: 'mocked-mother-slug-1',
-              images: ['mocked-mother-image-1'],
             },
           },
-          images: ['mocked-image'],
         },
       }],
     }));
@@ -175,7 +175,6 @@ describe('getCatalogueItem', () => {
           id: 'mocked-calf-id-1',
           name: 'mocked-calf-name-1',
           slug: 'mocked-calf-slug-1',
-          images: ['mocked-calf-image-1'],
         },
       }, {
         fields: {
@@ -197,26 +196,24 @@ describe('getCatalogueItem', () => {
         birthYear: 'mocked birth year',
         age: 'mocked age',
         sex: 'mocked sex',
-        dorsalEdgeMarkings: 'mocked doral edge markings',
-        otherFeatures: 'mocked other features',
-        images: ['mocked-image'],
+        leftDorsalFin: 'mocked-left-dorsal-fin',
+        rightDorsalFin: 'mocked-right-dorsal-fin',
+        otherImages: ['mocked-other-image-1'],
+        lastUpdated: 'mocked-updated-at',
       },
       mother: {
         id: 'mocked-mother-id-1',
         name: 'mocked-mother-name-1',
         slug: 'mocked-mother-slug-1',
-        image: 'mocked-mother-image-1',
       },
       calves: [{
         id: 'mocked-calf-id-1',
         name: 'mocked-calf-name-1',
         slug: 'mocked-calf-slug-1',
-        image: 'mocked-calf-image-1',
       }, {
         id: 'mocked-calf-id-2',
         name: null,
         slug: 'mocked-calf-slug-2',
-        image: null,
       }],
     });
   });
