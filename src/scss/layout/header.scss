@@ -408,6 +408,7 @@ header > .actions > a {
   @include breakpoint("medium") {
     $font-size: 12px;
 
+    margin-right: $global-spacing-medium / 2;
     font-size: $font-size;
     line-height: $font-size;
   }
@@ -438,6 +439,10 @@ header > .actions > a {
     }
   }
 
+  &.shop::before {
+    background-image: url("../../../public/images/icons/shop.svg");
+  }
+
   &.donate::before {
     background-image: url("../../../public/images/icons/donate.svg");
   }
@@ -447,7 +452,12 @@ header > .actions > a {
   }
 
   &.sighting {
+    margin-left: $global-spacing-large / 2;
     color: $global-color-primary;
+
+    @include breakpoint("medium") {
+      margin-left: $global-spacing-medium / 2;
+    }
 
     &::before {
       background-image: url("../../../public/images/icons/sighting.svg");

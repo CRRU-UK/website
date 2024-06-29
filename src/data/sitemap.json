@@ -139,6 +139,10 @@
     "title": "Legacies & Bequests",
     "path": "/help/bequests"
   },
+  "shop": {
+    "title": "Shop",
+    "path": "https://shop.crru.org.uk"
+  },
   "donate": {
     "title": "Make a Donation",
     "path": "/help/donate"
