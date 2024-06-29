@@ -100,6 +100,7 @@ const Page: NextPage<PageProps> = ({
 }: PageProps) => {
   const {
     id,
+    auid,
     name,
     slug,
     description,
@@ -208,7 +209,7 @@ const Page: NextPage<PageProps> = ({
                   AULFS ID Ref # 
                   <Tooltip text="Aberdeen University Lighthouse Field Station" />
                 </b>
-                <Unknown />
+                {auid ?? <Unknown />}
               </li>
               <li>
                 <b>Name</b>

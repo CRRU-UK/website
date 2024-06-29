@@ -122,6 +122,7 @@ describe('getCatalogueItem', () => {
     expect(result).toStrictEqual({
       entry: {
         id: 'mocked-id',
+        auid: null,
         name: null,
         slug: 'mocked-slug',
         description: null,
@@ -148,6 +149,7 @@ describe('getCatalogueItem', () => {
         },
         fields: {
           id: 'mocked-id',
+          auid: 'mocked-au-id',
           name: 'mocked name',
           slug: 'mocked-slug',
           description: 'mocked description',
@@ -189,6 +191,7 @@ describe('getCatalogueItem', () => {
     expect(result).toStrictEqual({
       entry: {
         id: 'mocked-id',
+        auid: 'mocked-au-id',
         name: 'mocked name',
         slug: 'mocked-slug',
         description: 'mocked description',

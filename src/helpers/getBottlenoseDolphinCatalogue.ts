@@ -112,6 +112,7 @@ const getCatalogueItem = async (
   const data = {
     entry: {
       id: entry.fields.id,
+      auid: entry.fields?.auid ?? null,
       name: entry.fields?.name ?? null,
       slug: entry.fields.slug,
       description: entry.fields.description ?? null,

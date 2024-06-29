@@ -82,6 +82,7 @@ export type CatalogueBottlenoseDolphinListAPIResponse = {
 export type CatalogueBottlenoseDolphin = {
   entry: {
     id: string,
+    auid: string | null,
     name: string | null,
     slug: string,
     description: string | null,
@@ -228,6 +229,7 @@ export type ContentTypeCatalogueBottlenoseDolphin = {
   contentTypeId: ContentTypes.CatalogueBottlenoseDolphin,
   fields: {
     id: EntryFieldTypes.Symbol,
+    auid?: EntryFieldTypes.Symbol,
     name?: EntryFieldTypes.Symbol,
     slug: EntryFieldTypes.Symbol,
     description?: EntryFieldTypes.Symbol,
