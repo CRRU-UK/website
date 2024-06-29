@@ -161,6 +161,7 @@ const Header = () => {
   return (
     <header>
       <div className="actions">
+        <Link href={sitemap.shop.path} className="shop">Shop</Link>
         <Link href={sitemap.donate.path} className="donate">Donate</Link>
         <Link href={sitemap.news.path} className="news">News</Link>
         <Link href={sitemap.sightings.path} className="sighting">Report A Sighting</Link>
@@ -222,6 +223,11 @@ const Header = () => {
           <li className="mobile">
             <Link href={sitemap.news.path}>
               <span>News</span>
+            </Link>
+          </li>
+          <li className="mobile">
+            <Link href={sitemap.shop.path}>
+              <span>Shop</span>
             </Link>
           </li>
         </ul>
