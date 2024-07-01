@@ -117,6 +117,7 @@ describe('getCatalogueItem', () => {
     expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(2, {
       content_type: 'catalogueBottlenoseDolphin',
       'fields.mother.sys.id': 'mocked-entry-id',
+      order: ['-fields.id'],
     });
 
     expect(result).toStrictEqual({
