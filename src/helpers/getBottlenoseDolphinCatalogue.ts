@@ -80,6 +80,7 @@ const getEntryCalves = async (
   const { items } = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>({
     content_type: ContentTypes.CatalogueBottlenoseDolphin,
     'fields.mother.sys.id': entryID,
+    order: ['-fields.id'], // Order so 'current calf' is first
   });
 
   const data = items.map((entry) => reduceCatalogueItem(entry));
