@@ -22,7 +22,7 @@ const Unknown = () => (
     title="Catalogue data is not currently available for this entry and may be updated in the future."
     className={styles.unknown}
   >
-    <span>Unknown</span>
+    <span>UNKNOWN</span>
   </span>
 );
 
@@ -217,7 +217,7 @@ const Page: NextPage<PageProps> = ({
               </li>
               <li>
                 <b>First Seen</b>
-                {firstSeen ? formatDateMonth(firstSeen) : <Unknown />}
+                {firstSeen ? formatDateMonth(firstSeen).toUpperCase() : <Unknown />}
               </li>
               <li>
                 <b>Birth Year</b>
@@ -236,7 +236,7 @@ const Page: NextPage<PageProps> = ({
                   Total Number Of Calves
                   <Tooltip text="Total number of calves as identified by CRRU and AULFS" />
                 </b>
-                TBA
+                <Unknown />
               </li>
             </ul>
 
