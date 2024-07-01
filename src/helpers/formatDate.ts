@@ -34,12 +34,12 @@ const formatDateRelative = (
 };
 
 /**
- * Formats date as long format.
+ * Formats date as month name and year.
  * @param date Date to format.
  * @returns Formatted date as long format.
  */
-const formatDateLong = (
+const formatDateMonth = (
   date: string,
-): string => dayjs(date).format('LL');
+): string => dayjs(date).format('MMMM YYYY');
 
-export { formatDateRelative, formatDateLong };
+export { formatDateRelative, formatDateMonth };

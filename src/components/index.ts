@@ -11,6 +11,7 @@ import ListItem from './ListItem/ListItem';
 import Note from './Note/Note';
 import SEO from './SEO/SEO';
 import Social from './Social/Social';
+import Tooltip from './Tooltip/Tooltip';
 
 export {
   Breadcrumbs,
@@ -26,4 +27,5 @@ export {
   Note,
   SEO,
   Social,
+  Tooltip,
 };

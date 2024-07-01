@@ -9,11 +9,11 @@ import type { CatalogueBottlenoseDolphin } from '@/helpers/types';
 
 import sitemap from '@/data/sitemap.json';
 
-import { formatDateLong } from '@/helpers/formatDate';
+import { formatDateMonth } from '@/helpers/formatDate';
 import { getCatalogueItem, getCatalogueItemSlug } from '@/helpers/getBottlenoseDolphinCatalogue';
 
 import Hero from '@/components/Hero/Hero';
-import { Breadcrumbs, SEO, Catalogue } from '@/components/index';
+import { Breadcrumbs, SEO, Catalogue, Tooltip } from '@/components/index';
 
 import styles from './[slug].module.scss';
 
@@ -22,9 +22,74 @@ const Unknown = () => (
     title="Catalogue data is not currently available for this entry and may be updated in the future."
     className={styles.unknown}
   >
-    <span>Unknown</span>
+    <span>UNKNOWN</span>
   </span>
 );
+
+interface FamilyTreeProps {
+  name: string,
+  data: CatalogueBottlenoseDolphin,
+}
+
+const familyTree = ({ name, data }: FamilyTreeProps) => {
+  const {
+    mother,
+    calves,
+  } = data;
+
+  let motherElement = null;
+  if (mother) {
+    motherElement = (
+      <li className={styles.mother}>
+        <b><span>Mother</span></b>
+        <Catalogue
+          title={String(mother.id)}
+          subtitle={mother?.name ? String(mother.name) : undefined}
+          link={`/research/catalogues/bottlenose-dolphin/${mother.slug}`}
+        />
+      </li>
+    );
+  }
+
+  let calvesElement = null;
+  if (calves.length) {
+    calvesElement = (
+      <li className={styles.calves}>
+        <b><span>Calves</span></b>
+        <ul>
+          {
+            calves.map((item, index) => (
+              <li key={item.id}>
+                {index === 0 && (<span className={styles.current}>Current Calf</span>)}
+                <Catalogue
+                  title={item.id}
+                  subtitle={item?.name ?? undefined}
+                  link={item.slug}
+                />
+              </li>
+            ))
+          }
+        </ul>
+      </li>
+    );
+  }
+
+  if (!motherElement && !calvesElement) {
+    return null;
+  }
+
+  return (
+    <ul className={styles.tree}>
+      {motherElement}
+
+      <li className={styles.name}>
+        {name}
+      </li>
+
+      {calvesElement}
+    </ul>
+  ); 
+};
 
 interface PageProps {
   catalogueData: CatalogueBottlenoseDolphin,
@@ -35,6 +100,7 @@ const Page: NextPage<PageProps> = ({
 }: PageProps) => {
   const {
     id,
+    auid,
     name,
     slug,
     description,
@@ -42,78 +108,63 @@ const Page: NextPage<PageProps> = ({
     birthYear,
     age,
     sex,
-    dorsalEdgeMarkings,
-    otherFeatures,
-    images,
+    leftDorsalFin,
+    rightDorsalFin,
+    otherImages,
+    lastUpdated,
   } = catalogueData.entry;
 
   const title = name ? `#${id} (${name})` : `#${id}`;
   const pageDescription = `CRRU Bottlenose dolphin catalogue entry for ${title}.`;
   const path = `/research/catalogues/bottlenose-dolphin/${slug}`;
   const breadcrumbs = [sitemap.research, sitemap['catalogue-bottlenose-dolphin'], { title, path }];
-  const pageImage = images.length > 0 ? images[0] : undefined;
-
-  let motherElement = <Unknown />;
-  if (catalogueData.mother) {
-    const image = catalogueData.mother?.image;
-    motherElement = (
-      <ul className={styles.list}>
-        <li>
-          <Catalogue
-            title={String(catalogueData.mother.id)}
-            subtitle={catalogueData.mother?.name ? String(catalogueData.mother.name) : undefined}
-            link={`/research/catalogues/bottlenose-dolphin/${catalogueData.mother.slug}`}
-            image={image ?? undefined}
-          />
-        </li>
-      </ul>
-    );
-  }
-
-  let calvesElement = <Unknown />;
-  if (catalogueData.calves.length > 0) {
-    calvesElement = (
-      <ul className={styles.list}>
-        {catalogueData.calves.map((item) => (
-          <li key={item.id}>
-            <Catalogue
-              title={item.id}
-              subtitle={item?.name ?? undefined}
-              link={item.slug}
-              image={item?.image ?? undefined}
-            />
-          </li>
-        ))}
-      </ul>
-    );
-  }
 
   let ageText = null;
   if (age && age > 25) {
-    ageText = '25+ years';
+    ageText = '25+';
   } else if (age && age > 1) {
-    ageText = `${age} years`;
+    ageText = `${age}`;
   } else if (age) {
-    ageText = `${age} year`;
+    ageText = `${age}`;
   }
 
-  let imagesElement = <div className={styles['no-image']}>No images currently available</div>;
-  if (catalogueData.entry?.images?.length > 0) {
-    imagesElement = (
-      <span className={styles['images-list']}>
-        {images.map((item) => (
-          <Image
-            key={item.url}
-            src={item.url}
-            width={item.width}
-            height={item.height}
-            alt=""
-            className={styles.image}
-          />
-        ))}
-      </span>
-    );
-  }
+  const noImage = <div className={styles['no-image']}>No image</div>;
+  const imagesElement = (
+    <div className={styles['images-list']}>
+      <div className={styles['images-list-left']}>
+        <b>Left Dorsal Fin</b>
+        {leftDorsalFin ? <Image
+          src={leftDorsalFin.url}
+          width={leftDorsalFin.width}
+          height={leftDorsalFin.height}
+          alt="Left Dorsal Fin"
+          className={styles.image}
+        /> : (noImage)}
+      </div>
+
+      <div className={styles['images-list-right']}>
+        <b>Right Dorsal Fin</b>
+        {rightDorsalFin ? <Image
+          src={rightDorsalFin.url}
+          width={rightDorsalFin.width}
+          height={rightDorsalFin.height}
+          alt="Right Dorsal Fin"
+          className={styles.image}
+        /> : (noImage)}
+      </div>
+
+      {otherImages.map((item) => (
+        <Image
+          key={item.url}
+          src={item.url}
+          width={item.width}
+          height={item.height}
+          alt=""
+          className={styles.image}
+        />
+      ))}
+    </div>
+  )
 
   return (
     <>
@@ -124,14 +175,12 @@ const Page: NextPage<PageProps> = ({
           path,
         }}
         breadcrumbs={breadcrumbs}
-        images={images?.map(({ url, width, height }) => ({ url, width, height })) ?? undefined}
       />
 
       <Hero
         title={title}
         subtitle={sitemap['catalogue-bottlenose-dolphin'].title}
-        plain={!pageImage}
-        background={pageImage?.url}
+        plain={true}
         wide
       />
 
@@ -151,23 +200,55 @@ const Page: NextPage<PageProps> = ({
             )}
 
             <ul className={styles.info}>
-              <li><b>CRRU ID #</b> {id}</li>
-              <li><b>Name</b> {name ?? <i>(None)</i>}</li>
-              <li><b>First Seen</b> {firstSeen ? formatDateLong(firstSeen) : <Unknown />}</li>
-              <li><b>Birth Year</b> {birthYear ?? <Unknown />}</li>
-              <li><b>Age</b> {age ? ageText : <Unknown />}</li>
-              <li><b>Sex</b> {sex === 'Unknown' ? <Unknown /> : sex}</li>
-              <li className={styles['info-item-wide']}><b>Dorsal Edge Markings (DEMs)</b> {dorsalEdgeMarkings ?? 'None'}</li>
-              <li className={styles['info-item-wide']}><b>Other Features</b> {otherFeatures ?? 'None'}</li>
-              <li className={styles['info-item-wide']}><b>Mother ID</b> {motherElement}</li>
-              <li className={styles['info-item-wide']}><b>Known Calves</b> {calvesElement}</li>
+              <li>
+                <b>CRRU ID #</b>
+                {id}
+              </li>
+              <li>
+                <b>
+                  AULFS ID Ref # 
+                  <Tooltip text="Aberdeen University Lighthouse Field Station" />
+                </b>
+                {auid ?? <Unknown />}
+              </li>
+              <li>
+                <b>Name</b>
+                {name ?? <i>(None)</i>}
+              </li>
+              <li>
+                <b>First Seen</b>
+                {firstSeen ? formatDateMonth(firstSeen).toUpperCase() : <Unknown />}
+              </li>
+              <li>
+                <b>Birth Year</b>
+                {birthYear ?? <Unknown />}
+              </li>
+              <li>
+                <b>Age (Years)</b>
+                {age ? ageText : <Unknown />}
+              </li>
+              <li>
+                <b>Sex</b>
+                {sex === 'Unknown' ? <Unknown /> : sex}
+              </li>
+              <li className={styles['info-item-double']}>
+                <b>
+                  Total Number Of Calves
+                  <Tooltip text="Total number of calves as identified by CRRU and AULFS" />
+                </b>
+                <Unknown />
+              </li>
             </ul>
+
+            {imagesElement}
           </section>
 
           <section className={styles.right}>
-            {imagesElement}
+            {familyTree({ name: title, data: catalogueData })}
           </section>
         </div>
+
+        <p className={styles.updated}>Last updated: {formatDateMonth(lastUpdated)}</p>
       </article>
     </>
   );
