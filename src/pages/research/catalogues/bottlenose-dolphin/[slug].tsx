@@ -37,56 +37,52 @@ const familyTree = ({ name, data }: FamilyTreeProps) => {
     calves,
   } = data;
 
-  let motherElement = null;
+  let motherElement = (<h3>Unknown</h3>);
   if (mother) {
     motherElement = (
-      <li className={styles.mother}>
-        <b><span>Mother</span></b>
-        <Catalogue
-          title={String(mother.id)}
-          subtitle={mother?.name ? String(mother.name) : undefined}
-          link={`/research/catalogues/bottlenose-dolphin/${mother.slug}`}
-        />
-      </li>
+      <Catalogue
+        title={String(mother.id)}
+        subtitle={mother?.name ? String(mother.name) : undefined}
+        link={`/research/catalogues/bottlenose-dolphin/${mother.slug}`}
+      />
     );
   }
 
-  let calvesElement = null;
+  let calvesElement = (<h3>Unknown</h3>);
   if (calves.length) {
     calvesElement = (
-      <li className={styles.calves}>
-        <b><span>Calves</span></b>
-        <ul>
-          {
-            calves.map((item, index) => (
-              <li key={item.id}>
-                {index === 0 && (<span className={styles.current}>Current Calf</span>)}
-                <Catalogue
-                  title={item.id}
-                  subtitle={item?.name ?? undefined}
-                  link={item.slug}
-                />
-              </li>
-            ))
-          }
-        </ul>
-      </li>
+      <ul>
+        {
+          calves.map((item, index) => (
+            <li key={item.id}>
+              {index === 0 && (<span className={styles.current}>Current Calf</span>)}
+              <Catalogue
+                title={item.id}
+                subtitle={item?.name ?? undefined}
+                link={item.slug}
+              />
+            </li>
+          ))
+        }
+      </ul>
     );
-  }
-
-  if (!motherElement && !calvesElement) {
-    return null;
   }
 
   return (
     <ul className={styles.tree}>
-      {motherElement}
+      <li className={styles.mother}>
+        <b><span>Mother</span></b>
+        {motherElement}
+      </li>
 
       <li className={styles.name}>
         {name}
       </li>
 
-      {calvesElement}
+      <li className={styles.calves}>
+        <b><span>Calves</span></b>
+        {calvesElement}
+      </li>
     </ul>
   ); 
 };
