@@ -55,6 +55,10 @@
     "title": "Collaborators",
     "path": "/research/collaborators"
   },
+  "ethics-statement": {
+    "title": "Ethics Statement",
+    "path": "/research/ethics"
+  },
   "rescue": {
     "title": "Rescue",
     "path": "/rescue"
