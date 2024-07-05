@@ -277,7 +277,7 @@ $line-color: #CCC;
 // TODO: Re-do this
 .tree .mother a {
   margin: 0 auto;
-  width: calc(50% - ($column-gap / 2));
+  width: 50%;
 }
 
 .tree .calves > ul {
@@ -364,4 +364,19 @@ $line-color: #CCC;
   line-height: 24px;
   text-align: center;
   color: $global-color-body-dark;
+}
+
+.tree .foobar {
+  margin: 0 auto;
+  display: flex;
+  width: 50%;
+  aspect-ratio: 2 / 1;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed $line-color;
+  border-radius: 8px;
+  font-size: 22px;
+  line-height: 22px;
+  color: rgba($global-color-body-dark, 0.5);
+  font-weight: 700;
 }

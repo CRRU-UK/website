@@ -89,7 +89,7 @@ export type CatalogueBottlenoseDolphin = {
     firstSeen: string | null,
     birthYear: string | null,
     age: number | null,
-    sex: 'Unknown' | 'Female' | 'Male',
+    sex: 'UNKNOWN' | 'FEMALE' | 'MALE',
     leftDorsalFin: FlattenedImage | null,
     rightDorsalFin: FlattenedImage | null,
     otherImages: Array<FlattenedImage> | [],

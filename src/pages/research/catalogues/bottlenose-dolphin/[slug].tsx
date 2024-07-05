@@ -37,7 +37,9 @@ const familyTree = ({ name, data }: FamilyTreeProps) => {
     calves,
   } = data;
 
-  let motherElement = (<h3>Unknown</h3>);
+  const unknownElement = (<span className={styles.foobar}>Unknown</span>)
+
+  let motherElement = unknownElement;
   if (mother) {
     motherElement = (
       <Catalogue
@@ -48,7 +50,7 @@ const familyTree = ({ name, data }: FamilyTreeProps) => {
     );
   }
 
-  let calvesElement = (<h3>Unknown</h3>);
+  let calvesElement = unknownElement;
   if (calves.length) {
     calvesElement = (
       <ul>
@@ -225,7 +227,7 @@ const Page: NextPage<PageProps> = ({
               </li>
               <li>
                 <b>Sex</b>
-                {sex === 'Unknown' ? <Unknown /> : sex}
+                {sex === 'UNKNOWN' ? <Unknown /> : sex}
               </li>
               <li className={styles['info-item-double']}>
                 <b>
