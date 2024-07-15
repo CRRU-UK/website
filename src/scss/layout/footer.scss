@@ -5,7 +5,7 @@
   line-height: 16px;
   text-align: center;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-top: ($global-spacing-small * 2);
     font-size: 14px;
     line-height: 14px;
@@ -21,12 +21,12 @@
   color: $global-color-body;
 
   &::before {
-    content: "";
+    content: '';
     display: block;
     margin-right: 10px;
     width: 18px;
     height: 18px;
-    background: center center no-repeat url("../../../public/images/icons/top.svg");
+    background: center center no-repeat url('../../../public/images/icons/top.svg');
     background-size: contain;
   }
 }
@@ -34,7 +34,7 @@
 footer {
   margin-top: $global-spacing-large / 2;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-top: $global-spacing-small / 2;
   }
 }
@@ -43,7 +43,7 @@ footer * {
   font-size: 14px;
   line-height: 14px;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     font-size: 12px;
     line-height: 12px;
   }
@@ -59,7 +59,7 @@ footer .footer-wrapper {
   color: $global-color-background;
   background: $global-color-body;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     padding: $global-spacing-small $global-spacing-small ($global-spacing-small * 2);
     flex-direction: column;
   }
@@ -79,7 +79,7 @@ footer ul {
   flex-direction: row;
   justify-content: flex-start;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin: 0 auto;
     justify-content: center;
   }
@@ -89,7 +89,7 @@ footer ul > li {
   margin: 0;
   padding: 0;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     text-align: center;
   }
 }
@@ -104,7 +104,7 @@ footer .footer-left {
   margin-right: auto;
   padding-right: 10px;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin: 0 0 $global-spacing-small;
     padding: 0;
     align-items: flex-start;
@@ -120,11 +120,11 @@ footer .footer-left > .footer-logo > img {
 footer .footer-left > .footer-logo {
   margin-right: $global-spacing-large;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     margin-right: $global-spacing-medium;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin: 0 auto $global-spacing-small;
   }
 }
@@ -133,12 +133,12 @@ footer .footer-left > .footer-logo > img {
   width: 150px;
   height: 150px;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     width: 120px;
     height: 120px;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     width: 70px;
     height: 70px;
   }
@@ -185,7 +185,7 @@ footer .footer-left .footer-contact li {
 footer .footer-left .footer-credits {
   line-height: 20px !important;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     text-align: center;
   }
 }
@@ -199,7 +199,7 @@ footer .footer-right {
   justify-content: center;
   align-items: flex-end;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin: 0 auto;
     align-items: center;
   }
@@ -208,7 +208,7 @@ footer .footer-right {
 footer .footer-right .social-links {
   margin-bottom: $global-spacing-large;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-bottom: $global-spacing-small;
   }
 }
@@ -217,11 +217,11 @@ footer .footer-right .social-links li,
 footer .footer-right .footer-support li {
   margin-right: 20px;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     margin-right: 15px;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-right: $global-spacing-small;
   }
 
@@ -258,7 +258,7 @@ footer .footer-right .footer-support p {
   margin: 0 0 10px;
   text-align: right;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     text-align: center;
   }
 }
@@ -268,11 +268,11 @@ footer .footer-right .footer-support li > a > img {
   width: auto;
   height: 50px;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     height: 40px;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     height: 30px;
   }
 }

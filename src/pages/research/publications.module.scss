@@ -1,4 +1,4 @@
-@import "../../scss/variables";
+@import '../../scss/variables';
 
 .info {
   margin-bottom: $global-spacing-large / 2;
@@ -6,7 +6,7 @@
   line-height: 16px;
   color: $global-color-body-dark;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-bottom: $global-spacing-small;
     font-size: 12px;
     line-height: 12px;
@@ -19,7 +19,7 @@
   border-radius: $global-border-radius;
   border: 2px solid $global-color-background-dark;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-bottom: $global-spacing-small / 2;
     padding: $global-padding-small / 2;
   }
@@ -30,7 +30,7 @@
   font-size: 16px;
   line-height: 24px;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     font-size: 14px;
     line-height: 22px;
   }
@@ -42,7 +42,7 @@
   justify-content: space-between;
   margin-bottom: 10px;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     flex-direction: column-reverse;
     margin-bottom: 5px;
   }
@@ -54,7 +54,7 @@
   font-size: inherit;
   line-height: inherit;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-right: 0;
   }
 }
@@ -73,7 +73,7 @@
   text-transform: uppercase;
   font-weight: 700;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin: 5px auto 10px 0;
     padding: 0 8px;
     font-size: 10px;
@@ -110,7 +110,7 @@
   line-height: 24px;
   font-weight: 700;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-left: auto;
     font-size: 14px;
     line-height: 22px;

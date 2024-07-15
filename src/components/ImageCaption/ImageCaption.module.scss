@@ -1,4 +1,4 @@
-@import "../../scss/variables";
+@import '../../scss/variables';
 
 .image {
   z-index: 0;
@@ -6,7 +6,7 @@
   margin: $global-spacing-large auto;
   width: 100%;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin: $global-spacing-small auto;
   }
 
@@ -23,7 +23,7 @@
 .image + .image {
   margin-left: $global-spacing-large;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-left: 0;
   }
 }
@@ -44,7 +44,7 @@ $caption-size-small: $icon-size-small + ($icon-padding-small * 2);
   bottom: 0;
   display: block;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     width: $icon-padding-small + ($icon-padding-small * 2);
     height: $icon-padding-small + ($icon-padding-small * 2);
   }
@@ -56,22 +56,22 @@ $caption-size-small: $icon-size-small + ($icon-padding-small * 2);
 }
 
 .caption-button {
-  opacity: .5;
+  opacity: 0.5;
   z-index: 0;
   padding: $icon-padding-large;
   width: $caption-size-large;
   height: $caption-size-large;
 
   &::before {
-    content: "";
+    content: '';
     display: block;
     width: $icon-size-large;
     height: $icon-size-large;
-    background: url("../../../public/images/icons/image-caption.svg") center center no-repeat transparent;
+    background: url('../../../public/images/icons/image-caption.svg') center center no-repeat transparent;
     background-size: contain;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     padding: $icon-padding-small;
     width: $caption-size-small;
     height: $caption-size-small;
@@ -104,7 +104,7 @@ $easing-out: 0.6s $global-transition-ease-in-expo;
   line-height: 20px;
   text-align: left;
   border-radius: 5px;
-  box-shadow: 0 0 5px rgba($global-color-body, .3);
+  box-shadow: 0 0 5px rgba($global-color-body, 0.3);
   background: $global-color-background;
   transform: translateY($icon-padding-large);
   transition: opacity $easing-in, transform $easing-in;
@@ -113,7 +113,7 @@ $easing-out: 0.6s $global-transition-ease-in-expo;
     margin-top: 0;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     right: $icon-padding-small;
     bottom: $caption-size-small;
     transform: translateY($icon-padding-small);

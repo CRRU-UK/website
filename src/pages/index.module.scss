@@ -1,7 +1,7 @@
-@use "sass:math";
-@use "sass:color";
+@use 'sass:math';
+@use 'sass:color';
 
-@import "../scss/variables";
+@import '../scss/variables';
 
 // Banner
 
@@ -16,13 +16,13 @@
   min-height: 600px;
   background: $global-color-body;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     height: calc(100vh - $global-header-height-medium - $global-spacing-large);
     min-height: 300px;
     max-height: 800px;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     height: calc(60vh - $global-header-height-small - $global-spacing-small);
     min-height: 400px;
   }
@@ -35,7 +35,7 @@
   padding: 0 $global-padding-large $global-header-height-large;
   text-align: center;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     padding: 0 $global-padding-small;
   }
 
@@ -47,12 +47,12 @@
     text-shadow: 0 0 8px rgba(#000, 80%);
     color: $global-color-background;
 
-    @include breakpoint("medium") {
+    @include breakpoint('medium') {
       font-size: 32px;
       line-height: 58px;
     }
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       margin-bottom: $global-spacing-small;
       font-size: 26px;
       line-height: 36px;
@@ -74,7 +74,7 @@
   color: $global-color-body;
   background: $global-color-secondary;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     padding: 10px;
     font-size: 14px;
     line-height: 18px;
@@ -91,7 +91,7 @@
     transform: translateX(-5px);
     transition: transform 0.6s $global-transition-ease-out-expo;
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       $size: 12px;
 
       margin-left: 10px;
@@ -134,7 +134,7 @@
   top: $global-spacing-large;
   right: $global-spacing-large;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     top: 0;
     right: 0;
     padding: $global-padding-small;
@@ -143,14 +143,14 @@
   &::after {
     $icon-size: 48px;
 
-    content: "";
+    content: '';
     display: block;
     width: $icon-size;
     height: $icon-size;
     background: center center no-repeat;
     background-size: contain;
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       $icon-size: 32px;
 
       width: $icon-size;
@@ -164,11 +164,11 @@
 }
 
 .video-toggle-playing::after {
-  background-image: url("../../public/images/icons/pause.svg");
+  background-image: url('../../public/images/icons/pause.svg');
 }
 
 .video-toggle-paused::after {
-  background-image: url("../../public/images/icons/play.svg");
+  background-image: url('../../public/images/icons/play.svg');
 }
 
 // Highlights
@@ -184,7 +184,7 @@
   margin-bottom: -$global-header-height-large;
   transform: translateY(-$global-header-height-large);
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     width: 100%;
     margin: 0 auto;
     padding: 0;
@@ -213,7 +213,7 @@
   }
 
   &::before {
-    content: "";
+    content: '';
     z-index: 20;
     position: absolute;
     left: 0;
@@ -231,7 +231,7 @@
   }
 
   &::after {
-    content: "";
+    content: '';
     z-index: 10;
     position: absolute;
     left: 0;
@@ -241,11 +241,11 @@
     background: linear-gradient(180deg, rgba($global-color-blue, 0.8) 0%, rgba($global-color-blue, 0) 100%);
   }
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     padding: $global-padding-medium;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-top: $global-spacing-small;
     padding: $global-padding-small;
     border-radius: 0;
@@ -275,7 +275,7 @@
   line-height: 32px;
   text-decoration: underline;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     font-size: 24px;
     line-height: 24px;
   }
@@ -283,15 +283,15 @@
   &::after {
     $size: 28px;
 
-    content: "";
+    content: '';
     display: block;
     width: $size;
     height: $size;
-    background: url("../../public/images/icons/right-arrow.svg") center center no-repeat transparent;
+    background: url('../../public/images/icons/right-arrow.svg') center center no-repeat transparent;
     background-size: contain;
     transform: translateY(4px);
 
-    @include breakpoint("medium") {
+    @include breakpoint('medium') {
       $size: 18px;
 
       width: $size;
@@ -299,7 +299,7 @@
       transform: translateY(2px);
     }
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       $size: 24px;
 
       width: $size;
@@ -308,7 +308,7 @@
     }
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     font-size: 22px;
     line-height: 22px;
   }
@@ -319,12 +319,12 @@
   line-height: 20px;
   font-weight: 700;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     font-size: 18px;
     line-height: 18px;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     font-size: 16px;
     line-height: 16px;
   }
@@ -340,7 +340,7 @@
   height: 100%;
   object-fit: cover;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     transition: none;
   }
 }
@@ -352,7 +352,7 @@
   padding: 0 $global-padding-large;
   max-width: $global-max-width * 2;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin: ($global-spacing-small * 2) auto 0;
     padding: 0 $global-padding-small;
     max-width: none;
@@ -370,13 +370,13 @@
   line-height: 32px;
   font-family: $global-font-primary;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     font-size: 22px;
     line-height: 22px;
   }
 
   &::after {
-    content: "";
+    content: '';
     margin-left: 20px;
     display: block;
     width: 100%;
@@ -392,7 +392,7 @@
   justify-content: space-between;
   align-items: flex-start;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     flex-direction: column;
     margin: $global-spacing-small 0 ($global-spacing-small * 2);
   }
@@ -406,7 +406,7 @@
     margin-right: 0;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-right: 0;
     margin-bottom: $global-spacing-small;
     width: 100%;
