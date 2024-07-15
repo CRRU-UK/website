@@ -65,6 +65,7 @@ export type SpeciesEntry = {
 // Simplified references used in API responses and the `<Catalogue />` component
 export type CatalogueBottlenoseDolphinBasicInfo = {
   id: string,
+  auid: string | null,
   name: string | null,
   slug: string,
 };

@@ -21,6 +21,7 @@ const reduceCatalogueItem = (
   entry: Entry<ContentTypeCatalogueBottlenoseDolphin>,
 ): CatalogueBottlenoseDolphinBasicInfo => ({
   id: String(entry.fields.id),
+  auid: entry.fields?.auid ? String(entry.fields.auid) : null,
   name: entry.fields?.name ? String(entry.fields.name) : null,
   slug: String(entry.fields.slug),
 });

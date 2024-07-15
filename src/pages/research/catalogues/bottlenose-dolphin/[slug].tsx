@@ -175,79 +175,79 @@ const Page: NextPage<PageProps> = ({
         breadcrumbs={breadcrumbs}
       />
 
-      <Hero
-        title={title}
-        subtitle={sitemap['catalogue-bottlenose-dolphin'].title}
-        plain={true}
-        wide
-      />
+
+      <section className={styles.header}>
+        test
+      </section>
 
       <Breadcrumbs
         items={breadcrumbs}
         wide
       />
 
-      <article className="content wide">
-        <div className={styles.left}>
-          <section>
-            {description && (
-              <div className={styles.description}>
-                <ReactMarkdown>{description}</ReactMarkdown>
-                <hr />
-              </div>
-            )}
+      <div className={styles.background}>
+        <article className="content wide grey">
+          <div className={styles.left}>
+            <section>
+              {description && (
+                <div className={styles.description}>
+                  <ReactMarkdown>{description}</ReactMarkdown>
+                  <hr />
+                </div>
+              )}
 
-            <ul className={styles.info}>
-              <li>
-                <b>CRRU ID #</b>
-                {id}
-              </li>
-              <li>
-                <b>
-                  AULFS ID Ref # 
-                  <Tooltip text="Aberdeen University Lighthouse Field Station" />
-                </b>
-                {auid ?? <Unknown />}
-              </li>
-              <li>
-                <b>Name</b>
-                {name ?? <i>(None)</i>}
-              </li>
-              <li>
-                <b>First Seen</b>
-                {firstSeen ? formatDateMonth(firstSeen).toUpperCase() : <Unknown />}
-              </li>
-              <li>
-                <b>Birth Year</b>
-                {birthYear ?? <Unknown />}
-              </li>
-              <li>
-                <b>Age (Years)</b>
-                {age ? ageText : <Unknown />}
-              </li>
-              <li>
-                <b>Sex</b>
-                {sex === 'UNKNOWN' ? <Unknown /> : sex}
-              </li>
-              <li className={styles['info-item-double']}>
-                <b>
-                  Total Number Of Calves
-                  <Tooltip text="Total number of calves as identified by CRRU and AULFS" />
-                </b>
-                <Unknown />
-              </li>
-            </ul>
+              <ul className={styles.info}>
+                <li>
+                  <b>CRRU ID #</b>
+                  <span className={styles['id-crru']}>{id}</span>
+                </li>
+                <li>
+                  <b>
+                    AULFS ID Ref # 
+                    <Tooltip text="Aberdeen University Lighthouse Field Station" />
+                  </b>
+                  {<span className={styles['id-au']}>{auid}</span> ?? <Unknown />}
+                </li>
+                <li>
+                  <b>Name</b>
+                  {name ?? <i>(None)</i>}
+                </li>
+                <li>
+                  <b>First Seen</b>
+                  {firstSeen ? formatDateMonth(firstSeen).toUpperCase() : <Unknown />}
+                </li>
+                <li>
+                  <b>Birth Year</b>
+                  {birthYear ?? <Unknown />}
+                </li>
+                <li>
+                  <b>Age (Years)</b>
+                  {age ? ageText : <Unknown />}
+                </li>
+                <li>
+                  <b>Sex</b>
+                  {sex === 'UNKNOWN' ? <Unknown /> : sex}
+                </li>
+                <li className={styles['info-item-double']}>
+                  <b>
+                    Total Number Of Calves
+                    <Tooltip text="Total number of calves as identified by CRRU and AULFS" />
+                  </b>
+                  <Unknown />
+                </li>
+              </ul>
 
-            {imagesElement}
-          </section>
+              {imagesElement}
+            </section>
 
-          <section className={styles.right}>
-            {familyTree({ name: title, data: catalogueData })}
-          </section>
-        </div>
+            <section className={styles.right}>
+              {familyTree({ name: title, data: catalogueData })}
+            </section>
+          </div>
 
-        <p className={styles.updated}>Last updated: {formatDateMonth(lastUpdated)}</p>
-      </article>
+          <p className={styles.updated}>Last updated: {formatDateMonth(lastUpdated)}</p>
+        </article>
+      </div>
     </>
   );
 };
