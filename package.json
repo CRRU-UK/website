@@ -13,11 +13,11 @@
     "test:unit:watch": "npm run test:unit -- --watchAll"
   },
   "dependencies": {
-    "@contentful/live-preview": "^4.2.3",
+    "@contentful/live-preview": "^4.3.0",
     "@contentful/rich-text-plain-text-renderer": "^16.2.1",
     "@contentful/rich-text-react-renderer": "^15.22.1",
     "@logtail/next": "^0.1.5",
-    "contentful": "^10.12.4",
+    "contentful": "^10.12.7",
     "dayjs": "^1.11.11",
     "joi": "^17.13.3",
     "next": "^14.2.4",
@@ -33,12 +33,12 @@
     "@testing-library/react": "^16.0.0",
     "@types/jest": "^29.5.12",
     "@types/jest-axe": "^3.5.9",
-    "@types/node": "^20.14.9",
+    "@types/node": "^20.14.10",
     "@types/nodemailer": "^6.4.15",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.14.1",
-    "@typescript-eslint/parser": "^7.14.1",
+    "@typescript-eslint/eslint-plugin": "^7.15.0",
+    "@typescript-eslint/parser": "^7.15.0",
     "babel-jest": "^29.7.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.4",
@@ -57,7 +57,7 @@
     "stylelint-order": "^6.0.4",
     "stylelint-scss": "^6.3.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.2"
+    "typescript": "^5.5.3"
   },
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
