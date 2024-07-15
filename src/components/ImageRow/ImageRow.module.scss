@@ -1,4 +1,4 @@
-@import "../../scss/variables";
+@import '../../scss/variables';
 
 .image-row {
   width: calc(100% + ($global-padding-large * 2));
@@ -8,7 +8,7 @@
   justify-content: space-between;
   align-items: center;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     flex-direction: column;
     width: calc(100% + ($global-padding-small * 2));
     margin-left: -($global-padding-small);

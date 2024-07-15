@@ -1,4 +1,4 @@
-@import "../variables";
+@import '../variables';
 
 form:not(.paypal) {
   width: calc(100% + ($global-padding-large * 2));
@@ -12,7 +12,7 @@ form:not(.paypal) {
     border-radius: 0;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     width: calc(100% + ($global-padding-small * 2));
     margin: $global-spacing-small auto;
     margin-left: -($global-spacing-small);
@@ -37,11 +37,11 @@ form:not(.paypal) {
     row-gap: $global-spacing-large;
     margin-bottom: $global-spacing-large;
 
-    @include breakpoint("medium") {
+    @include breakpoint('medium') {
       grid-template-columns: 1fr 1fr;
     }
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       grid-template-columns: 1fr;
       column-gap: $global-spacing-small;
       row-gap: $global-spacing-small;
@@ -61,7 +61,7 @@ form:not(.paypal) {
     line-height: 24px;
     font-weight: 700;
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       font-size: 14px;
       line-height: 20px;
     }
@@ -82,7 +82,7 @@ form:not(.paypal) {
     border-radius: $global-border-radius;
     background: $global-color-background;
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       margin-top: 5px;
       padding: 0 10px;
       height: 40px;
@@ -109,7 +109,7 @@ form:not(.paypal) {
     color: $global-color-background;
     background: $global-color-primary-dark;
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       margin-top: $global-spacing-small;
     }
 
@@ -128,7 +128,7 @@ form:not(.paypal) {
     line-height: 16px;
     border-radius: $global-border-radius;
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       margin-top: $global-spacing-small;
       font-size: 14px;
       line-height: 14px;

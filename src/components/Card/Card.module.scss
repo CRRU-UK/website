@@ -1,4 +1,4 @@
-@import "../../scss/variables";
+@import '../../scss/variables';
 
 .card > a {
   position: relative;
@@ -21,7 +21,7 @@
   line-height: 26px;
   font-family: $global-font-primary;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     font-size: 16px;
     line-height: 24px;
   }
@@ -39,12 +39,12 @@
   border-radius: $global-border-radius;
   background: $global-color-background;
   
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-bottom: 8px;
   }
 
   &::before {
-    content: "";
+    content: '';
     z-index: 10;
     position: absolute;
     left: 0;
@@ -82,7 +82,7 @@
   font-weight: 500;
   color: $global-color-body;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-top: 5px;
     margin-right: 10px;
     font-size: 12px;
@@ -92,7 +92,7 @@
   &::before {
     $size: 20px;
 
-    content: "";
+    content: '';
     display: block;
     margin-right: 5px;
     width: $size;
@@ -100,7 +100,7 @@
     background: center center no-repeat transparent;
     background-size: contain;
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       $size: 14px;
 
       margin-right: 4px;
@@ -111,9 +111,9 @@
 }
 
 .date::before {
-  background-image: url("../../../public/images/icons/date.svg");
+  background-image: url('../../../public/images/icons/date.svg');
 }
 
 .category::before {
-  background-image: url("../../../public/images/icons/category.svg");
+  background-image: url('../../../public/images/icons/category.svg');
 }

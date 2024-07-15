@@ -1,54 +1,54 @@
-@use "sass:color";
+@use 'sass:color';
 
-@import "variables";
+@import 'variables';
 
 // Fonts
 
 @font-face {
   font-display: swap;
-  font-family: "EB Garamond";
+  font-family: 'EB Garamond';
   font-style: normal;
   font-weight: 700;
-  src: url("/fonts/EBGaramond-VariableFont_wght.ttf") format("woff2");
+  src: url('/fonts/EBGaramond-VariableFont_wght.ttf') format('woff2');
 }
 
 @font-face {
   font-display: swap;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 500;
-  src: url("/fonts/Poppins-Medium.ttf") format("woff2");
+  src: url('/fonts/Poppins-Medium.ttf') format('woff2');
 }
 
 @font-face {
   font-display: swap;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   font-style: italic;
   font-weight: 500;
-  src: url("/fonts/Poppins-MediumItalic.ttf") format("woff2");
+  src: url('/fonts/Poppins-MediumItalic.ttf') format('woff2');
 }
 
 @font-face {
   font-display: swap;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 700;
-  src: url("/fonts/Poppins-Bold.ttf") format("woff2");
+  src: url('/fonts/Poppins-Bold.ttf') format('woff2');
 }
 
 @font-face {
   font-display: swap;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   font-style: italic;
   font-weight: 700;
-  src: url("/fonts/Poppins-BoldItalic.ttf") format("woff2");
+  src: url('/fonts/Poppins-BoldItalic.ttf') format('woff2');
 }
 
 // Imports
 
-@import "layout/header";
+@import 'layout/header';
 
-@import "layout/footer";
+@import 'layout/footer';
 
 // Globals
 
@@ -64,12 +64,12 @@ body {
   line-height: $global-font-line-height;
   color: $global-color-body;
   text-rendering: optimizeLegibility;
-  font-feature-settings: "liga" on;
+  font-feature-settings: 'liga' on;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: $global-color-background;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     font-size: $global-font-size-small;
   }
 
@@ -110,7 +110,7 @@ main {
     padding: ($global-spacing-large * 1.5) $global-padding-large 0;
     background: bottom right repeat-y transparent;
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       margin-top: $global-spacing-small * 1.5;
       padding: 0 $global-padding-small;
       background-size: 40%;
@@ -126,9 +126,9 @@ main {
     }
   }
 
-  @import "layout/content";
-  @import "layout/form";
-  @import "layout/columns";
+  @import 'layout/content';
+  @import 'layout/form';
+  @import 'layout/columns';
 }
 
 main .grid {
@@ -139,11 +139,11 @@ main .grid {
   column-gap: $global-spacing-large;
   row-gap: $global-spacing-large * 1.5;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     grid-template-columns: 1fr 1fr;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     grid-template-columns: 1fr;
     column-gap: $global-spacing-small;
     row-gap: $global-spacing-small * 1.5;
@@ -161,7 +161,7 @@ main .details {
 
   list-style: none;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-top: $global-spacing-small;
     padding: 0 $global-padding-small;
   }
@@ -182,7 +182,7 @@ main .details > .category {
   font-weight: 500;
   color: $global-color-body;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-right: $global-spacing-small;
     font-size: 14px;
     line-height: 14px;
@@ -191,7 +191,7 @@ main .details > .category {
   &::before {
     $size: 24px;
 
-    content: "";
+    content: '';
     display: block;
     margin-right: 8px;
     width: $size;
@@ -199,7 +199,7 @@ main .details > .category {
     background: center center no-repeat transparent;
     background-size: contain;
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       $size: 14px;
 
       margin-right: 5px;
@@ -210,9 +210,9 @@ main .details > .category {
 }
 
 main .details > .date::before {
-  background-image: url("../../public/images/icons/date.svg");
+  background-image: url('../../public/images/icons/date.svg');
 }
 
 main .details > .category::before {
-  background-image: url("../../public/images/icons/category.svg");
+  background-image: url('../../public/images/icons/category.svg');
 }

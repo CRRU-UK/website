@@ -1,6 +1,6 @@
-@use "sass:math";
+@use 'sass:math';
 
-@import "../../scss/variables";
+@import '../../scss/variables';
 
 section.note {
   margin: math.div($global-spacing-large, 2) 0 math.div($global-spacing-large, 2) $global-spacing-large;
@@ -11,7 +11,7 @@ section.note {
   border-radius: $global-border-radius;
   background: $global-color-grey;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     width: 100%;
     margin: $global-spacing-small auto;
     padding: $global-padding-small;

@@ -1,4 +1,4 @@
-@import "../../../../scss/variables";
+@import '../../../../scss/variables';
 
 .loading {
   opacity: 0.3;
@@ -14,7 +14,7 @@
   line-height: 16px;
   color: $global-color-body-dark;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-bottom: $global-spacing-small;
     font-size: 12px;
     line-height: 12px;
@@ -30,12 +30,12 @@
   row-gap: $global-spacing-large  / 2;
   list-style: none;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     column-gap: $global-spacing-medium / 2;
     row-gap: $global-spacing-medium / 2;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     grid-template-columns: 1fr 1fr;
     column-gap: $global-spacing-small / 2;
     row-gap: $global-spacing-small / 2;
@@ -56,7 +56,7 @@
   align-items: center;
   list-style: none;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-top: $global-spacing-small;
   }
 }
@@ -64,14 +64,14 @@
 .pagination > li {
   margin: 0 10px 10px;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin: 0 5px 5px;
   }
 
   &:last-child {
     margin-bottom: 10px;
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       margin-bottom: 5px;
     }
   }
@@ -86,7 +86,7 @@
   border-radius: $global-border-radius;
   font-weight: bold;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     width: 30px;
     height: 30px;
     font-size: 14px;

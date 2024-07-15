@@ -1,6 +1,6 @@
-@use "sass:color";
+@use 'sass:color';
 
-@import "../../../../scss/variables";
+@import '../../../../scss/variables';
 
 $grid-spacing-large: $global-spacing-large / 2;
 $grid-spacing-medium: $global-spacing-medium / 2;
@@ -14,19 +14,19 @@ $grid-spacing-small: $global-spacing-small / 2;
   column-gap: $global-spacing-large * 2;
   row-gap: $global-spacing-large;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     column-gap: $global-spacing-medium;
     row-gap: $global-spacing-medium;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     grid-template-columns: 1fr;
     row-gap: $global-spacing-small;
   }
 }
 
 .right {
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     order: -1;
   }
 }
@@ -36,11 +36,11 @@ $grid-spacing-small: $global-spacing-small / 2;
 .description {
   margin-bottom: $global-spacing-large;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     margin-bottom: $global-spacing-medium;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-bottom: $global-spacing-small;
   }
 
@@ -61,15 +61,15 @@ $grid-spacing-small: $global-spacing-small / 2;
   }
 
   &::before {
-    content: "";
+    content: '';
     display: block;
     margin-right: 5px;
     width: 18px;
     height: 18px;
-    background: url("../../../../../public/images/icons/help.svg") center center no-repeat transparent;
+    background: url('../../../../../public/images/icons/help.svg') center center no-repeat transparent;
     background-size: contain;
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       width: 16px;
       height: 16px;
     }
@@ -89,13 +89,13 @@ $grid-spacing-small: $global-spacing-small / 2;
   row-gap: $grid-spacing-large;
   list-style: none;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     grid-template-columns: 1fr 1fr;
     column-gap: $grid-spacing-medium;
     row-gap: $grid-spacing-medium;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     column-gap: $grid-spacing-small;
     row-gap: $grid-spacing-small;
   }
@@ -106,7 +106,7 @@ $grid-spacing-small: $global-spacing-small / 2;
   padding: 0;
   line-height: 28px;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     line-height: 26px;
   }
 }
@@ -126,12 +126,12 @@ $grid-spacing-small: $global-spacing-small / 2;
   row-gap: $grid-spacing-large;
   list-style: none;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     column-gap: $grid-spacing-medium;
     row-gap: $grid-spacing-medium;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     grid-template-columns: 1fr 1fr;
     column-gap: $grid-spacing-small;
     row-gap: $grid-spacing-small;
@@ -155,12 +155,12 @@ $grid-spacing-small: $global-spacing-small / 2;
   column-gap: 20px;
   row-gap: 20px;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     column-gap: 18px;
     row-gap: 18px;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     column-gap: 15px;
     row-gap: 15px;
   }
@@ -168,7 +168,7 @@ $grid-spacing-small: $global-spacing-small / 2;
   > .image:nth-child(1) {
     grid-column: 1 / -1;
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       grid-column: unset;
     }
   }
@@ -195,13 +195,13 @@ $grid-spacing-small: $global-spacing-small / 2;
   color: $global-color-body-dark;
   background: $global-color-background-dark;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     height: 250px;
     font-size: 22px;
     line-height: 32px;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     padding: 20px;
     font-size: 18px;
     line-height: 26px;

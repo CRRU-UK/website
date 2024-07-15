@@ -1,4 +1,4 @@
-@import "../../scss/variables";
+@import '../../scss/variables';
 
 .info {
   margin-bottom: $global-spacing-large / 2;
@@ -6,7 +6,7 @@
   line-height: 16px;
   color: $global-color-body-dark;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-bottom: $global-spacing-small;
     font-size: 12px;
     line-height: 12px;
@@ -21,11 +21,11 @@
   column-gap: $global-spacing-large;
   row-gap: $global-spacing-large;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     grid-template-columns: 1fr 1fr 1fr;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     grid-template-columns: 1fr 1fr;
     column-gap: $global-spacing-small;
     row-gap: $global-spacing-small;
@@ -45,7 +45,7 @@
   overflow: hidden;
 
   &::before {
-    content: "";
+    content: '';
     z-index: 10;
     opacity: 0;
     position: absolute;
@@ -85,12 +85,12 @@
   &::before {
     $size: 18px;
 
-    content: "";
+    content: '';
     z-index: 10;
     display: block;
     width: $size;
     height: $size;
-    background: url("../../../public/images/icons/search.svg") center center no-repeat transparent;
+    background: url('../../../public/images/icons/search.svg') center center no-repeat transparent;
     background-size: contain;
   }
 }
@@ -128,20 +128,20 @@ $controls-size-small: 60px;
   &::after {
     $size: 32px;
 
-    content: "";
+    content: '';
     display: block;
     width: $size;
     height: $size;
     background: center center no-repeat transparent;
     background-size: contain;
 
-    @include breakpoint("medium") {
+    @include breakpoint('medium') {
       $size: 24px;
       width: $size;
       height: $size;
     }
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       $size: 18px;
       width: $size;
       height: $size;
@@ -162,11 +162,11 @@ $controls-size-small: 60px;
   width: $controls-size-large;
   height: 100%;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     width: 80px;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     top: auto;
     bottom: 0;
     width: 50%;
@@ -178,7 +178,7 @@ $controls-size-small: 60px;
   }
 
   &::after {
-    background-image: url("../../../public/images/icons/zoom-arrow.svg");
+    background-image: url('../../../public/images/icons/zoom-arrow.svg');
   }
 }
 
@@ -202,12 +202,12 @@ $controls-size-small: 60px;
   width: $controls-size-large;
   height: $controls-size-large;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     width: $controls-size-medium;
     height: $controls-size-medium;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     width: $controls-size-small;
     height: $controls-size-small;
   }
@@ -219,7 +219,7 @@ $controls-size-small: 60px;
   }
 
   &::after {
-    background-image: url("../../../public/images/icons/zoom-close.svg");
+    background-image: url('../../../public/images/icons/zoom-close.svg');
   }
 }
 
@@ -235,11 +235,11 @@ $controls-size-small: 60px;
   width: 100%;
   height: 100%;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     padding: $controls-size-medium;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     padding: $controls-size-small $global-padding-small;
   }
 }

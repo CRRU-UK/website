@@ -1,6 +1,6 @@
-@use "sass:color";
+@use 'sass:color';
 
-@import "../../scss/variables";
+@import '../../scss/variables';
 
 .button {
   display: flex;
@@ -14,7 +14,7 @@
   text-align: center;
   text-decoration: none;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     padding: 10px;
     font-size: 14px;
     line-height: 18px;
@@ -33,7 +33,7 @@
   margin-top: $global-spacing-large / 2;
   padding: 10px;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-top: $global-spacing-small / 2;
     padding: 8px;
   }

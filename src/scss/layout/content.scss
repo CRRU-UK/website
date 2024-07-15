@@ -1,6 +1,6 @@
-@use "sass:color";
+@use 'sass:color';
 
-@import "../variables";
+@import '../variables';
 
 h1,
 h2,
@@ -22,15 +22,15 @@ a {
   }
 
   &.external::after {
-    content: "";
+    content: '';
     display: inline-block;
     margin-left: 5px;
     width: 12px;
     height: 12px;
-    background: url("../../../public/images/icons/external.svg") center center no-repeat transparent;
+    background: url('../../../public/images/icons/external.svg') center center no-repeat transparent;
     background-size: contain;
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       width: 10px;
       height: 10px;
     }
@@ -47,7 +47,7 @@ h4 {
   margin-top: 40px;
   font-size: 32px;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-top: 30px;
     font-size: 24px;
   }
@@ -57,7 +57,7 @@ h5 {
   margin-top: 25px;
   font-size: 26px;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-top: 15px;
     font-size: 20px;
   }
@@ -67,7 +67,7 @@ h6 {
   margin-top: 20px;
   font-size: 20px;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-top: 10px;
     font-size: 18px;
   }
@@ -76,7 +76,7 @@ h6 {
 p {
   margin-top: $global-font-spacing-large;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-top: $global-font-spacing-small;
   }
 
@@ -86,7 +86,7 @@ p {
     display: inherit;
     margin-bottom: $global-font-spacing-large * 1.5;
   
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       margin-bottom: $global-font-spacing-small * 1.5;
     }
   }
@@ -100,7 +100,7 @@ p {
     font-size: 24px;
     line-height: 42px;
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       font-size: 20px;
       line-height: 32px;
     }
@@ -110,7 +110,7 @@ p {
     font-size: 22px;
     line-height: 38px;
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       font-size: 18px;
       line-height: 30px;
     }
@@ -125,7 +125,7 @@ ol {
   margin-left: $global-font-spacing-large;
   padding-left: $global-font-spacing-large / 2;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-top: $global-font-spacing-small;
     margin-bottom: $global-font-spacing-small;
     margin-left: $global-font-spacing-small;
@@ -143,7 +143,7 @@ ul > li,
 ol > li {
   margin-bottom: $global-font-spacing-large;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-bottom: $global-font-spacing-small;
   }
 
@@ -164,7 +164,7 @@ blockquote {
     margin-top: 0;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin: $global-spacing-small auto;
     padding: $global-padding-small;
     width: 90%;
@@ -175,19 +175,19 @@ hr {
   margin: ($global-spacing-large * 1.5) auto;
   border: 0;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin: ($global-spacing-small * 1.5) auto;
   }
 
   &::before {
     $size: 32px;
 
-    content: "";
+    content: '';
     margin: 0 auto;
     display: block;
     width: $size;
     height: $size;
-    background: url("../../../public/images/icons/horizontal-rule.svg") center center no-repeat;
+    background: url('../../../public/images/icons/horizontal-rule.svg') center center no-repeat;
     background-size: contain;
   }
 }
@@ -201,7 +201,7 @@ iframe,
   height: auto;
   aspect-ratio: 16 / 9;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-top: $global-spacing-small;
   }
 }
@@ -211,7 +211,7 @@ table {
   width: 100%;
   border-spacing: 0;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin: 10px auto 20px;
   }
 }
@@ -229,7 +229,7 @@ table td {
     padding-right: 0;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     padding: 8px 10px;
     font-size: 12px;
     line-height: 18px;
