@@ -51,7 +51,7 @@ const getCatalogueList = async ({
 
   if (search) {
     // @ts-expect-error TBA
-    query['fields.slug[match]'] = search;
+    query.query = search;
   }
 
   // @ts-expect-error TBA

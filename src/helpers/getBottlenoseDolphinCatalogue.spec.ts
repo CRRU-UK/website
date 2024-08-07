@@ -82,7 +82,7 @@ describe('getCatalogueList', () => {
     expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(1, {
       content_type: 'catalogueBottlenoseDolphin',
       order: ['-fields.id'],
-      'fields.slug[match]': 'foo bar',
+      'query': 'foo bar',
       limit: 30,
       skip: 30,
     });
