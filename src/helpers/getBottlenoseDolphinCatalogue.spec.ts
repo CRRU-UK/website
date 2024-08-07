@@ -58,10 +58,12 @@ describe('getCatalogueList', () => {
       },
       items: [{
         id: 'mocked-id-1',
+        auid: null,
         name: 'mocked name 1',
         slug: 'mocked-slug-1',
       }, {
         id: 'mocked-id-2',
+        auid: null,
         name: 'mocked name 2',
         slug: 'mocked-slug-2',
       }],
@@ -130,7 +132,7 @@ describe('getCatalogueItem', () => {
         firstSeen: null,
         birthYear: null,
         age: null,
-        sex: null,
+        sex: 'UNKNOWN',
         leftDorsalFin: null,
         rightDorsalFin: null,
         otherImages: [],
@@ -164,6 +166,7 @@ describe('getCatalogueItem', () => {
           mother: {
             fields: {
               id: 'mocked-mother-id-1',
+              auid: 'mocked-mother-auid-1',
               name: 'mocked-mother-name-1',
               slug: 'mocked-mother-slug-1',
             },
@@ -176,6 +179,7 @@ describe('getCatalogueItem', () => {
       items: [{
         fields: {
           id: 'mocked-calf-id-1',
+          auid: 'mocked-calf-auid-1',
           name: 'mocked-calf-name-1',
           slug: 'mocked-calf-slug-1',
         },
@@ -207,15 +211,18 @@ describe('getCatalogueItem', () => {
       },
       mother: {
         id: 'mocked-mother-id-1',
+        auid: 'mocked-mother-auid-1',
         name: 'mocked-mother-name-1',
         slug: 'mocked-mother-slug-1',
       },
       calves: [{
         id: 'mocked-calf-id-1',
+        auid: 'mocked-calf-auid-1',
         name: 'mocked-calf-name-1',
         slug: 'mocked-calf-slug-1',
       }, {
         id: 'mocked-calf-id-2',
+        auid: null,
         name: null,
         slug: 'mocked-calf-slug-2',
       }],

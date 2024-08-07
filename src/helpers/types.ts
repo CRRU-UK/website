@@ -237,7 +237,7 @@ export type ContentTypeCatalogueBottlenoseDolphin = {
     firstSeen?: EntryFieldTypes.Date,
     birthYear?: EntryFieldTypes.Date,
     age?: EntryFieldTypes.Integer,
-    sex: EntryFieldTypes.Symbol<'Unknown' | 'Female' | 'Male'>,
+    sex: EntryFieldTypes.Symbol<'UNKNOWN' | 'FEMALE' | 'MALE'>,
     mother?: EntryFieldTypes.EntryLink<ContentTypeCatalogueBottlenoseDolphin>,
     leftDorsalFin?: EntryFieldTypes.AssetLink,
     rightDorsalFin?: EntryFieldTypes.AssetLink,

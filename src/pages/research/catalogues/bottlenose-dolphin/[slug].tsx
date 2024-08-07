@@ -12,7 +12,6 @@ import sitemap from '@/data/sitemap.json';
 import { formatDateMonth } from '@/helpers/formatDate';
 import { getCatalogueItem, getCatalogueItemSlug } from '@/helpers/getBottlenoseDolphinCatalogue';
 
-import Hero from '@/components/Hero/Hero';
 import { Breadcrumbs, SEO, Catalogue, Tooltip } from '@/components/index';
 
 import styles from './[slug].module.scss';

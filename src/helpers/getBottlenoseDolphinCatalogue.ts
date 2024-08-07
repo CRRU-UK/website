@@ -121,7 +121,7 @@ const getCatalogueItem = async (
       firstSeen: entry.fields?.firstSeen ?? null,
       birthYear: entry.fields?.birthYear ?? null,
       age: entry.fields.age ?? null,
-      sex: entry.fields.sex ?? null,
+      sex: entry.fields.sex ?? 'UNKNOWN',
       leftDorsalFin: entry.fields?.leftDorsalFin ? flattenImageAssetFields(entry.fields.leftDorsalFin) : null,
       rightDorsalFin: entry.fields?.rightDorsalFin ? flattenImageAssetFields(entry.fields.rightDorsalFin) : null,
       otherImages: entry.fields.otherImages?.map((item) => flattenImageAssetFields(item as Asset)) ?? [],
