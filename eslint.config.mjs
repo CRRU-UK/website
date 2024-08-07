@@ -20,6 +20,13 @@ const customConfigs = [
     ],
   },
   {
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
+  },
+  {
     languageOptions: { globals: {...globals.browser, ...globals.node} },
   },
   {
