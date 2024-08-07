@@ -1,5 +1,3 @@
-/* eslint-disable react/require-default-props */
-
 import Link from 'next/link';
 
 import styles from './Button.module.scss';

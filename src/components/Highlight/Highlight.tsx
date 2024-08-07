@@ -1,4 +1,4 @@
-/* eslint-disable react/require-default-props */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import styles from './Highlight.module.scss';
 

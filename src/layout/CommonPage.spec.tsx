@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import '@testing-library/jest-dom';
 
 import { act } from 'react-dom/test-utils';

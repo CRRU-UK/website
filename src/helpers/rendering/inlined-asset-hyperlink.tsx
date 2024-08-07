@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* istanbul ignore file */
 
 import type { Node, Text } from '@contentful/rich-text-types';

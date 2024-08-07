@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import type { NextPage, GetServerSideProps } from 'next';
 
 import React, { useState } from 'react';
@@ -56,6 +58,8 @@ const UseSightingsForm = () => {
         body: data,
       });
     } catch (error: any) {
+      console.error('Unable to submit form:', error);
+
       setErrorMessages(['Unable to submit form, please try again']);
       setLoading(false);
       return;

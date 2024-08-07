@@ -1,5 +1,3 @@
-/* eslint-disable react/require-default-props */
-
 import Image from 'next/image';
 
 import styles from './Hero.module.scss';

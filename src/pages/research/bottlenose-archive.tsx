@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-no-useless-fragment */
-
 import type { NextPage, GetServerSideProps } from 'next';
 import type { MouseEventHandler } from 'react';
 import type { Asset } from 'contentful';

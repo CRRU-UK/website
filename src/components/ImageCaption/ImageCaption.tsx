@@ -1,4 +1,3 @@
-/* eslint-disable react/require-default-props */
 /* istanbul ignore file */
 
 import { useState } from 'react';
