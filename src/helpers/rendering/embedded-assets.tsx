@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/media-has-caption */
 /* istanbul ignore file */
 
 import type { Node } from '@contentful/rich-text-types';

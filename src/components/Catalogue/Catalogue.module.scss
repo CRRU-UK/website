@@ -1,4 +1,4 @@
-@import "../../scss/variables";
+@import '../../scss/variables';
 
 .card {
   overflow: hidden;
@@ -7,8 +7,28 @@
   aspect-ratio: 2 / 1;
   width: 100%;
   border-radius: $global-border-radius;
-  box-shadow: 0 0 10px rgba($global-color-body, .3);
-  background: #FFF;
+  background: repeat $global-color-primary-dark;
+
+  &::before {
+    opacity: 0.6;
+    content: '';
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $global-color-primary-dark;
+  }
+}
+
+.no-image {
+  background-image: url('../../../public/images/icons/dolphin-catalogue-default.svg');
+  transition: background-position-y 0.6s $global-transition-ease-out-expo;
+}
+
+.no-image:hover {
+  background-position-y: -5%;
 }
 
 .text { 
@@ -16,17 +36,17 @@
     $size: 25%;
 
     opacity: 0.7;
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     top: 15px;
     right: 15px;
     width: $size;
     height: $size;
-    background: url("../../../public/images/icons/dolphin-catalogue-stamp.svg") top right no-repeat transparent;
+    background: url('../../../public/images/icons/dolphin-catalogue-stamp.svg') top right no-repeat transparent;
     background-size: contain;
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       top: 10px;
       right: 10px;
     }
@@ -44,11 +64,11 @@
   width: 100%;
   height: 100%;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     padding: $global-padding-medium / 2;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     padding: $global-padding-small / 2;
   }
 }
@@ -58,19 +78,19 @@
   font-size: 22px;
   line-height: 22px;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     font-size: 26px;
     line-height: 26px;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     font-size: 22px;
     line-height: 22px;
   }
 
   &::before {
     opacity: 0.5;
-    content: "#";
+    content: '#';
     padding-right: 2px;
   }
 }
@@ -85,12 +105,12 @@
   font-size: 16px;
   line-height: 16px;
 
-  @include breakpoint("medium") {
+  @include breakpoint('medium') {
     font-size: 16px;
     line-height: 16px;
   }
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     font-size: 14px;
     line-height: 14px;
   }

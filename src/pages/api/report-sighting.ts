@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import type { NextApiResponse } from 'next';
 import type { LogtailAPIRequest } from '@logtail/next';
 

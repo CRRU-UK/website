@@ -1,4 +1,4 @@
-@import "../../../scss/variables";
+@import '../../../scss/variables';
 
 .taxonomy {
   $spacing: 15px;
@@ -16,7 +16,7 @@
   list-style: none;
   background: $global-color-secondary;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     padding: $global-padding-small / 2;
     grid-template-columns: 1fr 1fr;
   }
@@ -31,7 +31,7 @@
       padding-right: 0;
     }
 
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       font-size: 14px;
       line-height: 18px;
     }
@@ -43,7 +43,7 @@
   }
 
   > li > em {
-    @include breakpoint("small") {
+    @include breakpoint('small') {
       display: inline;
     }
   }
@@ -52,7 +52,7 @@
 .wide {
   grid-column: 2 / -1;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     grid-column: 1 / -1;
   }
 }

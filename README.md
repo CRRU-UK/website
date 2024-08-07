@@ -38,7 +38,7 @@ The app is made up of the following parts:
 ## Installation
 
 1. Clone the repository
-2. Ensure you are using Node version >= 20 (`nvm install 20` / `nvm use 20`)
+2. Ensure you are using Node version >= 22 (`nvm install 22` / `nvm use 22`)
 3. Install the dependencies by running [`npm ci`](https://docs.npmjs.com/cli/ci.html)
 
 The following environment variables should be provided when running the server (an `.env` file in the root is supported – see [`.env.example`](.env.example) for an example):

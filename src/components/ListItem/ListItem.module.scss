@@ -1,4 +1,4 @@
-@import "../../scss/variables";
+@import '../../scss/variables';
 
 .item {
   display: flex;
@@ -9,7 +9,7 @@
   border-radius: $global-border-radius;
   border: 2px solid $global-color-background-dark;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     align-items: flex-start;
     margin-bottom: $global-spacing-small / 2;
     padding: $global-padding-small / 2;
@@ -20,7 +20,7 @@
   width: 150px;
   padding-right: $global-padding-large;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     padding-top: 5px;
     padding-right: $global-padding-small;
     width: 100px;
@@ -37,7 +37,7 @@
   justify-content: space-between;
   margin-bottom: 10px;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     flex-direction: column-reverse;
     margin-bottom: 5px;
   }
@@ -49,7 +49,7 @@
   font-size: 16px;
   line-height: 24px;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     font-size: 14px;
     line-height: 22px;
   }
@@ -59,7 +59,7 @@
   margin: 0;
   padding-right: 10px;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     padding-right: 5px;
   }
 }
@@ -67,7 +67,7 @@
 .description {
   margin-top: 15px;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin-top: 10px;
   }
 }
@@ -88,7 +88,7 @@
   text-align: center;
   font-weight: 700;
 
-  @include breakpoint("small") {
+  @include breakpoint('small') {
     margin: 5px auto 10px 0;
     padding: 4px 8px;
     font-size: 10px;

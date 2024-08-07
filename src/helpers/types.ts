@@ -34,7 +34,7 @@ export type PageData = {
 
 export type PageModule = {
   content: Document,
-  data: Object | null,
+  data: object | null,
 };
 
 export type NewsArticle = {

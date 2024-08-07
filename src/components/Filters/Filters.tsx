@@ -1,5 +1,3 @@
-/* eslint-disable react/require-default-props */
-
 import styles from './Filters.module.scss';
 
 interface Props {
