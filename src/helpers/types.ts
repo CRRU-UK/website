@@ -65,9 +65,9 @@ export type SpeciesEntry = {
 // Simplified references used in API responses and the `<Catalogue />` component
 export type CatalogueBottlenoseDolphinBasicInfo = {
   id: string,
+  auid: string | null,
   name: string | null,
   slug: string,
-  image: FlattenedImage | null,
 };
 
 export type CatalogueBottlenoseDolphinListAPIResponse = {
@@ -83,16 +83,18 @@ export type CatalogueBottlenoseDolphinListAPIResponse = {
 export type CatalogueBottlenoseDolphin = {
   entry: {
     id: string,
+    auid: string | null,
     name: string | null,
     slug: string,
     description: string | null,
     firstSeen: string | null,
     birthYear: string | null,
     age: number | null,
-    sex: 'Unknown' | 'Female' | 'Male',
-    dorsalEdgeMarkings: string | null,
-    otherFeatures: string | null,
-    images: Array<FlattenedImage> | [],
+    sex: 'UNKNOWN' | 'FEMALE' | 'MALE',
+    leftDorsalFin: FlattenedImage | null,
+    rightDorsalFin: FlattenedImage | null,
+    otherImages: Array<FlattenedImage> | [],
+    lastUpdated: string,
   },
   mother: CatalogueBottlenoseDolphinBasicInfo | null,
   calves: Array<CatalogueBottlenoseDolphinBasicInfo> | [],
@@ -228,16 +230,17 @@ export type ContentTypeCatalogueBottlenoseDolphin = {
   contentTypeId: ContentTypes.CatalogueBottlenoseDolphin,
   fields: {
     id: EntryFieldTypes.Symbol,
+    auid?: EntryFieldTypes.Symbol,
     name?: EntryFieldTypes.Symbol,
     slug: EntryFieldTypes.Symbol,
     description?: EntryFieldTypes.Symbol,
     firstSeen?: EntryFieldTypes.Date,
     birthYear?: EntryFieldTypes.Date,
     age?: EntryFieldTypes.Integer,
-    sex: EntryFieldTypes.Symbol<'Unknown' | 'Female' | 'Male'>,
-    dorsalEdgeMarkings?: EntryFieldTypes.Symbol,
-    otherFeatures?: EntryFieldTypes.Symbol,
+    sex: EntryFieldTypes.Symbol<'UNKNOWN' | 'FEMALE' | 'MALE'>,
     mother?: EntryFieldTypes.EntryLink<ContentTypeCatalogueBottlenoseDolphin>,
-    images?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>,
+    leftDorsalFin?: EntryFieldTypes.AssetLink,
+    rightDorsalFin?: EntryFieldTypes.AssetLink,
+    otherImages?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>,
   },
 };

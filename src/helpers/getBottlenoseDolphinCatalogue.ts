@@ -19,19 +19,12 @@ import { flattenImageAssetFields } from './flattenAssetFields';
  */
 const reduceCatalogueItem = (
   entry: Entry<ContentTypeCatalogueBottlenoseDolphin>,
-): CatalogueBottlenoseDolphinBasicInfo => {
-  let image = null;
-  if (entry.fields?.images && Array.isArray(entry.fields.images)) {
-    image = flattenImageAssetFields(entry.fields?.images[0] as Asset);
-  }
-
-  return {
-    id: String(entry.fields.id),
-    name: entry.fields?.name ? String(entry.fields.name) : null,
-    slug: String(entry.fields.slug),
-    image,
-  };
-};
+): CatalogueBottlenoseDolphinBasicInfo => ({
+  id: String(entry.fields.id),
+  auid: entry.fields?.auid ? String(entry.fields.auid) : null,
+  name: entry.fields?.name ? String(entry.fields.name) : null,
+  slug: String(entry.fields.slug),
+});
 
 interface GetCatalogueListOptions {
   page: number,
@@ -58,7 +51,7 @@ const getCatalogueList = async ({
 
   if (search) {
     // @ts-expect-error TBA
-    query['fields.slug[match]'] = search;
+    query.query = search;
   }
 
   // @ts-expect-error TBA
@@ -88,6 +81,7 @@ const getEntryCalves = async (
   const { items } = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>({
     content_type: ContentTypes.CatalogueBottlenoseDolphin,
     'fields.mother.sys.id': entryID,
+    order: ['-fields.id'], // Order so 'current calf' is first
   });
 
   const data = items.map((entry) => reduceCatalogueItem(entry));
@@ -120,16 +114,18 @@ const getCatalogueItem = async (
   const data = {
     entry: {
       id: entry.fields.id,
+      auid: entry.fields?.auid ?? null,
       name: entry.fields?.name ?? null,
       slug: entry.fields.slug,
       description: entry.fields.description ?? null,
       firstSeen: entry.fields?.firstSeen ?? null,
       birthYear: entry.fields?.birthYear ?? null,
       age: entry.fields.age ?? null,
-      sex: entry.fields.sex ?? null,
-      dorsalEdgeMarkings: entry.fields.dorsalEdgeMarkings ?? null,
-      otherFeatures: entry.fields.otherFeatures ?? null,
-      images: entry.fields.images?.map((item) => flattenImageAssetFields(item as Asset)) ?? [],
+      sex: entry.fields.sex ?? 'UNKNOWN',
+      leftDorsalFin: entry.fields?.leftDorsalFin ? flattenImageAssetFields(entry.fields.leftDorsalFin) : null,
+      rightDorsalFin: entry.fields?.rightDorsalFin ? flattenImageAssetFields(entry.fields.rightDorsalFin) : null,
+      otherImages: entry.fields.otherImages?.map((item) => flattenImageAssetFields(item as Asset)) ?? [],
+      lastUpdated: entry.sys.updatedAt,
     },
     mother: entry.fields.mother ? reduceCatalogueItem(entry.fields.mother) : null,
     calves,

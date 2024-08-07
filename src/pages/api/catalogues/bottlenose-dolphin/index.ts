@@ -23,6 +23,7 @@ const handler = async (
 
   const pageNumber = parseInt(String(pageQuery), 10);
 
+  // TODO: Replace with joi?
   if (String(pageQuery).includes('.') || Number.isNaN(pageNumber) || pageNumber <= 0) {
     return res.status(400).send('`page` param must be an integer greater than 0');
   }
