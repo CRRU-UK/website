@@ -7,7 +7,6 @@ jest.mock('contentful', () => ({
 }));
 
 beforeAll(() => {
-  // eslint-disable-next-line global-require
   require('./contentful');
 });
 

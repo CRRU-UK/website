@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* istanbul ignore file */
 
 import { INLINES, BLOCKS } from '@contentful/rich-text-types';

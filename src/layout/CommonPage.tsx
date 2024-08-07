@@ -1,5 +1,3 @@
-/* eslint-disable react/require-default-props */
-
 import type React from 'react';
 
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';

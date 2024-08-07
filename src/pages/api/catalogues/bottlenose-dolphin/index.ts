@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import type { NextApiResponse } from 'next';
 import type { LogtailAPIRequest } from '@logtail/next';
 

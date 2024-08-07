@@ -57,11 +57,11 @@ const getCatalogueList = async ({
   };
 
   if (search) {
-    // @ts-ignore
+    // @ts-expect-error TBA
     query['fields.slug[match]'] = search;
   }
 
-  // @ts-ignore
+  // @ts-expect-error TBA
   const result = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>(query);
 
   const items = result.items.map((entry) => reduceCatalogueItem(entry));
