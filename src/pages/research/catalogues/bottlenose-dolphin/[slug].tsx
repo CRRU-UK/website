@@ -1,10 +1,11 @@
 import type { NextPage, GetServerSideProps } from 'next';
 import type { ParsedUrlQuery } from 'querystring';
 
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-import type { CatalogueBottlenoseDolphin } from '@/helpers/types';
+import type { CatalogueBottlenoseDolphinListAPIResponse, CatalogueBottlenoseDolphin } from '@/helpers/types';
 
 import sitemap from '@/data/sitemap.json';
 
@@ -14,6 +15,69 @@ import { getCatalogueItem, getCatalogueItemSlug } from '@/helpers/getBottlenoseD
 import { SEO, Catalogue } from '@/components/index';
 
 import styles from './[slug].module.scss';
+
+const Search = () => {
+  const [search, setSearch] = useState<string>('');
+  const [data, setData] = useState<null | CatalogueBottlenoseDolphinListAPIResponse>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (search === '') {
+      setData(null);
+      return;
+    }
+
+    const getData = async () => {
+      setLoading(true);
+
+      const response = await fetch(`/api/catalogues/bottlenose-dolphin?search=${search}&page=1`);
+      const result: CatalogueBottlenoseDolphinListAPIResponse = await response.json();
+      setData(result);
+
+      setLoading(false);
+    };
+
+    const timeout = setTimeout(getData, 500);
+    return () => clearTimeout(timeout);
+  }, [search]);
+
+  const handleSearchChange = (value: string) => setSearch(value);
+
+  const classes = [styles.search];
+  if (loading || data) {
+    classes.push(styles.active);
+  }
+
+  const showResults = loading || data;
+
+  const noResultsElement = <li className={styles['no-results']}>No results</li>;
+
+  const resultsElements = data?.meta?.totalItems === 0 ? noResultsElement : data?.items.map((item) => (
+    <li key={item.id}>
+      <Catalogue
+        title={`#${item.id}`}
+        subtitle={item?.name ? String(item.name) : undefined}
+        link={`/research/catalogues/bottlenose-dolphin/${item.slug}`}
+      />
+    </li>
+  ));
+
+  return (
+    <div className={classes.join(' ')}>
+      <input
+        type="search"
+        placeholder="Search by name, ID, AUID..."
+        onChange={({ target }) => handleSearchChange((target as HTMLInputElement).value)}
+      />
+
+      {showResults && (
+        <ul className={styles.results}>
+          {loading ? <li className={styles['loading']} /> : resultsElements}
+        </ul>
+      )}
+    </div>  
+  );
+}
 
 const Unknown = () => (
   <span
@@ -31,9 +95,9 @@ const familyTree = (data: CatalogueBottlenoseDolphin) => {
     calves,
   } = data;
 
-  const unknownElement = (<span className={styles.foobar}>Unknown</span>)
+  const emptyElement = (<span className={styles.empty}>Unknown</span>)
 
-  let motherElement = unknownElement;
+  let motherElement = emptyElement;
   if (mother) {
     motherElement = (
       <Catalogue
@@ -44,7 +108,7 @@ const familyTree = (data: CatalogueBottlenoseDolphin) => {
     );
   }
 
-  let calvesElement = unknownElement;
+  let calvesElement = emptyElement;
   if (calves.length) {
     calvesElement = (
       <ul>
@@ -126,6 +190,8 @@ const Page: NextPage<PageProps> = ({
 
   const noImage = <span className={styles['no-image']}>No image</span>;
 
+  const router = useRouter();
+
   return (
     <>
       <SEO
@@ -138,11 +204,8 @@ const Page: NextPage<PageProps> = ({
       />
 
       <section className={styles.toolbar}>
-        <input
-          type="search"
-          placeholder="Search by name, ID, AUID..."
-          className={styles.search}
-        />
+        {/* key is needed to reset search state on navigation */}
+        <Search key={router.asPath} />
       </section>
 
       <section className={styles.container}>
@@ -152,31 +215,31 @@ const Page: NextPage<PageProps> = ({
           <ul className={styles.info}>
             <li className={styles['info-item-crru']}>
               <b>CRRU ID #</b>
-              <span>{id}</span>
+              {id}
             </li>
             <li className={styles['info-item-au']}>
               <b>AULFS ID Ref #</b>
-              <span>{auid ?? <Unknown />}</span>
+              {auid ?? <Unknown />}
             </li>
             <li className={styles['info-item-name']}>
               <b>Name</b>
-              <span>{name ?? <i>(None)</i>}</span>
+              {name ?? <i>(None)</i>}
             </li>
             <li className={styles['info-item-first-seen']}>
               <b>First Seen</b>
-              <span>{firstSeen ? formatDateMonth(firstSeen).toUpperCase() : <Unknown />}</span>
+              {firstSeen ? formatDateMonth(firstSeen).toUpperCase() : <Unknown />}
             </li>
             <li className={styles['info-item-birth-year']}>
               <b>Birth Year</b>
-              <span>{birthYear ?? <Unknown />}</span>
+              {birthYear ?? <Unknown />}
             </li>
             <li className={styles['info-item-age']}>
               <b>Age (Years)</b>
-              <span>{age ? ageText : <Unknown />}</span>
+              {age ? ageText : <Unknown />}
             </li>
             <li className={styles['info-item-sex']}>
               <b>Sex</b>
-              <span>{sex === 'UNKNOWN' ? <Unknown /> : sex}</span>
+              {sex === 'UNKNOWN' ? <Unknown /> : sex}
             </li>
             <li className={[styles['info-item-wide'], styles['info-item-calves']].join(' ')}>
               <b>Total Number Of Calves</b>
