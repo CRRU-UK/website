@@ -291,8 +291,6 @@ const Page: NextPage<PageProps> = ({
                 </li>
               )}
             </ul>
-
-            <p className={styles['last-updated']}>Last updated: {formatDateMonth(lastUpdated)}</p>
           </div>
         </article>
 
@@ -300,6 +298,8 @@ const Page: NextPage<PageProps> = ({
           {familyTree(catalogueData)}
         </div>
       </section>
+
+      <p className={styles['last-updated']}>Last updated: {formatDateMonth(lastUpdated)}</p>
     </>
   );
 };
