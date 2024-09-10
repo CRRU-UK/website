@@ -12,7 +12,7 @@ import sitemap from '@/data/sitemap.json';
 import { formatDateMonth } from '@/helpers/formatDate';
 import { getCatalogueItem, getCatalogueItemSlug } from '@/helpers/getBottlenoseDolphinCatalogue';
 
-import { SEO, Catalogue } from '@/components/index';
+import { SEO, Breadcrumbs, Catalogue } from '@/components/index';
 
 import styles from './[slug].module.scss';
 
@@ -210,86 +210,90 @@ const Page: NextPage<PageProps> = ({
 
       <section className={styles.container}>
         <article className={styles.main}>
-          <h1>{title}</h1>
+          <Breadcrumbs wide items={breadcrumbs} />
 
-          <ul className={styles.info}>
-            <li className={styles['info-item-crru']}>
-              <b>CRRU ID #</b>
-              {id}
-            </li>
-            <li className={styles['info-item-au']}>
-              <b>AULFS ID Ref #</b>
-              {auid ?? <Unknown />}
-            </li>
-            <li className={styles['info-item-name']}>
-              <b>Name</b>
-              {name ?? <i>(None)</i>}
-            </li>
-            <li className={styles['info-item-first-seen']}>
-              <b>First Seen</b>
-              {firstSeen ? formatDateMonth(firstSeen).toUpperCase() : <Unknown />}
-            </li>
-            <li className={styles['info-item-birth-year']}>
-              <b>Birth Year</b>
-              {birthYear ?? <Unknown />}
-            </li>
-            <li className={styles['info-item-age']}>
-              <b>Age (Years)</b>
-              {age ? ageText : <Unknown />}
-            </li>
-            <li className={styles['info-item-sex']}>
-              <b>Sex</b>
-              {sex === 'UNKNOWN' ? <Unknown /> : sex}
-            </li>
-            <li className={[styles['info-item-wide'], styles['info-item-calves']].join(' ')}>
-              <b>Total Number Of Calves</b>
-              <Unknown />
-            </li>
+          <div className={styles.wrapper}>
+            <h1>{title}</h1>
 
-            <li className={[styles['info-item-half'], styles['info-item-dorsal-fin-left']].join(' ')}>
-              <b>Left Dorsal Fin</b>
-              {leftDorsalFin ? <Image
-                src={leftDorsalFin.url}
-                width={leftDorsalFin.width}
-                height={leftDorsalFin.height}
-                alt="Left Dorsal Fin"
-                className={styles.image}
-              /> : (noImage)}
-            </li>
-
-            <li className={[styles['info-item-half'], styles['info-item-dorsal-fin-right']].join(' ')}>
-              <b>Right Dorsal Fin</b>
-              {rightDorsalFin ? <Image
-                src={rightDorsalFin.url}
-                width={rightDorsalFin.width}
-                height={rightDorsalFin.height}
-                alt="Left Dorsal Fin"
-                className={styles.image}
-              /> : (noImage)}
-            </li>
-
-            {otherImages.length > 0 && (
-              <li className={[styles['info-item-full'], styles['info-item-other-images']].join(' ')}>
-                <b>Other Images</b>
-
-                <ul>
-                  {otherImages.map((item) => (
-                    <li key={item.url}>
-                      <Image
-                        src={item.url}
-                        width={item.width}
-                        height={item.height}
-                        alt=""
-                        className={styles.image}
-                      />
-                    </li>
-                  ))}
-                </ul>
+            <ul className={styles.info}>
+              <li className={styles['info-item-crru']}>
+                <b>CRRU ID #</b>
+                {id}
               </li>
-            )}
-          </ul>
+              <li className={styles['info-item-au']}>
+                <b>AULFS ID Ref #</b>
+                {auid ?? <Unknown />}
+              </li>
+              <li className={styles['info-item-name']}>
+                <b>Name</b>
+                {name ?? <i>(None)</i>}
+              </li>
+              <li className={styles['info-item-first-seen']}>
+                <b>First Seen</b>
+                {firstSeen ? formatDateMonth(firstSeen).toUpperCase() : <Unknown />}
+              </li>
+              <li className={styles['info-item-birth-year']}>
+                <b>Birth Year</b>
+                {birthYear ?? <Unknown />}
+              </li>
+              <li className={styles['info-item-age']}>
+                <b>Age (Years)</b>
+                {age ? ageText : <Unknown />}
+              </li>
+              <li className={styles['info-item-sex']}>
+                <b>Sex</b>
+                {sex === 'UNKNOWN' ? <Unknown /> : sex}
+              </li>
+              <li className={[styles['info-item-wide'], styles['info-item-calves']].join(' ')}>
+                <b>Total Number Of Calves</b>
+                <Unknown />
+              </li>
 
-          <p className={styles['last-updated']}>Last updated: {formatDateMonth(lastUpdated)}</p>
+              <li className={[styles['info-item-half'], styles['info-item-dorsal-fin-left']].join(' ')}>
+                <b>Left Dorsal Fin</b>
+                {leftDorsalFin ? <Image
+                  src={leftDorsalFin.url}
+                  width={leftDorsalFin.width}
+                  height={leftDorsalFin.height}
+                  alt="Left Dorsal Fin"
+                  className={styles.image}
+                /> : (noImage)}
+              </li>
+
+              <li className={[styles['info-item-half'], styles['info-item-dorsal-fin-right']].join(' ')}>
+                <b>Right Dorsal Fin</b>
+                {rightDorsalFin ? <Image
+                  src={rightDorsalFin.url}
+                  width={rightDorsalFin.width}
+                  height={rightDorsalFin.height}
+                  alt="Left Dorsal Fin"
+                  className={styles.image}
+                /> : (noImage)}
+              </li>
+
+              {otherImages.length > 0 && (
+                <li className={[styles['info-item-full'], styles['info-item-other-images']].join(' ')}>
+                  <b>Other Images</b>
+
+                  <ul>
+                    {otherImages.map((item) => (
+                      <li key={item.url}>
+                        <Image
+                          src={item.url}
+                          width={item.width}
+                          height={item.height}
+                          alt=""
+                          className={styles.image}
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              )}
+            </ul>
+
+            <p className={styles['last-updated']}>Last updated: {formatDateMonth(lastUpdated)}</p>
+          </div>
         </article>
 
         <div className={styles.sidebar}>

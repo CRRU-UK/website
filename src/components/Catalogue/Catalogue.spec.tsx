@@ -29,12 +29,6 @@ it('Passes accessibility with optional props', async () => act(async () => {
       title="mocked title"
       subtitle="mocked subtitle"
       link="/mocked-link"
-      image={{
-        url: '/mocked-image.jpg',
-        width: 100,
-        height: 200,
-        alt: 'mocked alt',
-      }}
     />,
   );
 

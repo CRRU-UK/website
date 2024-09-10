@@ -131,9 +131,14 @@ $sidebar-size: 600px;
 
 .main {
   margin: 0;
-  padding: 60px 40px;
+  padding: 0;
   width: calc(100% - $sidebar-size);
   max-width: none;
+
+  > .wrapper {
+    border-top: 2px solid #e5eaef;
+    padding: 60px 40px;
+  }
 }
 
 .sidebar {
@@ -176,7 +181,7 @@ $grid-spacing-small: $global-spacing-small / 2;
 
 // Left
 
-.main > h1 {
+.main h1 {
   display: block;
   margin: 0 0 40px;
   font-weight: 700;

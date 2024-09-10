@@ -112,7 +112,6 @@ const Page: NextPage<PageProps> = ({
                     title={item.id}
                     subtitle={item.name ?? undefined}
                     link={`/research/catalogues/bottlenose-dolphin/${item.slug}`}
-                    image={item.image ?? undefined}
                   />
                 </li>
               ))
