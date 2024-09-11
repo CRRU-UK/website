@@ -40,6 +40,10 @@ $global-color-grey: #363636;
 $global-color-blue: #00366b;
 $global-color-red: #c0372b;
 
+$global-color-catalogue: #dedede;
+$global-color-catalogue-dark: #202027;
+$global-color-catalogue-light: #fafafa;
+
 // Fonts
 
 $global-font-primary: 'Poppins', 'Helvetica', 'Arial', 'Verdana', sans-serif;
@@ -58,6 +62,12 @@ $global-transition-ease-in-out-back: cubic-bezier(0.68, -0.6, 0.32, 1.6);
 // Mixins
 
 @mixin breakpoint($size) {
+  @if $size == 'large' {
+    @media (min-width: #{$global-breakpoint-medium + 1px}) {
+      @content;
+    }
+  }
+
   @if $size == 'medium' {
     @media (max-width: $global-breakpoint-medium) {
       @content;

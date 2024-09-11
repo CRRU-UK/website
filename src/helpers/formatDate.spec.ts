@@ -1,4 +1,4 @@
-import { formatDateRelative, formatDateLong } from './formatDate';
+import { formatDateRelative, formatDateMonth } from './formatDate';
 
 describe('formatDateRelative', () => {
   it('Formats date shorted than 2 weeks', () => {
@@ -14,10 +14,10 @@ describe('formatDateRelative', () => {
   });
 });
 
-describe('formatDateLong', () => {
+describe('formatDateMonth', () => {
   it('Formats date as long', () => {
-    const result = formatDateLong('2023-01-01');
+    const result = formatDateMonth('2023-01-01');
 
-    expect(result).toBe('1 January 2023');
+    expect(result).toBe('January 2023');
   });
 });
