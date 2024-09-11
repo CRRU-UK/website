@@ -24,7 +24,7 @@ $border-radius: 10px;
   text-decoration: none;
   border: 2px solid $global-color-catalogue;
   box-shadow: 0 $bottom-border-size 0 color.adjust($global-color-catalogue, $lightness: 5%);
-  background: #fff;
+  background: $global-color-background;
 
   @include breakpoint('small') {
     padding: 6px 10px;
@@ -67,7 +67,7 @@ $border-radius: 10px;
 .disabled {
   pointer-events: none;
   box-shadow: none;
-  background: #f7f7f8;
+  background: $global-color-background-dark;
 
   > .icon,
   > .text {
