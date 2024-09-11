@@ -20,7 +20,7 @@ $border-radius: 10px;
   border-radius: $border-radius;
   font-size: 16px;
   line-height: 16px;
-  color: #000;
+  color: $global-color-body;
   text-decoration: none;
   border: 2px solid $global-color-catalogue;
   box-shadow: 0 $bottom-border-size 0 color.adjust($global-color-catalogue, $lightness: 5%);
