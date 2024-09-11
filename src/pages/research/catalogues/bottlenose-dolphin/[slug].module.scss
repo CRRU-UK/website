@@ -17,7 +17,7 @@
   border-bottom: 2px solid #e5eaef;
   background: #fff;
 
-  @include breakpoint('small') {
+  @include breakpoint('medium') {
     padding: 0 $global-padding-small;
     height: 60px;
   }
@@ -40,7 +40,7 @@
   width: $width;
   height: $height;
 
-  @include breakpoint('small') {
+  @include breakpoint('medium') {
     font-size: 14px;
     width: 100%;
     height: 40px;
@@ -62,7 +62,7 @@
     outline: 0;
     background: 15px center no-repeat url('../../../../../public/images/icons/catalogues/search.svg') #fff;
 
-    @include breakpoint('small') {
+    @include breakpoint('medium') {
       font-size: 14px;
       width: 100%;
       height: 40px;
@@ -99,7 +99,7 @@
     overflow: hidden;
     overflow-y: scroll;
 
-    @include breakpoint('small') {
+    @include breakpoint('medium') {
       grid-template-columns: repeat(1, 1fr);
       padding: $global-padding-small;
       column-gap: $global-spacing-small;
@@ -157,7 +157,7 @@
   flex-direction: row;
   width: 100%;
 
-  @include breakpoint('small') {
+  @include breakpoint('medium') {
     flex-direction: column;
   }
 }
@@ -170,7 +170,7 @@ $sidebar-size: 600px;
   width: calc(100% - $sidebar-size);
   max-width: none;
 
-  @include breakpoint('small') {
+  @include breakpoint('medium') {
     width: 100%;
   }
 
@@ -178,22 +178,22 @@ $sidebar-size: 600px;
     border-top: 2px solid #e5eaef;
     padding: 60px 40px;
 
-    @include breakpoint('small') {
+    @include breakpoint('medium') {
       padding: $global-padding-small;
     }
   }
 }
 
 .sidebar {
-  padding: 60px 40px;
+  padding: ($global-padding-large * 2) $global-padding-large;
   width: $sidebar-size;
   border-left: 2px solid #e5eaef;
   border-bottom: 2px solid #e5eaef;
   border-bottom-left-radius: 20px;
   background: top left repeat url('../../../../../public/images/catalogue-background.svg') #fafafa;
 
-  @include breakpoint('small') {
-    padding: $global-padding-small;
+  @include breakpoint('medium') {
+    padding: ($global-padding-small * 2) $global-padding-small;
     width: 100%;
     border-left: 0;
     border-radius: 0;
@@ -214,7 +214,7 @@ $grid-spacing-small: $global-spacing-small / 2;
   line-height: 42px;
   font-family: $global-font-primary;
 
-  @include breakpoint('small') {
+  @include breakpoint('medium') {
     margin-bottom: $global-spacing-small;
     font-size: 24px;
     line-height: 24px;
@@ -231,12 +231,6 @@ $grid-spacing-small: $global-spacing-small / 2;
   list-style: none;
 
   @include breakpoint('medium') {
-    grid-template-columns: 1fr 1fr;
-    column-gap: $grid-spacing-medium;
-    row-gap: $grid-spacing-medium;
-  }
-
-  @include breakpoint('small') {
     margin-bottom: $grid-spacing-small;
     grid-template-columns: repeat(2, 1fr);
     column-gap: $grid-spacing-small;
@@ -255,7 +249,7 @@ $grid-spacing-small: $global-spacing-small / 2;
   background: #fafafa;
   border-radius: 10px;
 
-  @include breakpoint('small') {
+  @include breakpoint('medium') {
     padding: 15px;
     grid-column: span 1;
     font-size: 14px;
@@ -269,7 +263,7 @@ $grid-spacing-small: $global-spacing-small / 2;
     line-height: 18px;
     font-weight: 500;
 
-    @include breakpoint('small') {
+    @include breakpoint('medium') {
       font-size: 14px;
       line-height: 14px;
     }
@@ -286,7 +280,7 @@ $grid-spacing-small: $global-spacing-small / 2;
     font-weight: 500;
     color: #8e8e8e;
 
-    @include breakpoint('small') {
+    @include breakpoint('medium') {
       margin-bottom: 8px;
       font-size: 14px;
       line-height: 14px;
@@ -307,7 +301,7 @@ $grid-spacing-small: $global-spacing-small / 2;
   &.info-item-wide {
     grid-column: span 4;
 
-    @include breakpoint('small') {
+    @include breakpoint('medium') {
       grid-column: span 1;
     }
   }
@@ -320,7 +314,7 @@ $grid-spacing-small: $global-spacing-small / 2;
     grid-column: span 6;
   }
 
-  @include breakpoint('small') {
+  @include breakpoint('medium') {
     &.info-item-half,
     &.info-item-full {
       grid-column: span 2;
@@ -336,7 +330,7 @@ $grid-spacing-small: $global-spacing-small / 2;
     column-gap: 20px;
     row-gap: 20px;
 
-    @include breakpoint('small') {
+    @include breakpoint('medium') {
       grid-template-columns: repeat(2, 1fr);
       column-gap: 10px;
       row-gap: 10px;
@@ -404,7 +398,7 @@ $sections: (
   color: $global-color-body-dark;
   text-align: center;
 
-  @include breakpoint('small') {
+  @include breakpoint('medium') {
     margin-top: $global-spacing-small;
     font-size: 14px;
     line-height: 14px;
@@ -413,11 +407,14 @@ $sections: (
 
 // Family tree
 
-$family-tree-item-width: 220px;
+$family-tree-item-width: 200px;
+
 $section-spacing-large: 60px;
 $section-spacing-small: 40px;
+
 $row-gap: 20px;
 $column-gap: 40px;
+
 $line-size: 2px;
 $line-color: #9c9c9c;
 
@@ -427,7 +424,7 @@ $line-color: #9c9c9c;
   margin: 0 auto;
   width: $family-tree-item-width;
 
-  @include breakpoint('small') {
+  @include breakpoint('medium') {
     width: 100%;
   }
 }
@@ -456,7 +453,7 @@ $line-color: #9c9c9c;
     justify-content: center;
     align-items: center;
 
-    @include breakpoint('small') {
+    @include breakpoint('medium') {
       height: $section-spacing-small * 2;
     }
 
@@ -481,12 +478,6 @@ $line-color: #9c9c9c;
       color: #fff;
       background: #202027;
       text-transform: uppercase;
-
-      @include breakpoint('small') {
-        padding: 6px;
-        font-size: 12px;
-        line-height: 12px;
-      }
     }
   }
 }
@@ -506,6 +497,10 @@ $line-color: #9c9c9c;
   grid-template-columns: repeat(2, 1fr);
   row-gap: $row-gap;
   column-gap: $column-gap;
+
+  @include breakpoint('medium') {
+    width: 100%;
+  }
 }
 
 .tree .calves > ul > li {
@@ -575,8 +570,8 @@ $line-color: #9c9c9c;
     background: #202027;
     text-transform: uppercase;
 
-    @include breakpoint('small') {
-      top: -20px;
+    @include breakpoint('medium') {
+      top: -25px;
       padding: 4px;
       font-size: 8px;
       line-height: 8px;
@@ -590,12 +585,6 @@ $line-color: #9c9c9c;
       height: 10px;
       background: url('../../../../../public/images/icons/catalogues/star.svg') center center no-repeat;
       background-size: contain;
-
-      @include breakpoint('small') {
-        margin-right: 4px;
-        width: 8px;
-        height: 8px;
-      }
     }
   }
 }
