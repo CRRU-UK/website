@@ -20,7 +20,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     <>
       <Head>
         {/* General */}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 
         {/* Favicons */}
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v1" />

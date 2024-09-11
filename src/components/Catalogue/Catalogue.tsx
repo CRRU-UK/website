@@ -1,9 +1,6 @@
 import Link from 'next/link';
-import Image from 'next/image';
 
 import React from 'react';
-
-import type { FlattenedImage } from '@/helpers/types';
 
 import styles from './Catalogue.module.scss';
 
@@ -11,39 +8,30 @@ interface Props {
   title: string,
   subtitle?: string,
   link: string,
-  image?: FlattenedImage,
+  disabled?: boolean,
 }
 
 const Catalogue = ({
   title,
   subtitle,
   link,
-  image,
+  disabled = false,
 }: Props) => {
-  const cardClasses = [styles.card];
-  if (!image) {
-    cardClasses.push(styles['no-image']);
+  const classes = [styles.catalogue, styles['no-image']];
+
+  if (disabled) {
+    classes.push(styles.disabled);
   }
 
   return (
-    <Link href={link} className={cardClasses.join(' ')}>
+    <Link href={link} className={classes.join(' ')}>
+      <span className={styles.icon}></span>
       <span className={styles.text}>
+        <span className={styles.title}>{title}</span>
         {subtitle && <span className={styles.subtitle}>{subtitle}</span>}
-        <span className={styles.title}>
-          <span>{title}</span>
-        </span>
       </span>
-      {image && (
-        <Image
-          src={image.url}
-          width={300}
-          height={150}
-          alt=""
-          className={styles.image}
-        />
-      )}
     </Link>
   );
-};
+}
 
 export default Catalogue;
