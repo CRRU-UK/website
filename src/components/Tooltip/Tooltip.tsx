@@ -25,6 +25,7 @@ const Tooltip = ({
       className={styles.tooltip}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
+      role="tooltip"
     >
       <button
         type="button"
