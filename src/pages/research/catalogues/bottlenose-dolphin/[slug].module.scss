@@ -14,7 +14,7 @@
   justify-content: flex-start;
   align-items: center;
   height: 80px;
-  border-bottom: 2px solid #e5eaef;
+  border-bottom: 2px solid $global-color-catalogue;
   background: #fff;
 
   @include breakpoint('medium') {
@@ -55,12 +55,10 @@
     font-size: 16px;
     font-weight: 500;
     color: #000;
-    border: 2px solid #ddd;
-    box-shadow: 0 2px 0 #ecedef;
-    background: #fff;
+    border: 2px solid $global-color-catalogue;
     border-radius: 8px;
     outline: 0;
-    background: 15px center no-repeat url('../../../../../public/images/icons/catalogues/search.svg') #fff;
+    background: 15px center no-repeat url('../../../../../public/images/icons/catalogues/search.svg') $global-color-background;
 
     @include breakpoint('medium') {
       font-size: 14px;
@@ -89,7 +87,7 @@
     padding: $results-item-spacing;
     width: 100%;
     max-height: 420px;
-    border: 2px solid #dcdfe3;
+    border: 2px solid $global-color-primary;
     border-top: 0;
     box-shadow: rgba(#000, 0.4) 0 0 30px 0;
     border-bottom-left-radius: 8px;
@@ -104,6 +102,7 @@
       padding: $global-padding-small;
       column-gap: $global-spacing-small;
       row-gap: $global-spacing-small;
+      max-height: 320px;
       border-bottom-left-radius: 6px;
       border-bottom-right-radius: 6px;
     }
@@ -143,10 +142,6 @@
       border-bottom-right-radius: 0;
       border-color: $global-color-primary;
     }
-
-    > .results {
-      border-color: $global-color-primary;
-    }
   }
 }
 
@@ -162,12 +157,12 @@
   }
 }
 
-$sidebar-size: 600px;
+$sidebar-size-large: 600px;
 
 .main {
   margin: 0;
   padding: 0;
-  width: calc(100% - $sidebar-size);
+  width: calc(100% - $sidebar-size-large);
   max-width: none;
 
   @include breakpoint('medium') {
@@ -175,7 +170,7 @@ $sidebar-size: 600px;
   }
 
   > .wrapper {
-    border-top: 2px solid #e5eaef;
+    border-top: 2px solid $global-color-catalogue;
     padding: 60px 40px;
 
     @include breakpoint('medium') {
@@ -185,12 +180,12 @@ $sidebar-size: 600px;
 }
 
 .sidebar {
-  padding: ($global-padding-large * 2) $global-padding-large;
-  width: $sidebar-size;
-  border-left: 2px solid #e5eaef;
-  border-bottom: 2px solid #e5eaef;
+  padding: ($global-padding-large * 2) 40px;
+  width: $sidebar-size-large;
+  border-left: 2px solid $global-color-catalogue;
+  border-bottom: 2px solid $global-color-catalogue;
   border-bottom-left-radius: 20px;
-  background: top left repeat url('../../../../../public/images/catalogue-background.svg') #fafafa;
+  background: top left repeat url('../../../../../public/images/catalogue-background.svg') $global-color-catalogue-light;
 
   @include breakpoint('medium') {
     padding: ($global-padding-small * 2) $global-padding-small;
@@ -246,14 +241,14 @@ $grid-spacing-small: $global-spacing-small / 2;
   font-size: 22px;
   font-weight: 700;
   line-height: 22px;
-  background: #fafafa;
+  background: $global-color-catalogue-light;
   border-radius: 10px;
 
   @include breakpoint('medium') {
     padding: 15px;
     grid-column: span 1;
-    font-size: 14px;
-    line-height: 14px;
+    font-size: 16px;
+    line-height: 16px;
     border-radius: 8px;
   }
 
@@ -278,18 +273,18 @@ $grid-spacing-small: $global-spacing-small / 2;
     font-size: 18px;
     line-height: 18px;
     font-weight: 500;
-    color: #8e8e8e;
+    color: $global-color-grey;
 
     @include breakpoint('medium') {
       margin-bottom: 8px;
-      font-size: 14px;
-      line-height: 14px;
+      font-size: 16px;
+      line-height: 16px;
     }
 
     &::before {
       content: '';
       display: block;
-      margin-right: 8px;
+      margin-right: 5px;
       width: 12px;
       height: 24px;
       background-position: center center;
@@ -476,7 +471,7 @@ $line-color: #9c9c9c;
       line-height: 14px;
       border-radius: 5px;
       color: #fff;
-      background: #202027;
+      background: $global-color-catalogue-dark;
       text-transform: uppercase;
     }
   }
@@ -567,7 +562,7 @@ $line-color: #9c9c9c;
     line-height: 10px;
     border-radius: 5px;
     color: #fff;
-    background: #202027;
+    background: $global-color-catalogue-dark;
     text-transform: uppercase;
 
     @include breakpoint('medium') {
@@ -605,7 +600,12 @@ $line-color: #9c9c9c;
   line-height: 16px;
   font-weight: 700;
   border-radius: 8px;
-  border: 2px dashed #d9d9d9;
+  border: 2px dashed $global-color-catalogue;
   color: rgba($global-color-body-dark, 0.5);
-  background: #f7f7f8;
+  background: $global-color-catalogue-light;
+
+  @include breakpoint('medium') {
+    width: 100%;
+    height: 50px;
+  }
 }
