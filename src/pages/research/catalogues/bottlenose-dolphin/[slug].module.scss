@@ -456,6 +456,50 @@ $tree-label-border-width: 5px;
   }
 }
 
+%tree-labels {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  height: $tree-item-spacing-large * 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include breakpoint($catalogue-breakpoint-small) {
+    height: $tree-item-spacing-small * 2;
+  }
+
+  &::after {
+    content: '';
+    z-index: 0;
+    position: absolute;
+    left: calc(50% - math.floor($tree-line-size / 2));
+    bottom: 0;
+    width: $tree-line-size;
+    height: 100%;
+    background: $tree-line-color;
+  }
+
+  > span {
+    z-index: 10;
+    position: relative;
+    padding: 8px 10px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 14px;
+    border-radius: $tree-label-border-width;
+    color: $global-color-body;
+    background: $global-color-secondary;
+    text-transform: uppercase;
+
+    @include breakpoint($catalogue-breakpoint-small) {
+      padding: 6px 8px;
+      font-size: 12px;
+      line-height: 12px;
+    }
+  }
+}
+
 .sidebar {
   flex-shrink: 0;
   padding-top: $global-padding-medium * 2;
@@ -500,41 +544,7 @@ $tree-label-border-width: 5px;
   align-items: center;
 
   > b {
-    position: relative;
-    margin: 0 auto;
-    width: 100%;
-    height: $tree-item-spacing-large * 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    @include breakpoint($catalogue-breakpoint-small) {
-      height: $tree-item-spacing-small * 2;
-    }
-
-    &::after {
-      content: '';
-      z-index: 0;
-      position: absolute;
-      left: calc(50% - math.floor($tree-line-size / 2));
-      bottom: 0;
-      width: $tree-line-size;
-      height: 100%;
-      background: $tree-line-color;
-    }
-
-    > span {
-      z-index: 10;
-      position: relative;
-      padding: 8px;
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 14px;
-      border-radius: $tree-label-border-width;
-      color: $global-color-body;
-      background: $global-color-secondary;
-      text-transform: uppercase;
-    }
+    @extend %tree-labels;
   }
 }
 
@@ -626,19 +636,28 @@ $tree-label-border-width: 5px;
 
   @include breakpoint($catalogue-breakpoint-small) {
     top: -25px;
-    padding: 4px;
-    font-size: 8px;
-    line-height: 8px;
+    padding: 5px;
+    font-size: 10px;
+    line-height: 10px;
   }
+
+  $icon-size-large: 12px;
+  $icon-size-small: 10px;
 
   &::before {
     content: '';
     margin-right: 5px;
     display: block;
-    width: 12px;
-    height: 12px;
+    width: $icon-size-large;
+    height: $icon-size-large;
     background: url('../../../../../public/images/icons/catalogues/star.svg') center center no-repeat;
     background-size: contain;
+
+    @include breakpoint($catalogue-breakpoint-small) {
+      margin-right: 4px;
+      width: $icon-size-small;
+      height: $icon-size-small;
+    }
   }
 }
 
