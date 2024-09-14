@@ -2,7 +2,6 @@
 
 @import '../../scss/variables';
 
-$width: 100%;
 $height-large: 70px;
 $height-medium: 50px;
 $height-small: 50px;
@@ -15,7 +14,7 @@ $bottom-border-size: 5px;
   flex-direction: row;
   align-items: center;
   padding: 10px 15px;
-  width: $width;
+  width: 100%;
   height: $height-large;
   border-radius: $global-border-radius;
   font-size: 16px;

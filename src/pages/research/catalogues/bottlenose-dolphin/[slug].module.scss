@@ -435,11 +435,13 @@ $tree-item-spacing-large: 60px;
 $tree-item-spacing-medium: 50px;
 $tree-item-spacing-small: 40px;
 
-$row-gap: 20px;
-$column-gap: 40px;
+$tree-row-gap: 20px;
+$tree-column-gap: 40px;
 
-$line-size: 3px;
-$line-color: #9c9c9c;
+$tree-line-size: 3px;
+$tree-line-color: #9c9c9c;
+
+$tree-label-border-width: 5px;
 
 %tree-items {
   margin: 0 auto;
@@ -514,11 +516,11 @@ $line-color: #9c9c9c;
       content: '';
       z-index: 0;
       position: absolute;
-      left: calc(50% - math.floor($line-size / 2));
+      left: calc(50% - math.floor($tree-line-size / 2));
       bottom: 0;
-      width: $line-size;
+      width: $tree-line-size;
       height: 100%;
-      background: $line-color;
+      background: $tree-line-color;
     }
 
     > span {
@@ -528,7 +530,7 @@ $line-color: #9c9c9c;
       font-weight: 700;
       font-size: 14px;
       line-height: 14px;
-      border-radius: $global-border-radius-small;
+      border-radius: $tree-label-border-width;
       color: $global-color-body;
       background: $global-color-secondary;
       text-transform: uppercase;
@@ -548,8 +550,8 @@ $line-color: #9c9c9c;
   position: relative;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  row-gap: $row-gap;
-  column-gap: $column-gap;
+  row-gap: $tree-row-gap;
+  column-gap: $tree-column-gap;
 }
 
 .tree .calves > ul > li {
@@ -566,10 +568,10 @@ $line-color: #9c9c9c;
     position: absolute;
     top: 50%;
     display: block;
-    margin-top: math.ceil(-$line-size / 2);
-    width: ($column-gap / 2);
-    height: $line-size;
-    background: $line-color;
+    margin-top: math.ceil(-$tree-line-size / 2);
+    width: ($tree-column-gap / 2);
+    height: $tree-line-size;
+    background: $tree-line-color;
   }
 
   &:nth-child(odd) {
@@ -584,16 +586,16 @@ $line-color: #9c9c9c;
       content: '';
       z-index: 0;
       position: absolute;
-      right: 0 - ($column-gap / 2) - math.ceil($line-size / 2);
-      bottom: calc(50% - $line-size + math.floor($line-size / 2));
-      width: $line-size;
-      height: calc(100% + $row-gap);
-      background: $line-color;
+      right: 0 - ($tree-column-gap / 2) - math.ceil($tree-line-size / 2);
+      bottom: calc(50% - $tree-line-size + math.floor($tree-line-size / 2));
+      width: $tree-line-size;
+      height: calc(100% + $tree-row-gap);
+      background: $tree-line-color;
     }
   }
 
   &:first-child::after {
-    height: calc(50% + math.ceil($line-size / 2));
+    height: calc(50% + math.ceil($tree-line-size / 2));
   }
 
   &:nth-child(even) {
@@ -617,7 +619,7 @@ $line-color: #9c9c9c;
   font-weight: 700;
   font-size: 12px;
   line-height: 12px;
-  border-radius: $global-border-radius-small;
+  border-radius: $tree-label-border-width;
   color: $global-color-catalogue-light;
   background: $global-color-catalogue-dark;
   text-transform: uppercase;

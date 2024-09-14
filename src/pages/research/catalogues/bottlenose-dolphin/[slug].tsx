@@ -294,7 +294,6 @@ const Page: NextPage<PageProps> = ({
 
             <p className={styles['last-updated']}>Last updated: {formatDateMonth(lastUpdated)}</p>
           </div>
-
         </article>
 
         <div className={styles.sidebar}>
