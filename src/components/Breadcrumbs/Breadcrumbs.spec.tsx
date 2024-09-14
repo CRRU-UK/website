@@ -31,8 +31,7 @@ it('Passes accessibility with default props', async () => act(async () => {
 it('Passes accessibility with optional props', async () => act(async () => {
   const { container } = render(
     <Breadcrumbs
-      wide
-      inline
+      style="wide"
       items={[{
         title: 'World',
         path: '/hello',
