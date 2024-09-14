@@ -1,4 +1,4 @@
-@import '../../../../scss/variables';
+@import '../../../scss/variables';
 
 .loading {
   opacity: 0.3;
@@ -25,7 +25,7 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: $global-spacing-large / 2;
   row-gap: $global-spacing-large  / 2;
   list-style: none;
@@ -36,7 +36,7 @@
   }
 
   @include breakpoint('small') {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: $global-spacing-small / 2;
     row-gap: $global-spacing-small / 2;
   }

@@ -88,15 +88,20 @@ const Page: NextPage<PageProps> = ({
 
   return (
     <CommonPage
-      page={sitemap['catalogue-bottlenose-dolphin']}
+      page={sitemap.catalogues}
       parent={sitemap.research}
-      breadcrumbs={[sitemap.research, sitemap['catalogue-bottlenose-dolphin']]}
+      breadcrumbs={[sitemap.research, sitemap.catalogues]}
       data={pageData}
     >
       <br />
 
       <Filters
         onSearch={handleSearchChange}
+        dropdowns={[{
+          name: 'Catalogues',
+          options: [{ text: 'Bottlenose Dolphins', value: 'bottlenose-dolphin' }],
+          callback: () => {},
+        }]}
         searchLabel="Search by ID or name..."
       />
 
@@ -131,7 +136,7 @@ const Page: NextPage<PageProps> = ({
 export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const preview = ctx?.query.preview === 'true';
   const pageData = await getPageContent(
-    sitemap['catalogue-bottlenose-dolphin'].path,
+    sitemap.catalogues.path,
     { preview },
   );
 

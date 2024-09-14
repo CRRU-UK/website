@@ -57,7 +57,6 @@ const CommonPage = ({
 
       <Breadcrumbs
         items={breadcrumbs}
-        style="wide"
       />
 
       <article

@@ -35,9 +35,9 @@
     "title": "Bottlenose Dolphin Photo-Identification Archive",
     "path": "/research/bottlenose-archive"
   },
-  "catalogue-bottlenose-dolphin": {
-    "title": "Bottlenose Dolphin Catalogue",
-    "path": "/research/catalogues/bottlenose-dolphin"
+  "catalogues": {
+    "title": "Catalogues",
+    "path": "/research/catalogues"
   },
   "minke-whale-studies": {
     "title": "Minke Whale Research",

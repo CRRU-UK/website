@@ -40,7 +40,7 @@ $catalogue-max-width: 2000px;
 }
 
 .search {
-  $search-width: 650px;
+  $search-width: 800px;
   $search-height: 50px;
   $search-results-spacing: 20px;
 
@@ -96,7 +96,7 @@ $catalogue-max-width: 2000px;
     margin: 0;
     padding: $search-results-spacing;
     width: 100%;
-    max-height: 420px;
+    max-height: 500px;
     border: 2px solid $global-color-primary;
     border-top: 0;
     box-shadow: rgba(#000, 0.4) 0 0 30px 0;

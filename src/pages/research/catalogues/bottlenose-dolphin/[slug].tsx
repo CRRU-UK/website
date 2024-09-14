@@ -182,7 +182,11 @@ const Page: NextPage<PageProps> = ({
   const title = name ? `#${id} (${name})` : `#${id}`;
   const pageDescription = `CRRU Bottlenose Dolphin catalogue entry for ${title}.`;
   const path = `/research/catalogues/bottlenose-dolphin/${slug}`;
-  const breadcrumbs = [sitemap.research, sitemap['catalogue-bottlenose-dolphin'], { title, path }];
+  const breadcrumbs = [
+    sitemap.research,
+    sitemap.catalogues,
+    { title, path },
+  ];
 
   let ageText = null;
   if (age && age > 25) {
@@ -201,7 +205,7 @@ const Page: NextPage<PageProps> = ({
     <>
       <SEO
         page={{
-          title: `${title} - ${sitemap['catalogue-bottlenose-dolphin'].title}`,
+          title: `${title} - ${sitemap.catalogues.title}`,
           description: pageDescription,
           path,
         }}
