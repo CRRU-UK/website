@@ -12,7 +12,7 @@ import sitemap from '@/data/sitemap.json';
 import { formatDateMonth } from '@/helpers/formatDate';
 import { getCatalogueItem, getCatalogueItemSlug } from '@/helpers/getBottlenoseDolphinCatalogue';
 
-import { SEO, Breadcrumbs, Catalogue } from '@/components/index';
+import { SEO, Breadcrumbs, Catalogue, Tooltip } from '@/components/index';
 
 import styles from './[slug].module.scss';
 
@@ -55,8 +55,9 @@ const Search = () => {
   const resultsElements = data?.meta?.totalItems === 0 ? noResultsElement : data?.items.map((item) => (
     <li key={item.id}>
       <Catalogue
-        title={`#${item.id}`}
-        subtitle={item?.name ? String(item.name) : undefined}
+        id={`#${item.id}`}
+        name={item?.name ? String(item.name) : undefined}
+        subid={item?.auid ? `#${item.auid}` : undefined}
         link={`/research/catalogues/bottlenose-dolphin/${item.slug}`}
       />
     </li>
@@ -101,8 +102,9 @@ const familyTree = (data: CatalogueBottlenoseDolphin) => {
   if (mother) {
     motherElement = (
       <Catalogue
-        title={`#${mother.id}`}
-        subtitle={mother?.name ? String(mother.name) : undefined}
+        id={`#${mother.id}`}
+        name={mother?.name ? String(mother.name) : undefined}
+        subid={mother?.auid ? `#${mother.auid}` : undefined}
         link={`/research/catalogues/bottlenose-dolphin/${mother.slug}`}
       />
     );
@@ -117,8 +119,9 @@ const familyTree = (data: CatalogueBottlenoseDolphin) => {
             <li key={item.id}>
               {index === 0 && (<span className={styles.current}>Current Calf</span>)}
               <Catalogue
-                title={`#${item.id}`}
-                subtitle={item?.name ?? undefined}
+                id={`#${item.id}`}
+                subid={item?.auid ? `#${item.auid}` : undefined}
+                name={item?.name ?? undefined}
                 link={item.slug}
               />
             </li>
@@ -137,8 +140,9 @@ const familyTree = (data: CatalogueBottlenoseDolphin) => {
 
       <li className={styles.name}>
         <Catalogue
-          title={`#${entry.id}`}
-          subtitle={entry.name ?? undefined}
+          id={`#${entry.id}`}
+          subid={entry?.auid ? `#${entry.auid}` : undefined}
+          name={entry.name ?? undefined}
           link={''}
           disabled
         />
@@ -222,7 +226,7 @@ const Page: NextPage<PageProps> = ({
               </li>
               <li className={styles['info-item-au']}>
                 <b>AULFS ID Ref #</b>
-                {auid ?? <Unknown />}
+                {auid ?? <Unknown />} <Tooltip text="Aberdeen University Lighthouse Field Station" />
               </li>
               <li className={styles['info-item-name']}>
                 <b>Name</b>
@@ -247,6 +251,7 @@ const Page: NextPage<PageProps> = ({
               <li className={[styles['info-item-wide'], styles['info-item-calves']].join(' ')}>
                 <b>Total Number Of Calves</b>
                 <Unknown />
+                <Tooltip text="Combined number of known calves across the CRRU and AULFS catalogues" />
               </li>
 
               <li className={[styles['info-item-half'], styles['info-item-dorsal-fin-left']].join(' ')}>

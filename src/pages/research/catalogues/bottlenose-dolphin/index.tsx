@@ -109,8 +109,9 @@ const Page: NextPage<PageProps> = ({
               data.items.map((item: any) => (
                 <li key={item.id}>
                   <Catalogue
-                    title={item.id}
-                    subtitle={item.name ?? undefined}
+                    id={item.id}
+                    name={item.name ?? undefined}
+                    subid={item?.auid ? `#${item.auid}` : undefined}
                     link={`/research/catalogues/bottlenose-dolphin/${item.slug}`}
                   />
                 </li>

@@ -43,7 +43,7 @@ $bottom-border-size: 5px;
     border-color: $global-color-primary-dark;
     box-shadow: 0 $bottom-border-size 0 $global-color-primary-light;
 
-    .title {
+    .id > b {
       color: $global-color-primary-dark;
       text-decoration: underline;
     }
@@ -96,13 +96,33 @@ $bottom-border-size: 5px;
   overflow: hidden;
 }
 
-.title,
-.subtitle {
+.id,
+.name {
   display: block;
   width: 100%;
 }
 
-.subtitle {
+.id {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.subid {
+  opacity: 0.5;
+  margin-left: auto;
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 500;
+
+  @include breakpoint('small') {
+    font-size: 10px;
+    line-height: 10px;
+  }
+}
+
+.name {
   position: relative;
   margin-top: 5px;
   font-weight: 500;

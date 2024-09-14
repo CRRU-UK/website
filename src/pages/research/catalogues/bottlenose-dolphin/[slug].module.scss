@@ -203,14 +203,14 @@ $grid-spacing-small: $global-spacing-small / 2;
   display: block;
   margin: 0 0 $global-spacing-large;
   font-weight: 700;
-  font-size: 42px;
-  line-height: 42px;
+  font-size: 38px;
+  line-height: 38px;
   font-family: $global-font-primary;
 
   @include breakpoint($catalogue-breakpoint-medium) {
     margin-bottom: $global-spacing-medium;
-    font-size: 32px;
-    line-height: 32px;
+    font-size: 28px;
+    line-height: 28px;
   }
 
   @include breakpoint($catalogue-breakpoint-small) {

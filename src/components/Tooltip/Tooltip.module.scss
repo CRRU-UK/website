@@ -1,15 +1,14 @@
 @import '../../scss/variables';
 
-$icon-size-large: 22px;
+$icon-size-large: 18px;
 $icon-size-small: 16px;
 
 $tooltip-spacing: 10px;
 
 .tooltip {
-  overflow: visible;
   z-index: 10;
   position: relative;
-  transform: translateY(4px);
+  transform: translateY(1px);
   margin-left: 5px;
   display: inline-block;
   width: $icon-size-large;
@@ -56,7 +55,7 @@ $easing-out: 0.6s $global-transition-ease-in-expo;
   left: -$tooltip-spacing;
   bottom: calc(100% + $tooltip-spacing);
   padding: 10px;
-  width: 200px;
+  width: 250px;
   font-size: 14px;
   line-height: 20px;
   text-align: left;
