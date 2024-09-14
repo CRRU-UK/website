@@ -13,6 +13,7 @@ $global-header-height-medium: 80px;
 $global-header-height-small: 60px;
 
 $global-border-radius: 8px;
+$global-border-radius-small: 5px;
 
 $global-spacing-large: 40px;
 $global-spacing-medium: 30px;
@@ -62,12 +63,6 @@ $global-transition-ease-in-out-back: cubic-bezier(0.68, -0.6, 0.32, 1.6);
 // Mixins
 
 @mixin breakpoint($size) {
-  @if $size == 'large' {
-    @media (min-width: #{$global-breakpoint-medium + 1px}) {
-      @content;
-    }
-  }
-
   @if $size == 'medium' {
     @media (max-width: $global-breakpoint-medium) {
       @content;

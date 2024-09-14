@@ -7,7 +7,6 @@ $height-large: 70px;
 $height-small: 50px;
 
 $bottom-border-size: 5px;
-$border-radius: 10px;
 
 .catalogue {
   position: relative;
@@ -17,7 +16,7 @@ $border-radius: 10px;
   padding: 10px 15px;
   width: $width;
   height: $height-large;
-  border-radius: $border-radius;
+  border-radius: $global-border-radius;
   font-size: 16px;
   line-height: 16px;
   color: $global-color-body;
