@@ -251,7 +251,7 @@ const Page: NextPage<PageProps> = ({
               </li>
               <li className={[styles['info-item-wide'], styles['info-item-calves']].join(' ')}>
                 <b>Total Number Of Calves</b>
-                {totalCalves ? totalCalves : <Unknown />}
+                {totalCalves ?? <Unknown />}
                 <Tooltip text="Combined number of known calves across the CRRU and AULFS catalogues" />
               </li>
 

@@ -8,15 +8,17 @@ $tooltip-spacing: 10px;
 .tooltip {
   z-index: 10;
   position: relative;
-  transform: translateY(1px);
   margin-left: 5px;
   display: inline-block;
   width: $icon-size-large;
   height: $icon-size-large;
+  vertical-align: middle;
+  transform: translateY(-2px);
 
   @include breakpoint('small') {
     width: $icon-size-small;
     height: $icon-size-small;
+    transform: translateY(-1px);
   }
 }
 
