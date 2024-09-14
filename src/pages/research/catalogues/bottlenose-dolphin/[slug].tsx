@@ -210,7 +210,7 @@ const Page: NextPage<PageProps> = ({
 
       <section className={styles.container}>
         <article className={styles.main}>
-          <Breadcrumbs wide items={breadcrumbs} />
+          <Breadcrumbs inline items={breadcrumbs} />
 
           <div className={styles.wrapper}>
             <h1>{title}</h1>
@@ -291,7 +291,10 @@ const Page: NextPage<PageProps> = ({
                 </li>
               )}
             </ul>
+
+            <p className={styles['last-updated']}>Last updated: {formatDateMonth(lastUpdated)}</p>
           </div>
+
         </article>
 
         <div className={styles.sidebar}>
@@ -299,7 +302,6 @@ const Page: NextPage<PageProps> = ({
         </div>
       </section>
 
-      <p className={styles['last-updated']}>Last updated: {formatDateMonth(lastUpdated)}</p>
     </>
   );
 };

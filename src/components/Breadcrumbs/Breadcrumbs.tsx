@@ -9,11 +9,13 @@ import styles from './Breadcrumbs.module.scss';
 interface Props {
   items: Array<SitemapItem>,
   wide?: boolean,
+  inline?: boolean,
 }
 
 const Breadcrumbs = ({
   items,
   wide = false,
+  inline = false,
 }: Props) => {
   const links = items.map(({ title, path }, index) => {
     const last = index === items.length - 1;
@@ -37,7 +39,7 @@ const Breadcrumbs = ({
 
   return (
     <div className={styles['breadcrumbs-container']}>
-      <ul className={`${styles.breadcrumbs} ${wide ? styles.wide : ''}`}>
+      <ul className={`${styles.breadcrumbs} ${wide ? styles.wide : ''} ${inline ? styles.inline : ''}`}>
         <li>
           <Link href={sitemap.home.path}>
             {sitemap.home.title}

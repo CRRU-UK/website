@@ -5,6 +5,8 @@
 $catalogue-breakpoint-medium: 1200px;
 $catalogue-breakpoint-small: 950px;
 
+$catalogue-max-width: 2000px;
+
 // Toolbar
 
 .toolbar {
@@ -16,9 +18,15 @@ $catalogue-breakpoint-small: 950px;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  max-width: $catalogue-max-width;
   height: 80px;
   border-bottom: 2px solid $global-color-catalogue;
-  background: #fff;
+  background: $global-color-background;
+
+  @media (min-width: $catalogue-max-width) {
+    border-left: 2px solid $global-color-catalogue;
+    border-right: 2px solid $global-color-catalogue;
+  }
 
   @include breakpoint($catalogue-breakpoint-small) {
     padding: 0 $global-padding-small;
@@ -150,7 +158,9 @@ $catalogue-breakpoint-small: 950px;
 .container {
   display: flex;
   flex-direction: row;
+  margin: 0 auto;
   width: 100%;
+  max-width: $catalogue-max-width;
 
   @include breakpoint($catalogue-breakpoint-small) {
     flex-direction: column;
@@ -168,6 +178,12 @@ $grid-spacing-small: $global-spacing-small / 2;
   padding: 0;
   width: 100%;
   max-width: none;
+
+  @media (min-width: $catalogue-max-width) {
+    border-left: 2px solid $global-color-catalogue;
+    border-bottom: 2px solid $global-color-catalogue;
+    border-bottom-left-radius: $global-border-radius;
+  }
 
   > .wrapper {
     border-top: 2px solid $global-color-catalogue;
@@ -386,17 +402,23 @@ $sections: (
 
 .last-updated {
   margin-top: $global-spacing-large;
-  padding: 20px;
   display: block;
-  font-size: 18px;
-  line-height: 18px;
+  font-size: 16px;
+  line-height: 16px;
   color: $global-color-body-dark;
-  text-align: center;
+  text-align: left;
+
+  @include breakpoint($catalogue-breakpoint-medium) {
+    margin-top: $global-spacing-medium;
+    font-size: 14px;
+    line-height: 14px;
+  }
 
   @include breakpoint($catalogue-breakpoint-small) {
     margin-top: $global-spacing-small;
-    font-size: 14px;
-    line-height: 14px;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
   }
 }
 
@@ -440,6 +462,12 @@ $line-color: #9c9c9c;
   border-bottom: 2px solid $global-color-catalogue;
   border-bottom-left-radius: $global-border-radius;
   background: top left repeat url('../../../../../public/images/catalogue-background.svg') $global-color-catalogue-light;
+
+  @media (min-width: $catalogue-max-width) {
+    border-right: 2px solid $global-color-catalogue;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: $global-border-radius;
+  }
 
   @include breakpoint($catalogue-breakpoint-medium) {
     padding-top: $global-padding-medium * 2;

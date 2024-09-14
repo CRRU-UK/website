@@ -27,6 +27,10 @@
   max-width: $global-max-width-wide;
 }
 
+.inline {
+  max-width: none;
+}
+
 .breadcrumbs > li {
   margin: 0;
   display: flex;
