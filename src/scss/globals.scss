@@ -104,7 +104,7 @@ main {
 
   margin: 0 auto;
 
-  article {
+  > article {
     margin: 0 auto;
     max-width: $global-max-width;
     padding: ($global-spacing-large * 1.5) $global-padding-large 0;

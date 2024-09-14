@@ -18,13 +18,17 @@
   list-style: none;
   overflow: hidden;
 
+  &.wide {
+    max-width: $global-max-width-wide;
+  }
+  
+  &.inline {
+    max-width: none;
+  }
+
   @include breakpoint('small') {
     padding: 0 $global-padding-small;
   }
-}
-
-.wide {
-  max-width: $global-max-width-wide;
 }
 
 .breadcrumbs > li {

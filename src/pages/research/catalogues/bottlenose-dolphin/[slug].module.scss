@@ -1,6 +1,11 @@
-@use 'sass:color';
+@use 'sass:math';
 
 @import '../../../../scss/variables';
+
+$catalogue-breakpoint-medium: 1200px;
+$catalogue-breakpoint-small: 950px;
+
+$catalogue-max-width: 2000px;
 
 // Toolbar
 
@@ -13,13 +18,19 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  max-width: $catalogue-max-width;
   height: 80px;
   border-bottom: 2px solid $global-color-catalogue;
-  background: #fff;
+  background: $global-color-background;
 
-  @include breakpoint('medium') {
-    padding: 0 $global-padding-small;
-    height: 60px;
+  @media (min-width: $catalogue-max-width) {
+    border-left: 2px solid $global-color-catalogue;
+    border-right: 2px solid $global-color-catalogue;
+  }
+
+  @include breakpoint($catalogue-breakpoint-small) {
+    padding: 0;
+    height: 50px;
   }
 }
 
@@ -29,7 +40,7 @@
 }
 
 .search {
-  $search-width: 650px;
+  $search-width: 800px;
   $search-height: 50px;
   $search-results-spacing: 20px;
 
@@ -38,10 +49,10 @@
   width: $search-width;
   height: $search-height;
 
-  @include breakpoint('medium') {
+  @include breakpoint($catalogue-breakpoint-small) {
     font-size: 14px;
     width: 100%;
-    height: 40px;
+    height: 100%;
   }
 
   > input {
@@ -54,19 +65,20 @@
     font-weight: 500;
     color: #000;
     border: 2px solid $global-color-catalogue;
-    border-radius: 8px;
+    border-radius: $global-border-radius;
     outline: 0;
     background: 15px center no-repeat url('../../../../../public/images/icons/catalogues/search.svg') $global-color-background;
 
-    @include breakpoint('medium') {
+    @include breakpoint($catalogue-breakpoint-small) {
       font-size: 14px;
       width: 100%;
-      height: 40px;
-      padding-left: 40px;
-      background-position-x: 10px;
-      border-radius: 6px;
+      height: 100%;
+      padding-left: 55px;
+      border-color: transparent;
+      border-radius: 0;
+      background-position-x: 20px;
     }
-    
+
     &:focus {
       border-color: $global-color-primary;
     }
@@ -84,7 +96,7 @@
     margin: 0;
     padding: $search-results-spacing;
     width: 100%;
-    max-height: 420px;
+    max-height: 500px;
     border: 2px solid $global-color-primary;
     border-top: 0;
     box-shadow: rgba(#000, 0.4) 0 0 30px 0;
@@ -95,8 +107,8 @@
     overflow: hidden;
     overflow-y: scroll;
 
-    @include breakpoint('medium') {
-      grid-template-columns: repeat(1, 1fr);
+    @include breakpoint($catalogue-breakpoint-small) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       padding: $global-padding-small;
       column-gap: $global-spacing-small;
       row-gap: $global-spacing-small;
@@ -148,66 +160,62 @@
 .container {
   display: flex;
   flex-direction: row;
+  margin: 0 auto;
   width: 100%;
+  max-width: $catalogue-max-width;
 
-  @include breakpoint('medium') {
+  @include breakpoint($catalogue-breakpoint-small) {
     flex-direction: column;
   }
 }
 
-$sidebar-size-large: 600px;
+// Main
+
+$grid-spacing-large: $global-spacing-large / 2;
+$grid-spacing-medium: $global-spacing-medium / 2;
+$grid-spacing-small: $global-spacing-small / 2;
 
 .main {
   margin: 0;
   padding: 0;
-  width: calc(100% - $sidebar-size-large);
+  width: 100%;
   max-width: none;
 
-  @include breakpoint('medium') {
-    width: 100%;
+  @media (min-width: $catalogue-max-width) {
+    border-left: 2px solid $global-color-catalogue;
+    border-bottom: 2px solid $global-color-catalogue;
+    border-bottom-left-radius: $global-border-radius;
   }
 
   > .wrapper {
     border-top: 2px solid $global-color-catalogue;
     padding: 60px 40px;
 
-    @include breakpoint('medium') {
-      padding: $global-padding-small;
+    @include breakpoint($catalogue-breakpoint-medium) {
+      padding: ($global-padding-medium * 2) $global-padding-medium;
+    }
+
+    @include breakpoint($catalogue-breakpoint-small) {
+      padding: ($global-padding-small * 2) $global-padding-small $global-padding-small;
     }
   }
 }
-
-.sidebar {
-  padding: ($global-padding-large * 2) 40px;
-  width: $sidebar-size-large;
-  border-left: 2px solid $global-color-catalogue;
-  border-bottom: 2px solid $global-color-catalogue;
-  border-bottom-left-radius: 20px;
-  background: top left repeat url('../../../../../public/images/catalogue-background.svg') $global-color-catalogue-light;
-
-  @include breakpoint('medium') {
-    padding: ($global-padding-small * 2) $global-padding-small;
-    width: 100%;
-    border-left: 0;
-    border-radius: 0;
-  }
-}
-
-// Left
-
-$grid-spacing-large: $global-spacing-large / 2;
-$grid-spacing-medium: $global-spacing-medium / 2;
-$grid-spacing-small: $global-spacing-small / 2;
 
 .main h1 {
   display: block;
   margin: 0 0 $global-spacing-large;
   font-weight: 700;
-  font-size: 42px;
-  line-height: 42px;
+  font-size: 38px;
+  line-height: 38px;
   font-family: $global-font-primary;
 
-  @include breakpoint('medium') {
+  @include breakpoint($catalogue-breakpoint-medium) {
+    margin-bottom: $global-spacing-medium;
+    font-size: 28px;
+    line-height: 28px;
+  }
+
+  @include breakpoint($catalogue-breakpoint-small) {
     margin-bottom: $global-spacing-small;
     font-size: 24px;
     line-height: 24px;
@@ -215,7 +223,7 @@ $grid-spacing-small: $global-spacing-small / 2;
 }
 
 .info {
-  margin: 0 0 $grid-spacing-large;
+  margin: 0;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -223,9 +231,13 @@ $grid-spacing-small: $global-spacing-small / 2;
   row-gap: $grid-spacing-large;
   list-style: none;
 
-  @include breakpoint('medium') {
-    margin-bottom: $grid-spacing-small;
+  @include breakpoint($catalogue-breakpoint-medium) {
     grid-template-columns: repeat(2, 1fr);
+    column-gap: $grid-spacing-medium;
+    row-gap: $grid-spacing-medium;
+  }
+
+  @include breakpoint($catalogue-breakpoint-small) {
     column-gap: $grid-spacing-small;
     row-gap: $grid-spacing-small;
   }
@@ -240,14 +252,19 @@ $grid-spacing-small: $global-spacing-small / 2;
   font-weight: 700;
   line-height: 22px;
   background: $global-color-catalogue-light;
-  border-radius: 10px;
+  border-radius: $global-border-radius;
 
-  @include breakpoint('medium') {
-    padding: 15px;
+  @include breakpoint($catalogue-breakpoint-medium) {
+    padding: 18px;
     grid-column: span 1;
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  @include breakpoint($catalogue-breakpoint-small) {
+    padding: 15px;
     font-size: 16px;
     line-height: 16px;
-    border-radius: 8px;
   }
 
   &.no-image {
@@ -256,7 +273,7 @@ $grid-spacing-small: $global-spacing-small / 2;
     line-height: 18px;
     font-weight: 500;
 
-    @include breakpoint('medium') {
+    @include breakpoint($catalogue-breakpoint-small) {
       font-size: 14px;
       line-height: 14px;
     }
@@ -273,7 +290,7 @@ $grid-spacing-small: $global-spacing-small / 2;
     font-weight: 500;
     color: $global-color-grey;
 
-    @include breakpoint('medium') {
+    @include breakpoint($catalogue-breakpoint-small) {
       margin-bottom: 8px;
       font-size: 16px;
       line-height: 16px;
@@ -283,7 +300,7 @@ $grid-spacing-small: $global-spacing-small / 2;
       content: '';
       display: block;
       margin-right: 5px;
-      min-width: 12px;
+      min-width: 14px;
       min-height: 24px;
       background-position: center center;
       background-repeat: no-repeat;
@@ -294,7 +311,7 @@ $grid-spacing-small: $global-spacing-small / 2;
   &.info-item-wide {
     grid-column: span 4;
 
-    @include breakpoint('medium') {
+    @include breakpoint($catalogue-breakpoint-medium) {
       grid-column: span 1;
     }
   }
@@ -307,7 +324,7 @@ $grid-spacing-small: $global-spacing-small / 2;
     grid-column: span 6;
   }
 
-  @include breakpoint('medium') {
+  @include breakpoint($catalogue-breakpoint-medium) {
     &.info-item-half,
     &.info-item-full {
       grid-column: span 2;
@@ -323,7 +340,7 @@ $grid-spacing-small: $global-spacing-small / 2;
     column-gap: 20px;
     row-gap: 20px;
 
-    @include breakpoint('medium') {
+    @include breakpoint($catalogue-breakpoint-medium) {
       grid-template-columns: repeat(2, 1fr);
       column-gap: 10px;
       row-gap: 10px;
@@ -384,42 +401,134 @@ $sections: (
 }
 
 .last-updated {
-  margin-top: $global-spacing-large;
-  padding: 20px;
+  margin: $global-spacing-large auto 0;
+  padding: 0 $global-padding-large;
   display: block;
-  font-size: 18px;
-  line-height: 18px;
+  max-width: $catalogue-max-width;
+  font-size: 16px;
+  line-height: 16px;
   color: $global-color-body-dark;
-  text-align: center;
+  text-align: left;
 
-  @include breakpoint('medium') {
-    margin-top: $global-spacing-small;
+  @include breakpoint($catalogue-breakpoint-medium) {
+    margin-top: $global-spacing-medium;
+    padding: 0 $global-padding-medium;
     font-size: 14px;
     line-height: 14px;
   }
+
+  @include breakpoint($catalogue-breakpoint-small) {
+    margin-top: $global-spacing-small;
+    padding: 0 $global-padding-small;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+  }
 }
 
-// Family tree
+// Sidebar
 
-$family-tree-item-width: 200px;
+$sidebar-size-large: 580px;
+$sidebar-size-medium: 480px;
 
-$section-spacing-large: 60px;
-$section-spacing-small: 40px;
+$tree-item-width-large: 200px;
+$tree-item-width-medium: 180px;
+$tree-item-width-small: 150px;
 
-$row-gap: 20px;
-$column-gap: 40px;
+$tree-item-spacing-large: 60px;
+$tree-item-spacing-medium: 50px;
+$tree-item-spacing-small: 40px;
 
-$line-size: 2px;
-$line-color: #9c9c9c;
+$tree-row-gap: 20px;
+$tree-column-gap: 40px;
 
-.tree > .mother,
-.tree > .name,
-.tree > .calves > ul > li {
+$tree-line-size: 3px;
+$tree-line-color: #9c9c9c;
+
+$tree-label-border-width: 5px;
+
+%tree-items {
   margin: 0 auto;
-  width: $family-tree-item-width;
+  width: $tree-item-width-large;
 
-  @include breakpoint('medium') {
+  @include breakpoint($catalogue-breakpoint-medium) {
+    width: $tree-item-width-medium;
+  }
+  
+  @include breakpoint($catalogue-breakpoint-small) {
+    width: $tree-item-width-small;
+  }
+}
+
+%tree-labels {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  height: $tree-item-spacing-large * 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include breakpoint($catalogue-breakpoint-small) {
+    height: $tree-item-spacing-small * 2;
+  }
+
+  &::after {
+    content: '';
+    z-index: 0;
+    position: absolute;
+    left: calc(50% - math.floor($tree-line-size / 2));
+    bottom: 0;
+    width: $tree-line-size;
+    height: 100%;
+    background: $tree-line-color;
+  }
+
+  > span {
+    z-index: 10;
+    position: relative;
+    padding: 8px 10px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 14px;
+    border-radius: $tree-label-border-width;
+    color: $global-color-body;
+    background: $global-color-secondary;
+    text-transform: uppercase;
+
+    @include breakpoint($catalogue-breakpoint-small) {
+      padding: 6px 8px;
+      font-size: 12px;
+      line-height: 12px;
+    }
+  }
+}
+
+.sidebar {
+  flex-shrink: 0;
+  padding-top: $global-padding-large * 2;
+  width: $sidebar-size-large;
+  border-left: 2px solid $global-color-catalogue;
+  border-bottom: 2px solid $global-color-catalogue;
+  border-bottom-left-radius: $global-border-radius;
+  background: top left repeat url('../../../../../public/images/catalogue-background.svg') $global-color-catalogue-light;
+
+  @media (min-width: $catalogue-max-width) {
+    border-right: 2px solid $global-color-catalogue;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: $global-border-radius;
+  }
+
+  @include breakpoint($catalogue-breakpoint-medium) {
+    padding-top: $global-padding-medium * 2;
+    width: $sidebar-size-medium;
+  }
+
+  @include breakpoint($catalogue-breakpoint-small) {
+    padding: $global-padding-small 0;
     width: 100%;
+    border-left: 0;
+    border-radius: 0;
   }
 }
 
@@ -439,61 +548,29 @@ $line-color: #9c9c9c;
   align-items: center;
 
   > b {
-    position: relative;
-    margin: 0 auto;
-    width: 100%;
-    height: $section-spacing-large * 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    @include breakpoint('medium') {
-      height: $section-spacing-small * 2;
-    }
-
-    &::after {
-      content: '';
-      z-index: 0;
-      position: absolute;
-      left: 50%;
-      bottom: 0;
-      width: $line-size;
-      height: 100%;
-      background: $line-color;
-    }
-
-    > span {
-      z-index: 10;
-      position: relative;
-      padding: 8px;
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 14px;
-      border-radius: 5px;
-      color: $global-color-body;
-      background: $global-color-secondary;
-      text-transform: uppercase;
-    }
+    @extend %tree-labels;
   }
 }
 
-.tree .mother > b {
-  order: 1;
+.tree .mother {
+  @extend %tree-items;
+
+  > b {
+    order: 1;
+  }
 }
 
 .tree .calves > ul {
   position: relative;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  row-gap: $row-gap;
-  column-gap: $column-gap;
-
-  @include breakpoint('medium') {
-    width: 100%;
-  }
+  row-gap: $tree-row-gap;
+  column-gap: $tree-column-gap;
 }
 
 .tree .calves > ul > li {
+  @extend %tree-items;
+
   z-index: 10;
   position: relative;
   display: flex;
@@ -505,10 +582,10 @@ $line-color: #9c9c9c;
     position: absolute;
     top: 50%;
     display: block;
-    margin-top: -1px;
-    width: ($column-gap / 2);
-    height: $line-size;
-    background: $line-color;
+    margin-top: math.ceil(-$tree-line-size / 2);
+    width: ($tree-column-gap / 2);
+    height: $tree-line-size;
+    background: $tree-line-color;
   }
 
   &:nth-child(odd) {
@@ -523,16 +600,16 @@ $line-color: #9c9c9c;
       content: '';
       z-index: 0;
       position: absolute;
-      right: 0 - ($column-gap / 2) - $line-size;
-      bottom: calc(50% - $line-size + 1px); // TODO: Fix single pixel offset
-      width: $line-size;
-      height: calc(100% + $row-gap);
-      background: $line-color;
+      right: 0 - ($tree-column-gap / 2) - math.ceil($tree-line-size / 2);
+      bottom: calc(50% - $tree-line-size + math.floor($tree-line-size / 2));
+      width: $tree-line-size;
+      height: calc(100% + $tree-row-gap);
+      background: $tree-line-color;
     }
   }
 
   &:first-child::after {
-    height: calc(50% + 1px);
+    height: calc(50% + math.ceil($tree-line-size / 2));
   }
 
   &:nth-child(even) {
@@ -542,65 +619,73 @@ $line-color: #9c9c9c;
       right: 100%;
     }
   }
+}
 
-  .current {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: flex-start;
-    position: absolute;
-    left: 0;
-    top: -35px;
-    padding: 8px;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 12px;
-    border-radius: 5px;
-    color: $global-color-catalogue-light;
-    background: $global-color-catalogue-dark;
-    text-transform: uppercase;
+.tree .calves > ul > li > .current {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  position: absolute;
+  left: 0;
+  top: -35px;
+  padding: 8px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 12px;
+  border-radius: $tree-label-border-width;
+  color: $global-color-catalogue-light;
+  background: $global-color-catalogue-dark;
+  text-transform: uppercase;
 
-    @include breakpoint('medium') {
-      top: -25px;
-      padding: 4px;
-      font-size: 8px;
-      line-height: 8px;
-    }
-  
-    &::before {
-      content: '';
-      margin-right: 5px;
-      display: block;
-      width: 12px;
-      height: 12px;
-      background: url('../../../../../public/images/icons/catalogues/star.svg') center center no-repeat;
-      background-size: contain;
+  @include breakpoint($catalogue-breakpoint-small) {
+    top: -25px;
+    padding: 5px;
+    font-size: 10px;
+    line-height: 10px;
+  }
+
+  $icon-size-large: 12px;
+  $icon-size-small: 10px;
+
+  &::before {
+    content: '';
+    margin-right: 5px;
+    display: block;
+    width: $icon-size-large;
+    height: $icon-size-large;
+    background: url('../../../../../public/images/icons/catalogues/star.svg') center center no-repeat;
+    background-size: contain;
+
+    @include breakpoint($catalogue-breakpoint-small) {
+      margin-right: 4px;
+      width: $icon-size-small;
+      height: $icon-size-small;
     }
   }
 }
 
-.tree .name {
-  display: flex;
-  justify-content: center;
-}
-
+.tree .name,
 .tree .empty {
+  @extend %tree-items;
+
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.tree .empty {
   margin: 0 auto;
-  width: $family-tree-item-width;
   height: 70px;
   font-size: 16px;
   line-height: 16px;
   font-weight: 700;
-  border-radius: 8px;
+  border-radius: $global-border-radius;
   border: 2px dashed $global-color-catalogue;
   color: rgba($global-color-body-dark, 0.5);
   background: $global-color-background-dark;
 
-  @include breakpoint('medium') {
-    width: 100%;
+  @include breakpoint($catalogue-breakpoint-small) {
     height: 50px;
   }
 }

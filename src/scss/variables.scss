@@ -62,12 +62,6 @@ $global-transition-ease-in-out-back: cubic-bezier(0.68, -0.6, 0.32, 1.6);
 // Mixins
 
 @mixin breakpoint($size) {
-  @if $size == 'large' {
-    @media (min-width: #{$global-breakpoint-medium + 1px}) {
-      @content;
-    }
-  }
-
   @if $size == 'medium' {
     @media (max-width: $global-breakpoint-medium) {
       @content;

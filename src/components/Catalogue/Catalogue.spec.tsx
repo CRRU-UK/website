@@ -13,7 +13,7 @@ beforeAll(() => {
 it('Passes accessibility with default props', async () => act(async () => {
   const { container } = render(
     <Catalogue
-      title="mocked title"
+      id="mocked title"
       link="/mocked-link"
     />,
   );
@@ -26,8 +26,9 @@ it('Passes accessibility with default props', async () => act(async () => {
 it('Passes accessibility with optional props', async () => act(async () => {
   const { container } = render(
     <Catalogue
-      title="mocked title"
-      subtitle="mocked subtitle"
+      id="mocked title"
+      subid="mocked subtitle"
+      name="mocked name"
       link="/mocked-link"
     />,
   );

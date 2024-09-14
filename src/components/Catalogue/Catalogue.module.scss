@@ -2,12 +2,11 @@
 
 @import '../../scss/variables';
 
-$width: 100%;
 $height-large: 70px;
+$height-medium: 60px;
 $height-small: 50px;
 
 $bottom-border-size: 5px;
-$border-radius: 10px;
 
 .catalogue {
   position: relative;
@@ -15,9 +14,9 @@ $border-radius: 10px;
   flex-direction: row;
   align-items: center;
   padding: 10px 15px;
-  width: $width;
+  width: 100%;
   height: $height-large;
-  border-radius: $border-radius;
+  border-radius: $global-border-radius;
   font-size: 16px;
   line-height: 16px;
   color: $global-color-body;
@@ -26,11 +25,16 @@ $border-radius: 10px;
   box-shadow: 0 $bottom-border-size 0 color.adjust($global-color-catalogue, $lightness: 5%);
   background: $global-color-background;
 
+  @include breakpoint('medium') {
+    padding: 8px 12px;
+    height: $height-medium;
+    font-size: 14px;
+    line-height: 14px;
+  }
+
   @include breakpoint('small') {
     padding: 6px 10px;
     height: $height-small;
-    font-size: 14px;
-    line-height: 14px;
   }
 
   &:hover {
@@ -39,14 +43,15 @@ $border-radius: 10px;
     border-color: $global-color-primary-dark;
     box-shadow: 0 $bottom-border-size 0 $global-color-primary-light;
 
-    .title {
+    .id > b {
       color: $global-color-primary-dark;
       text-decoration: underline;
     }
   }
 
   $icon-size-large: 32px;
-  $icon-size-small: 18px;
+  $icon-size-medium: 28px;
+  $icon-size-small: 22px;
 
   > .icon {
     display: flex;
@@ -56,6 +61,11 @@ $border-radius: 10px;
     min-height: $icon-size-large;
     background: url('../../../public/images/icons/catalogues/dolphin.svg') center center no-repeat;
     background-size: contain;
+
+    @include breakpoint('medium') {
+      min-width: $icon-size-medium;
+      min-height: $icon-size-medium;
+    }
 
     @include breakpoint('small') {
       min-width: $icon-size-small;
@@ -86,19 +96,43 @@ $border-radius: 10px;
   overflow: hidden;
 }
 
-.title,
-.subtitle {
+.id,
+.name {
   display: block;
   width: 100%;
 }
 
-.subtitle {
+.id {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.subid {
+  opacity: 0.5;
+  margin-left: auto;
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 500;
+
+  @include breakpoint('small') {
+    font-size: 10px;
+    line-height: 10px;
+  }
+}
+
+.name {
   position: relative;
   margin-top: 5px;
   font-weight: 500;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+
+  @include breakpoint('medium') {
+    margin-top: 3px;
+  }
 
   @include breakpoint('small') {
     margin-top: 2px;

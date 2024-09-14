@@ -5,15 +5,17 @@ import React from 'react';
 import styles from './Catalogue.module.scss';
 
 interface Props {
-  title: string,
-  subtitle?: string,
+  id: string,
+  name?: string,
+  subid?: string,
   link: string,
   disabled?: boolean,
 }
 
 const Catalogue = ({
-  title,
-  subtitle,
+  id,
+  subid,
+  name,
   link,
   disabled = false,
 }: Props) => {
@@ -27,8 +29,11 @@ const Catalogue = ({
     <Link href={link} className={classes.join(' ')}>
       <span className={styles.icon}></span>
       <span className={styles.text}>
-        <span className={styles.title}>{title}</span>
-        {subtitle && <span className={styles.subtitle}>{subtitle}</span>}
+        <span className={styles.id}>
+          <b>{id}</b>
+          {subid && (<span className={styles.subid}>{subid}</span>)}
+        </span>
+        {name && <span className={styles.name}>{name}</span>}
       </span>
     </Link>
   );

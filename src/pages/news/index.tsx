@@ -30,7 +30,7 @@ const Page: NextPage<PageProps> = ({
 
     <Breadcrumbs
       items={[sitemap.news]}
-      wide
+      style="wide"
     />
 
     <article className="wide">

@@ -8,12 +8,12 @@ import styles from './Breadcrumbs.module.scss';
 
 interface Props {
   items: Array<SitemapItem>,
-  wide?: boolean,
+  style?: 'normal' | 'wide' | 'inline',
 }
 
 const Breadcrumbs = ({
   items,
-  wide = false,
+  style = 'normal',
 }: Props) => {
   const links = items.map(({ title, path }, index) => {
     const last = index === items.length - 1;
@@ -35,9 +35,16 @@ const Breadcrumbs = ({
     );
   });
 
+  const classes = [styles.breadcrumbs];
+  if (style === 'wide') {
+    classes.push(styles.wide);
+  } else if (style === 'inline') {
+    classes.push(styles.inline);
+  }
+
   return (
     <div className={styles['breadcrumbs-container']}>
-      <ul className={`${styles.breadcrumbs} ${wide ? styles.wide : ''}`}>
+      <ul className={classes.join(' ')}>
         <li>
           <Link href={sitemap.home.path}>
             {sitemap.home.title}
