@@ -304,9 +304,9 @@ const Page: NextPage<PageProps> = ({
           </div>
         </article>
 
-        <div className={styles.sidebar}>
+        <article className={styles.sidebar}>
           {familyTree(catalogueData)}
-        </div>
+        </article>
       </section>
 
       <p className={styles['last-updated']}>Last updated: {formatDateMonth(lastUpdated)}</p>
