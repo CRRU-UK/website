@@ -99,7 +99,7 @@ const Page: NextPage<PageProps> = ({
         onSearch={handleSearchChange}
         dropdowns={[{
           name: 'Catalogues',
-          options: [{ text: 'Bottlenose Dolphins', value: 'bottlenose-dolphin' }],
+          options: [{ text: 'Bottlenose dolphins', value: 'bottlenose-dolphin' }],
           callback: () => {},
         }]}
         searchLabel="Search by ID or name..."
