@@ -239,7 +239,7 @@ const Page: NextPage<PageProps> = ({
               </li>
               <li className={styles['info-item-age']}>
                 <b>Age (Years)</b>
-                {age ? age : <Unknown />}
+                {age ?? <Unknown />}
               </li>
               <li className={styles['info-item-sex']}>
                 <b>Sex</b>
