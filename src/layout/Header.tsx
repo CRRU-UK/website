@@ -64,6 +64,7 @@ const researchSubmenu = {
     { title: 'Explore Research', path: sitemap.research.path, mobile: true },
     { title: 'Bottlenose Dolphin Studies', path: sitemap['bottlenose-dolphin-studies'].path },
     { title: 'Minke Whale Research', path: sitemap['minke-whale-studies'].path },
+    { title: 'Catalogues', path: sitemap.catalogues.path },
     { title: 'Environmental Mitigation', path: sitemap['environmental-mitigation'].path },
     { title: 'Scientific Publications', path: sitemap.publications.path },
     { title: 'Collaborators', path: sitemap.collaborators.path },
