@@ -199,7 +199,6 @@ describe('getCatalogueItem', () => {
         auid: 'mocked-au-id',
         name: 'mocked name',
         slug: 'mocked-slug',
-        description: 'mocked description',
         firstSeen: 'mocked first seen',
         birthYear: 'mocked birth year',
         age: 'mocked age',
