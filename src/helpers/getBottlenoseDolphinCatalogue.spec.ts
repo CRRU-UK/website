@@ -44,7 +44,7 @@ describe('getCatalogueList', () => {
     expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
     expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(1, {
       content_type: 'catalogueBottlenoseDolphin',
-      order: ['-fields.id'],
+      order: ['fields.id'],
       limit: 30,
       skip: 30,
     });
@@ -81,7 +81,7 @@ describe('getCatalogueList', () => {
     expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
     expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(1, {
       content_type: 'catalogueBottlenoseDolphin',
-      order: ['-fields.id'],
+      order: ['fields.id'],
       'query': 'foo bar',
       limit: 30,
       skip: 30,

@@ -44,7 +44,7 @@ const getCatalogueList = async ({
 }: GetCatalogueListOptions): Promise<CatalogueBottlenoseDolphinListAPIResponse> => {
   const query = {
     content_type: ContentTypes.CatalogueBottlenoseDolphin,
-    order: ['-fields.id'],
+    order: ['fields.id'],
     limit: CATALOGUE_RESULTS_LIMIT,
     skip: CATALOGUE_RESULTS_LIMIT * (page - 1),
   };
