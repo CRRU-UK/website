@@ -236,8 +236,8 @@ const Page: NextPage<PageProps> = ({
                 {id}
               </li>
               <li className={styles['info-item-au']}>
-                <b>AULFS ID Ref #</b>
-                {auid ?? <Unknown />} <Tooltip text="Aberdeen University Lighthouse Field Station" />
+                <b>AULFS Cross Ref # <Tooltip text="Aberdeen University Lighthouse Field Station" /></b>
+                {auid ?? <Unknown />}
               </li>
               <li className={styles['info-item-name']}>
                 <b>Name</b>

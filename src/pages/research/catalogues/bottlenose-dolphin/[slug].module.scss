@@ -163,6 +163,7 @@ $catalogue-max-width: 2000px;
   margin: 0 auto;
   width: 100%;
   max-width: $catalogue-max-width;
+  overflow: hidden;
 
   @include breakpoint($catalogue-breakpoint-small) {
     flex-direction: column;
@@ -230,7 +231,6 @@ $grid-spacing-small: $global-spacing-small / 2;
   column-gap: $grid-spacing-large;
   row-gap: $grid-spacing-large;
   list-style: none;
-  overflow: hidden;
 
   @include breakpoint($catalogue-breakpoint-medium) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
