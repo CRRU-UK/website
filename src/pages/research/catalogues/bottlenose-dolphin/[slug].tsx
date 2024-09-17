@@ -168,7 +168,6 @@ const Page: NextPage<PageProps> = ({
     auid,
     name,
     slug,
-    firstSeen,
     birthYear,
     age,
     sex,
@@ -243,10 +242,6 @@ const Page: NextPage<PageProps> = ({
                 <b>Name</b>
                 {name ?? <i>(None)</i>}
               </li>
-              <li className={styles['info-item-first-seen']}>
-                <b>First Seen</b>
-                {firstSeen ? formatDateMonth(firstSeen).toUpperCase() : <Unknown />}
-              </li>
               <li className={styles['info-item-birth-year']}>
                 <b>Birth Year</b>
                 {birthYear ?? <Unknown />}
@@ -259,7 +254,7 @@ const Page: NextPage<PageProps> = ({
                 <b>Sex</b>
                 {sex === 'UNKNOWN' ? <Unknown /> : sex}
               </li>
-              <li className={[styles['info-item-wide'], styles['info-item-calves']].join(' ')}>
+              <li className={[styles['info-item-full'], styles['info-item-calves']].join(' ')}>
                 <b>Total No. Of Known Calves</b>
                 {totalCalves ?? <Unknown />}
               </li>
