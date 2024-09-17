@@ -226,13 +226,14 @@ $grid-spacing-small: $global-spacing-small / 2;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   column-gap: $grid-spacing-large;
   row-gap: $grid-spacing-large;
   list-style: none;
+  overflow: hidden;
 
   @include breakpoint($catalogue-breakpoint-medium) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: $grid-spacing-medium;
     row-gap: $grid-spacing-medium;
   }
@@ -461,6 +462,7 @@ $tree-label-border-width: 5px;
 }
 
 %tree-labels {
+  z-index: 10;
   position: relative;
   margin: 0 auto;
   width: 100%;

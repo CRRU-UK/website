@@ -51,8 +51,8 @@ const Page: NextPage<PageProps> = ({
         <ListItem item={sitemap.research} />
         <ul>
           <li><ListItem item={sitemap['bottlenose-dolphin-studies']} /></li>
-          <li><ListItem item={sitemap['bottlenose-dolphin-archive']} /></li>
           <li><ListItem item={sitemap['minke-whale-studies']} /></li>
+          <li><ListItem item={sitemap.catalogues} /></li>
           <li><ListItem item={sitemap['environmental-mitigation']} /></li>
           <li><ListItem item={sitemap.publications} /></li>
           <li><ListItem item={sitemap.collaborators} /></li>
@@ -100,6 +100,8 @@ const Page: NextPage<PageProps> = ({
           <li><ListItem item={sitemap.bequests} /></li>
         </ul>
       </li>
+      <li><ListItem item={sitemap.shop} /></li>
+      <li><ListItem item={sitemap.donate} /></li>
       <li>
         <ListItem item={sitemap.news} />
       </li>

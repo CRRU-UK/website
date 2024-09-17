@@ -86,7 +86,6 @@ export type CatalogueBottlenoseDolphin = {
     auid: string | null,
     name: string | null,
     slug: string,
-    description: string | null,
     firstSeen: string | null,
     birthYear: string | null,
     age: number | null,
@@ -189,16 +188,6 @@ export type ContentTypeSponsor = {
   },
 };
 
-export type ContentTypeSpeciesArchive = {
-  contentTypeId: ContentTypes.SpeciesArchive,
-  fields: {
-    id: EntryFieldTypes.Number,
-    name: EntryFieldTypes.Symbol,
-    species: EntryFieldTypes.Symbol,
-    image: EntryFieldTypes.AssetLink,
-  },
-};
-
 export type ContentTypeSpeciesPage = {
   contentTypeId: ContentTypes.SpeciesPage,
   fields: {
@@ -234,7 +223,6 @@ export type ContentTypeCatalogueBottlenoseDolphin = {
     auid?: EntryFieldTypes.Symbol,
     name?: EntryFieldTypes.Symbol,
     slug: EntryFieldTypes.Symbol,
-    description?: EntryFieldTypes.Symbol,
     firstSeen?: EntryFieldTypes.Date,
     birthYear?: EntryFieldTypes.Date,
     age?: EntryFieldTypes.Integer,
