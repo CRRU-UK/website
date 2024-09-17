@@ -188,15 +188,6 @@ const Page: NextPage<PageProps> = ({
     { title: `Bottlenose Dolphin: ${title}`, path },
   ];
 
-  let ageText = null;
-  if (age && age > 25) {
-    ageText = '25+';
-  } else if (age && age > 1) {
-    ageText = `${age}`;
-  } else if (age) {
-    ageText = `${age}`;
-  }
-
   const noImage = <span className={styles['no-image']}>No image</span>;
 
   const router = useRouter();
@@ -240,7 +231,7 @@ const Page: NextPage<PageProps> = ({
               </li>
               <li className={styles['info-item-name']}>
                 <b>Name</b>
-                {name ?? <i>(None)</i>}
+                {name ?? <i>N/A</i>}
               </li>
               <li className={styles['info-item-birth-year']}>
                 <b>Birth Year</b>
@@ -248,15 +239,15 @@ const Page: NextPage<PageProps> = ({
               </li>
               <li className={styles['info-item-age']}>
                 <b>Age (Years)</b>
-                {age ? ageText : <Unknown />}
+                {age ? age : <Unknown />}
               </li>
               <li className={styles['info-item-sex']}>
                 <b>Sex</b>
-                {sex === 'UNKNOWN' ? <Unknown /> : sex}
+                {sex === 'Unknown' ? <Unknown /> : sex}
               </li>
               <li className={[styles['info-item-full'], styles['info-item-calves']].join(' ')}>
                 <b>Total No. Of Known Calves</b>
-                {totalCalves ?? <Unknown />}
+                {sex === 'Male' ? <i>N/A</i> : (totalCalves ?? <Unknown />)}
               </li>
 
               <li className={[styles['info-item-half'], styles['info-item-dorsal-fin-left']].join(' ')}>
