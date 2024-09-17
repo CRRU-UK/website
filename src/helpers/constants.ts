@@ -46,7 +46,6 @@ export enum ContentTypes {
   CatalogueBottlenoseDolphin = 'catalogueBottlenoseDolphin',
   People = 'people',
   Sponsor = 'sponsor',
-  SpeciesArchive = 'speciesArchive',
   UsefulLink = 'usefulLink',
 }
 
@@ -55,10 +54,6 @@ export enum ScientificPublicationCategories {
   Report = 'Report',
   Conference = 'Conference',
   Thesis = 'Thesis',
-}
-
-export enum PhotoArchiveSpecies {
-  BottlenoseDolphin = 'Bottlenose Dolphin',
 }
 
 export enum UsefulLinksCategories {

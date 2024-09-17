@@ -117,7 +117,6 @@ const getCatalogueItem = async (
       auid: entry.fields?.auid ?? null,
       name: entry.fields?.name ?? null,
       slug: entry.fields.slug,
-      description: entry.fields.description ?? null,
       firstSeen: entry.fields?.firstSeen ?? null,
       birthYear: entry.fields?.birthYear ?? null,
       age: entry.fields.age ?? null,

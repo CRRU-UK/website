@@ -185,7 +185,7 @@ const Page: NextPage<PageProps> = ({
   const breadcrumbs = [
     sitemap.research,
     sitemap.catalogues,
-    { title, path },
+    { title: `Bottlenose Dolphin: ${title}`, path },
   ];
 
   let ageText = null;
