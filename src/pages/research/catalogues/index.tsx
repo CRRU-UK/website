@@ -102,7 +102,7 @@ const Page: NextPage<PageProps> = ({
           options: [{ text: 'Bottlenose dolphins', value: 'bottlenose-dolphin' }],
           callback: () => {},
         }]}
-        searchLabel="Search by ID or name..."
+        searchLabel="Search by name, ID, AUID, birth year..."
       />
 
       <div className={loading ? styles.loading : ''}>

@@ -67,7 +67,7 @@ const Search = () => {
     <div className={classes.join(' ')}>
       <input
         type="search"
-        placeholder="Search by name, ID, AUID..."
+        placeholder="Search by name, ID, AUID, birth year..."
         onChange={({ target }) => handleSearchChange((target as HTMLInputElement).value)}
       />
 

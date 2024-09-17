@@ -41,6 +41,7 @@
 
 .dropdown {
   margin-right: $global-spacing-large;
+  padding-right: 20px;
 
   @include breakpoint('small') {
     margin-right: 0;
@@ -50,7 +51,7 @@
 .search {
   margin-left: auto;
   display: block;
-  width: 250px;
+  width: 350px;
 
   @include breakpoint('small') {
     width: 100%;
