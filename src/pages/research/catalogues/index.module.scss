@@ -1,10 +1,12 @@
 @import '../../../scss/variables';
 
 .loading {
-  opacity: 0.3;
-
   &:hover {
     cursor: wait;
+  }
+
+  > svg {
+    margin: 0 auto;
   }
 }
 

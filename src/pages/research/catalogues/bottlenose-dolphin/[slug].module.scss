@@ -133,15 +133,12 @@ $catalogue-max-width: 2000px;
       line-height: 14px;
     }
 
-    > li.loading::before {
-      content: '';
-      display: block;
+    > li.loading {
+      padding: 10px 0;
+    }
+
+    > li.loading > svg {
       margin: 0 auto;
-      width: 32px;
-      height: 32px;
-      background: url('../../../../../public/images/icons/catalogues/loading.svg') center center no-repeat;
-      background-size: contain;
-      animation: spin 2s infinite linear;
     }
   }
 
