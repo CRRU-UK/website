@@ -126,7 +126,7 @@ const Page: NextPage<PageProps> = ({
         )}
 
         <ul className={styles.pagination}>
-          {pageElements}
+          {!loading && pageElements}
         </ul>
       </div>
     </CommonPage>
