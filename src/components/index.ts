@@ -8,6 +8,7 @@ import Highlight from './Highlight/Highlight';
 import ImageCaption from './ImageCaption/ImageCaption';
 import ImageRow from './ImageRow/ImageRow';
 import ListItem from './ListItem/ListItem';
+import Loading from './Loading/Loading';
 import Note from './Note/Note';
 import SEO from './SEO/SEO';
 import Social from './Social/Social';
@@ -24,6 +25,7 @@ export {
   ImageCaption,
   ImageRow,
   ListItem,
+  Loading,
   Note,
   SEO,
   Social,

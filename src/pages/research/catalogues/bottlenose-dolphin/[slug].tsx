@@ -12,7 +12,13 @@ import sitemap from '@/data/sitemap.json';
 import { formatDateMonth } from '@/helpers/formatDate';
 import { getCatalogueItem, getCatalogueItemSlug } from '@/helpers/getBottlenoseDolphinCatalogue';
 
-import { SEO, Breadcrumbs, Catalogue, Tooltip } from '@/components/index';
+import {
+  SEO,
+  Breadcrumbs,
+  Catalogue,
+  Tooltip,
+  Loading,
+} from '@/components/index';
 
 import styles from './[slug].module.scss';
 
@@ -73,7 +79,7 @@ const Search = () => {
 
       {showResults && (
         <ul className={styles.results}>
-          {loading ? <li className={styles['loading']} /> : resultsElements}
+          {loading ? <li className={styles['loading']}><Loading /></li> : resultsElements}
         </ul>
       )}
     </div>  

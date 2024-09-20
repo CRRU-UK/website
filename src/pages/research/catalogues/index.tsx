@@ -12,7 +12,7 @@ import getPageContent from '@/helpers/getPageContent';
 
 import CommonPage from '@/layout/CommonPage';
 
-import { Filters, Catalogue } from '@/components/index';
+import { Filters, Catalogue, Loading } from '@/components/index';
 
 import styles from './index.module.scss';
 
@@ -76,9 +76,7 @@ const Page: NextPage<PageProps> = ({
   }
 
   let infoText = '';
-  if (loading) {
-    infoText = 'Loading...';
-  } else if (searchText !== '' && data?.items?.length === 0) {
+  if (searchText !== '' && data?.items?.length === 0) {
     infoText = `No results for "${searchText}"`;
   } else if (searchText !== '' && data?.items) {
     infoText = `${data.meta.totalItems} ${data?.items.length > 1 ? 'items' : 'item'} found for "${searchText}" (page ${page} of ${data.meta.totalPages})`;
@@ -106,9 +104,11 @@ const Page: NextPage<PageProps> = ({
       />
 
       <div className={loading ? styles.loading : ''}>
-        {infoText !== '' && <p className={styles.info}>{infoText}</p>}
+        {loading && <Loading />}
 
-        {data?.items && (
+        {(!loading && infoText !== '') && <p className={styles.info}>{infoText}</p>}
+
+        {(!loading && data?.items) && (
           <ul className={styles.list}>
             {
               data.items.map((item: any) => (
