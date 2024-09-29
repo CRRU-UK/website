@@ -175,7 +175,6 @@ const Page: NextPage<PageProps> = ({
     name,
     slug,
     birthYear,
-    age,
     sex,
     totalCalves,
     leftDorsalFin,
@@ -245,7 +244,7 @@ const Page: NextPage<PageProps> = ({
               </li>
               <li className={styles['info-item-age']}>
                 <b>Age (Years)</b>
-                {age ?? <Unknown />}
+                {birthYear ? (new Date().getFullYear() - new Date(birthYear).getFullYear()) : <Unknown />}
               </li>
               <li className={styles['info-item-sex']}>
                 <b>Sex</b>

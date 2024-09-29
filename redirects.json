@@ -12,6 +12,7 @@
   { "from": "/bottlenose_archive.asp", "to": "/research/catalogues" },
   { "from": "/research/bottlenose-archive", "to": "/research/catalogues" },
   { "from": "/research/catalogues/bottlenose-dolphin", "to": "/research/catalogues" },
+  { "from": "/catalogues", "to": "/research/catalogues" },
   { "from": "/minke.asp", "to": "/research/minke-whales" },
   { "from": "/seismic_observation.asp", "to": "/research/environmental-mitigation" },
   { "from": "/gibraltar.asp", "to": "/research" },
