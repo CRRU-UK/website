@@ -91,7 +91,7 @@ const Unknown = () => (
     title="Catalogue data is not currently available for this entry and may be updated in the future."
     className={styles.unknown}
   >
-    <span>UNKNOWN</span>
+    <span>Unknown</span>
   </span>
 );
 
@@ -193,14 +193,19 @@ const Page: NextPage<PageProps> = ({
     { title: `Bottlenose Dolphin: ${title}`, path },
   ];
 
-  const age = birthYear ? (new Date().getFullYear() - new Date(birthYear).getFullYear()) : null;
+  let ageNumber = null;
+  if (birthYear !== null && !Number.isNaN(birthYear)) {
+    ageNumber = new Date().getFullYear() - new Date(birthYear).getFullYear();
+  }
 
   let ageText = null;
-  if (age !== null) {
-    ageText = String(age);
-    if (age < 1) {
+
+  if (ageNumber !== null) {
+    ageText = ageNumber;
+
+    if (ageNumber < 1) {
       ageText = '< 1';
-    } else if (age > 25) {
+    } else if (ageNumber > 25) {
       ageText = '25+';
     }
   }
@@ -242,29 +247,35 @@ const Page: NextPage<PageProps> = ({
                 <b>CRRU ID #</b>
                 {id}
               </li>
+
               <li className={styles['info-item-au']}>
                 <b>AULFS Ref # <Tooltip text="Aberdeen University Lighthouse Field Station" /></b>
                 {auid ?? <Unknown />}
               </li>
+
               <li className={styles['info-item-name']}>
                 <b>Name</b>
-                {name ?? <i>Unnamed</i>}
+                {name ?? <i className={styles.unknown}>Unnamed</i>}
               </li>
+
               <li className={styles['info-item-birth-year']}>
                 <b>Birth Year</b>
                 {birthYear ?? <Unknown />}
               </li>
+
               <li className={styles['info-item-age']}>
                 <b>Age (Years)</b>
                 {ageText ? ageText : <Unknown />}
               </li>
+
               <li className={styles['info-item-sex']}>
                 <b>Sex</b>
                 {sex === 'Unknown' ? <Unknown /> : sex}
               </li>
+
               <li className={[styles['info-item-full'], styles['info-item-calves']].join(' ')}>
                 <b>Total No. Of Known Calves</b>
-                {sex === 'Male' ? <i>N/A</i> : (totalCalves ?? <Unknown />)}
+                {sex !== 'Female' ? <i className={styles.unknown}>N/A</i> : (totalCalves ?? <Unknown />)}
               </li>
 
               <li className={[styles['info-item-half'], styles['info-item-dorsal-fin-left']].join(' ')}>

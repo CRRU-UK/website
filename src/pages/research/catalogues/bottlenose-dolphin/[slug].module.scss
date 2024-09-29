@@ -11,7 +11,8 @@ $catalogue-max-width: 2000px;
 
 .toolbar {
   z-index: 20;
-  position: relative;
+  position: sticky;
+  top: 0;
   margin: 0 auto;
   padding: 0 $global-padding-large;
   display: flex;
@@ -21,7 +22,7 @@ $catalogue-max-width: 2000px;
   max-width: $catalogue-max-width;
   height: 80px;
   border-bottom: 2px solid $global-color-catalogue;
-  background: $global-color-background;
+  background: rgba($global-color-background, 0.95);
 
   @media (min-width: $catalogue-max-width) {
     border-left: 2px solid $global-color-catalogue;
@@ -29,6 +30,8 @@ $catalogue-max-width: 2000px;
   }
 
   @include breakpoint($catalogue-breakpoint-small) {
+    position: relative;
+    top: auto;
     padding: 0;
     height: 50px;
   }
@@ -354,13 +357,14 @@ $grid-spacing-small: $global-spacing-small / 2;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    font-style: italic;
     color: $global-color-body-dark;
 
     > span {
       border-bottom: 1px dotted $global-color-body-dark;
     }
 
-    &:hover {
+    > span:hover {
       cursor: help;
     }
   }
