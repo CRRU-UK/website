@@ -33,7 +33,7 @@ const Catalogue = ({
           <b>{id}</b>
           {subid && (<span className={styles.subid}>{subid}</span>)}
         </span>
-        {name && <span className={styles.name}>{name}</span>}
+        <span className={styles.name}>{name ?? <i>Unnamed</i>}</span>
       </span>
     </Link>
   );

@@ -193,6 +193,18 @@ const Page: NextPage<PageProps> = ({
     { title: `Bottlenose Dolphin: ${title}`, path },
   ];
 
+  const age = birthYear ? (new Date().getFullYear() - new Date(birthYear).getFullYear()) : null;
+
+  let ageText = null;
+  if (age !== null) {
+    ageText = String(age);
+    if (age < 1) {
+      ageText = '< 1';
+    } else if (age > 25) {
+      ageText = '25+';
+    }
+  }
+
   const noImage = <span className={styles['no-image']}>No image</span>;
 
   const router = useRouter();
@@ -236,7 +248,7 @@ const Page: NextPage<PageProps> = ({
               </li>
               <li className={styles['info-item-name']}>
                 <b>Name</b>
-                {name ?? <i>N/A</i>}
+                {name ?? <i>Unnamed</i>}
               </li>
               <li className={styles['info-item-birth-year']}>
                 <b>Birth Year</b>
@@ -244,7 +256,7 @@ const Page: NextPage<PageProps> = ({
               </li>
               <li className={styles['info-item-age']}>
                 <b>Age (Years)</b>
-                {birthYear ? (new Date().getFullYear() - new Date(birthYear).getFullYear()) : <Unknown />}
+                {ageText ? ageText : <Unknown />}
               </li>
               <li className={styles['info-item-sex']}>
                 <b>Sex</b>
