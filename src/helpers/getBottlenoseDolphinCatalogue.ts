@@ -119,6 +119,7 @@ const getCatalogueItem = async (
       slug: entry.fields.slug,
       birthYear: entry.fields?.birthYear ?? null,
       sex: entry.fields?.sex ?? 'UNKNOWN',
+      totalRecaptures: entry.fields?.totalRecaptures ?? null,
       yearsRecaptured: entry.fields?.yearsRecaptured ?? null,
       totalCalves: entry.fields.totalCalves ?? null,
       leftDorsalFin: entry.fields?.leftDorsalFin ? flattenImageAssetFields(entry.fields.leftDorsalFin) : null,

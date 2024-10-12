@@ -1,4 +1,4 @@
-import type { Entry, EntryField, EntryFieldTypes } from 'contentful';
+import type { Entry, EntryFieldTypes } from 'contentful';
 import type { Document } from '@contentful/rich-text-types';
 
 import { ContentTypes } from './constants';
@@ -88,7 +88,7 @@ export type CatalogueBottlenoseDolphin = {
     slug: string,
     birthYear: string | null,
     sex: 'Unknown' | 'Female' | 'Male',
-    totalRecaptures: string | null,
+    totalRecaptures: number | null,
     yearsRecaptured: Array<string> | null,
     totalCalves: number | null,
     leftDorsalFin: FlattenedImage | null,
@@ -225,7 +225,7 @@ export type ContentTypeCatalogueBottlenoseDolphin = {
     slug: EntryFieldTypes.Symbol,
     birthYear?: EntryFieldTypes.Date,
     sex: EntryFieldTypes.Symbol<'Unknown' | 'Female' | 'Male'>,
-    totalRecaptures: EntryFieldTypes.Symbol,
+    totalRecaptures: EntryFieldTypes.Number,
     yearsRecaptured: EntryFieldTypes.Array<EntryFieldTypes.Symbol>,
     totalCalves?: EntryFieldTypes.Integer,
     mother?: EntryFieldTypes.EntryLink<ContentTypeCatalogueBottlenoseDolphin>,
