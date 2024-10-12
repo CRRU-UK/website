@@ -12,6 +12,7 @@ import Loading from './Loading/Loading';
 import Note from './Note/Note';
 import SEO from './SEO/SEO';
 import Social from './Social/Social';
+import Timeline from './Timeline/Timeline';
 import Tooltip from './Tooltip/Tooltip';
 
 export {
@@ -29,5 +30,6 @@ export {
   Note,
   SEO,
   Social,
+  Timeline,
   Tooltip,
 };

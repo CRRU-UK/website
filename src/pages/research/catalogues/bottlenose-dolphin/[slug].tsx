@@ -13,11 +13,12 @@ import { formatDateMonth } from '@/helpers/formatDate';
 import { getCatalogueItem, getCatalogueItemSlug } from '@/helpers/getBottlenoseDolphinCatalogue';
 
 import {
-  SEO,
   Breadcrumbs,
   Catalogue,
-  Tooltip,
   Loading,
+  SEO,
+  Timeline,
+  Tooltip,
 } from '@/components/index';
 
 import styles from './[slug].module.scss';
@@ -164,10 +165,12 @@ const familyTree = (data: CatalogueBottlenoseDolphin) => {
 
 interface PageProps {
   catalogueData: CatalogueBottlenoseDolphin,
+  ageText: string | null,
 }
 
 const Page: NextPage<PageProps> = ({
   catalogueData,
+  ageText,
 }: PageProps) => {
   const {
     id,
@@ -176,6 +179,8 @@ const Page: NextPage<PageProps> = ({
     slug,
     birthYear,
     sex,
+    totalRecaptures,
+    yearsRecaptured,
     totalCalves,
     leftDorsalFin,
     rightDorsalFin,
@@ -192,23 +197,6 @@ const Page: NextPage<PageProps> = ({
     sitemap.catalogues,
     { title: `Bottlenose Dolphin: ${title}`, path },
   ];
-
-  let ageNumber = null;
-  if (birthYear !== null && !Number.isNaN(birthYear)) {
-    ageNumber = new Date().getFullYear() - new Date(birthYear).getFullYear();
-  }
-
-  let ageText = null;
-
-  if (ageNumber !== null) {
-    ageText = ageNumber;
-
-    if (ageNumber < 1) {
-      ageText = '< 1';
-    } else if (ageNumber > 25) {
-      ageText = '25+';
-    }
-  }
 
   const noImage = <span className={styles['no-image']}>No image</span>;
 
@@ -265,7 +253,7 @@ const Page: NextPage<PageProps> = ({
 
               <li className={styles['info-item-age']}>
                 <b>Age (Years)</b>
-                {ageText ? ageText : <Unknown />}
+                {ageText ? String(ageText) : <Unknown />}
               </li>
 
               <li className={styles['info-item-sex']}>
@@ -273,9 +261,19 @@ const Page: NextPage<PageProps> = ({
                 {sex === 'Unknown' ? <Unknown /> : sex}
               </li>
 
-              <li className={[styles['info-item-full'], styles['info-item-calves']].join(' ')}>
+              <li className={[styles['info-item-half'], styles['info-item-calves']].join(' ')}>
                 <b>Total No. Of Known Calves</b>
                 {sex !== 'Female' ? <i className={styles.unknown}>N/A</i> : (totalCalves ?? <Unknown />)}
+              </li>
+
+              <li className={[styles['info-item-half'], styles['info-item-calves']].join(' ')}>
+                <b>Total Recaptures</b>
+                {totalRecaptures ?? <Unknown />}
+              </li>
+
+              <li className={[styles['info-item-full'], styles['info-item-calves']].join(' ')}>
+                <b>Years Recaptured</b>
+                {yearsRecaptured ? <Timeline items={yearsRecaptured} /> : <i className={styles.unknown}>N/A</i>}
               </li>
 
               <li className={[styles['info-item-half'], styles['info-item-dorsal-fin-left']].join(' ')}>
@@ -358,9 +356,31 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
     return { notFound: true };
   }
 
+  const { birthYear } = catalogueData.entry;
+
+  // Calculate age in server-side props to prevent rendering mismatch
+  let ageNumber = null;
+  if (birthYear !== null && !Number.isNaN(birthYear)) {
+    ageNumber = new Date().getFullYear() - new Date(birthYear).getFullYear();
+  }
+
+  let ageText = null;
+  if (ageNumber !== null) {
+    ageText = ageNumber;
+
+    if (ageNumber < 1) {
+      ageText = '< 1';
+    } else if (ageNumber > 25) {
+      ageText = '25+';
+    }
+
+    ageText = String(ageText);
+  }
+
   return {
     props: {
       catalogueData,
+      ageText,
     },
   };
 };
