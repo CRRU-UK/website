@@ -16,11 +16,11 @@ const Timeline = ({
     classes.push(styles['timeline-single']);
   }
 
-  const foo = items.sort((a, b) => a.localeCompare(b));
+  const sortedItems = items.toSorted((a, b) => a.localeCompare(b));
 
   return (
     <ul className={classes.join(' ')}>
-      {foo.map((item) => (
+      {sortedItems.map((item) => (
         <li key={item}>
           <span>{item}</span>
         </li>
