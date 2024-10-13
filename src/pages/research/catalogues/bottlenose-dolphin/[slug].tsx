@@ -266,12 +266,12 @@ const Page: NextPage<PageProps> = ({
                 {sex !== 'Female' ? <i className={styles.unknown}>N/A</i> : (totalCalves ?? <Unknown />)}
               </li>
 
-              <li className={[styles['info-item-half'], styles['info-item-calves']].join(' ')}>
+              <li className={[styles['info-item-half'], styles['info-item-total-recaptures']].join(' ')}>
                 <b>Total Recaptures</b>
                 {totalRecaptures ?? <Unknown />}
               </li>
 
-              <li className={[styles['info-item-full'], styles['info-item-calves']].join(' ')}>
+              <li className={[styles['info-item-full'], styles['info-item-years-recaptured']].join(' ')}>
                 <b>Years Recaptured</b>
                 {yearsRecaptured ? <Timeline items={yearsRecaptured} /> : <i className={styles.unknown}>N/A</i>}
               </li>
