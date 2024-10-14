@@ -1,10 +1,13 @@
 import Link from 'next/link';
 
+import type { CatalogueTypes } from '@/helpers/types';
+
 import React from 'react';
 
 import styles from './Card.module.scss';
 
 interface Props {
+  type: CatalogueTypes,
   id: string,
   name?: string,
   subid?: string,
@@ -13,6 +16,7 @@ interface Props {
 }
 
 const Card = ({
+  type,
   id,
   subid,
   name,
@@ -20,6 +24,10 @@ const Card = ({
   disabled = false,
 }: Props) => {
   const classes = [styles.card, styles['no-image']];
+
+  if (type === 'bottlenose-dolphin') {
+    classes.push(styles.dolphin);
+  }
 
   if (disabled) {
     classes.push(styles.disabled);

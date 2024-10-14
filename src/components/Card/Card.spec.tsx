@@ -13,6 +13,7 @@ beforeAll(() => {
 it('Passes accessibility with default props', async () => act(async () => {
   const { container } = render(
     <Card
+      type='bottlenose-dolphin'
       id="mocked title"
       link="/mocked-link"
     />,
@@ -26,6 +27,7 @@ it('Passes accessibility with default props', async () => act(async () => {
 it('Passes accessibility with optional props', async () => act(async () => {
   const { container } = render(
     <Card
+      type='minke-whale'
       id="mocked title"
       subid="mocked subtitle"
       name="mocked name"

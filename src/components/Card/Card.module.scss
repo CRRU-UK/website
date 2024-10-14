@@ -59,7 +59,7 @@ $bottom-border-size: 5px;
     align-items: center;
     min-width: $icon-size-large;
     min-height: $icon-size-large;
-    background: url('../../../public/images/icons/catalogues/dolphin.svg') center center no-repeat;
+    background: center center no-repeat;
     background-size: contain;
 
     @include breakpoint('medium') {
@@ -72,6 +72,10 @@ $bottom-border-size: 5px;
       min-height: $icon-size-small;
     }
   }
+}
+
+.dolphin > .icon {
+  background-image: url('../../../public/images/icons/catalogues/dolphin.svg');
 }
 
 .disabled {

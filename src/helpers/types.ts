@@ -62,6 +62,8 @@ export type SpeciesEntry = {
   image: FlattenedImage,
 };
 
+export type CatalogueTypes = 'bottlenose-dolphin' | 'minke-whale';
+
 // Simplified references used in API responses and the `<Card />` component
 export type CatalogueBottlenoseDolphinBasicInfo = {
   id: string,

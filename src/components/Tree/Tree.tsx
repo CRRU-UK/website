@@ -23,6 +23,7 @@ const Tree = ({
   if (mother) {
     motherElement = (
       <Card
+        type='bottlenose-dolphin'
         id={`#${mother.id}`}
         name={mother?.name ? String(mother.name) : undefined}
         subid={mother?.auid ? `#${mother.auid}` : undefined}
@@ -40,6 +41,7 @@ const Tree = ({
             <li key={item.id}>
               {index === 0 && (<span className={styles.current}>Current Calf</span>)}
               <Card
+                type='bottlenose-dolphin'
                 id={`#${item.id}`}
                 subid={item?.auid ? `#${item.auid}` : undefined}
                 name={item?.name ?? undefined}
@@ -61,6 +63,7 @@ const Tree = ({
 
       <li className={styles.name}>
         <Card
+          type='bottlenose-dolphin'
           id={`#${entry.id}`}
           subid={entry?.auid ? `#${entry.auid}` : undefined}
           name={entry.name ?? undefined}
