@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import sitemap from '@/data/sitemap.json';
 
-import { Social } from '@/components/index';
+import { Social } from '@/components';
 
 const Footer = () => (
   <>

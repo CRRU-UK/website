@@ -14,7 +14,7 @@ import { ContentTypes, ScientificPublicationCategories } from '@/helpers/constan
 import { contentfulDeliveryClient } from '@/helpers/contentful';
 
 import CommonPage from '@/layout/CommonPage';
-import { Filters } from '@/components/index';
+import { Filters } from '@/components';
 
 import styles from './publications.module.scss';
 

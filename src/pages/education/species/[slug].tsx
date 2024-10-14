@@ -16,7 +16,7 @@ import { contentfulDeliveryClient, contentfulPreviewClient } from '@/helpers/con
 import { flattenImageAssetFields } from '@/helpers/flattenAssetFields';
 
 import Hero from '@/components/Hero/Hero';
-import { Breadcrumbs, SEO } from '@/components/index';
+import { Breadcrumbs, SEO } from '@/components';
 
 import styles from './[slug].module.scss';
 

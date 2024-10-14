@@ -1,0 +1,147 @@
+@import '../../scss/variables';
+
+.toolbar {
+  z-index: 20;
+  position: sticky;
+  top: 0;
+  margin: 0 auto;
+  padding: 0 $global-padding-large;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: $global-catalogue-max-width;
+  height: 80px;
+  border-bottom: 2px solid $global-color-catalogue;
+  background: rgba($global-color-background, 0.95);
+
+  @media (min-width: $global-catalogue-max-width) {
+    border-left: 2px solid $global-color-catalogue;
+    border-right: 2px solid $global-color-catalogue;
+  }
+
+  @include breakpoint($global-catalogue-breakpoint-small) {
+    position: relative;
+    top: auto;
+    padding: 0;
+    height: 50px;
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.search {
+  $search-width: 800px;
+  $search-height: 50px;
+  $search-results-spacing: 20px;
+
+  z-index: 10;
+  position: relative;
+  width: $search-width;
+  height: $search-height;
+
+  @include breakpoint($global-catalogue-breakpoint-small) {
+    font-size: 14px;
+    width: 100%;
+    height: 100%;
+  }
+
+  > input {
+    z-index: 10;
+    position: relative;
+    padding: 0 10px 0 50px;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+    border: 2px solid $global-color-catalogue;
+    border-radius: $global-border-radius;
+    outline: 0;
+    background: 15px center no-repeat url('../../../public/images/icons/catalogues/search.svg') $global-color-background;
+
+    @include breakpoint($global-catalogue-breakpoint-small) {
+      font-size: 14px;
+      width: 100%;
+      height: 100%;
+      padding-left: 55px;
+      border-color: transparent;
+      border-radius: 0;
+      background-position-x: 20px;
+    }
+
+    &:focus {
+      border-color: $global-color-primary;
+    }
+  }
+
+  > .results {
+    z-index: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: $search-results-spacing;
+    row-gap: $search-results-spacing;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    margin: 0;
+    padding: $search-results-spacing;
+    width: 100%;
+    max-height: 500px;
+    border: 2px solid $global-color-primary;
+    border-top: 0;
+    box-shadow: rgba(#000, 0.4) 0 0 30px 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    list-style: none;
+    background: #fff;
+    overflow: hidden;
+    overflow-y: scroll;
+
+    @include breakpoint($global-catalogue-breakpoint-small) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding: $global-padding-small;
+      column-gap: $global-spacing-small;
+      row-gap: $global-spacing-small;
+      max-height: 320px;
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+
+    > li {
+      margin: 0;
+      width: 100%;
+    }
+
+    > li.no-results,
+    > li.loading {
+      width: 100%;
+      grid-column: span 3;
+    }
+
+    > li.no-results {
+      font-size: 14px;
+      line-height: 14px;
+    }
+
+    > li.loading {
+      padding: 10px 0;
+    }
+
+    > li.loading > svg {
+      margin: 0 auto;
+    }
+  }
+
+  &.active {
+    > input {
+      box-shadow: none;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-color: $global-color-primary;
+    }
+  }
+}

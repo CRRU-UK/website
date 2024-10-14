@@ -7,7 +7,7 @@ import sitemap from '@/data/sitemap.json';
 import getNews from '@/helpers/getNews';
 
 import Hero from '@/components/Hero/Hero';
-import { Breadcrumbs, Card, SEO } from '@/components/index';
+import { Breadcrumbs, News, SEO } from '@/components';
 
 interface PageProps {
   data: Array<NewsArticle>,
@@ -36,7 +36,7 @@ const Page: NextPage<PageProps> = ({
     <article className="wide">
       <div className="grid">
         {data.map((item) => (
-          <Card
+          <News
             key={item.slug}
             link={`/news/${item.slug}`}
             image={{

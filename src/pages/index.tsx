@@ -22,7 +22,7 @@ import getNews from '@/helpers/getNews';
 
 import { ContentTypes, InlineContentEntries } from '@/helpers/constants';
 
-import { Card, SEO } from '@/components/index';
+import { News, SEO } from '@/components';
 
 import styles from './index.module.scss';
 
@@ -136,7 +136,7 @@ const Page: NextPage<PageProps> = ({
 
         <div className={styles['news-container']}>
           {newsArticles.map((item) => (
-            <Card
+            <News
               key={item.slug}
               link={`/news/${item.slug}`}
               image={{

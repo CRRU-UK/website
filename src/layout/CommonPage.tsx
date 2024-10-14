@@ -9,7 +9,7 @@ import { LOCALE } from '@/helpers/constants';
 import pageRenderOptions from '@/helpers/rendering';
 
 import Hero from '@/components/Hero/Hero';
-import { Breadcrumbs, SEO } from '@/components/index';
+import { Breadcrumbs, SEO } from '@/components';
 
 interface Props {
   page: SitemapItem,

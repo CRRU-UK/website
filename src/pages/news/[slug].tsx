@@ -23,7 +23,7 @@ import { flattenImageAssetFields } from '@/helpers/flattenAssetFields';
 import { formatDateRelative } from '@/helpers/formatDate';
 
 import Hero from '@/components/Hero/Hero';
-import { Breadcrumbs, SEO } from '@/components/index';
+import { Breadcrumbs, SEO } from '@/components';
 
 interface PageProps extends NewsArticle {
   id: string,

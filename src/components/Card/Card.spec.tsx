@@ -13,14 +13,9 @@ beforeAll(() => {
 it('Passes accessibility with default props', async () => act(async () => {
   const { container } = render(
     <Card
-      image={{
-        src: '/test-image.jpg',
-        width: 100,
-        height: 200,
-        alt: 'test alt',
-      }}
-      link="/test-link"
-      title="test title"
+      type='bottlenose-dolphin'
+      id="mocked title"
+      link="/mocked-link"
     />,
   );
 
@@ -32,16 +27,11 @@ it('Passes accessibility with default props', async () => act(async () => {
 it('Passes accessibility with optional props', async () => act(async () => {
   const { container } = render(
     <Card
-      image={{
-        src: '//example.com/test-image.jpg',
-        width: 100,
-        height: 200,
-        alt: 'test alt',
-      }}
-      link="/test-link"
-      title="test title"
-      date="2022-01-01"
-      category="test category"
+      type='minke-whale'
+      id="mocked title"
+      subid="mocked subtitle"
+      name="mocked name"
+      link="/mocked-link"
     />,
   );
 

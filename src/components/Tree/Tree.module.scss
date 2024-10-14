@@ -1,0 +1,235 @@
+@use 'sass:math';
+
+@import '../../scss/variables';
+
+$tree-item-width-large: 200px;
+$tree-item-width-medium: 180px;
+$tree-item-width-small: 150px;
+
+$tree-item-spacing-large: 60px;
+$tree-item-spacing-medium: 50px;
+$tree-item-spacing-small: 40px;
+
+$tree-row-gap: 20px;
+$tree-column-gap: 40px;
+
+$tree-line-size: 3px;
+$tree-line-color: #9c9c9c;
+
+$tree-label-border-width: 5px;
+
+%tree-items {
+  margin: 0 auto;
+  width: $tree-item-width-large;
+
+  @include breakpoint($global-catalogue-breakpoint-medium) {
+    width: $tree-item-width-medium;
+  }
+  
+  @include breakpoint($global-catalogue-breakpoint-small) {
+    width: $tree-item-width-small;
+  }
+}
+
+%tree-labels {
+  z-index: 10;
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  height: $tree-item-spacing-large * 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include breakpoint($global-catalogue-breakpoint-small) {
+    height: $tree-item-spacing-small * 2;
+  }
+
+  &::after {
+    content: '';
+    z-index: 0;
+    position: absolute;
+    left: calc(50% - math.floor($tree-line-size / 2));
+    bottom: 0;
+    width: $tree-line-size;
+    height: 100%;
+    background: $tree-line-color;
+  }
+
+  > span {
+    z-index: 10;
+    position: relative;
+    padding: 8px 10px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 14px;
+    border-radius: $tree-label-border-width;
+    color: $global-color-body;
+    background: $global-color-secondary;
+    text-transform: uppercase;
+
+    @include breakpoint($global-catalogue-breakpoint-small) {
+      padding: 6px 8px;
+      font-size: 12px;
+      line-height: 12px;
+    }
+  }
+}
+
+.tree,
+.tree ul,
+.tree li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tree .mother,
+.tree .calves {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > b {
+    @extend %tree-labels;
+  }
+}
+
+.tree .mother {
+  @extend %tree-items;
+
+  > b {
+    order: 1;
+  }
+}
+
+.tree .calves > ul {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: $tree-row-gap;
+  column-gap: $tree-column-gap;
+}
+
+.tree .calves > ul > li {
+  @extend %tree-items;
+
+  z-index: 10;
+  position: relative;
+  display: flex;
+
+  // Row lines
+  &::before {
+    content: '';
+    z-index: 0;
+    position: absolute;
+    top: 50%;
+    display: block;
+    margin-top: math.ceil(-$tree-line-size / 2);
+    width: ($tree-column-gap / 2);
+    height: $tree-line-size;
+    background: $tree-line-color;
+  }
+
+  &:nth-child(odd) {
+    justify-content: flex-end;
+
+    &::before {
+      left: 100%;
+    }
+
+    // Column line
+    &::after {
+      content: '';
+      z-index: 0;
+      position: absolute;
+      right: 0 - ($tree-column-gap / 2) - math.ceil($tree-line-size / 2);
+      bottom: calc(50% - $tree-line-size + math.floor($tree-line-size / 2));
+      width: $tree-line-size;
+      height: calc(100% + $tree-row-gap);
+      background: $tree-line-color;
+    }
+  }
+
+  &:first-child::after {
+    height: calc(50% + math.ceil($tree-line-size / 2));
+  }
+
+  &:nth-child(even) {
+    justify-content: flex-start;
+
+    &::before {
+      right: 100%;
+    }
+  }
+}
+
+.tree .calves > ul > li > .current {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  position: absolute;
+  left: 0;
+  top: -35px;
+  padding: 8px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 12px;
+  border-radius: $tree-label-border-width;
+  color: $global-color-catalogue-light;
+  background: $global-color-catalogue-dark;
+  text-transform: uppercase;
+
+  @include breakpoint($global-catalogue-breakpoint-small) {
+    top: -25px;
+    padding: 5px;
+    font-size: 10px;
+    line-height: 10px;
+  }
+
+  $icon-size-large: 12px;
+  $icon-size-small: 10px;
+
+  &::before {
+    content: '';
+    margin-right: 5px;
+    display: block;
+    width: $icon-size-large;
+    height: $icon-size-large;
+    background: url('../../../public/images/icons/catalogues/star.svg') center center no-repeat;
+    background-size: contain;
+
+    @include breakpoint($global-catalogue-breakpoint-small) {
+      margin-right: 4px;
+      width: $icon-size-small;
+      height: $icon-size-small;
+    }
+  }
+}
+
+.tree .name,
+.tree .empty {
+  @extend %tree-items;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tree .empty {
+  margin: 0 auto;
+  height: 70px;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 700;
+  border-radius: $global-border-radius;
+  border: 2px dashed $global-color-catalogue;
+  color: rgba($global-color-body-dark, 0.5);
+  background: $global-color-background-dark;
+
+  @include breakpoint($global-catalogue-breakpoint-small) {
+    height: 50px;
+  }
+}

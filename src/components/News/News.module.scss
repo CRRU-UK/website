@@ -1,0 +1,119 @@
+@import '../../scss/variables';
+
+.news > a {
+  position: relative;
+  display: block;
+  text-decoration: none;
+}
+
+.news > a img {
+  z-index: 0;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.news > a > h4 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 26px;
+  font-family: $global-font-primary;
+
+  @include breakpoint('small') {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.news:hover > a > h4 {
+  text-decoration: underline;
+}
+
+.image-container {
+  position: relative;
+  margin-bottom: 10px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: $global-border-radius;
+  background: $global-color-background;
+  
+  @include breakpoint('small') {
+    margin-bottom: 8px;
+  }
+
+  &::before {
+    content: '';
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: rgba($global-color-grey, 0.4);
+    transition: opacity 1s $global-transition-ease-out-expo;
+  }
+}
+
+.news > a:hover .image-container::before {
+  opacity: 1;
+}
+
+.subtitles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.date,
+.category {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 14px;
+  line-height: 14px;
+  margin-top: 10px;
+  margin-right: 15px;
+  font-weight: 500;
+  color: $global-color-body;
+
+  @include breakpoint('small') {
+    margin-top: 5px;
+    margin-right: 10px;
+    font-size: 12px;
+    line-height: 12px;
+  }
+
+  &::before {
+    $size: 20px;
+
+    content: '';
+    display: block;
+    margin-right: 5px;
+    width: $size;
+    height: $size;
+    background: center center no-repeat transparent;
+    background-size: contain;
+
+    @include breakpoint('small') {
+      $size: 14px;
+
+      margin-right: 4px;
+      width: $size;
+      height: $size;
+    }
+  }
+}
+
+.date::before {
+  background-image: url('../../../public/images/icons/date.svg');
+}
+
+.category::before {
+  background-image: url('../../../public/images/icons/category.svg');
+}

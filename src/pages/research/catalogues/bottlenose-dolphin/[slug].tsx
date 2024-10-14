@@ -2,10 +2,10 @@ import type { NextPage, GetServerSideProps } from 'next';
 import type { ParsedUrlQuery } from 'querystring';
 
 import { useRouter } from 'next/router';
-import React, { useState, useEffect } from 'react';
+
 import Image from 'next/image';
 
-import type { CatalogueBottlenoseDolphinListAPIResponse, CatalogueBottlenoseDolphin } from '@/helpers/types';
+import type { CatalogueBottlenoseDolphin } from '@/helpers/types';
 
 import sitemap from '@/data/sitemap.json';
 
@@ -14,78 +14,14 @@ import { getCatalogueItem, getCatalogueItemSlug } from '@/helpers/getBottlenoseD
 
 import {
   Breadcrumbs,
-  Catalogue,
-  Loading,
   SEO,
   Timeline,
   Tooltip,
-} from '@/components/index';
+  Tree,
+  Toolbar,
+} from '@/components';
 
-import styles from './[slug].module.scss';
-
-const Search = () => {
-  const [search, setSearch] = useState<string>('');
-  const [data, setData] = useState<null | CatalogueBottlenoseDolphinListAPIResponse>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (search === '') {
-      setData(null);
-      return;
-    }
-
-    const getData = async () => {
-      setLoading(true);
-
-      const response = await fetch(`/api/catalogues/bottlenose-dolphin?search=${search}&page=1`);
-      const result: CatalogueBottlenoseDolphinListAPIResponse = await response.json();
-      setData(result);
-
-      setLoading(false);
-    };
-
-    const timeout = setTimeout(getData, 500);
-    return () => clearTimeout(timeout);
-  }, [search]);
-
-  const handleSearchChange = (value: string) => setSearch(value);
-
-  const classes = [styles.search];
-  if (loading || data) {
-    classes.push(styles.active);
-  }
-
-  const showResults = loading || data;
-
-  const noResultsElement = <li className={styles['no-results']}>No results</li>;
-
-  const resultsElements = data?.meta?.totalItems === 0 ? noResultsElement : data?.items.map((item) => (
-    <li key={item.id}>
-      <Catalogue
-        id={`#${item.id}`}
-        name={item?.name ? String(item.name) : undefined}
-        subid={item?.auid ? `#${item.auid}` : undefined}
-        link={`/research/catalogues/bottlenose-dolphin/${item.slug}`}
-      />
-    </li>
-  ));
-
-  return (
-    <div className={classes.join(' ')}>
-      <input
-        type="search"
-        placeholder="Search by name, ID, AUID, birth year..."
-        onChange={({ target }) => handleSearchChange((target as HTMLInputElement).value)}
-      />
-
-      {showResults && (
-        <ul className={styles.results}>
-          {loading ? <li className={styles['loading']}><Loading /></li> : resultsElements}
-        </ul>
-      )}
-    </div>  
-  );
-}
+import styles from '../[slug].module.scss';
 
 const Unknown = () => (
   <span
@@ -95,73 +31,6 @@ const Unknown = () => (
     <span>Unknown</span>
   </span>
 );
-
-const familyTree = (data: CatalogueBottlenoseDolphin) => {
-  const {
-    entry,
-    mother,
-    calves,
-  } = data;
-
-  const emptyElement = (<span className={styles.empty}>Unknown</span>)
-
-  let motherElement = emptyElement;
-  if (mother) {
-    motherElement = (
-      <Catalogue
-        id={`#${mother.id}`}
-        name={mother?.name ? String(mother.name) : undefined}
-        subid={mother?.auid ? `#${mother.auid}` : undefined}
-        link={`/research/catalogues/bottlenose-dolphin/${mother.slug}`}
-      />
-    );
-  }
-
-  let calvesElement = emptyElement;
-  if (calves.length) {
-    calvesElement = (
-      <ul>
-        {
-          calves.map((item, index) => (
-            <li key={item.id}>
-              {index === 0 && (<span className={styles.current}>Current Calf</span>)}
-              <Catalogue
-                id={`#${item.id}`}
-                subid={item?.auid ? `#${item.auid}` : undefined}
-                name={item?.name ?? undefined}
-                link={item.slug}
-              />
-            </li>
-          ))
-        }
-      </ul>
-    );
-  }
-
-  return (
-    <ul className={styles.tree}>
-      <li className={styles.mother}>
-        <b><span>Mother</span></b>
-        {motherElement}
-      </li>
-
-      <li className={styles.name}>
-        <Catalogue
-          id={`#${entry.id}`}
-          subid={entry?.auid ? `#${entry.auid}` : undefined}
-          name={entry.name ?? undefined}
-          link={''}
-          disabled
-        />
-      </li>
-
-      <li className={styles.calves}>
-        <b><span>Calves</span></b>
-        {calvesElement}
-      </li>
-    </ul>
-  ); 
-};
 
 interface PageProps {
   catalogueData: CatalogueBottlenoseDolphin,
@@ -218,16 +87,15 @@ const Page: NextPage<PageProps> = ({
         }] : undefined}
       />
 
-      <section className={styles.toolbar}>
-        {/* key is needed to reset search state on navigation */}
-        <Search key={router.asPath} />
-      </section>
+      {/* key is needed to reset search state on navigation */}
+      <Toolbar type="bottlenose-dolphin" key={router.asPath} />
 
       <section className={styles.container}>
         <article className={styles.main}>
           <Breadcrumbs style="inline" items={breadcrumbs} />
 
           <div className={styles.wrapper}>
+            <h2>Bottlenose Dolphin</h2>
             <h1>{title}</h1>
 
             <ul className={styles.info}>
@@ -322,7 +190,7 @@ const Page: NextPage<PageProps> = ({
         </article>
 
         <article className={styles.sidebar}>
-          {familyTree(catalogueData)}
+          <Tree data={catalogueData} />
         </article>
       </section>
 

@@ -1,58 +1,50 @@
 import Link from 'next/link';
-import Image from 'next/image';
 
-import { formatDateRelative } from '@/helpers/formatDate';
+import type { CatalogueTypes } from '@/helpers/types';
+
+import React from 'react';
 
 import styles from './Card.module.scss';
 
 interface Props {
-  image: {
-    src: string,
-    width: number,
-    height: number,
-    alt: string,
-  },
+  type: CatalogueTypes,
+  id: string,
+  name?: string,
+  subid?: string,
   link: string,
-  title: string,
-  date?: string,
-  category?: string,
+  disabled?: boolean,
 }
 
 const Card = ({
+  type,
+  id,
+  subid,
+  name,
   link,
-  image,
-  title,
-  date,
-  category,
+  disabled = false,
 }: Props) => {
-  let imageURL = image.src;
-  if (imageURL.startsWith('//')) {
-    imageURL = `https:${imageURL}`;
+  const classes = [styles.card, styles['no-image']];
+
+  if (type === 'bottlenose-dolphin') {
+    classes.push(styles.dolphin);
+  }
+
+  if (disabled) {
+    classes.push(styles.disabled);
   }
 
   return (
-    <article className={styles.card}>
-      <Link
-        href={link}
-        className="card"
-      >
-        <div className={styles['image-container']}>
-          <Image
-            src={imageURL}
-            alt=""
-            width={image.width}
-            height={image.height}
-            quality={90}
-          />
-        </div>
-        <h4>{title}</h4>
-        <div className={styles.subtitles}>
-          {date && <p className={styles.date} title={date}>{formatDateRelative(date)}</p>}
-          {category && <p className={styles.category}>{category}</p>}
-        </div>
-      </Link>
-    </article>
+    <Link href={link} className={classes.join(' ')}>
+      <span className={styles.icon}></span>
+      <span className={styles.text}>
+        <span className={styles.id}>
+          <b>{id}</b>
+          {subid && (<span className={styles.subid}>{subid}</span>)}
+        </span>
+        <span className={styles.name}>{name ?? <i>Unnamed</i>}</span>
+      </span>
+    </Link>
   );
-};
+}
 
 export default Card;
