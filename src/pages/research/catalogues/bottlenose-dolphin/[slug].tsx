@@ -19,6 +19,7 @@ import {
   SEO,
   Timeline,
   Tooltip,
+  Tree,
 } from '@/components/index';
 
 import styles from './[slug].module.scss';
@@ -95,73 +96,6 @@ const Unknown = () => (
     <span>Unknown</span>
   </span>
 );
-
-const familyTree = (data: CatalogueBottlenoseDolphin) => {
-  const {
-    entry,
-    mother,
-    calves,
-  } = data;
-
-  const emptyElement = (<span className={styles.empty}>Unknown</span>)
-
-  let motherElement = emptyElement;
-  if (mother) {
-    motherElement = (
-      <Catalogue
-        id={`#${mother.id}`}
-        name={mother?.name ? String(mother.name) : undefined}
-        subid={mother?.auid ? `#${mother.auid}` : undefined}
-        link={`/research/catalogues/bottlenose-dolphin/${mother.slug}`}
-      />
-    );
-  }
-
-  let calvesElement = emptyElement;
-  if (calves.length) {
-    calvesElement = (
-      <ul>
-        {
-          calves.map((item, index) => (
-            <li key={item.id}>
-              {index === 0 && (<span className={styles.current}>Current Calf</span>)}
-              <Catalogue
-                id={`#${item.id}`}
-                subid={item?.auid ? `#${item.auid}` : undefined}
-                name={item?.name ?? undefined}
-                link={item.slug}
-              />
-            </li>
-          ))
-        }
-      </ul>
-    );
-  }
-
-  return (
-    <ul className={styles.tree}>
-      <li className={styles.mother}>
-        <b><span>Mother</span></b>
-        {motherElement}
-      </li>
-
-      <li className={styles.name}>
-        <Catalogue
-          id={`#${entry.id}`}
-          subid={entry?.auid ? `#${entry.auid}` : undefined}
-          name={entry.name ?? undefined}
-          link={''}
-          disabled
-        />
-      </li>
-
-      <li className={styles.calves}>
-        <b><span>Calves</span></b>
-        {calvesElement}
-      </li>
-    </ul>
-  ); 
-};
 
 interface PageProps {
   catalogueData: CatalogueBottlenoseDolphin,
@@ -322,7 +256,7 @@ const Page: NextPage<PageProps> = ({
         </article>
 
         <article className={styles.sidebar}>
-          {familyTree(catalogueData)}
+          <Tree data={catalogueData} />
         </article>
       </section>
 

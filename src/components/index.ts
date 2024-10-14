@@ -14,6 +14,7 @@ import SEO from './SEO/SEO';
 import Social from './Social/Social';
 import Timeline from './Timeline/Timeline';
 import Tooltip from './Tooltip/Tooltip';
+import Tree from './Tree/Tree';
 
 export {
   Breadcrumbs,
@@ -32,4 +33,5 @@ export {
   Social,
   Timeline,
   Tooltip,
+  Tree,
 };
