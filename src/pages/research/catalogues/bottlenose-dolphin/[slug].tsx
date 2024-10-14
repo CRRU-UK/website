@@ -60,7 +60,7 @@ const Page: NextPage<PageProps> = ({
   const title = name ? `#${id} (${name})` : `#${id}`;
   const pageDescription = `CRRU Bottlenose Dolphin catalogue entry for ${title}.`;
   const path = `/research/catalogues/bottlenose-dolphin/${slug}`;
-  const image = leftDorsalFin ?? rightDorsalFin ?? otherImages?.[0];
+  const image = otherImages?.[0] ?? leftDorsalFin ?? rightDorsalFin;
   const breadcrumbs = [
     sitemap.research,
     sitemap.catalogues,
