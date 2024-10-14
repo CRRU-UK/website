@@ -62,7 +62,7 @@ export type SpeciesEntry = {
   image: FlattenedImage,
 };
 
-// Simplified references used in API responses and the `<Catalogue />` component
+// Simplified references used in API responses and the `<Card />` component
 export type CatalogueBottlenoseDolphinBasicInfo = {
   id: string,
   auid: string | null,

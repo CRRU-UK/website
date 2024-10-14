@@ -4,7 +4,7 @@ import type { Node } from '@contentful/rich-text-types';
 
 import Link from 'next/link';
 
-import { ImageRow } from '@/components/index';
+import { ImageRow } from '@/components';
 
 const renderEmbeddedEntriesAssets = ({ data }: Node) => {
   if (!data?.target?.fields) {

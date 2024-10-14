@@ -9,7 +9,7 @@ import getPageContent from '@/helpers/getPageContent';
 import { flattenImageAssetFields } from '@/helpers/flattenAssetFields';
 
 import CommonPage from '@/layout/CommonPage';
-import { ListItem } from '@/components/index';
+import { ListItem } from '@/components';
 
 type SponsorsDataReduced = {
   name: string,

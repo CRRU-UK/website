@@ -13,7 +13,7 @@ import { contentfulDeliveryClient } from './contentful';
 import { flattenImageAssetFields } from './flattenAssetFields';
 
 /**
- * Reduces bottlenose dolphin catalogue entry (for API responses and the `<Catalogue />` component).
+ * Reduces bottlenose dolphin catalogue entry (for API responses and the `<Card />` component).
  * @param entry Bottlenose dolphin catalogue Contentful entry.
  * @returns Simplified data of entry.
  */

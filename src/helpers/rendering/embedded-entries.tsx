@@ -14,7 +14,7 @@ import {
   ImageRow,
   Highlight,
   Note,
-} from '@/components/index';
+} from '@/components';
 
 const renderGallery = (data: Node['data']) => {
   const images = data.target.fields.images.map((item: Asset) => flattenImageAssetFields(item));

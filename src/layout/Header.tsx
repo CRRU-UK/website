@@ -7,7 +7,7 @@ import type { SitemapItem } from '@/helpers/types';
 
 import sitemap from '@/data/sitemap.json';
 
-import { Social } from '@/components/index';
+import { Social } from '@/components';
 
 const breakpointMobileMenu = 800;
 

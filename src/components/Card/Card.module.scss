@@ -1,119 +1,135 @@
+@use 'sass:color';
+
 @import '../../scss/variables';
 
-.card > a {
+$height-large: 70px;
+$height-medium: 60px;
+$height-small: 50px;
+
+$bottom-border-size: 5px;
+
+.card {
   position: relative;
-  display: block;
-  text-decoration: none;
-}
-
-.card > a img {
-  z-index: 0;
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.card > a > h4 {
-  margin: 0;
-  font-size: 18px;
-  line-height: 26px;
-  font-family: $global-font-primary;
-
-  @include breakpoint('small') {
-    font-size: 16px;
-    line-height: 24px;
-  }
-}
-
-.card:hover > a > h4 {
-  text-decoration: underline;
-}
-
-.image-container {
-  position: relative;
-  margin-bottom: 10px;
-  overflow: hidden;
-  aspect-ratio: 16 / 9;
-  border-radius: $global-border-radius;
-  background: $global-color-background;
-  
-  @include breakpoint('small') {
-    margin-bottom: 8px;
-  }
-
-  &::before {
-    content: '';
-    z-index: 10;
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    background: rgba($global-color-grey, 0.4);
-    transition: opacity 1s $global-transition-ease-out-expo;
-  }
-}
-
-.card > a:hover .image-container::before {
-  opacity: 1;
-}
-
-.subtitles {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.date,
-.category {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
   align-items: center;
-  font-size: 14px;
-  line-height: 14px;
-  margin-top: 10px;
-  margin-right: 15px;
-  font-weight: 500;
+  padding: 10px 15px;
+  width: 100%;
+  height: $height-large;
+  border-radius: $global-border-radius;
+  font-size: 16px;
+  line-height: 20px;
   color: $global-color-body;
+  text-decoration: none;
+  border: 2px solid $global-color-catalogue;
+  box-shadow: 0 $bottom-border-size 0 color.adjust($global-color-catalogue, $lightness: 5%);
+  background: $global-color-background;
 
-  @include breakpoint('small') {
-    margin-top: 5px;
-    margin-right: 10px;
-    font-size: 12px;
-    line-height: 12px;
+  @include breakpoint('medium') {
+    padding: 8px 12px;
+    height: $height-medium;
+    font-size: 14px;
+    line-height: 16px;
   }
 
-  &::before {
-    $size: 20px;
+  @include breakpoint('small') {
+    padding: 6px 10px;
+    height: $height-small;
+  }
 
-    content: '';
-    display: block;
-    margin-right: 5px;
-    width: $size;
-    height: $size;
-    background: center center no-repeat transparent;
+  &:hover {
+    color: inherit;
+    text-decoration: none;
+    border-color: $global-color-primary-dark;
+    box-shadow: 0 $bottom-border-size 0 $global-color-primary-light;
+
+    .id > b {
+      color: $global-color-primary-dark;
+      text-decoration: underline;
+    }
+  }
+
+  $icon-size-large: 32px;
+  $icon-size-medium: 28px;
+  $icon-size-small: 22px;
+
+  > .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: $icon-size-large;
+    min-height: $icon-size-large;
+    background: url('../../../public/images/icons/catalogues/dolphin.svg') center center no-repeat;
     background-size: contain;
 
-    @include breakpoint('small') {
-      $size: 14px;
+    @include breakpoint('medium') {
+      min-width: $icon-size-medium;
+      min-height: $icon-size-medium;
+    }
 
-      margin-right: 4px;
-      width: $size;
-      height: $size;
+    @include breakpoint('small') {
+      min-width: $icon-size-small;
+      min-height: $icon-size-small;
     }
   }
 }
 
-.date::before {
-  background-image: url('../../../public/images/icons/date.svg');
+.disabled {
+  pointer-events: none;
+  box-shadow: none;
+  background: $global-color-background-dark;
+
+  > .icon,
+  > .text {
+    opacity: 0.5;
+  }
 }
 
-.category::before {
-  background-image: url('../../../public/images/icons/category.svg');
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-left: 10px;
+  width: 100%;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.id,
+.name {
+  width: 100%;
+}
+
+.id {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.subid {
+  opacity: 0.6;
+  margin-left: auto;
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 500;
+
+  @include breakpoint('small') {
+    font-size: 10px;
+    line-height: 10px;
+  }
+}
+
+.name {
+  position: relative;
+  display: block;
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  > i {
+    opacity: 0.6;
+  }
 }

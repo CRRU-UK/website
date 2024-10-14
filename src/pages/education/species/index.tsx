@@ -8,7 +8,7 @@ import getPageContent from '@/helpers/getPageContent';
 import getSpecies from '@/helpers/getSpecies';
 
 import CommonPage from '@/layout/CommonPage';
-import { Button } from '@/components/index';
+import { Button } from '@/components';
 
 import styles from './index.module.scss';
 

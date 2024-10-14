@@ -12,7 +12,7 @@ import { UsefulLinksCategories } from '@/helpers/constants';
 import { flattenImageAssetFields } from '@/helpers/flattenAssetFields';
 
 import CommonPage from '@/layout/CommonPage';
-import { ListItem, Filters } from '@/components/index';
+import { ListItem, Filters } from '@/components';
 
 type LinksDataReduced = {
   title: string,

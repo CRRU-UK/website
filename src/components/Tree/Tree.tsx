@@ -2,7 +2,7 @@ import styles from './Tree.module.scss';
 
 import type { CatalogueBottlenoseDolphin } from '@/helpers/types';
 
-import { Catalogue } from '../';
+import { Card } from '@/components';
 
 interface Props {
   data: CatalogueBottlenoseDolphin,
@@ -22,7 +22,7 @@ const Tree = ({
   let motherElement = emptyElement;
   if (mother) {
     motherElement = (
-      <Catalogue
+      <Card
         id={`#${mother.id}`}
         name={mother?.name ? String(mother.name) : undefined}
         subid={mother?.auid ? `#${mother.auid}` : undefined}
@@ -39,7 +39,7 @@ const Tree = ({
           calves.map((item, index) => (
             <li key={item.id}>
               {index === 0 && (<span className={styles.current}>Current Calf</span>)}
-              <Catalogue
+              <Card
                 id={`#${item.id}`}
                 subid={item?.auid ? `#${item.auid}` : undefined}
                 name={item?.name ?? undefined}
@@ -60,7 +60,7 @@ const Tree = ({
       </li>
 
       <li className={styles.name}>
-        <Catalogue
+        <Card
           id={`#${entry.id}`}
           subid={entry?.auid ? `#${entry.auid}` : undefined}
           name={entry.name ?? undefined}

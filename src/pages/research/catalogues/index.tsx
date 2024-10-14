@@ -12,7 +12,7 @@ import getPageContent from '@/helpers/getPageContent';
 
 import CommonPage from '@/layout/CommonPage';
 
-import { Filters, Catalogue, Loading } from '@/components/index';
+import { Card, Filters, Loading } from '@/components';
 
 import styles from './index.module.scss';
 
@@ -113,7 +113,7 @@ const Page: NextPage<PageProps> = ({
             {
               data.items.map((item: any) => (
                 <li key={item.id}>
-                  <Catalogue
+                  <Card
                     id={item.id}
                     name={item.name ?? undefined}
                     subid={item?.auid ? `#${item.auid}` : undefined}

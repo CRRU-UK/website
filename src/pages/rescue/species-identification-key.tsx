@@ -9,7 +9,7 @@ import sitemap from '@/data/sitemap.json';
 import getPageContent from '@/helpers/getPageContent';
 
 import Hero from '@/components/Hero/Hero';
-import { Breadcrumbs, SEO } from '@/components/index';
+import { Breadcrumbs, SEO } from '@/components';
 
 interface PageProps {
   pageImage: PageData['image'],

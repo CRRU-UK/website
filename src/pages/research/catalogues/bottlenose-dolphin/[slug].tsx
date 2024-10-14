@@ -14,13 +14,13 @@ import { getCatalogueItem, getCatalogueItemSlug } from '@/helpers/getBottlenoseD
 
 import {
   Breadcrumbs,
-  Catalogue,
+  Card,
   Loading,
   SEO,
   Timeline,
   Tooltip,
   Tree,
-} from '@/components/index';
+} from '@/components';
 
 import styles from './[slug].module.scss';
 
@@ -62,7 +62,7 @@ const Search = () => {
 
   const resultsElements = data?.meta?.totalItems === 0 ? noResultsElement : data?.items.map((item) => (
     <li key={item.id}>
-      <Catalogue
+      <Card
         id={`#${item.id}`}
         name={item?.name ? String(item.name) : undefined}
         subid={item?.auid ? `#${item.auid}` : undefined}
