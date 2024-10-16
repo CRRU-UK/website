@@ -12,8 +12,8 @@
   align-items: center;
   flex-wrap: wrap;
   margin: 0 auto;
+  padding: 5px $global-padding-large;
   width: 100%;
-  padding: 0 $global-padding-large;
   max-width: $global-max-width;
   list-style: none;
   overflow: hidden;
@@ -27,7 +27,7 @@
   }
 
   @include breakpoint('small') {
-    padding: 0 $global-padding-small;
+    padding: 4px $global-padding-small;
   }
 }
 
@@ -67,7 +67,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15px 0;
+  padding: 10px 0;
   font-size: $font-size;
   line-height: $font-size;
   font-weight: 700;
@@ -76,7 +76,7 @@
   @include breakpoint('small') {
     $font-size: 11px;
 
-    padding: 10px 0;
+    padding: 6px 0;
     font-size: $font-size;
     line-height: $font-size;
   }
