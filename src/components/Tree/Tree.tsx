@@ -37,9 +37,8 @@ const Tree = ({
     calvesElement = (
       <ul>
         {
-          calves.map((item, index) => (
+          calves.map((item) => (
             <li key={item.id}>
-              {index === 0 && (<span className={styles.current}>Current Calf</span>)}
               <Card
                 type='bottlenose-dolphin'
                 id={`#${item.id}`}

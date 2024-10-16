@@ -165,50 +165,6 @@ $tree-label-border-width: 5px;
   }
 }
 
-.tree .calves > ul > li > .current {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: flex-start;
-  position: absolute;
-  left: 0;
-  top: -35px;
-  padding: 8px;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 12px;
-  border-radius: $tree-label-border-width;
-  color: $global-color-catalogue-light;
-  background: $global-color-catalogue-dark;
-  text-transform: uppercase;
-
-  @include breakpoint($global-catalogue-breakpoint-small) {
-    top: -25px;
-    padding: 5px;
-    font-size: 10px;
-    line-height: 10px;
-  }
-
-  $icon-size-large: 12px;
-  $icon-size-small: 10px;
-
-  &::before {
-    content: '';
-    margin-right: 5px;
-    display: block;
-    width: $icon-size-large;
-    height: $icon-size-large;
-    background: url('../../../public/images/icons/catalogues/star.svg') center center no-repeat;
-    background-size: contain;
-
-    @include breakpoint($global-catalogue-breakpoint-small) {
-      margin-right: 4px;
-      width: $icon-size-small;
-      height: $icon-size-small;
-    }
-  }
-}
-
 .tree .name,
 .tree .empty {
   @extend %tree-items;

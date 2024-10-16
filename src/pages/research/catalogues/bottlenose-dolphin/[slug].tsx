@@ -130,12 +130,12 @@ const Page: NextPage<PageProps> = ({
               </li>
 
               <li className={[styles['info-item-half'], styles['info-item-calves']].join(' ')}>
-                <b>Total No. Of Known Calves</b>
+                <b>No. of Known Calves</b>
                 {sex !== 'Female' ? <i className={styles.unknown}>N/A</i> : (totalCalves ?? <Unknown />)}
               </li>
 
               <li className={[styles['info-item-half'], styles['info-item-total-recaptures']].join(' ')}>
-                <b>Total Recaptures</b>
+                <b>No. of Recaptures</b>
                 {totalRecaptures ?? <Unknown />}
               </li>
 
