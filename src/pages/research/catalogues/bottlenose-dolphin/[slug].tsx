@@ -197,7 +197,7 @@ const Page: NextPage<PageProps> = ({
 
         <article className={styles.sidebar}>
           <Tree
-            type={Catalogues.MinkeWhale}
+            type={Catalogues.BottlenoseDolphin}
             data={catalogueData}
           />
         </article>
