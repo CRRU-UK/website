@@ -7,7 +7,7 @@ import { Catalogues } from '@/helpers/constants';
 import { Card } from '@/components';
 
 interface Props {
-  type: Catalogues,
+  type: Catalogues.BottlenoseDolphin,
   data: CatalogueBottlenoseDolphin,
 }
 
