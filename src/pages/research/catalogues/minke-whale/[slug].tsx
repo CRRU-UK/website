@@ -105,7 +105,7 @@ const Page: NextPage<PageProps> = ({
                   href="https://hwdt.org/catalogue-minke-whale"
                   rel="noopener noreferrer"
                   target="_blank"
-                >{reference}</Link> : <Unknown />}
+                >{reference}</Link> : "-"}
               </li>
 
               <li className={[styles['info-item-half'], styles['info-item-name']].join(' ')}>

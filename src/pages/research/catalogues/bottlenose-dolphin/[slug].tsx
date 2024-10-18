@@ -112,7 +112,7 @@ const Page: NextPage<PageProps> = ({
                   href="https://www.abdn.ac.uk/sbs/outreach/lighthouse/gallery/album13/"
                   rel="noopener noreferrer"
                   target="_blank"
-                >{reference}</Link> : <Unknown />}
+                >{reference}</Link> : "-"}
               </li>
 
               <li className={styles['info-item-name']}>
@@ -175,7 +175,6 @@ const Page: NextPage<PageProps> = ({
               {otherImages.length > 0 && (
                 <li className={[styles['info-item-full'], styles['info-item-other-images']].join(' ')}>
                   <b>Other Images</b>
-
                   <ul>
                     {otherImages.map((item) => (
                       <li key={item.url}>

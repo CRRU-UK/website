@@ -223,7 +223,10 @@ $grid-spacing-small: $global-spacing-small / 2;
   }
 
   @include breakpoint($global-catalogue-breakpoint-medium) {
-    &.info-item-half,
+    &.info-item-half {
+      grid-column: span 1;
+    }
+
     &.info-item-full {
       grid-column: span 2;
     }
