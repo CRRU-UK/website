@@ -232,6 +232,12 @@ $grid-spacing-small: $global-spacing-small / 2;
     }
   }
 
+  @include breakpoint($global-catalogue-breakpoint-small) {
+    &.info-item-half {
+      grid-column: span 2;
+    }
+  }
+
   &.info-item-other-images > ul {
     margin: 0 auto;
     padding: 0;
