@@ -1,6 +1,6 @@
 import styles from './Tree.module.scss';
 
-import type { CatalogueBottlenoseDolphin, CatalogueMinkeWhale } from '@/helpers/types';
+import type { CatalogueBottlenoseDolphin } from '@/helpers/types';
 
 import { Catalogues } from '@/helpers/constants';
 
@@ -8,17 +8,19 @@ import { Card } from '@/components';
 
 interface Props {
   type: Catalogues,
-  entry: CatalogueBottlenoseDolphin['entry'] | CatalogueMinkeWhale['entry'],
-  mother?: CatalogueBottlenoseDolphin['mother'],
-  calves?: CatalogueBottlenoseDolphin['calves'],
+  data: CatalogueBottlenoseDolphin,
 }
 
 const Tree = ({
   type,
-  entry,
-  mother,
-  calves,
+  data,
 }: Props) => {
+  const {
+    entry,
+    mother,
+    calves,
+  } = data;
+
   const emptyElement = (<span className={styles.empty}>Unknown</span>)
 
   let motherElement = emptyElement;
@@ -27,15 +29,15 @@ const Tree = ({
       <Card
         type={type}
         id={`#${mother.id}`}
-        reference={mother?.reference ? `#${mother.reference}` : undefined}
         name={mother?.name ? String(mother.name) : undefined}
-        link={`/research/catalogues/${type}/${mother.slug}`}
+        reference={mother?.reference ? `#${mother.reference}` : undefined}
+        link={`/research/catalogues/bottlenose-dolphin/${mother.slug}`}
       />
     );
   }
 
   let calvesElement = emptyElement;
-  if (calves?.length) {
+  if (calves.length) {
     calvesElement = (
       <ul>
         {

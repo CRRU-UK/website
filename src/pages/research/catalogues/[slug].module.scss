@@ -357,14 +357,25 @@ $sidebar-size-medium: 480px;
     width: 100%;
     border-left: 0;
     border-radius: 0;
+    border-top: 2px solid $global-color-catalogue;
   }
 }
 
 .no-data {
-  opacity: 0.5;
+  opacity: 0.7;
   font-size: 24px;
   font-weight: 700;
   line-height: 24px;
   text-align: center;
   color: $global-color-catalogue-dark;
+
+  @include breakpoint($global-catalogue-breakpoint-medium) {
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  @include breakpoint($global-catalogue-breakpoint-small) {
+    font-size: 16px;
+    line-height: 16px;
+  }
 }

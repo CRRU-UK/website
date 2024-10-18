@@ -19,7 +19,6 @@ import {
   SEO,
   Timeline,
   Tooltip,
-  Tree,
   Toolbar,
 } from '@/components';
 
@@ -95,12 +94,12 @@ const Page: NextPage<PageProps> = ({
             <h1>{title}</h1>
 
             <ul className={styles.info}>
-              <li className={styles['info-item-crru']}>
+              <li className={[styles['info-item-half'], styles['info-item-crru']].join(' ')}>
                 <b>CRRU ID #</b>
                 {id}
               </li>
 
-              <li className={styles['info-item-hwdt']}>
+              <li className={[styles['info-item-half'], styles['info-item-hwdt']].join(' ')}>
                 <b>HWDT Ref # <Tooltip text="Hebridean Whale and Dolphin Trust catalogue reference" /></b>
                 {reference ? <Link
                   href="https://hwdt.org/catalogue-minke-whale"
@@ -109,12 +108,12 @@ const Page: NextPage<PageProps> = ({
                 >{reference}</Link> : <Unknown />}
               </li>
 
-              <li className={styles['info-item-name']}>
+              <li className={[styles['info-item-half'], styles['info-item-name']].join(' ')}>
                 <b>Name</b>
                 {name ?? <i className={styles.unknown}>Unnamed</i>}
               </li>
 
-              <li className={[styles['info-item-full'], styles['info-item-total-recaptures']].join(' ')}>
+              <li className={[styles['info-item-half'], styles['info-item-total-recaptures']].join(' ')}>
                 <b>No. of Recaptures</b>
                 {totalRecaptures ?? <Unknown />}
               </li>
@@ -150,10 +149,7 @@ const Page: NextPage<PageProps> = ({
         </article>
 
         <article className={styles.sidebar}>
-          <Tree 
-            type={Catalogues.MinkeWhale}
-            entry={catalogueData.entry}
-          />
+          <p className={styles['no-data']}>No family data available</p>
         </article>
       </section>
 
