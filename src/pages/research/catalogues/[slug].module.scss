@@ -100,7 +100,9 @@ $grid-spacing-small: $global-spacing-small / 2;
     margin-right: 5px;
     width: 32px;
     height: 24px;
-    background: url('../../../../public/images/icons/catalogues/dolphin.svg') center center no-repeat transparent;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: transparent;
     background-size: contain;
 
     @include breakpoint($global-catalogue-breakpoint-small) {
@@ -108,6 +110,14 @@ $grid-spacing-small: $global-spacing-small / 2;
       height: 16px;
     }
   }
+}
+
+.icon-dolphin::before {
+  background-image: url('../../../../public/images/icons/catalogues/dolphin.svg');
+}
+
+.icon-whale::before {
+  background-image: url('../../../../public/images/icons/catalogues/whale.svg');
 }
 
 .info {
@@ -267,7 +277,8 @@ $grid-spacing-small: $global-spacing-small / 2;
 
 $sections: (
   'crru': 'crru.svg',
-  'au': 'au.svg',
+  'aulfs': 'aulfs.svg',
+  'hwdt': 'hwdt.png',
   'name': 'name.svg',
   'birth-year': 'birth-year.svg',
   'age': 'age.svg',
@@ -347,4 +358,13 @@ $sidebar-size-medium: 480px;
     border-left: 0;
     border-radius: 0;
   }
+}
+
+.no-data {
+  opacity: 0.5;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: center;
+  color: $global-color-catalogue-dark;
 }

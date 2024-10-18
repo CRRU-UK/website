@@ -1,48 +1,50 @@
 import styles from './Tree.module.scss';
 
-import type { CatalogueBottlenoseDolphin } from '@/helpers/types';
+import type { CatalogueBottlenoseDolphin, CatalogueMinkeWhale } from '@/helpers/types';
+
+import { Catalogues } from '@/helpers/constants';
 
 import { Card } from '@/components';
 
 interface Props {
-  data: CatalogueBottlenoseDolphin,
+  type: Catalogues,
+  entry: CatalogueBottlenoseDolphin['entry'] | CatalogueMinkeWhale['entry'],
+  mother?: CatalogueBottlenoseDolphin['mother'],
+  calves?: CatalogueBottlenoseDolphin['calves'],
 }
 
 const Tree = ({
-  data,
+  type,
+  entry,
+  mother,
+  calves,
 }: Props) => {
-  const {
-    entry,
-    mother,
-    calves,
-  } = data;
-
   const emptyElement = (<span className={styles.empty}>Unknown</span>)
 
   let motherElement = emptyElement;
   if (mother) {
     motherElement = (
       <Card
-        type='bottlenose-dolphin'
+        type={type}
         id={`#${mother.id}`}
+        reference={mother?.reference ? `#${mother.reference}` : undefined}
         name={mother?.name ? String(mother.name) : undefined}
-        subid={mother?.auid ? `#${mother.auid}` : undefined}
-        link={`/research/catalogues/bottlenose-dolphin/${mother.slug}`}
+        link={`/research/catalogues/${type}/${mother.slug}`}
       />
     );
   }
 
   let calvesElement = emptyElement;
-  if (calves.length) {
+  if (calves && calves.length) {
     calvesElement = (
       <ul>
         {
           calves.map((item) => (
             <li key={item.id}>
               <Card
-                type='bottlenose-dolphin'
+                type={type}
                 id={`#${item.id}`}
-                subid={item?.auid ? `#${item.auid}` : undefined}
+                reference={item?.reference ? `#${item.reference}` : undefined}
                 name={item?.name ?? undefined}
                 link={item.slug}
               />
@@ -62,9 +64,9 @@ const Tree = ({
 
       <li className={styles.name}>
         <Card
-          type='bottlenose-dolphin'
+          type={type}
           id={`#${entry.id}`}
-          subid={entry?.auid ? `#${entry.auid}` : undefined}
+          reference={entry?.reference ? `#${entry.reference}` : undefined}
           name={entry.name ?? undefined}
           link={''}
           disabled

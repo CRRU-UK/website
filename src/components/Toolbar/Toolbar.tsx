@@ -2,19 +2,21 @@ import styles from './Toolbar.module.scss';
 
 import React, { useState, useEffect } from 'react';
 
-import type { CatalogueTypes, CatalogueBottlenoseDolphinListAPIResponse } from '@/helpers/types';
+import type { CatalogueAPIResponse } from '@/helpers/types';
+
+import { Catalogues } from '@/helpers/constants';
 
 import { Card, Loading } from '@/components';
 
 interface Props {
-  type: CatalogueTypes,
+  type: Catalogues,
 }
 
 const Toolbar = ({
   type,
 }: Props) => {
   const [search, setSearch] = useState<string>('');
-  const [data, setData] = useState<null | CatalogueBottlenoseDolphinListAPIResponse>(null);
+  const [data, setData] = useState<null | CatalogueAPIResponse>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const Toolbar = ({
       setLoading(true);
 
       const response = await fetch(`/api/catalogues/${type}?search=${search}&page=1`);
-      const result: CatalogueBottlenoseDolphinListAPIResponse = await response.json();
+      const result: CatalogueAPIResponse = await response.json();
       setData(result);
 
       setLoading(false);
@@ -54,7 +56,7 @@ const Toolbar = ({
         type={type}
         id={`#${item.id}`}
         name={item?.name ? String(item.name) : undefined}
-        subid={item?.auid ? `#${item.auid}` : undefined}
+        reference={item?.reference ? `#${item.reference}` : undefined}
         link={`/research/catalogues/${type}/${item.slug}`}
       />
     </li>
@@ -65,7 +67,7 @@ const Toolbar = ({
       <div className={classes.join(' ')}>
         <input
           type="search"
-          placeholder="Search by name, ID, AUID, birth year..."
+          placeholder="Search by name, ID, reference, birth year..."
           onChange={({ target }) => handleSearchChange((target as HTMLInputElement).value)}
         />
 

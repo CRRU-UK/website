@@ -1,16 +1,16 @@
 import Link from 'next/link';
 
-import type { CatalogueTypes } from '@/helpers/types';
+import { Catalogues } from '@/helpers/constants';
 
 import React from 'react';
 
 import styles from './Card.module.scss';
 
 interface Props {
-  type: CatalogueTypes,
+  type: Catalogues,
   id: string,
   name?: string,
-  subid?: string,
+  reference?: string,
   link: string,
   disabled?: boolean,
 }
@@ -18,15 +18,19 @@ interface Props {
 const Card = ({
   type,
   id,
-  subid,
+  reference,
   name,
   link,
   disabled = false,
 }: Props) => {
   const classes = [styles.card, styles['no-image']];
 
-  if (type === 'bottlenose-dolphin') {
+  if (type === Catalogues.BottlenoseDolphin) {
     classes.push(styles.dolphin);
+  }
+
+  if (type === Catalogues.MinkeWhale) {
+    classes.push(styles.whale);
   }
 
   if (disabled) {
@@ -39,7 +43,7 @@ const Card = ({
       <span className={styles.text}>
         <span className={styles.id}>
           <b>{id}</b>
-          {subid && (<span className={styles.subid}>{subid}</span>)}
+          {reference && (<span className={styles.reference}>{reference}</span>)}
         </span>
         <span className={styles.name}>{name ?? <i>Unnamed</i>}</span>
       </span>

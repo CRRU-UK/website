@@ -12,7 +12,10 @@ beforeAll(() => {
 
 it('Passes accessibility with default props', async () => act(async () => {
   const { container } = render(
-    <Toolbar type='bottlenose-dolphin' />,
+    <Toolbar
+      // @ts-expect-error String of enum value
+      type="bottlenose-dolphin"
+    />,
   );
 
   const results = await axe(container);
