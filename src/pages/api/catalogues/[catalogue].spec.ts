@@ -4,11 +4,11 @@ import type { NextApiRequest } from 'next';
 
 import { createRequest, createResponse } from 'node-mocks-http';
 
-import { getCatalogueList } from '@/helpers/getBottlenoseDolphinCatalogue';
+import { getCatalogueList } from '@/helpers/getCatalogue';
 
-import handler from './index';
+import handler from './[catalogue]';
 
-jest.mock('@/helpers/getBottlenoseDolphinCatalogue', () => ({
+jest.mock('@/helpers/getCatalogue', () => ({
   getCatalogueList: jest.fn(() => ({ foo: 'bar' })),
 }));
 
@@ -16,11 +16,17 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-it('Gets bottlenose dolphin catalogue list with pagination', async () => {
+it.each([
+  'bottlenose-dolphin',
+  'minke-whale'
+])('Gets catalogue list with pagination (%p)', async (value) => {
   const request = createRequest({
     method: 'GET',
-    url: '/api/catalogues/bottlenose-dolphin',
-    query: { page: 2 },
+    url: `/api/catalogues/${value}`,
+    query: {
+      catalogue: value, // TODO: Fix path parameter not working correctly
+      page: 2,
+    },
   }) as NextApiRequest;
 
   const response = createResponse();
@@ -28,17 +34,24 @@ it('Gets bottlenose dolphin catalogue list with pagination', async () => {
   await handler(request, response as any);
 
   expect(getCatalogueList).toHaveBeenCalledTimes(1);
-  expect(getCatalogueList).toHaveBeenCalledWith({ page: 2 });
+  expect(getCatalogueList).toHaveBeenCalledWith(value, { page: 2 });
 
   expect(response.statusCode).toBe(200);
   expect(response._getJSONData()).toStrictEqual({ foo: 'bar' });
 });
 
-it('Gets bottlenose dolphin catalogue list with searching', async () => {
+it.each([
+  'bottlenose-dolphin',
+  'minke-whale'
+])('Gets catalogue list with searching', async (value) => {
   const request = createRequest({
     method: 'GET',
-    url: '/api/catalogues/bottlenose-dolphin',
-    query: { page: 1, search: 'hello' },
+    url: `/api/catalogues/${value}`,
+    query: {
+      catalogue: value, // TODO: Fix path parameter not working correctly
+      page: 1,
+      search: 'hello',
+    },
   }) as NextApiRequest;
 
   const response = createResponse();
@@ -46,17 +59,40 @@ it('Gets bottlenose dolphin catalogue list with searching', async () => {
   await handler(request, response as any);
 
   expect(getCatalogueList).toHaveBeenCalledTimes(1);
-  expect(getCatalogueList).toHaveBeenCalledWith({ page: 1, search: 'hello' });
+  expect(getCatalogueList).toHaveBeenCalledWith(value, { page: 1, search: 'hello' });
 
   expect(response.statusCode).toBe(200);
   expect(response._getJSONData()).toStrictEqual({ foo: 'bar' });
+});
+
+it('Handles incorrect catalogue', async () => {
+  const request = createRequest({
+    method: 'GET',
+    url: '/api/catalogues/kangaroo',
+    query: {
+      catalogue: 'kangaroo', // TODO: Fix path parameter not working correctly
+      page: 1,
+    },
+  }) as NextApiRequest;
+
+  const response = createResponse();
+
+  await handler(request, response as any);
+
+  expect(getCatalogueList).toHaveBeenCalledTimes(0);
+
+  expect(response.statusCode).toBe(404);
+  expect(response._getData()).toBe('Not Found');
 });
 
 it('Handles incorrect method', async () => {
   const request = createRequest({
     method: 'POST',
     url: '/api/catalogues/bottlenose-dolphin',
-    query: { page: 1 },
+    query: {
+      catalogue: 'bottlenose-dolphin', // TODO: Fix path parameter not working correctly
+      page: 1,
+    },
   }) as NextApiRequest;
 
   const response = createResponse();
@@ -73,6 +109,9 @@ it('Handles missing page query', async () => {
   const request = createRequest({
     method: 'GET',
     url: '/api/catalogues/bottlenose-dolphin',
+    query: {
+      catalogue: 'bottlenose-dolphin', // TODO: Fix path parameter not working correctly
+    },
   }) as NextApiRequest;
 
   const response = createResponse();
@@ -93,7 +132,10 @@ it.each([
   const request = createRequest({
     method: 'GET',
     url: '/api/catalogues/bottlenose-dolphin',
-    query: { page: value },
+    query: {
+      catalogue: 'bottlenose-dolphin', // TODO: Fix path parameter not working correctly
+      page: value,
+    },
   }) as NextApiRequest;
 
   const response = createResponse();

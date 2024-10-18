@@ -44,6 +44,7 @@ export enum ContentTypes {
   SpeciesPage = 'speciesPage',
   ScientificPublication = 'scientificPublication',
   CatalogueBottlenoseDolphin = 'catalogueBottlenoseDolphin',
+  CatalogueMinkeWhale = 'catalogueMinkeWhale',
   People = 'people',
   Sponsor = 'sponsor',
   UsefulLink = 'usefulLink',
@@ -82,6 +83,11 @@ export enum InlineContentEntries {
   Page = ContentTypes.PageContent,
   Species = ContentTypes.SpeciesPage,
   News = ContentTypes.NewsArticle,
+}
+
+export enum Catalogues {
+  BottlenoseDolphin = 'bottlenose-dolphin',
+  MinkeWhale = 'minke-whale',
 }
 
 export const CATALOGUE_RESULTS_LIMIT = 30;

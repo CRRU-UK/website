@@ -2,13 +2,17 @@ import styles from './Tree.module.scss';
 
 import type { CatalogueBottlenoseDolphin } from '@/helpers/types';
 
+import { Catalogues } from '@/helpers/constants';
+
 import { Card } from '@/components';
 
 interface Props {
+  type: Catalogues.BottlenoseDolphin,
   data: CatalogueBottlenoseDolphin,
 }
 
 const Tree = ({
+  type,
   data,
 }: Props) => {
   const {
@@ -23,10 +27,10 @@ const Tree = ({
   if (mother) {
     motherElement = (
       <Card
-        type='bottlenose-dolphin'
+        type={type}
         id={`#${mother.id}`}
         name={mother?.name ? String(mother.name) : undefined}
-        subid={mother?.auid ? `#${mother.auid}` : undefined}
+        reference={mother?.reference ? `#${mother.reference}` : undefined}
         link={`/research/catalogues/bottlenose-dolphin/${mother.slug}`}
       />
     );
@@ -37,12 +41,13 @@ const Tree = ({
     calvesElement = (
       <ul>
         {
-          calves.map((item) => (
+          calves.map((item, index) => (
             <li key={item.id}>
+              {index === 0 && (<span className={styles['last-known']}>Last know calf</span>)}
               <Card
-                type='bottlenose-dolphin'
+                type={type}
                 id={`#${item.id}`}
-                subid={item?.auid ? `#${item.auid}` : undefined}
+                reference={item?.reference ? `#${item.reference}` : undefined}
                 name={item?.name ?? undefined}
                 link={item.slug}
               />
@@ -62,9 +67,9 @@ const Tree = ({
 
       <li className={styles.name}>
         <Card
-          type='bottlenose-dolphin'
+          type={type}
           id={`#${entry.id}`}
-          subid={entry?.auid ? `#${entry.auid}` : undefined}
+          reference={entry?.reference ? `#${entry.reference}` : undefined}
           name={entry.name ?? undefined}
           link={''}
           disabled

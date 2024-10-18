@@ -2,19 +2,21 @@ import styles from './Toolbar.module.scss';
 
 import React, { useState, useEffect } from 'react';
 
-import type { CatalogueTypes, CatalogueBottlenoseDolphinListAPIResponse } from '@/helpers/types';
+import type { CatalogueAPIResponse } from '@/helpers/types';
+
+import { Catalogues } from '@/helpers/constants';
 
 import { Card, Loading } from '@/components';
 
 interface Props {
-  type: CatalogueTypes,
+  catalogue: Catalogues,
 }
 
 const Toolbar = ({
-  type,
+  catalogue,
 }: Props) => {
   const [search, setSearch] = useState<string>('');
-  const [data, setData] = useState<null | CatalogueBottlenoseDolphinListAPIResponse>(null);
+  const [data, setData] = useState<null | CatalogueAPIResponse>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -26,8 +28,8 @@ const Toolbar = ({
     const getData = async () => {
       setLoading(true);
 
-      const response = await fetch(`/api/catalogues/${type}?search=${search}&page=1`);
-      const result: CatalogueBottlenoseDolphinListAPIResponse = await response.json();
+      const response = await fetch(`/api/catalogues/${catalogue}?search=${search}&page=1`);
+      const result: CatalogueAPIResponse = await response.json();
       setData(result);
 
       setLoading(false);
@@ -51,11 +53,11 @@ const Toolbar = ({
   const resultsElements = data?.meta?.totalItems === 0 ? noResultsElement : data?.items.map((item) => (
     <li key={item.id}>
       <Card
-        type={type}
+        type={catalogue}
         id={`#${item.id}`}
         name={item?.name ? String(item.name) : undefined}
-        subid={item?.auid ? `#${item.auid}` : undefined}
-        link={`/research/catalogues/${type}/${item.slug}`}
+        reference={item?.reference ? `#${item.reference}` : undefined}
+        link={`/research/catalogues/${catalogue}/${item.slug}`}
       />
     </li>
   ));
@@ -65,7 +67,7 @@ const Toolbar = ({
       <div className={classes.join(' ')}>
         <input
           type="search"
-          placeholder="Search by name, ID, AUID, birth year..."
+          placeholder="Search by name, ID, reference, birth year..."
           onChange={({ target }) => handleSearchChange((target as HTMLInputElement).value)}
         />
 

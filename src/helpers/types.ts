@@ -62,30 +62,28 @@ export type SpeciesEntry = {
   image: FlattenedImage,
 };
 
-export type CatalogueTypes = 'bottlenose-dolphin' | 'minke-whale';
-
-// Simplified references used in API responses and the `<Card />` component
-export type CatalogueBottlenoseDolphinBasicInfo = {
-  id: string,
-  auid: string | null,
-  name: string | null,
-  slug: string,
-};
-
-export type CatalogueBottlenoseDolphinListAPIResponse = {
+export type CatalogueAPIResponse = {
   meta: {
     pageSize: number,
     currentPage: number,
     totalPages: number,
     totalItems: number,
   },
-  items: Array<CatalogueBottlenoseDolphinBasicInfo>,
+  items: Array<CatalogueBasicInfo>,
+};
+
+// Simplified references used in API responses and the `<Card />` component
+export type CatalogueBasicInfo = {
+  id: string,
+  reference: string | null,
+  name: string | null,
+  slug: string,
 };
 
 export type CatalogueBottlenoseDolphin = {
   entry: {
     id: string,
-    auid: string | null,
+    reference: string | null,
     name: string | null,
     slug: string,
     birthYear: string | null,
@@ -98,8 +96,22 @@ export type CatalogueBottlenoseDolphin = {
     otherImages: Array<FlattenedImage> | [],
     lastUpdated: string,
   },
-  mother: CatalogueBottlenoseDolphinBasicInfo | null,
-  calves: Array<CatalogueBottlenoseDolphinBasicInfo> | [],
+  mother: CatalogueBasicInfo | null,
+  calves: Array<CatalogueBasicInfo> | [],
+};
+
+export type CatalogueMinkeWhale = {
+  entry: {
+    id: string,
+    reference: string | null,
+    name: string | null,
+    slug: string,
+    totalRecaptures: number | null,
+    yearsRecaptured: Array<string> | null,
+    leftDorsalFin: FlattenedImage | null,
+    rightDorsalFin: FlattenedImage | null,
+    lastUpdated: string,
+  },
 };
 
 // Contentful Content Models
@@ -222,7 +234,7 @@ export type ContentTypeCatalogueBottlenoseDolphin = {
   contentTypeId: ContentTypes.CatalogueBottlenoseDolphin,
   fields: {
     id: EntryFieldTypes.Symbol,
-    auid?: EntryFieldTypes.Symbol,
+    reference?: EntryFieldTypes.Symbol,
     name?: EntryFieldTypes.Symbol,
     slug: EntryFieldTypes.Symbol,
     birthYear?: EntryFieldTypes.Date,
@@ -234,5 +246,19 @@ export type ContentTypeCatalogueBottlenoseDolphin = {
     leftDorsalFin?: EntryFieldTypes.AssetLink,
     rightDorsalFin?: EntryFieldTypes.AssetLink,
     otherImages?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>,
+  },
+};
+
+export type ContentTypeCatalogueMinkeWhale = {
+  contentTypeId: ContentTypes.CatalogueMinkeWhale,
+  fields: {
+    id: EntryFieldTypes.Symbol,
+    reference?: EntryFieldTypes.Symbol,
+    name?: EntryFieldTypes.Symbol,
+    slug: EntryFieldTypes.Symbol,
+    totalRecaptures: EntryFieldTypes.Number,
+    yearsRecaptured: EntryFieldTypes.Array<EntryFieldTypes.Symbol>,
+    leftDorsalFin?: EntryFieldTypes.AssetLink,
+    rightDorsalFin?: EntryFieldTypes.AssetLink,
   },
 };

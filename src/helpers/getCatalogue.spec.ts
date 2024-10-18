@@ -1,6 +1,12 @@
 import { contentfulDeliveryClient } from './contentful';
 
-import { getCatalogueList, getCatalogueItem, getCatalogueItemSlug } from './getBottlenoseDolphinCatalogue';
+import {
+  getCatalogueList,
+  getBottlenoseDolphinCatalogueItem,
+  getBottlenoseDolphinItemEntrySlug,
+  getMinkeWhaleCatalogueItem,
+  getMinkeWhaleItemEntrySlug,
+} from './getCatalogue';
 
 jest.mock('./flattenAssetFields', () => ({
   flattenImageAssetFields: jest.fn((item) => item),
@@ -39,7 +45,11 @@ describe('getCatalogueList', () => {
       items: mockedEntries,
     }));
 
-    const result = await getCatalogueList({ page: 2 });
+    const result = await getCatalogueList(
+      // @ts-expect-error String of enum value
+      'bottlenose-dolphin',
+      { page: 2 },
+    );
 
     expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
     expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(1, {
@@ -58,12 +68,12 @@ describe('getCatalogueList', () => {
       },
       items: [{
         id: 'mocked-id-1',
-        auid: null,
+        reference: null,
         name: 'mocked name 1',
         slug: 'mocked-slug-1',
       }, {
         id: 'mocked-id-2',
-        auid: null,
+        reference: null,
         name: 'mocked name 2',
         slug: 'mocked-slug-2',
       }],
@@ -76,7 +86,11 @@ describe('getCatalogueList', () => {
       items: mockedEntries,
     }));
 
-    await getCatalogueList({ page: 2, search: 'foo bar' });
+    await getCatalogueList(
+      // @ts-expect-error String of enum value
+      'bottlenose-dolphin',
+      { page: 2, search: 'foo bar' },
+    );
 
     expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
     expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(1, {
@@ -89,7 +103,7 @@ describe('getCatalogueList', () => {
   });
 });
 
-describe('getCatalogueItem', () => {
+describe('getBottlenoseDolphinCatalogueItem', () => {
   it('Gets catalogue item with default fields', async () => {
     (contentfulDeliveryClient.getEntries as jest.Mock).mockImplementationOnce(() => ({
       items: [{
@@ -108,7 +122,7 @@ describe('getCatalogueItem', () => {
       items: [],
     }));
 
-    const result = await getCatalogueItem('mocked-slug');
+    const result = await getBottlenoseDolphinCatalogueItem('mocked-slug');
 
     expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(2);
     expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(1, {
@@ -125,7 +139,7 @@ describe('getCatalogueItem', () => {
     expect(result).toStrictEqual({
       entry: {
         id: 'mocked-id',
-        auid: null,
+        reference: null,
         name: null,
         slug: 'mocked-slug',
         birthYear: null,
@@ -152,7 +166,7 @@ describe('getCatalogueItem', () => {
         },
         fields: {
           id: 'mocked-id',
-          auid: 'mocked-au-id',
+          reference: 'mocked-au-id',
           name: 'mocked name',
           slug: 'mocked-slug',
           birthYear: 'mocked birth year',
@@ -166,7 +180,7 @@ describe('getCatalogueItem', () => {
           mother: {
             fields: {
               id: 'mocked-mother-id-1',
-              auid: 'mocked-mother-auid-1',
+              reference: 'mocked-mother-reference-1',
               name: 'mocked-mother-name-1',
               slug: 'mocked-mother-slug-1',
             },
@@ -179,7 +193,7 @@ describe('getCatalogueItem', () => {
       items: [{
         fields: {
           id: 'mocked-calf-id-1',
-          auid: 'mocked-calf-auid-1',
+          reference: 'mocked-calf-reference-1',
           name: 'mocked-calf-name-1',
           slug: 'mocked-calf-slug-1',
         },
@@ -191,12 +205,12 @@ describe('getCatalogueItem', () => {
       }],
     }));
 
-    const result = await getCatalogueItem('mocked-slug');
+    const result = await getBottlenoseDolphinCatalogueItem('mocked-slug');
 
     expect(result).toStrictEqual({
       entry: {
         id: 'mocked-id',
-        auid: 'mocked-au-id',
+        reference: 'mocked-au-id',
         name: 'mocked name',
         slug: 'mocked-slug',
         birthYear: 'mocked birth year',
@@ -211,18 +225,18 @@ describe('getCatalogueItem', () => {
       },
       mother: {
         id: 'mocked-mother-id-1',
-        auid: 'mocked-mother-auid-1',
+        reference: 'mocked-mother-reference-1',
         name: 'mocked-mother-name-1',
         slug: 'mocked-mother-slug-1',
       },
       calves: [{
         id: 'mocked-calf-id-1',
-        auid: 'mocked-calf-auid-1',
+        reference: 'mocked-calf-reference-1',
         name: 'mocked-calf-name-1',
         slug: 'mocked-calf-slug-1',
       }, {
         id: 'mocked-calf-id-2',
-        auid: null,
+        reference: null,
         name: null,
         slug: 'mocked-calf-slug-2',
       }],
@@ -234,7 +248,7 @@ describe('getCatalogueItem', () => {
       items: [],
     }));
 
-    const result = await getCatalogueItem('mocked-slug');
+    const result = await getBottlenoseDolphinCatalogueItem('mocked-slug');
 
     expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
 
@@ -242,7 +256,7 @@ describe('getCatalogueItem', () => {
   });
 });
 
-describe('getCatalogueItemSlug', () => {
+describe('getBottlenoseDolphinItemEntrySlug', () => {
   it('Gets slug from entry by ID', async () => {
     (contentfulDeliveryClient.getEntries as jest.Mock).mockImplementation(() => ({
       items: [{
@@ -252,7 +266,7 @@ describe('getCatalogueItemSlug', () => {
       }],
     }));
 
-    const result = await getCatalogueItemSlug('mocked-id');
+    const result = await getBottlenoseDolphinItemEntrySlug('mocked-id');
 
     expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
     expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(1, {
@@ -269,7 +283,129 @@ describe('getCatalogueItemSlug', () => {
       items: [],
     }));
 
-    const result = await getCatalogueItemSlug('mocked-id');
+    const result = await getBottlenoseDolphinItemEntrySlug('mocked-id');
+
+    expect(result).toBe(null);
+  });
+});
+
+describe('getMinkeWhaleCatalogueItem', () => {
+  it('Gets catalogue item with default fields', async () => {
+    (contentfulDeliveryClient.getEntries as jest.Mock).mockImplementationOnce(() => ({
+      items: [{
+        sys: {
+          id: 'mocked-entry-id',
+          updatedAt: 'mocked-updated-at',
+        },
+        fields: {
+          id: 'mocked-id',
+          slug: 'mocked-slug',
+        },
+      }],
+    }));
+
+    const result = await getMinkeWhaleCatalogueItem('mocked-slug');
+
+    expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
+    expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(1, {
+      content_type: 'catalogueMinkeWhale',
+      limit: 1,
+      'fields.slug': 'mocked-slug',
+    });
+
+    expect(result).toStrictEqual({
+      entry: {
+        id: 'mocked-id',
+        reference: null,
+        name: null,
+        slug: 'mocked-slug',
+        totalRecaptures: null,
+        yearsRecaptured: null,
+        leftDorsalFin: null,
+        rightDorsalFin: null,
+        lastUpdated: 'mocked-updated-at',
+      },
+    });
+  });
+
+  it('Gets catalogue item with all fields', async () => {
+    (contentfulDeliveryClient.getEntries as jest.Mock).mockImplementationOnce(() => ({
+      items: [{
+        sys: {
+          id: 'mocked-entry-id',
+          updatedAt: 'mocked-updated-at',
+        },
+        fields: {
+          id: 'mocked-id',
+          reference: 'mocked-au-id',
+          name: 'mocked name',
+          slug: 'mocked-slug',
+          totalRecaptures: 5,
+          yearsRecaptured: ['mocked recapture 1'],
+          leftDorsalFin: 'mocked-left-dorsal-fin',
+          rightDorsalFin: 'mocked-right-dorsal-fin',
+        },
+      }],
+    }));
+
+    const result = await getMinkeWhaleCatalogueItem('mocked-slug');
+
+    expect(result).toStrictEqual({
+      entry: {
+        id: 'mocked-id',
+        reference: 'mocked-au-id',
+        name: 'mocked name',
+        slug: 'mocked-slug',
+        totalRecaptures: 5,
+        yearsRecaptured: ['mocked recapture 1'],
+        leftDorsalFin: 'mocked-left-dorsal-fin',
+        rightDorsalFin: 'mocked-right-dorsal-fin',
+        lastUpdated: 'mocked-updated-at',
+      },
+    });
+  });
+
+  it('Returns null for no catalogue item', async () => {
+    (contentfulDeliveryClient.getEntries as jest.Mock).mockImplementation(() => ({
+      items: [],
+    }));
+
+    const result = await getBottlenoseDolphinCatalogueItem('mocked-slug');
+
+    expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
+
+    expect(result).toBe(null);
+  });
+});
+
+describe('getMinkeWhaleItemEntrySlug', () => {
+  it('Gets slug from entry by ID', async () => {
+    (contentfulDeliveryClient.getEntries as jest.Mock).mockImplementation(() => ({
+      items: [{
+        fields: {
+          slug: 'mocked-slug',
+        },
+      }],
+    }));
+
+    const result = await getMinkeWhaleItemEntrySlug('mocked-id');
+
+    expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
+    expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(1, {
+      content_type: 'catalogueMinkeWhale',
+      limit: 1,
+      'fields.id': 'mocked-id',
+    });
+
+    expect(result).toBe('mocked-slug');
+  });
+
+  it('Handles no matching entries', async () => {
+    (contentfulDeliveryClient.getEntries as jest.Mock).mockImplementation(() => ({
+      items: [],
+    }));
+
+    const result = await getMinkeWhaleItemEntrySlug('mocked-id');
 
     expect(result).toBe(null);
   });

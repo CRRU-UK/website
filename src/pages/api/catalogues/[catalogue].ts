@@ -5,7 +5,8 @@ import type { LogtailAPIRequest } from '@logtail/next';
 
 import { withLogtail } from '@logtail/next';
 
-import { getCatalogueList } from '@/helpers/getBottlenoseDolphinCatalogue';
+import { Catalogues } from '@/helpers/constants';
+import { getCatalogueList } from '@/helpers/getCatalogue';
 
 const handler = async (
   req: LogtailAPIRequest,
@@ -13,6 +14,15 @@ const handler = async (
 ) => {
   if (req.method !== 'GET') {
     return res.status(405).send('Method Not Allowed');
+  }
+
+  const catalogue = req.query.catalogue;
+
+  if (
+    catalogue !== Catalogues.BottlenoseDolphin
+    && catalogue !== Catalogues.MinkeWhale
+  ) {
+    return res.status(404).send('Not Found');
   }
 
   const pageQuery = Array.isArray(req.query.page) ? req.query.page[0] : req.query.page;
@@ -37,7 +47,7 @@ const handler = async (
     query.search = searchQuery;
   }
 
-  const data = await getCatalogueList(query);
+  const data = await getCatalogueList(catalogue, query);
 
   return res.json(data);
 };

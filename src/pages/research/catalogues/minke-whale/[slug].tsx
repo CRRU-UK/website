@@ -6,20 +6,19 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import type { CatalogueBottlenoseDolphin } from '@/helpers/types';
+import type { CatalogueMinkeWhale } from '@/helpers/types';
 
 import sitemap from '@/data/sitemap.json';
 
 import { Catalogues } from '@/helpers/constants';
 import { formatDateMonth } from '@/helpers/formatDate';
-import { getBottlenoseDolphinCatalogueItem, getBottlenoseDolphinItemEntrySlug } from '@/helpers/getCatalogue';
+import { getMinkeWhaleCatalogueItem, getMinkeWhaleItemEntrySlug } from '@/helpers/getCatalogue';
 
 import {
   Breadcrumbs,
   SEO,
   Timeline,
   Tooltip,
-  Tree,
   Toolbar,
 } from '@/components';
 
@@ -35,38 +34,32 @@ const Unknown = () => (
 );
 
 interface PageProps {
-  catalogueData: CatalogueBottlenoseDolphin,
-  ageText: string | null,
+  catalogueData: CatalogueMinkeWhale,
 }
 
 const Page: NextPage<PageProps> = ({
   catalogueData,
-  ageText,
 }: PageProps) => {
   const {
     id,
     reference,
     name,
     slug,
-    birthYear,
-    sex,
     totalRecaptures,
     yearsRecaptured,
-    totalCalves,
     leftDorsalFin,
     rightDorsalFin,
-    otherImages,
     lastUpdated,
   } = catalogueData.entry;
 
   const title = name ? `#${id} (${name})` : `#${id}`;
-  const pageDescription = `CRRU Bottlenose Dolphin catalogue entry for ${title}.`;
-  const path = `/research/catalogues/${Catalogues.BottlenoseDolphin}/${slug}`;
-  const image = otherImages?.[0] ?? leftDorsalFin ?? rightDorsalFin;
+  const pageDescription = `CRRU Minke Whale catalogue entry for ${title}.`;
+  const path = `/research/catalogues/${Catalogues.MinkeWhale}/${slug}`;
+  const image = leftDorsalFin ?? rightDorsalFin;
   const breadcrumbs = [
     sitemap.research,
     sitemap.catalogues,
-    { title: `Bottlenose Dolphin: ${title}`, path },
+    { title: `Minke Whale: ${title}`, path },
   ];
 
   const noImage = <span className={styles['no-image']}>No image</span>;
@@ -77,7 +70,7 @@ const Page: NextPage<PageProps> = ({
     <>
       <SEO
         page={{
-          title: `${title} - Bottlenose Dolphin - ${sitemap.catalogues.title}`,
+          title: `${title} - Minke Whale - ${sitemap.catalogues.title}`,
           description: pageDescription,
           path,
         }}
@@ -90,54 +83,34 @@ const Page: NextPage<PageProps> = ({
       />
 
       {/* key is needed to reset search state on navigation */}
-      <Toolbar catalogue={Catalogues.BottlenoseDolphin} key={router.asPath} />
+      <Toolbar catalogue={Catalogues.MinkeWhale} key={router.asPath} />
 
       <section className={styles.container}>
         <article className={styles.main}>
           <Breadcrumbs style="inline" items={breadcrumbs} />
 
           <div className={styles.wrapper}>
-            <h2 className={styles['icon-dolphin']}>Bottlenose Dolphin</h2>
+            <h2 className={styles['icon-whale']}>Minke Whale</h2>
             <h1>{title}</h1>
 
             <ul className={styles.info}>
-              <li className={styles['info-item-crru']}>
+              <li className={[styles['info-item-half'], styles['info-item-crru']].join(' ')}>
                 <b>CRRU ID #</b>
                 {id}
               </li>
 
-              <li className={styles['info-item-aulfs']}>
-                <b>AULFS Ref # <Tooltip text="Aberdeen University Lighthouse Field Station catalogue reference" /></b>
+              <li className={[styles['info-item-half'], styles['info-item-hwdt']].join(' ')}>
+                <b>HWDT Ref # <Tooltip text="Hebridean Whale and Dolphin Trust catalogue reference" /></b>
                 {reference ? <Link
-                  href="https://www.abdn.ac.uk/sbs/outreach/lighthouse/gallery/album13/"
+                  href="https://hwdt.org/catalogue-minke-whale"
                   rel="noopener noreferrer"
                   target="_blank"
                 >{reference}</Link> : <Unknown />}
               </li>
 
-              <li className={styles['info-item-name']}>
+              <li className={[styles['info-item-half'], styles['info-item-name']].join(' ')}>
                 <b>Name</b>
                 {name ?? <i className={styles.unknown}>Unnamed</i>}
-              </li>
-
-              <li className={styles['info-item-birth-year']}>
-                <b>Birth Year</b>
-                {birthYear ?? <Unknown />}
-              </li>
-
-              <li className={styles['info-item-age']}>
-                <b>Age (Years)</b>
-                {ageText ? String(ageText) : <Unknown />}
-              </li>
-
-              <li className={styles['info-item-sex']}>
-                <b>Sex</b>
-                {sex === 'Unknown' ? <Unknown /> : sex}
-              </li>
-
-              <li className={[styles['info-item-half'], styles['info-item-calves']].join(' ')}>
-                <b>No. of Known Calves</b>
-                {sex !== 'Female' ? <i className={styles.unknown}>N/A</i> : (totalCalves ?? <Unknown />)}
               </li>
 
               <li className={[styles['info-item-half'], styles['info-item-total-recaptures']].join(' ')}>
@@ -171,35 +144,12 @@ const Page: NextPage<PageProps> = ({
                   className={styles.image}
                 /> : (noImage)}
               </li>
-
-              {otherImages.length > 0 && (
-                <li className={[styles['info-item-full'], styles['info-item-other-images']].join(' ')}>
-                  <b>Other Images</b>
-
-                  <ul>
-                    {otherImages.map((item) => (
-                      <li key={item.url}>
-                        <Image
-                          src={item.url}
-                          width={item.width}
-                          height={item.height}
-                          alt=""
-                          className={styles.image}
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              )}
             </ul>
           </div>
         </article>
 
         <article className={styles.sidebar}>
-          <Tree
-            type={Catalogues.BottlenoseDolphin}
-            data={catalogueData}
-          />
+          <p className={styles['no-data']}>No family data available</p>
         </article>
       </section>
 
@@ -215,17 +165,17 @@ interface PageParams extends ParsedUrlQuery {
 export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const { slug } = ctx.params as PageParams;
 
-  const catalogueData = await getBottlenoseDolphinCatalogueItem(slug);
+  const catalogueData = await getMinkeWhaleCatalogueItem(slug);
 
   if (!catalogueData) {
     const [id] = slug.split('-');
 
-    const newSlug = await getBottlenoseDolphinItemEntrySlug(id);
+    const newSlug = await getMinkeWhaleItemEntrySlug(id);
     if (newSlug) {
       return {
         redirect: {
           permanent: true,
-          destination: `/research/catalogues/${Catalogues.BottlenoseDolphin}/${newSlug}`,
+          destination: `/research/catalogues/${Catalogues.MinkeWhale}/${newSlug}`,
         },
       };
     }
@@ -233,31 +183,9 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
     return { notFound: true };
   }
 
-  const { birthYear } = catalogueData.entry;
-
-  // Calculate age in server-side props to prevent rendering mismatch
-  let ageNumber = null;
-  if (birthYear !== null && !Number.isNaN(birthYear)) {
-    ageNumber = new Date().getFullYear() - new Date(birthYear).getFullYear();
-  }
-
-  let ageText = null;
-  if (ageNumber !== null) {
-    ageText = ageNumber;
-
-    if (ageNumber < 1) {
-      ageText = '< 1';
-    } else if (ageNumber > 25) {
-      ageText = '25+';
-    }
-
-    ageText = String(ageText);
-  }
-
   return {
     props: {
       catalogueData,
-      ageText,
     },
   };
 };

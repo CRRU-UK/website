@@ -27,7 +27,7 @@ const mockedEntryData = {
 const mockedMotherCalvesData = {
   mother: {
     id: 'mocked mother id',
-    auid: 'mocked mother auid',
+    reference: 'mocked mother reference',
     name: 'mocked mother name',
     slug: 'mocked mother slug',
   },
@@ -37,12 +37,14 @@ const mockedMotherCalvesData = {
 it('Passes accessibility with default props', async () => act(async () => {
   const { container } = render(
     <Tree
+      // @ts-expect-error String of enum value
+      type="bottlenose-dolphin"
       data={{
         ...mockedMotherCalvesData,
         entry: {
           ...mockedEntryData,
           id: 'mocked id',
-          auid: 'mocked auid',
+          reference: 'mocked reference',
           name: 'mocked name',
           slug: 'mocked slug',
         },

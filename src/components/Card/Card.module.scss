@@ -78,6 +78,10 @@ $bottom-border-size: 5px;
   background-image: url('../../../public/images/icons/catalogues/dolphin.svg');
 }
 
+.whale > .icon {
+  background-image: url('../../../public/images/icons/catalogues/whale.svg');
+}
+
 .disabled {
   pointer-events: none;
   box-shadow: none;
@@ -112,7 +116,7 @@ $bottom-border-size: 5px;
   justify-content: flex-start;
 }
 
-.subid {
+.reference {
   opacity: 0.6;
   margin-left: auto;
   font-size: 12px;
