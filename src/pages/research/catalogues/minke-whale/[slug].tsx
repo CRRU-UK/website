@@ -84,7 +84,7 @@ const Page: NextPage<PageProps> = ({
       />
 
       {/* key is needed to reset search state on navigation */}
-      <Toolbar type={Catalogues.MinkeWhale} key={router.asPath} />
+      <Toolbar catalogue={Catalogues.MinkeWhale} key={router.asPath} />
 
       <section className={styles.container}>
         <article className={styles.main}>

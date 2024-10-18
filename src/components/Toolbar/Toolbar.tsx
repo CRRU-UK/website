@@ -9,11 +9,11 @@ import { Catalogues } from '@/helpers/constants';
 import { Card, Loading } from '@/components';
 
 interface Props {
-  type: Catalogues,
+  catalogue: Catalogues,
 }
 
 const Toolbar = ({
-  type,
+  catalogue,
 }: Props) => {
   const [search, setSearch] = useState<string>('');
   const [data, setData] = useState<null | CatalogueAPIResponse>(null);
@@ -28,7 +28,7 @@ const Toolbar = ({
     const getData = async () => {
       setLoading(true);
 
-      const response = await fetch(`/api/catalogues/${type}?search=${search}&page=1`);
+      const response = await fetch(`/api/catalogues/${catalogue}?search=${search}&page=1`);
       const result: CatalogueAPIResponse = await response.json();
       setData(result);
 
@@ -53,11 +53,11 @@ const Toolbar = ({
   const resultsElements = data?.meta?.totalItems === 0 ? noResultsElement : data?.items.map((item) => (
     <li key={item.id}>
       <Card
-        type={type}
+        type={catalogue}
         id={`#${item.id}`}
         name={item?.name ? String(item.name) : undefined}
         reference={item?.reference ? `#${item.reference}` : undefined}
-        link={`/research/catalogues/${type}/${item.slug}`}
+        link={`/research/catalogues/${catalogue}/${item.slug}`}
       />
     </li>
   ));

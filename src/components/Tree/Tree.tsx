@@ -35,7 +35,7 @@ const Tree = ({
   }
 
   let calvesElement = emptyElement;
-  if (calves && calves.length) {
+  if (calves?.length) {
     calvesElement = (
       <ul>
         {

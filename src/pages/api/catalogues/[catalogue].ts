@@ -16,8 +16,6 @@ const handler = async (
     return res.status(405).send('Method Not Allowed');
   }
 
-  console.debug('req.query', req.query);
-
   const catalogue = req.query.catalogue;
 
   if (
