@@ -112,6 +112,7 @@ const Page: NextPage<PageProps> = ({
                   href="https://www.abdn.ac.uk/sbs/outreach/lighthouse/gallery/album13/"
                   rel="noopener noreferrer"
                   target="_blank"
+                  className="external"
                 >{reference}</Link> : "-"}
               </li>
 

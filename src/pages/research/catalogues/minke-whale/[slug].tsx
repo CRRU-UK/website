@@ -105,6 +105,7 @@ const Page: NextPage<PageProps> = ({
                   href="https://hwdt.org/catalogue-minke-whale"
                   rel="noopener noreferrer"
                   target="_blank"
+                  className="external"
                 >{reference}</Link> : "-"}
               </li>
 
