@@ -43,7 +43,7 @@ const Tree = ({
         {
           calves.map((item, index) => (
             <li key={item.id}>
-              {index === 0 && (<span className={styles['last-known']}>Last know calf</span>)}
+              {index === 0 && (<span className={styles['last-known']}>Last known calf</span>)}
               <Card
                 type={type}
                 id={`#${item.id}`}

@@ -96,7 +96,10 @@ const Page: NextPage<PageProps> = ({
       <br />
 
       <Filters
-        onSearch={handleSearchChange}
+        search={{
+          callback: handleSearchChange,
+          label: "Search by name, ID, reference birth year...",
+        }}
         dropdowns={[{
           name: 'Catalogues',
           options: [
@@ -105,7 +108,6 @@ const Page: NextPage<PageProps> = ({
           ],
           callback: setCatalogue,
         }]}
-        searchLabel="Search by name, ID, reference birth year..."
       />
 
       <div className={loading ? styles.loading : ''}>

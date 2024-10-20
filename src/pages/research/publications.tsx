@@ -95,7 +95,7 @@ const UsePublicationsContent = (data: Array<PublicationDataReduced>) => {
   return (
     <>
       <Filters
-        onSearch={setSearch}
+        search={{ callback: setSearch }}
         dropdowns={[{
           name: 'Categories',
           options: Object.entries(categories).map(([key, value]) => ({ text: value, value: key })),

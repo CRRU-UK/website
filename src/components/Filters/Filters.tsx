@@ -1,15 +1,14 @@
 import styles from './Filters.module.scss';
 
-interface Props {
-  onSearch?: Function,
-  searchLabel?: string,
-  dropdowns?: Array<Dropdown>,
+interface UseSearchProps {
+  callback: Function,
+  label?: string,
 }
 
-const UseSearch = (
-  callback: Function,
-  label: string = 'Search...',
-) => (
+const UseSearch = ({
+  callback,
+  label = 'Search...',
+}: UseSearchProps) => (
   <input
     type="search"
     name="search"
@@ -20,7 +19,7 @@ const UseSearch = (
   />
 );
 
-interface Dropdown {
+interface DropdownProps {
   name: string,
   options: Array<{
     text: string,
@@ -33,7 +32,7 @@ const UseDropdown = ({
   name,
   options,
   callback,
-}: Dropdown) => (
+}: DropdownProps) => (
   <select
     onInput={({ target }) => callback((target as HTMLSelectElement).value)}
     className={styles.dropdown}
@@ -46,14 +45,18 @@ const UseDropdown = ({
   </select>
 );
 
+interface Props {
+  search?: UseSearchProps,
+  dropdowns?: Array<DropdownProps>,
+}
+
 const Filters = ({
-  onSearch,
-  searchLabel,
+  search,
   dropdowns,
 }: Props) => (
   <div className={styles.filters}>
     {dropdowns?.map((item) => UseDropdown(item))}
-    {onSearch && UseSearch(onSearch, searchLabel)}
+    {search && UseSearch({ callback: search.callback, label: search.label })}
   </div>
 );
 
