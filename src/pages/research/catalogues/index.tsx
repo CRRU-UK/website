@@ -25,11 +25,16 @@ interface PageProps {
 const Page: NextPage<PageProps> = ({
   pageData,
 }: PageProps) => {
+  let initCatalogue = Catalogues.BottlenoseDolphin;
   let initPage = 1;
   let initSearch = '';
-  let initCatalogue = Catalogues.BottlenoseDolphin;
 
   const searchParams = useSearchParams();
+
+  const paramCatalogue = searchParams.get('catalogue');
+  if (paramCatalogue && Object.values(Catalogues).includes(paramCatalogue as any)) {
+    initCatalogue = paramCatalogue as Catalogues;
+  }
 
   const paramPage = searchParams.get('page');
   if (paramPage) {
@@ -41,14 +46,9 @@ const Page: NextPage<PageProps> = ({
     initSearch = paramSearch;
   }
 
-  const paramCatalogue = searchParams.get('catalogue');
-  if (paramCatalogue && Object.values(Catalogues).includes(paramCatalogue as any)) {
-    initCatalogue = paramCatalogue as Catalogues;
-  }
-
+  const [catalogue, setCatalogue] = useState<Catalogues>(initCatalogue);
   const [page, setPage] = useState<number>(initPage);
   const [search, setSearch] = useState<string>(initSearch);
-  const [catalogue, setCatalogue] = useState<Catalogues>(initCatalogue);
   const [searchText, setSearchText] = useState<typeof search>('');
   const [data, setData] = useState<null | CatalogueAPIResponse>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -77,8 +77,8 @@ const Page: NextPage<PageProps> = ({
   useEffect(() => {
     let newURL: URL | string = new URL(location.toString());
 
-    newURL.searchParams.set('page', String(page));
     newURL.searchParams.set('catalogue', catalogue);
+    newURL.searchParams.set('page', String(page));
     if (search !== '') {
       newURL.searchParams.set('search', search);
     }
