@@ -7,6 +7,8 @@
   justify-content: flex-start;
 }
 
+$social-links-height-small: 80px;
+
 // Main
 
 header {
@@ -83,7 +85,7 @@ header > nav {
     width: 100%;
     height: calc(100vh - $global-header-height-small);
     overflow-y: scroll;
-    padding-bottom: 100px;
+    padding-bottom: $social-links-height-small + $global-padding-small;
     background: $global-color-body;
 
     body.menu & {
@@ -602,8 +604,8 @@ header > .social-links {
     display: none;
     justify-content: center;
     margin: 0;
-    padding: ($global-padding-small * 2) 0;
     width: 100%;
+    height: $social-links-height-small;
     background: rgba($global-color-body, 0.5);
 
     body.menu & {
