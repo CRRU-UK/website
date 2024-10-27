@@ -144,6 +144,8 @@ const getBottlenoseDolphinCatalogueItem = async (
     },
     mother: entry.fields.mother ? reduceCatalogueItem(entry.fields.mother) : null,
     calves,
+    previous: entry.fields.previousEntry ? reduceCatalogueItem(entry.fields.previousEntry) : null,
+    next: entry.fields.nextEntry ? reduceCatalogueItem(entry.fields.nextEntry) : null,
   };
 
   return data;
@@ -204,6 +206,8 @@ const getMinkeWhaleCatalogueItem = async (
       rightDorsalFin: entry.fields?.rightDorsalFin ? flattenImageAssetFields(entry.fields.rightDorsalFin) : null,
       lastUpdated: entry.sys.updatedAt,
     },
+    previous: entry.fields.previousEntry ? reduceCatalogueItem(entry.fields.previousEntry) : null,
+    next: entry.fields.nextEntry ? reduceCatalogueItem(entry.fields.nextEntry) : null,
   };
 
   return data;

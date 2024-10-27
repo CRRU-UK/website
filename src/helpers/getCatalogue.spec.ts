@@ -34,6 +34,20 @@ const mockedEntries = [{
   },
 }];
 
+const mockedPreviousEntryFields = {
+  id: 'mocked-previous-entry-id',
+  reference: 'mocked-previous-entry-reference',
+  name: 'mocked-previous-entry-name',
+  slug: 'mocked-previous-entry-slug',
+};
+
+const mockedNextEntryFields = {
+  id: 'mocked-next-entry-id',
+  reference: 'mocked-next-entry-reference',
+  name: 'mocked-next-entry-name',
+  slug: 'mocked-next-entry-slug',
+};
+
 afterEach(() => {
   jest.clearAllMocks();
 });
@@ -154,6 +168,8 @@ describe('getBottlenoseDolphinCatalogueItem', () => {
       },
       mother: null,
       calves: [],
+      previous: null,
+      next: null,
     });
   });
 
@@ -185,6 +201,8 @@ describe('getBottlenoseDolphinCatalogueItem', () => {
               slug: 'mocked-mother-slug-1',
             },
           },
+          previousEntry: { fields: mockedPreviousEntryFields },
+          nextEntry: { fields: mockedNextEntryFields },
         },
       }],
     }));
@@ -240,6 +258,8 @@ describe('getBottlenoseDolphinCatalogueItem', () => {
         name: null,
         slug: 'mocked-calf-slug-2',
       }],
+      previous: mockedPreviousEntryFields,
+      next: mockedNextEntryFields,
     });
   });
 
@@ -325,6 +345,8 @@ describe('getMinkeWhaleCatalogueItem', () => {
         rightDorsalFin: null,
         lastUpdated: 'mocked-updated-at',
       },
+      previous: null,
+      next: null,
     });
   });
 
@@ -344,6 +366,8 @@ describe('getMinkeWhaleCatalogueItem', () => {
           yearsRecaptured: ['mocked recapture 1'],
           leftDorsalFin: 'mocked-left-dorsal-fin',
           rightDorsalFin: 'mocked-right-dorsal-fin',
+          previousEntry: { fields: mockedPreviousEntryFields },
+          nextEntry: { fields: mockedNextEntryFields },
         },
       }],
     }));
@@ -362,6 +386,8 @@ describe('getMinkeWhaleCatalogueItem', () => {
         rightDorsalFin: 'mocked-right-dorsal-fin',
         lastUpdated: 'mocked-updated-at',
       },
+      previous: mockedPreviousEntryFields,
+      next: mockedNextEntryFields,
     });
   });
 

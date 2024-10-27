@@ -90,7 +90,12 @@ const Page: NextPage<PageProps> = ({
       />
 
       {/* key is needed to reset search state on navigation */}
-      <Toolbar catalogue={Catalogues.BottlenoseDolphin} key={router.asPath} />
+      <Toolbar
+        catalogue={Catalogues.BottlenoseDolphin}
+        previous={catalogueData.previous}
+        next={catalogueData.next}
+        key={router.asPath}
+      />
 
       <section className={styles.container}>
         <article className={styles.main}>
