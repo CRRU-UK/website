@@ -50,8 +50,8 @@
     100% { transform: translateY(0); }
   }
 
-  animation: whale 1s infinite $global-transition-ease-in-out-quart;
+  animation: whale 2s infinite $global-transition-ease-in-out-quart;
   transform-box: fill-box;
   transform-origin: center;
-  animation-delay: -0.7s;
+  animation-delay: 0s;
 }
