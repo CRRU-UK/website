@@ -7,6 +7,9 @@ const redirects = require('./redirects.json');
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  experimental: {
+    scrollRestoration: true
+  },
   images: {
     remotePatterns: [{
       protocol: 'https',
