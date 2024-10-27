@@ -421,11 +421,9 @@ $bottom-border-size: 5px;
   }
 
   &:hover {
-    color: inherit;
-    text-decoration: none;
-    border-color: $global-color-primary-dark;
     color: $global-color-primary-dark;
     text-decoration: underline;
+    border-color: $global-color-primary-dark;
   }
 
   &::before {
