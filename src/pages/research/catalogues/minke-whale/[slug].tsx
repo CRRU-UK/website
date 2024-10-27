@@ -158,7 +158,7 @@ const Page: NextPage<PageProps> = ({
           <p className={styles['no-data']}>No family data available</p>
 
           <Link
-            href={`${sitemap.catalogues.path}?catalogue=${Catalogues.BottlenoseDolphin}`}
+            href={`${sitemap.catalogues.path}?catalogue=${Catalogues.MinkeWhale}`}
             className={styles.back}
           >
             Back to catalogue
