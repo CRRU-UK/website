@@ -65,7 +65,7 @@ const Page: NextPage<PageProps> = ({
   const image = otherImages?.[0] ?? leftDorsalFin ?? rightDorsalFin;
   const breadcrumbs = [
     sitemap.research,
-    sitemap.catalogues,
+    { title: sitemap.catalogues.title, path: `${sitemap.catalogues.path}?catalogue=${Catalogues.BottlenoseDolphin}` },
     { title: `Bottlenose Dolphin: ${title}`, path },
   ];
 

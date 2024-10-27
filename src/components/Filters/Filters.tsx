@@ -3,11 +3,13 @@ import styles from './Filters.module.scss';
 interface UseSearchProps {
   callback: Function,
   label?: string,
+  defaultValue?: string,
 }
 
 const UseSearch = ({
   callback,
   label = 'Search...',
+  defaultValue,
 }: UseSearchProps) => (
   <input
     type="search"
@@ -15,12 +17,14 @@ const UseSearch = ({
     onInput={({ target }) => callback((target as HTMLInputElement).value)}
     placeholder={label}
     className={styles.search}
+    defaultValue={defaultValue}
     autoComplete="off"
   />
 );
 
 interface DropdownProps {
   name: string,
+  defaultValue?: string,
   options: Array<{
     text: string,
     value: string,
@@ -30,11 +34,13 @@ interface DropdownProps {
 
 const UseDropdown = ({
   name,
+  defaultValue,
   options,
   callback,
 }: DropdownProps) => (
   <select
     onInput={({ target }) => callback((target as HTMLSelectElement).value)}
+    defaultValue={defaultValue ?? options[0].value}
     className={styles.dropdown}
     name={name}
     key={name}
@@ -56,7 +62,7 @@ const Filters = ({
 }: Props) => (
   <div className={styles.filters}>
     {dropdowns?.map((item) => UseDropdown(item))}
-    {search && UseSearch({ callback: search.callback, label: search.label })}
+    {search && UseSearch(search)}
   </div>
 );
 

@@ -3,6 +3,7 @@
 import type { NextPage, GetServerSideProps } from 'next';
 
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 import type { PageData, CatalogueAPIResponse } from '@/helpers/types';
 
@@ -24,9 +25,30 @@ interface PageProps {
 const Page: NextPage<PageProps> = ({
   pageData,
 }: PageProps) => {
-  const [page, setPage] = useState<number>(1);
-  const [search, setSearch] = useState<string>('');
-  const [catalogue, setCatalogue] = useState<Catalogues>(Catalogues.BottlenoseDolphin);
+  let initPage = 1;
+  let initSearch = '';
+  let initCatalogue = Catalogues.BottlenoseDolphin;
+
+  const searchParams = useSearchParams();
+
+  const paramPage = searchParams.get('page');
+  if (paramPage) {
+    initPage = parseInt(paramPage)
+  }
+
+  const paramSearch = searchParams.get('search');
+  if (paramSearch) {
+    initSearch = paramSearch;
+  }
+
+  const paramCatalogue = searchParams.get('catalogue');
+  if (paramCatalogue && Object.values(Catalogues).includes(paramCatalogue as any)) {
+    initCatalogue = paramCatalogue as Catalogues;
+  }
+
+  const [page, setPage] = useState<number>(initPage);
+  const [search, setSearch] = useState<string>(initSearch);
+  const [catalogue, setCatalogue] = useState<Catalogues>(initCatalogue);
   const [searchText, setSearchText] = useState<typeof search>('');
   const [data, setData] = useState<null | CatalogueAPIResponse>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -50,7 +72,20 @@ const Page: NextPage<PageProps> = ({
 
     const timeout = setTimeout(getData, 500);
     return () => clearTimeout(timeout);
-  }, [page, search, catalogue]);
+  }, [catalogue, page, search]);
+
+  useEffect(() => {
+    let newURL: URL | string = new URL(location.toString());
+
+    newURL.searchParams.set('page', String(page));
+    newURL.searchParams.set('catalogue', catalogue);
+    if (search !== '') {
+      newURL.searchParams.set('search', search);
+    }
+
+    newURL = newURL.toString();
+    history.replaceState({ ...window.history.state, as: newURL, url: newURL }, '', newURL);
+  }, [data]);
 
   const handleSearchChange = (value: string) => {
     setPage(1);
@@ -99,9 +134,11 @@ const Page: NextPage<PageProps> = ({
         search={{
           callback: handleSearchChange,
           label: "Search by name, ID, reference birth year...",
+          defaultValue: search,
         }}
         dropdowns={[{
           name: 'Catalogues',
+          defaultValue: catalogue,
           options: [
             { text: 'Bottlenose dolphins', value: Catalogues.BottlenoseDolphin },
             { text: 'Minke whales', value: Catalogues.MinkeWhale },
