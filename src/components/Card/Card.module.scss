@@ -54,9 +54,6 @@ $bottom-border-size: 5px;
   $icon-size-small: 22px;
 
   > .icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-width: $icon-size-large;
     min-height: $icon-size-large;
     background: center center no-repeat;

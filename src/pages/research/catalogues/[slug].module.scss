@@ -342,8 +342,12 @@ $sidebar-size-large: 580px;
 $sidebar-size-medium: 480px;
 
 .sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   flex-shrink: 0;
-  padding: ($global-padding-large * 2) 0;
+  padding: ($global-padding-large * 2) 0 $global-padding-large;
   width: $sidebar-size-large;
   border-left: 2px solid $global-color-catalogue;
   border-bottom: 2px solid $global-color-catalogue;
@@ -357,12 +361,12 @@ $sidebar-size-medium: 480px;
   }
 
   @include breakpoint($global-catalogue-breakpoint-medium) {
-    padding: ($global-padding-medium * 2) 0;
+    padding: ($global-padding-medium * 2) 0 $global-padding-medium;
     width: $sidebar-size-medium;
   }
 
   @include breakpoint($global-catalogue-breakpoint-small) {
-    padding: ($global-padding-small * 2) 0;
+    padding: ($global-padding-small * 2) 0 $global-padding-small;
     width: 100%;
     border-left: 0;
     border-radius: 0;
@@ -376,7 +380,7 @@ $sidebar-size-medium: 480px;
   font-weight: 700;
   line-height: 24px;
   text-align: center;
-  color: $global-color-catalogue-dark;
+  color: $global-color-catalogue;
 
   @include breakpoint($global-catalogue-breakpoint-medium) {
     font-size: 20px;
@@ -386,5 +390,59 @@ $sidebar-size-medium: 480px;
   @include breakpoint($global-catalogue-breakpoint-small) {
     font-size: 16px;
     line-height: 16px;
+  }
+}
+
+$bottom-border-size: 5px;
+
+.back {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  margin: ($global-spacing-large * 2) auto 0;
+  padding: 12px 15px;
+  border-radius: $global-border-radius;
+  font-size: 16px;
+  line-height: 16px;
+  color: rgba($global-color-body, 0.7);
+  text-decoration: none;
+  border: 2px solid $global-color-catalogue;
+  background: $global-color-background;
+
+  @include breakpoint($global-catalogue-breakpoint-medium) {
+    margin-top: ($global-spacing-medium * 2);
+  }
+
+  @include breakpoint($global-catalogue-breakpoint-small) {
+    margin-top: ($global-spacing-small * 2);
+    padding: 8px 10px;
+    font-size: 12px;
+    line-height: 12px;
+  }
+
+  &:hover {
+    color: inherit;
+    text-decoration: none;
+    border-color: $global-color-primary-dark;
+    color: $global-color-primary-dark;
+    text-decoration: underline;
+  }
+
+  &::before {
+    content: '';
+    opacity: 0.7;
+    display: block;
+    margin-right: 10px;
+    min-width: 16px;
+    min-height: 16px;
+    background: url('../../../../public/images/icons/arrow.svg') center center no-repeat;
+    background-size: contain;
+    transform: rotate(-90deg);
+
+    @include breakpoint($global-catalogue-breakpoint-small) {
+      margin-right: 8px;
+      min-width: 12px;
+      min-height: 12px;
+    }
   }
 }
