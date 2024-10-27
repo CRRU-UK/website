@@ -41,3 +41,17 @@
   animation-delay: -0.5s;
 }
 
+.whale {
+  $distance: 100%;
+
+  @keyframes whale {
+    0% { transform: translateY(0); }
+    50% { transform: translateY($distance); }
+    100% { transform: translateY(0); }
+  }
+
+  animation: whale 2s infinite $global-transition-ease-in-out-quart;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation-delay: 0s;
+}

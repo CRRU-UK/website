@@ -23,9 +23,10 @@ it('Passes accessibility with default props', async () => act(async () => {
 it('Passes accessibility with optional props', async () => act(async () => {
   const { container } = render(
     <Filters
-      search={{ callback: jest.fn() }}
+      search={{ callback: jest.fn(), label: 'mocked label', defaultValue: 'mocked default value' }}
       dropdowns={[{
         name: 'test name',
+        defaultValue: 'mocked default value',
         options: [{
           text: 'test text 1',
           value: 'text-value-1',

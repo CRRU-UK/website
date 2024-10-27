@@ -44,7 +44,7 @@
     display: block;
     width: 10px;
     height: 10px;
-    background: url('../../../public/images/icons/breadcrumbs-arrow.svg') center center no-repeat;
+    background: url('../../../public/images/icons/small-arrow.svg') center center no-repeat;
     background-size: contain;
 
     @include breakpoint('small') {

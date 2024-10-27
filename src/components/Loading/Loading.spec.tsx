@@ -12,7 +12,8 @@ beforeAll(() => {
 
 it('Passes accessibility', async () => act(async () => {
   const { container } = render(
-    <Loading />
+    // @ts-expect-error String of enum value
+    <Loading type='bottlenose-dolphin' />
   );
 
   const results = await axe(container);

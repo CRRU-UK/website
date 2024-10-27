@@ -380,7 +380,7 @@ $sidebar-size-medium: 480px;
   font-weight: 700;
   line-height: 24px;
   text-align: center;
-  color: $global-color-catalogue;
+  color: $global-color-catalogue-dark;
 
   @include breakpoint($global-catalogue-breakpoint-medium) {
     font-size: 20px;
@@ -393,9 +393,9 @@ $sidebar-size-medium: 480px;
   }
 }
 
-$bottom-border-size: 5px;
-
 .back {
+  $bottom-border-size: 5px;
+
   display: inline-flex;
   flex-direction: row;
   align-items: center;
@@ -433,7 +433,7 @@ $bottom-border-size: 5px;
     margin-right: 10px;
     min-width: 16px;
     min-height: 16px;
-    background: url('../../../../public/images/icons/arrow.svg') center center no-repeat;
+    background: url('../../../../public/images/icons/large-arrow.svg') center center no-repeat;
     background-size: contain;
     transform: rotate(-90deg);
 

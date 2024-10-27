@@ -98,6 +98,8 @@ export type CatalogueBottlenoseDolphin = {
   },
   mother: CatalogueBasicInfo | null,
   calves: Array<CatalogueBasicInfo> | [],
+  previous: CatalogueBasicInfo | null,
+  next: CatalogueBasicInfo | null,
 };
 
 export type CatalogueMinkeWhale = {
@@ -112,6 +114,8 @@ export type CatalogueMinkeWhale = {
     rightDorsalFin: FlattenedImage | null,
     lastUpdated: string,
   },
+  previous: CatalogueBasicInfo | null,
+  next: CatalogueBasicInfo | null,
 };
 
 // Contentful Content Models
@@ -246,6 +250,8 @@ export type ContentTypeCatalogueBottlenoseDolphin = {
     leftDorsalFin?: EntryFieldTypes.AssetLink,
     rightDorsalFin?: EntryFieldTypes.AssetLink,
     otherImages?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>,
+    previousEntry?: EntryFieldTypes.EntryLink<ContentTypeCatalogueBottlenoseDolphin>,
+    nextEntry?: EntryFieldTypes.EntryLink<ContentTypeCatalogueBottlenoseDolphin>,
   },
 };
 
@@ -260,5 +266,7 @@ export type ContentTypeCatalogueMinkeWhale = {
     yearsRecaptured: EntryFieldTypes.Array<EntryFieldTypes.Symbol>,
     leftDorsalFin?: EntryFieldTypes.AssetLink,
     rightDorsalFin?: EntryFieldTypes.AssetLink,
+    previousEntry?: EntryFieldTypes.EntryLink<ContentTypeCatalogueMinkeWhale>,
+    nextEntry?: EntryFieldTypes.EntryLink<ContentTypeCatalogueMinkeWhale>,
   },
 };
