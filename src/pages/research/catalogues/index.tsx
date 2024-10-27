@@ -87,6 +87,11 @@ const Page: NextPage<PageProps> = ({
     history.replaceState({ ...window.history.state, as: newURL, url: newURL }, '', newURL);
   }, [data]);
 
+  const handleCatalogueChange = (value: Catalogues) => {
+    setPage(1);
+    setCatalogue(value);
+  }
+
   const handleSearchChange = (value: string) => {
     setPage(1);
     setSearch(value);
@@ -143,7 +148,7 @@ const Page: NextPage<PageProps> = ({
             { text: 'Bottlenose dolphins', value: Catalogues.BottlenoseDolphin },
             { text: 'Minke whales', value: Catalogues.MinkeWhale },
           ],
-          callback: setCatalogue,
+          callback: handleCatalogueChange,
         }]}
       />
 

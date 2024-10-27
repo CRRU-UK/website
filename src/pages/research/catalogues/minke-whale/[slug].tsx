@@ -151,6 +151,13 @@ const Page: NextPage<PageProps> = ({
 
         <article className={styles.sidebar}>
           <p className={styles['no-data']}>No family data available</p>
+
+          <Link
+            href={`${sitemap.catalogues.path}?catalogue=${Catalogues.BottlenoseDolphin}`}
+            className={styles.back}
+          >
+            Back to catalogue
+          </Link>
         </article>
       </section>
 

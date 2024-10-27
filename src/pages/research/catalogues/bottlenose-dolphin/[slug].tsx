@@ -200,6 +200,13 @@ const Page: NextPage<PageProps> = ({
             type={Catalogues.BottlenoseDolphin}
             data={catalogueData}
           />
+
+          <Link
+            href={`${sitemap.catalogues.path}?catalogue=${Catalogues.BottlenoseDolphin}`}
+            className={styles.back}
+          >
+            Back to catalogue
+          </Link>
         </article>
       </section>
 
