@@ -1,7 +1,9 @@
+@use 'sass:math';
+
 @import '../../scss/variables';
 
 .info {
-  margin-bottom: $global-spacing-large / 2;
+  margin-bottom: math.div($global-spacing-large, 2);
   font-size: 16px;
   line-height: 16px;
   color: $global-color-body-dark;

@@ -1,3 +1,4 @@
+@use 'sass:math';
 @use 'sass:color';
 
 @import '../variables';
@@ -123,7 +124,7 @@ ol {
   margin-top: $global-font-spacing-large;
   margin-bottom: $global-font-spacing-large;
   margin-left: $global-font-spacing-large;
-  padding-left: $global-font-spacing-large / 2;
+  padding-left: math.div($global-font-spacing-large, 2);
 
   @include breakpoint('small') {
     margin-top: $global-font-spacing-small;

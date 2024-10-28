@@ -1,3 +1,4 @@
+@use 'sass:math';
 @use 'sass:color';
 
 @import '../../scss/variables';
@@ -30,11 +31,11 @@
 
 .inline {
   display: inline-flex;
-  margin-top: $global-spacing-large / 2;
+  margin-top: math.div($global-spacing-large, 2);
   padding: 10px;
 
   @include breakpoint('small') {
-    margin-top: $global-spacing-small / 2;
+    margin-top: math.div($global-spacing-small, 2);
     padding: 8px;
   }
 }

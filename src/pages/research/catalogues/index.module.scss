@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 @import '../../../scss/variables';
 
 .loading {
@@ -11,7 +13,7 @@
 }
 
 .info {
-  margin-bottom: $global-spacing-large / 2;
+  margin-bottom: math.div($global-spacing-large, 2);
   font-size: 16px;
   line-height: 16px;
   color: $global-color-body-dark;
@@ -28,19 +30,19 @@
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: $global-spacing-large / 2;
-  row-gap: $global-spacing-large  / 2;
+  column-gap: math.div($global-spacing-large, 2);
+  row-gap: math.div($global-spacing-large, 2);
   list-style: none;
 
   @include breakpoint('medium') {
-    column-gap: $global-spacing-medium / 2;
-    row-gap: $global-spacing-medium / 2;
+    column-gap: math.div($global-spacing-medium, 2);
+    row-gap: math.div($global-spacing-medium, 2);
   }
 
   @include breakpoint('small') {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: $global-spacing-small / 2;
-    row-gap: $global-spacing-small / 2;
+    column-gap: math.div($global-spacing-small, 2);
+    row-gap: math.div($global-spacing-small, 2);
   }
 }
 

@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 @import '../variables';
 
 %flex-center {
@@ -396,7 +398,7 @@ header > .actions > a {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin-right: $global-spacing-large / 2;
+  margin-right: math.div($global-spacing-large, 2);
   font-size: $font-size;
   line-height: $font-size;
   font-weight: 700;
@@ -410,7 +412,7 @@ header > .actions > a {
   @include breakpoint('medium') {
     $font-size: 12px;
 
-    margin-right: $global-spacing-medium / 2;
+    margin-right: math.div($global-spacing-medium, 2);
     font-size: $font-size;
     line-height: $font-size;
   }
@@ -454,11 +456,11 @@ header > .actions > a {
   }
 
   &.sighting {
-    margin-left: $global-spacing-large / 2;
+    margin-left: math.div($global-spacing-large, 2);
     color: $global-color-primary;
 
     @include breakpoint('medium') {
-      margin-left: $global-spacing-medium / 2;
+      margin-left: math.div($global-spacing-medium, 2);
     }
 
     &::before {

@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 @import '../../scss/variables';
 
 $row-items: 7;
@@ -61,7 +63,7 @@ $circle-margin-small: 8px;
     content: '';
     z-index: 0;
     left: 0;
-    top: ($circle-size-large / 2) - ($line-size-large / 2);
+    top: math.div($circle-size-large, 2) - math.div($line-size-large, 2);
     position: absolute;
     display: block;
     width: 100%;
@@ -69,7 +71,7 @@ $circle-margin-small: 8px;
     background: $global-color-catalogue;
 
     @include breakpoint('small') {
-      top: ($circle-size-small / 2) - ($line-size-small / 2);
+      top: math.div($circle-size-small, 2) - math.div($line-size-small, 2);
       height: $line-size-small;
     }
   }

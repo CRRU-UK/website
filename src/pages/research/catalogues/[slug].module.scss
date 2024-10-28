@@ -20,9 +20,9 @@
 
 // Main
 
-$grid-spacing-large: $global-spacing-large / 2;
-$grid-spacing-medium: $global-spacing-medium / 2;
-$grid-spacing-small: $global-spacing-small / 2;
+$grid-spacing-large: math.div($global-spacing-large, 2);
+$grid-spacing-medium: math.div($global-spacing-medium, 2);
+$grid-spacing-small: math.div($global-spacing-small, 2);
 
 .main {
   margin: 0;
@@ -38,14 +38,14 @@ $grid-spacing-small: $global-spacing-small / 2;
 
   > .wrapper {
     border-top: 2px solid $global-color-catalogue;
-    padding: ($global-padding-large + ($global-padding-large / 2)) $global-padding-large;
+    padding: ($global-padding-large + math.div($global-padding-large, 2)) $global-padding-large;
 
     @include breakpoint($global-catalogue-breakpoint-medium) {
-      padding: ($global-padding-medium + ($global-padding-medium / 2)) $global-padding-medium;
+      padding: ($global-padding-medium + math.div($global-padding-medium, 2)) $global-padding-medium;
     }
 
     @include breakpoint($global-catalogue-breakpoint-small) {
-      padding: ($global-padding-small + ($global-padding-small / 2)) $global-padding-small;
+      padding: ($global-padding-small + math.div($global-padding-small, 2)) $global-padding-small;
     }
   }
 }

@@ -1,18 +1,20 @@
+@use 'sass:math';
+
 @import '../../scss/variables';
 
 .item {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: $global-spacing-large / 2;
-  padding: $global-padding-large / 2;
+  margin-bottom: math.div($global-spacing-large, 2);
+  padding: math.div($global-padding-large, 2);
   border-radius: $global-border-radius;
   border: 2px solid $global-color-background-dark;
 
   @include breakpoint('small') {
     align-items: flex-start;
-    margin-bottom: $global-spacing-small / 2;
-    padding: $global-padding-small / 2;
+    margin-bottom: math.div($global-spacing-small, 2);
+    padding: math.div($global-padding-small, 2);
   }
 }
 

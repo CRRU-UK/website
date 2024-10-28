@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 @import '../../scss/variables';
 
 .hero {
@@ -40,14 +42,14 @@
 }
 
 .hero-plain {
-  margin-bottom: $global-spacing-large / 2;
+  margin-bottom: math.div($global-spacing-large, 2);
   padding-top: $global-spacing-large * 2;
   padding-bottom: 0;
   height: auto;
   background: transparent;
 
   @include breakpoint('small') {
-    margin-bottom: $global-spacing-small / 2;
+    margin-bottom: math.div($global-spacing-small, 2);
     padding-top: $global-spacing-small * 2;
   }
 }

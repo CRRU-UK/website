@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 @import '../../scss/variables';
 
 .filters {
@@ -6,7 +8,7 @@
   justify-content: space-between;
   align-items: flex-end;
   margin: 0 auto $global-spacing-large;
-  padding: $global-padding-large / 2;
+  padding: math.div($global-padding-large, 2);
   border-radius: $global-border-radius;
   background: $global-color-background-dark;
 
@@ -17,7 +19,7 @@
     grid-template-columns: 1fr;
     row-gap: $global-spacing-small;
     margin-bottom: $global-spacing-small;
-    padding: $global-padding-small / 2;
+    padding: math.div($global-padding-small, 2);
   }
 }
 

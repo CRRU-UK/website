@@ -7,7 +7,7 @@ section.note {
   margin-right: -($global-spacing-large);
   float: right;
   width: 350px;
-  padding: $global-padding-large / 2;
+  padding: math.div($global-padding-large, 2);
   border-radius: $global-border-radius;
   background: $global-color-grey;
 
