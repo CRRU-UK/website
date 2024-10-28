@@ -82,6 +82,7 @@ const renderModule = (data: Node['data']) => {
         <input type="hidden" name="cmd" value="_s-xclick" />
         <input type="hidden" name="hosted_button_id" value="68DD5VDPDK3TQ" />
         <input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_GB/i/btn/btn_subscribe_SM.gif" name="submit" alt="PayPal - The safer, easier way to pay online." />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img alt="" src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_GB/i/scr/pixel.gif" width="1" height="1" />
       </form>
     );

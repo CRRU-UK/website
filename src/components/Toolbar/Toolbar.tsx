@@ -43,7 +43,7 @@ const Toolbar = ({
 
     const timeout = setTimeout(getData, 500);
     return () => clearTimeout(timeout);
-  }, [search]);
+  }, [search, catalogue]);
 
   const handleSearchChange = (value: string) => setSearch(value);
 

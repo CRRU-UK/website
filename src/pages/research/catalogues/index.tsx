@@ -18,6 +18,29 @@ import { Card, Filters, Loading } from '@/components';
 
 import styles from './index.module.scss';
 
+interface updateURLProps {
+  catalogue: Catalogues,
+  page: number,
+  search: string,
+}
+
+const updateURL = ({
+  catalogue,
+  page,
+  search,
+}: updateURLProps) => {
+  let newURL: URL | string = new URL(location.toString());
+
+  newURL.searchParams.set('catalogue', catalogue);
+  newURL.searchParams.set('page', String(page));
+  if (search !== '') {
+    newURL.searchParams.set('search', search);
+  }
+
+  newURL = newURL.toString();
+  history.replaceState({ ...window.history.state, as: newURL, url: newURL }, '', newURL);
+};
+
 interface PageProps {
   pageData: PageData,
 }
@@ -66,6 +89,7 @@ const Page: NextPage<PageProps> = ({
       const result: CatalogueAPIResponse = await response.json();
       setSearchText(search);
       setData(result);
+      updateURL({ catalogue, page, search });
 
       setLoading(false);
     };
@@ -73,19 +97,6 @@ const Page: NextPage<PageProps> = ({
     const timeout = setTimeout(getData, 500);
     return () => clearTimeout(timeout);
   }, [catalogue, page, search]);
-
-  useEffect(() => {
-    let newURL: URL | string = new URL(location.toString());
-
-    newURL.searchParams.set('catalogue', catalogue);
-    newURL.searchParams.set('page', String(page));
-    if (search !== '') {
-      newURL.searchParams.set('search', search);
-    }
-
-    newURL = newURL.toString();
-    history.replaceState({ ...window.history.state, as: newURL, url: newURL }, '', newURL);
-  }, [data]);
 
   const handleCatalogueChange = (value: Catalogues) => {
     setPage(1);
