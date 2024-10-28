@@ -1,10 +1,8 @@
-/** @type {import('next').NextConfig} */
+import type { NextConfig } from 'next';
 
-const { withLogtail } = require('@logtail/next');
+import redirects from './redirects.json';
 
-const redirects = require('./redirects.json');
-
-const nextConfig = {
+const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   experimental: {
@@ -50,4 +48,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withLogtail(nextConfig);
+module.exports = nextConfig;
