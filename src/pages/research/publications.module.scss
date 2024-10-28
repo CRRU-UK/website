@@ -1,29 +1,29 @@
 @use 'sass:math';
 
-@import '../../scss/variables';
+@use '../../scss/variables';
 
 .info {
-  margin-bottom: math.div($global-spacing-large, 2);
+  margin-bottom: math.div(variables.$global-spacing-large, 2);
   font-size: 16px;
   line-height: 16px;
-  color: $global-color-body-dark;
+  color: variables.$global-color-body-dark;
 
-  @include breakpoint('small') {
-    margin-bottom: $global-spacing-small;
+  @include variables.breakpoint('small') {
+    margin-bottom: variables.$global-spacing-small;
     font-size: 12px;
     line-height: 12px;
   }
 }
 
 .item {
-  margin-bottom: math.div($global-spacing-large, 2);
-  padding: math.div($global-padding-large, 2);
-  border-radius: $global-border-radius;
-  border: 2px solid $global-color-background-dark;
+  margin-bottom: math.div(variables.$global-spacing-large, 2);
+  padding: math.div(variables.$global-padding-large, 2);
+  border-radius: variables.$global-border-radius;
+  border: 2px solid variables.$global-color-background-dark;
 
-  @include breakpoint('small') {
-    margin-bottom: math.div($global-spacing-small, 2);
-    padding: math.div($global-padding-small, 2);
+  @include variables.breakpoint('small') {
+    margin-bottom: math.div(variables.$global-spacing-small, 2);
+    padding: math.div(variables.$global-padding-small, 2);
   }
 }
 
@@ -32,7 +32,7 @@
   font-size: 16px;
   line-height: 24px;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     font-size: 14px;
     line-height: 22px;
   }
@@ -44,7 +44,7 @@
   justify-content: space-between;
   margin-bottom: 10px;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     flex-direction: column-reverse;
     margin-bottom: 5px;
   }
@@ -56,7 +56,7 @@
   font-size: inherit;
   line-height: inherit;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     margin-right: 0;
   }
 }
@@ -70,12 +70,12 @@
   height: 26px;
   font-size: 12px;
   line-height: 12px;
-  border-radius: $global-border-radius;
+  border-radius: variables.$global-border-radius;
   white-space: nowrap;
   text-transform: uppercase;
   font-weight: 700;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     margin: 5px auto 10px 0;
     padding: 0 8px;
     font-size: 10px;
@@ -112,7 +112,7 @@
   line-height: 24px;
   font-weight: 700;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     margin-left: auto;
     font-size: 14px;
     line-height: 22px;

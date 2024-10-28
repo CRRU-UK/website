@@ -1,25 +1,25 @@
 @use 'sass:math';
 @use 'sass:color';
 
-@import '../variables';
+@use '../variables';
 
 form:not(.paypal) {
-  width: calc(100% + ($global-padding-large * 2));
-  margin: $global-spacing-large auto;
-  margin-left: -($global-spacing-large);
-  padding: $global-padding-large;
-  border-radius: $global-border-radius;
-  background: $global-color-background-dark;
+  width: calc(100% + (variables.$global-padding-large * 2));
+  margin: variables.$global-spacing-large auto;
+  margin-left: -(variables.$global-spacing-large);
+  padding: variables.$global-padding-large;
+  border-radius: variables.$global-border-radius;
+  background: variables.$global-color-background-dark;
 
-  @include breakpoint($global-max-width) {
+  @include variables.breakpoint(variables.$global-max-width) {
     border-radius: 0;
   }
 
-  @include breakpoint('small') {
-    width: calc(100% + ($global-padding-small * 2));
-    margin: $global-spacing-small auto;
-    margin-left: -($global-spacing-small);
-    padding: $global-padding-small;
+  @include variables.breakpoint('small') {
+    width: calc(100% + (variables.$global-padding-small * 2));
+    margin: variables.$global-spacing-small auto;
+    margin-left: -(variables.$global-spacing-small);
+    padding: variables.$global-padding-small;
   }
 
   &.form-loading {
@@ -36,19 +36,19 @@ form:not(.paypal) {
     grid-template-columns: 1fr 1fr 1fr;
     align-items: start;
     justify-items: stretch;
-    column-gap: $global-spacing-large;
-    row-gap: $global-spacing-large;
-    margin-bottom: $global-spacing-large;
+    column-gap: variables.$global-spacing-large;
+    row-gap: variables.$global-spacing-large;
+    margin-bottom: variables.$global-spacing-large;
 
-    @include breakpoint('medium') {
+    @include variables.breakpoint('medium') {
       grid-template-columns: 1fr 1fr;
     }
 
-    @include breakpoint('small') {
+    @include variables.breakpoint('small') {
       grid-template-columns: 1fr;
-      column-gap: $global-spacing-small;
-      row-gap: $global-spacing-small;
-      margin-bottom: $global-spacing-small;
+      column-gap: variables.$global-spacing-small;
+      row-gap: variables.$global-spacing-small;
+      margin-bottom: variables.$global-spacing-small;
     }
   }
 
@@ -64,7 +64,7 @@ form:not(.paypal) {
     line-height: 24px;
     font-weight: 700;
 
-    @include breakpoint('small') {
+    @include variables.breakpoint('small') {
       font-size: 14px;
       line-height: 20px;
     }
@@ -80,12 +80,12 @@ form:not(.paypal) {
     height: 50px;
     font-size: 16px;
     line-height: 22px;
-    color: $global-color-body;
-    border: 2px solid $global-color-grey;
-    border-radius: $global-border-radius;
-    background: $global-color-background;
+    color: variables.$global-color-body;
+    border: 2px solid variables.$global-color-grey;
+    border-radius: variables.$global-border-radius;
+    background: variables.$global-color-background;
 
-    @include breakpoint('small') {
+    @include variables.breakpoint('small') {
       margin-top: 5px;
       padding: 0 10px;
       height: 40px;
@@ -106,47 +106,47 @@ form:not(.paypal) {
   }
 
   button {
-    margin-top: $global-spacing-large;
+    margin-top: variables.$global-spacing-large;
     font-weight: 700;
     border: 0;
-    color: $global-color-background;
-    background: $global-color-primary-dark;
+    color: variables.$global-color-background;
+    background: variables.$global-color-primary-dark;
 
-    @include breakpoint('small') {
-      margin-top: $global-spacing-small;
+    @include variables.breakpoint('small') {
+      margin-top: variables.$global-spacing-small;
     }
 
     &:hover {
       cursor: pointer;
-      background: color.adjust($global-color-primary-dark, $blackness: 10%);
+      background: color.adjust(variables.$global-color-primary-dark, $blackness: 10%);
     }
   }
   
   .form-errors,
   .form-success {
-    margin: $global-spacing-large auto 0;
-    padding: math.div($global-padding-large, 2);
+    margin: variables.$global-spacing-large auto 0;
+    padding: math.div(variables.$global-padding-large, 2);
     display: block;
     font-size: 16px;
     line-height: 16px;
-    border-radius: $global-border-radius;
+    border-radius: variables.$global-border-radius;
 
-    @include breakpoint('small') {
-      margin-top: $global-spacing-small;
+    @include variables.breakpoint('small') {
+      margin-top: variables.$global-spacing-small;
       font-size: 14px;
       line-height: 14px;
     }
   }
 
   .form-errors {
-    padding-left: $global-padding-large;
-    color: $global-color-background;
-    background: $global-color-red;
+    padding-left: variables.$global-padding-large;
+    color: variables.$global-color-background;
+    background: variables.$global-color-red;
   }
 
   .form-success {
     text-align: center;
-    color: $global-color-body;
-    background: $global-color-primary;
+    color: variables.$global-color-body;
+    background: variables.$global-color-primary;
   }
 }

@@ -1,4 +1,4 @@
-@import '../../scss/variables';
+@use '../../scss/variables';
 
 $icon-size-large: 18px;
 $icon-size-small: 14px;
@@ -15,7 +15,7 @@ $tooltip-spacing: 10px;
   vertical-align: middle;
   transform: translateY(-1px);
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     width: $icon-size-small;
     height: $icon-size-small;
     transform: translateY(0);
@@ -35,7 +35,7 @@ $tooltip-spacing: 10px;
   background: url('../../../public/images/icons/tooltip.svg') center center no-repeat transparent;
   background-size: contain;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     width: $icon-size-small;
     height: $icon-size-small;
   }
@@ -46,8 +46,8 @@ $tooltip-spacing: 10px;
   opacity: 1;
 }
 
-$easing-in: 0.6s $global-transition-ease-out-expo;
-$easing-out: 0.6s $global-transition-ease-in-expo;
+$easing-in: 0.6s variables.$global-transition-ease-out-expo;
+$easing-out: 0.6s variables.$global-transition-ease-in-expo;
 
 .tooltip-text {
   pointer-events: none;
@@ -63,8 +63,8 @@ $easing-out: 0.6s $global-transition-ease-in-expo;
   font-weight: 700;
   text-align: left;
   border-radius: 5px;
-  box-shadow: 0 0 5px rgba($global-color-body, 0.3);
-  background: $global-color-background;
+  box-shadow: 0 0 5px rgba(variables.$global-color-body, 0.3);
+  background: variables.$global-color-background;
   transform: translateY(20%);
   transition: opacity $easing-in, transform $easing-in;
 }

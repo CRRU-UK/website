@@ -1,21 +1,21 @@
 @use 'sass:math';
 
-@import '../../scss/variables';
+@use '../../scss/variables';
 
 .item {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  margin-bottom: math.div($global-spacing-large, 2);
-  padding: math.div($global-padding-large, 2);
-  border-radius: $global-border-radius;
-  border: 2px solid $global-color-background-dark;
+  margin-bottom: math.div(variables.$global-spacing-large, 2);
+  padding: math.div(variables.$global-padding-large, 2);
+  border-radius: variables.$global-border-radius;
+  border: 2px solid variables.$global-color-background-dark;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     align-items: flex-start;
     flex-direction: column;
-    margin-bottom: math.div($global-spacing-small, 2);
-    padding: math.div($global-padding-small, 2);
+    margin-bottom: math.div(variables.$global-spacing-small, 2);
+    padding: math.div(variables.$global-padding-small, 2);
   }
 }
 
@@ -23,9 +23,9 @@
   display: block;
   width: 100%;
   height: auto;
-  border-radius: $global-border-radius;
+  border-radius: variables.$global-border-radius;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     margin-bottom: 20px;
   }
 }
@@ -34,7 +34,7 @@
 .title,
 .qualifications {
   margin: 0;
-  font-family: $global-font-primary;
+  font-family: variables.$global-font-primary;
 }
 
 .name {
@@ -42,7 +42,7 @@
   font-size: 28px;
   line-height: 28px;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     margin-bottom: 5px;
     font-size: 24px;
     line-height: 24px;
@@ -54,7 +54,7 @@
   font-size: 20px;
   line-height: 20px;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     margin-bottom: 5px;
     font-size: 18px;
     line-height: 18px;
@@ -65,7 +65,7 @@
   margin-bottom: 10px;
   font-weight: 700;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     margin-bottom: 5px;
   }
 }
@@ -74,16 +74,16 @@
   width: 100%;
   max-width: 250px;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     max-width: 50%;
   }
 }
 
 .right {
-  padding-left: $global-padding-large;
+  padding-left: variables.$global-padding-large;
   width: 100%;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     padding-left: 0;
   }
 }
@@ -91,7 +91,7 @@
 .qualification-list {
   margin: 10px 0;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     margin: 5px 0;
   }
 }
@@ -105,18 +105,18 @@
   height: 26px;
   font-size: 12px;
   line-height: 12px;
-  border-radius: $global-border-radius;
+  border-radius: variables.$global-border-radius;
   white-space: nowrap;
   text-transform: uppercase;
   font-weight: 700;
-  color: $global-color-background;
-  background: $global-color-primary-dark;
+  color: variables.$global-color-background;
+  background: variables.$global-color-primary-dark;
 
   &:last-child {
     margin-right: 0;
   }
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     padding: 0 8px;
     font-size: 10px;
     line-height: 10px;
@@ -134,7 +134,7 @@
     margin-bottom: 10px;
   }
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     margin-top: 10px;
     font-size: 14px;
     line-height: 24px;

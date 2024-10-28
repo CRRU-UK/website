@@ -1,6 +1,6 @@
 @use 'sass:math';
 
-@import '../../scss/variables';
+@use '../../scss/variables';
 
 $row-items: 7;
 
@@ -21,7 +21,7 @@ $circle-margin-small: 8px;
   width: 100%;
   list-style: none;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     margin-top: 15px;
     row-gap: 15px;
   }
@@ -43,11 +43,11 @@ $circle-margin-small: 8px;
     margin-bottom: $circle-margin-large;
     width: $circle-size-large;
     height: $circle-size-large;
-    background: $global-color-catalogue-light;
+    background: variables.$global-color-catalogue-light;
     border-radius: 50%;
-    border: $line-size-large solid $global-color-catalogue;
+    border: $line-size-large solid variables.$global-color-catalogue;
 
-    @include breakpoint('small') {
+    @include variables.breakpoint('small') {
       margin-bottom: $circle-margin-small;
       width: $circle-size-small;
       height: $circle-size-small;
@@ -56,7 +56,7 @@ $circle-margin-small: 8px;
   }
 
   &:last-child::before {
-    border-color: $global-color-primary;
+    border-color: variables.$global-color-primary;
   }
 
   &::after {
@@ -68,24 +68,24 @@ $circle-margin-small: 8px;
     display: block;
     width: 100%;
     height: $line-size-large;
-    background: $global-color-catalogue;
+    background: variables.$global-color-catalogue;
 
-    @include breakpoint('small') {
+    @include variables.breakpoint('small') {
       top: math.div($circle-size-small, 2) - math.div($line-size-small, 2);
       height: $line-size-small;
     }
   }
 
   &:nth-child(#{$row-items}n):not(:last-child)::after {
-    background: linear-gradient(90deg, $global-color-catalogue 0%, $global-color-catalogue 50%, rgba($global-color-catalogue, 0) 100%);
+    background: linear-gradient(90deg, variables.$global-color-catalogue 0%, variables.$global-color-catalogue 50%, rgba(variables.$global-color-catalogue, 0) 100%);
   }
 
   &:nth-child(#{$row-items}n + #{$row-items + 1})::after {
-    background: linear-gradient(270deg, $global-color-catalogue 0%, $global-color-catalogue 50%, rgba($global-color-catalogue, 0) 100%);
+    background: linear-gradient(270deg, variables.$global-color-catalogue 0%, variables.$global-color-catalogue 50%, rgba(variables.$global-color-catalogue, 0) 100%);
   }
 
   &:nth-child(#{$row-items}n + #{$row-items + 1}):last-child::after {
-    background: linear-gradient(270deg, $global-color-catalogue 0%, rgba($global-color-catalogue, 0) 100%);
+    background: linear-gradient(270deg, variables.$global-color-catalogue 0%, rgba(variables.$global-color-catalogue, 0) 100%);
   }
 
   &:first-child::after {
@@ -102,12 +102,12 @@ $circle-margin-small: 8px;
   font-size: 16px;
   line-height: 16px;
 
-  @include breakpoint('medium') {
+  @include variables.breakpoint('medium') {
     font-size: 14px;
     line-height: 14px;
   }
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     font-size: 12px;
     line-height: 12px;
   }

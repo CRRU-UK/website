@@ -1,25 +1,25 @@
 @use 'sass:math';
 
-@import '../../scss/variables';
+@use '../../scss/variables';
 
 .filters {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
-  margin: 0 auto $global-spacing-large;
-  padding: math.div($global-padding-large, 2);
-  border-radius: $global-border-radius;
-  background: $global-color-background-dark;
+  margin: 0 auto variables.$global-spacing-large;
+  padding: math.div(variables.$global-padding-large, 2);
+  border-radius: variables.$global-border-radius;
+  background: variables.$global-color-background-dark;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     display: grid;
     align-items: start;
     justify-content: space-between;
     grid-template-columns: 1fr;
-    row-gap: $global-spacing-small;
-    margin-bottom: $global-spacing-small;
-    padding: math.div($global-padding-small, 2);
+    row-gap: variables.$global-spacing-small;
+    margin-bottom: variables.$global-spacing-small;
+    padding: math.div(variables.$global-padding-small, 2);
   }
 }
 
@@ -28,12 +28,12 @@
   padding: 0 15px;
   height: 50px;
   font-size: 16px;
-  color: $global-color-body;
-  border: 2px solid $global-color-grey;
-  border-radius: $global-border-radius;
-  background: $global-color-background;
+  color: variables.$global-color-body;
+  border: 2px solid variables.$global-color-grey;
+  border-radius: variables.$global-border-radius;
+  background: variables.$global-color-background;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     padding: 0 10px;
     width: 100%;
     height: 40px;
@@ -42,10 +42,10 @@
 }
 
 .dropdown {
-  margin-right: $global-spacing-large;
+  margin-right: variables.$global-spacing-large;
   padding-right: 20px;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     margin-right: 0;
   }
 }
@@ -55,7 +55,7 @@
   display: block;
   width: 350px;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     width: 100%;
   }
 }

@@ -1,12 +1,12 @@
 @use 'sass:math';
 
-@import '../../../scss/variables';
+@use '../../../scss/variables';
 
 .taxonomy {
   $spacing: 15px;
 
   margin: 0 auto;
-  padding: math.div($global-padding-large, 2);
+  padding: math.div(variables.$global-padding-large, 2);
   display: grid;
   align-items: start;
   justify-content: space-between;
@@ -14,12 +14,12 @@
   column-gap: $spacing;
   row-gap: $spacing;
   width: 100%;
-  border-radius: $global-border-radius;
+  border-radius: variables.$global-border-radius;
   list-style: none;
-  background: $global-color-secondary;
+  background: variables.$global-color-secondary;
 
-  @include breakpoint('small') {
-    padding: math.div($global-padding-small, 2);
+  @include variables.breakpoint('small') {
+    padding: math.div(variables.$global-padding-small, 2);
     grid-template-columns: 1fr 1fr;
   }
 
@@ -27,13 +27,13 @@
     margin: 0;
     font-size: 16px;
     line-height: 22px;
-    color: $global-color-body;
+    color: variables.$global-color-body;
 
     &:last-child {
       padding-right: 0;
     }
 
-    @include breakpoint('small') {
+    @include variables.breakpoint('small') {
       font-size: 14px;
       line-height: 18px;
     }
@@ -45,7 +45,7 @@
   }
 
   > li > em {
-    @include breakpoint('small') {
+    @include variables.breakpoint('small') {
       display: inline;
     }
   }
@@ -54,7 +54,7 @@
 .wide {
   grid-column: 2 / -1;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     grid-column: 1 / -1;
   }
 }

@@ -1,14 +1,16 @@
 @use 'sass:math';
 
+@use '../variables';
+
 .top-link {
   display: table;
-  margin: ($global-spacing-large * 2) auto 0;
+  margin: (variables.$global-spacing-large * 2) auto 0;
   font-size: 16px;
   line-height: 16px;
   text-align: center;
 
-  @include breakpoint('small') {
-    margin-top: ($global-spacing-small * 2);
+  @include variables.breakpoint('small') {
+    margin-top: (variables.$global-spacing-small * 2);
     font-size: 14px;
     line-height: 14px;
   }
@@ -20,7 +22,7 @@
   flex-direction: row;
   align-content: center;
   align-items: center;
-  color: $global-color-body;
+  color: variables.$global-color-body;
 
   &::before {
     content: '';
@@ -34,10 +36,10 @@
 }
 
 footer {
-  margin-top: math.div($global-spacing-large, 2);
+  margin-top: math.div(variables.$global-spacing-large, 2);
 
-  @include breakpoint('small') {
-    margin-top: math.div($global-spacing-small, 2);
+  @include variables.breakpoint('small') {
+    margin-top: math.div(variables.$global-spacing-small, 2);
   }
 }
 
@@ -45,7 +47,7 @@ footer * {
   font-size: 14px;
   line-height: 14px;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     font-size: 12px;
     line-height: 12px;
   }
@@ -57,12 +59,12 @@ footer .footer-wrapper {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: $global-spacing-large $global-spacing-large $global-spacing-large;
-  color: $global-color-background;
-  background: $global-color-body;
+  padding: variables.$global-spacing-large variables.$global-spacing-large variables.$global-spacing-large;
+  color: variables.$global-color-background;
+  background: variables.$global-color-body;
 
-  @include breakpoint('small') {
-    padding: $global-spacing-small $global-spacing-small ($global-spacing-small * 2);
+  @include variables.breakpoint('small') {
+    padding: variables.$global-spacing-small variables.$global-spacing-small (variables.$global-spacing-small * 2);
     flex-direction: column;
   }
 }
@@ -81,7 +83,7 @@ footer ul {
   flex-direction: row;
   justify-content: flex-start;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     margin: 0 auto;
     justify-content: center;
   }
@@ -91,7 +93,7 @@ footer ul > li {
   margin: 0;
   padding: 0;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     text-align: center;
   }
 }
@@ -106,8 +108,8 @@ footer .footer-left {
   margin-right: auto;
   padding-right: 10px;
 
-  @include breakpoint('small') {
-    margin: 0 0 $global-spacing-small;
+  @include variables.breakpoint('small') {
+    margin: 0 0 variables.$global-spacing-small;
     padding: 0;
     align-items: flex-start;
     flex-direction: column;
@@ -120,14 +122,14 @@ footer .footer-left > .footer-logo > img {
 }
 
 footer .footer-left > .footer-logo {
-  margin-right: $global-spacing-large;
+  margin-right: variables.$global-spacing-large;
 
-  @include breakpoint('medium') {
-    margin-right: $global-spacing-medium;
+  @include variables.breakpoint('medium') {
+    margin-right: variables.$global-spacing-medium;
   }
 
-  @include breakpoint('small') {
-    margin: 0 auto $global-spacing-small;
+  @include variables.breakpoint('small') {
+    margin: 0 auto variables.$global-spacing-small;
   }
 }
 
@@ -135,12 +137,12 @@ footer .footer-left > .footer-logo > img {
   width: 150px;
   height: 150px;
 
-  @include breakpoint('medium') {
+  @include variables.breakpoint('medium') {
     width: 120px;
     height: 120px;
   }
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     width: 70px;
     height: 70px;
   }
@@ -155,7 +157,7 @@ footer .footer-left > .footer-left-content {
 
 footer .footer-left .footer-links a,
 footer .footer-left .footer-contact a {
-  color: $global-color-background;
+  color: variables.$global-color-background;
 }
 
 footer .footer-left .footer-links {
@@ -187,7 +189,7 @@ footer .footer-left .footer-contact li {
 footer .footer-left .footer-credits {
   line-height: 20px !important;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     text-align: center;
   }
 }
@@ -201,17 +203,17 @@ footer .footer-right {
   justify-content: center;
   align-items: flex-end;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     margin: 0 auto;
     align-items: center;
   }
 }
 
 footer .footer-right .social-links {
-  margin-bottom: $global-spacing-large;
+  margin-bottom: variables.$global-spacing-large;
 
-  @include breakpoint('small') {
-    margin-bottom: $global-spacing-small;
+  @include variables.breakpoint('small') {
+    margin-bottom: variables.$global-spacing-small;
   }
 }
 
@@ -219,12 +221,12 @@ footer .footer-right .social-links li,
 footer .footer-right .footer-support li {
   margin-right: 20px;
 
-  @include breakpoint('medium') {
+  @include variables.breakpoint('medium') {
     margin-right: 15px;
   }
 
-  @include breakpoint('small') {
-    margin-right: $global-spacing-small;
+  @include variables.breakpoint('small') {
+    margin-right: variables.$global-spacing-small;
   }
 
   &:last-child {
@@ -244,12 +246,12 @@ footer .footer-right .social-links li > a > svg {
   height: 24px;
 
   > path.main {
-    fill: $global-color-background;
+    fill: variables.$global-color-background;
   }
 }
 
 footer .footer-right .social-links li > a:hover > svg > path.main {
-  fill: $global-color-primary;
+  fill: variables.$global-color-primary;
 }
 
 footer .footer-right .footer-support {
@@ -260,7 +262,7 @@ footer .footer-right .footer-support p {
   margin: 0 0 10px;
   text-align: right;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     text-align: center;
   }
 }
@@ -270,11 +272,11 @@ footer .footer-right .footer-support li > a > img {
   width: auto;
   height: 50px;
 
-  @include breakpoint('medium') {
+  @include variables.breakpoint('medium') {
     height: 40px;
   }
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     height: 30px;
   }
 }

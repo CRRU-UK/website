@@ -1,4 +1,4 @@
-@import '../../../scss/variables';
+@use '../../../scss/variables';
 
 .contents-table {
   $spacing: 15px;
@@ -9,22 +9,22 @@
   justify-items: stretch;
   column-gap: $spacing;
   row-gap: $spacing;
-  margin: $global-spacing-large auto 0;
-  padding: 0 $global-padding-large;
-  max-width: $global-max-width;
+  margin: variables.$global-spacing-large auto 0;
+  padding: 0 variables.$global-padding-large;
+  max-width: variables.$global-max-width;
   list-style: none;
 
-  @include breakpoint('medium') {
+  @include variables.breakpoint('medium') {
     grid-template-columns: 1fr 1fr;
   }
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     $spacing: 10px;
 
     grid-template-columns: 1fr;
     row-gap: $spacing;
-    margin-top: $global-spacing-small;
-    padding: 0 $global-padding-small;
+    margin-top: variables.$global-spacing-small;
+    padding: 0 variables.$global-padding-small;
   }
 }
 

@@ -2,14 +2,14 @@
 
 @use 'sass:math';
 
-@import '../../scss/variables';
+@use '../../scss/variables';
 
 .loading {
   display: block;
   width: 100px;
   height: auto;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     width: 70px;
   }
 }
@@ -17,41 +17,41 @@
 .wave {
   $distance: 33.3%;
 
+  animation: wave 1.5s infinite linear;
+
   @keyframes wave {
     0% { transform: translateX(0); }
     100% { transform: translateX(-$distance); }
   }
-
-  animation: wave 1.5s infinite linear;
 }
 
 .dolphin {
   $rotation: 80deg;
   $distance: 150%;
 
+  animation: dolphin 2s infinite variables.$global-transition-ease-in-out-quart;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation-delay: -0.5s;
+
   @keyframes dolphin {
     0% { transform: translateY($distance) rotate(-$rotation); }
     50% { transform: translateY(0) rotate(0deg); }
     100% { transform: translateY($distance) rotate($rotation); }
   }
-
-  animation: dolphin 2s infinite $global-transition-ease-in-out-quart;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation-delay: -0.5s;
 }
 
 .whale {
   $distance: 100%;
+
+  animation: whale 2s infinite variables.$global-transition-ease-in-out-quart;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation-delay: -1.4s;
 
   @keyframes whale {
     0% { transform: translateY(0); }
     50% { transform: translateY($distance); }
     100% { transform: translateY(0); }
   }
-
-  animation: whale 2s infinite $global-transition-ease-in-out-quart;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation-delay: -1.4s;
 }

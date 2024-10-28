@@ -1,24 +1,24 @@
 @use 'sass:math';
 
-@import '../../scss/variables';
+@use '../../scss/variables';
 
 section.note {
-  margin: math.div($global-spacing-large, 2) 0 math.div($global-spacing-large, 2) $global-spacing-large;
-  margin-right: -($global-spacing-large);
+  margin: math.div(variables.$global-spacing-large, 2) 0 math.div(variables.$global-spacing-large, 2) variables.$global-spacing-large;
+  margin-right: -(variables.$global-spacing-large);
   float: right;
   width: 350px;
-  padding: math.div($global-padding-large, 2);
-  border-radius: $global-border-radius;
-  background: $global-color-grey;
+  padding: math.div(variables.$global-padding-large, 2);
+  border-radius: variables.$global-border-radius;
+  background: variables.$global-color-grey;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     width: 100%;
-    margin: $global-spacing-small auto;
-    padding: $global-padding-small;
+    margin: variables.$global-spacing-small auto;
+    padding: variables.$global-padding-small;
   }
 
   * {
-    color: $global-color-background;
+    color: variables.$global-color-background;
 
     &:first-child {
       margin-top: 0;

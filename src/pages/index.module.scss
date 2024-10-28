@@ -1,7 +1,7 @@
 @use 'sass:math';
 @use 'sass:color';
 
-@import '../scss/variables';
+@use '../scss/variables';
 
 // Banner
 
@@ -12,18 +12,18 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: calc(100vh - $global-header-height-large - $global-spacing-large);
+  height: calc(100vh - variables.$global-header-height-large - variables.$global-spacing-large);
   min-height: 600px;
-  background: $global-color-body;
+  background: variables.$global-color-body;
 
-  @include breakpoint('medium') {
-    height: calc(100vh - $global-header-height-medium - $global-spacing-large);
+  @include variables.breakpoint('medium') {
+    height: calc(100vh - variables.$global-header-height-medium - variables.$global-spacing-large);
     min-height: 300px;
     max-height: 800px;
   }
 
-  @include breakpoint('small') {
-    height: calc(60vh - $global-header-height-small - $global-spacing-small);
+  @include variables.breakpoint('small') {
+    height: calc(60vh - variables.$global-header-height-small - variables.$global-spacing-small);
     min-height: 400px;
   }
 }
@@ -32,28 +32,28 @@
   z-index: 10;
   position: relative;
   max-width: 1110px;
-  padding: 0 $global-padding-large $global-header-height-large;
+  padding: 0 variables.$global-padding-large variables.$global-header-height-large;
   text-align: center;
 
-  @include breakpoint('small') {
-    padding: 0 $global-padding-small;
+  @include variables.breakpoint('small') {
+    padding: 0 variables.$global-padding-small;
   }
 
   h2 {
-    margin-bottom: $global-spacing-large;
-    font-family: $global-font-primary;
+    margin-bottom: variables.$global-spacing-large;
+    font-family: variables.$global-font-primary;
     font-size: 48px;
     line-height: 68px;
     text-shadow: 0 0 8px rgba(#000, 80%);
-    color: $global-color-background;
+    color: variables.$global-color-background;
 
-    @include breakpoint('medium') {
+    @include variables.breakpoint('medium') {
       font-size: 32px;
       line-height: 58px;
     }
 
-    @include breakpoint('small') {
-      margin-bottom: $global-spacing-small;
+    @include variables.breakpoint('small') {
+      margin-bottom: variables.$global-spacing-small;
       font-size: 26px;
       line-height: 36px;
     }
@@ -68,13 +68,13 @@
   padding: 15px;
   font-size: 22px;
   line-height: 22px;
-  border-radius: $global-border-radius;
+  border-radius: variables.$global-border-radius;
   text-align: center;
   text-decoration: none;
-  color: $global-color-body;
-  background: $global-color-secondary;
+  color: variables.$global-color-body;
+  background: variables.$global-color-secondary;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     padding: 10px;
     font-size: 14px;
     line-height: 18px;
@@ -89,9 +89,9 @@
     width: $size;
     height: $size;
     transform: translateX(-5px);
-    transition: transform 0.6s $global-transition-ease-out-expo;
+    transition: transform 0.6s variables.$global-transition-ease-out-expo;
 
-    @include breakpoint('small') {
+    @include variables.breakpoint('small') {
       $size: 12px;
 
       margin-left: 10px;
@@ -101,7 +101,7 @@
     }
 
     > path {
-      fill: $global-color-body;
+      fill: variables.$global-color-body;
     }
   }
 
@@ -109,7 +109,7 @@
     opacity: 1;
     color: inherit;
     text-decoration: underline;
-    background: color.adjust($global-color-secondary, $blackness: 10%);
+    background: color.adjust(variables.$global-color-secondary, $blackness: 10%);
 
     > svg {
       transform: translateX(0);
@@ -131,13 +131,13 @@
   opacity: 0.5;
   z-index: 20;
   position: absolute;
-  top: $global-spacing-large;
-  right: $global-spacing-large;
+  top: variables.$global-spacing-large;
+  right: variables.$global-spacing-large;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     top: 0;
     right: 0;
-    padding: $global-padding-small;
+    padding: variables.$global-padding-small;
   }
 
   &::after {
@@ -150,7 +150,7 @@
     background: center center no-repeat;
     background-size: contain;
 
-    @include breakpoint('small') {
+    @include variables.breakpoint('small') {
       $icon-size: 32px;
 
       width: $icon-size;
@@ -178,13 +178,13 @@
   position: relative;
   display: flex;
   justify-content: space-between;
-  width: calc(100vw - ($global-padding-large * 2));
-  max-width: $global-max-width * 2;
+  width: calc(100vw - (variables.$global-padding-large * 2));
+  max-width: variables.$global-max-width * 2;
   margin: 0 auto;
-  margin-bottom: -$global-header-height-large;
-  transform: translateY(-$global-header-height-large);
+  margin-bottom: -(variables.$global-header-height-large);
+  transform: translateY(-(variables.$global-header-height-large));
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     width: 100%;
     margin: 0 auto;
     padding: 0;
@@ -200,16 +200,16 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: $global-padding-large;
+  padding: variables.$global-padding-large;
   width: 100%;
   aspect-ratio: 2 / 1;
   text-decoration: none;
-  border-radius: $global-border-radius;
-  background: $global-color-grey;
+  border-radius: variables.$global-border-radius;
+  background: variables.$global-color-grey;
   overflow: hidden;
 
   &:first-child {
-    margin-right: $global-spacing-large;
+    margin-right: variables.$global-spacing-large;
   }
 
   &::before {
@@ -222,8 +222,8 @@
     display: block;
     width: 100%;
     height: 100%;
-    background: rgba($global-color-grey, 0.4);
-    transition: opacity 1s $global-transition-ease-out-expo;
+    background: rgba(variables.$global-color-grey, 0.4);
+    transition: opacity 1s variables.$global-transition-ease-out-expo;
   }
 
   &:hover::before {
@@ -238,16 +238,16 @@
     top: 0;
     width: 100%;
     height: 50%;
-    background: linear-gradient(180deg, rgba($global-color-blue, 0.8) 0%, rgba($global-color-blue, 0) 100%);
+    background: linear-gradient(180deg, rgba(variables.$global-color-blue, 0.8) 0%, rgba(variables.$global-color-blue, 0) 100%);
   }
 
-  @include breakpoint('medium') {
-    padding: $global-padding-medium;
+  @include variables.breakpoint('medium') {
+    padding: variables.$global-padding-medium;
   }
 
-  @include breakpoint('small') {
-    margin-top: $global-spacing-small;
-    padding: $global-padding-small;
+  @include variables.breakpoint('small') {
+    margin-top: variables.$global-spacing-small;
+    padding: variables.$global-padding-small;
     border-radius: 0;
 
     &:first-child {
@@ -261,7 +261,7 @@
   z-index: 30;
   position: relative;
   display: block;
-  color: $global-color-background;
+  color: variables.$global-color-background;
 }
 
 .highlights-item-title {
@@ -270,12 +270,12 @@
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 10px;
-  font-family: $global-font-primary;
+  font-family: variables.$global-font-primary;
   font-size: 26px;
   line-height: 32px;
   text-decoration: underline;
 
-  @include breakpoint('medium') {
+  @include variables.breakpoint('medium') {
     font-size: 24px;
     line-height: 24px;
   }
@@ -291,7 +291,7 @@
     background-size: contain;
     transform: translateY(4px);
 
-    @include breakpoint('medium') {
+    @include variables.breakpoint('medium') {
       $size: 18px;
 
       width: $size;
@@ -299,7 +299,7 @@
       transform: translateY(2px);
     }
 
-    @include breakpoint('small') {
+    @include variables.breakpoint('small') {
       $size: 24px;
 
       width: $size;
@@ -308,7 +308,7 @@
     }
   }
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     font-size: 22px;
     line-height: 22px;
   }
@@ -319,12 +319,12 @@
   line-height: 20px;
   font-weight: 700;
 
-  @include breakpoint('medium') {
+  @include variables.breakpoint('medium') {
     font-size: 18px;
     line-height: 18px;
   }
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     font-size: 16px;
     line-height: 16px;
   }
@@ -340,7 +340,7 @@
   height: 100%;
   object-fit: cover;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     transition: none;
   }
 }
@@ -348,13 +348,13 @@
 // News
 
 .news {
-  margin: ($global-spacing-large * 2) auto 0;
-  padding: 0 $global-padding-large;
-  max-width: $global-max-width * 2;
+  margin: (variables.$global-spacing-large * 2) auto 0;
+  padding: 0 variables.$global-padding-large;
+  max-width: variables.$global-max-width * 2;
 
-  @include breakpoint('small') {
-    margin: ($global-spacing-small * 2) auto 0;
-    padding: 0 $global-padding-small;
+  @include variables.breakpoint('small') {
+    margin: (variables.$global-spacing-small * 2) auto 0;
+    padding: 0 variables.$global-padding-small;
     max-width: none;
   }
 }
@@ -368,9 +368,9 @@
   white-space: nowrap;
   font-size: 32px;
   line-height: 32px;
-  font-family: $global-font-primary;
+  font-family: variables.$global-font-primary;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     font-size: 22px;
     line-height: 22px;
   }
@@ -381,34 +381,34 @@
     display: block;
     width: 100%;
     height: 2px;
-    background: color.adjust($global-color-grey, $alpha: -0.5);
+    background: color.adjust(variables.$global-color-grey, $alpha: -0.5);
   }
 }
 
 .news-container {
-  margin: $global-spacing-large 0 ($global-spacing-large * 2);
+  margin: variables.$global-spacing-large 0 (variables.$global-spacing-large * 2);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     flex-direction: column;
-    margin: $global-spacing-small 0 ($global-spacing-small * 2);
+    margin: variables.$global-spacing-small 0 (variables.$global-spacing-small * 2);
   }
 }
 
 .news-container > * {
-  margin-right: $global-spacing-large;
+  margin-right: variables.$global-spacing-large;
   width: calc(100% / 3);
 
   &:last-child {
     margin-right: 0;
   }
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     margin-right: 0;
-    margin-bottom: $global-spacing-small;
+    margin-bottom: variables.$global-spacing-small;
     width: 100%;
 
     &:last-child {

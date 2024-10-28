@@ -1,6 +1,6 @@
 @use 'sass:math';
 
-@import '../../scss/variables';
+@use '../../scss/variables';
 
 $tree-item-width-large: 200px;
 $tree-item-width-medium: 180px;
@@ -22,11 +22,11 @@ $tree-label-border-width: 5px;
   margin: 0 auto;
   width: $tree-item-width-large;
 
-  @include breakpoint($global-catalogue-breakpoint-medium) {
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
     width: $tree-item-width-medium;
   }
   
-  @include breakpoint($global-catalogue-breakpoint-small) {
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
     width: $tree-item-width-small;
   }
 }
@@ -41,7 +41,7 @@ $tree-label-border-width: 5px;
   justify-content: center;
   align-items: center;
 
-  @include breakpoint($global-catalogue-breakpoint-small) {
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
     height: $tree-item-spacing-small * 2;
   }
 
@@ -64,11 +64,11 @@ $tree-label-border-width: 5px;
     font-size: 14px;
     line-height: 14px;
     border-radius: $tree-label-border-width;
-    color: $global-color-body;
-    background: $global-color-secondary;
+    color: variables.$global-color-body;
+    background: variables.$global-color-secondary;
     text-transform: uppercase;
 
-    @include breakpoint($global-catalogue-breakpoint-small) {
+    @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
       padding: 6px 8px;
       font-size: 12px;
       line-height: 12px;
@@ -174,11 +174,11 @@ $tree-label-border-width: 5px;
   font-size: 12px;
   line-height: 12px;
   border-radius: $tree-label-border-width;
-  color: $global-color-catalogue-light;
-  background: $global-color-catalogue-dark;
+  color: variables.$global-color-catalogue-light;
+  background: variables.$global-color-catalogue-dark;
   text-transform: uppercase;
 
-  @include breakpoint($global-catalogue-breakpoint-small) {
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
     top: -25px;
     padding: 5px;
     font-size: 10px;
@@ -201,12 +201,12 @@ $tree-label-border-width: 5px;
   font-size: 16px;
   line-height: 16px;
   font-weight: 700;
-  border-radius: $global-border-radius;
-  border: 2px dashed $global-color-catalogue;
-  color: rgba($global-color-body-dark, 0.5);
-  background: $global-color-background-dark;
+  border-radius: variables.$global-border-radius;
+  border: 2px dashed variables.$global-color-catalogue;
+  color: rgba(variables.$global-color-body-dark, 0.5);
+  background: variables.$global-color-background-dark;
 
-  @include breakpoint($global-catalogue-breakpoint-small) {
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
     height: 50px;
   }
 }

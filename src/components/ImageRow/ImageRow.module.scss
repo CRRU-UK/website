@@ -1,17 +1,17 @@
-@import '../../scss/variables';
+@use '../../scss/variables';
 
 .image-row {
-  width: calc(100% + ($global-padding-large * 2));
-  margin-left: -($global-padding-large);
+  width: calc(100% + (variables.$global-padding-large * 2));
+  margin-left: -(variables.$global-padding-large);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     flex-direction: column;
-    width: calc(100% + ($global-padding-small * 2));
-    margin-left: -($global-padding-small);
+    width: calc(100% + (variables.$global-padding-small * 2));
+    margin-left: -(variables.$global-padding-small);
   }
 }
 

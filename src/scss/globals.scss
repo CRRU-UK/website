@@ -1,6 +1,10 @@
 @use 'sass:color';
+@use 'sass:meta';
 
-@import 'variables';
+@use 'variables';
+
+@include meta.load-css('layout/header');
+@include meta.load-css('layout/footer');
 
 // Fonts
 
@@ -44,12 +48,6 @@
   src: url('/fonts/Poppins-BoldItalic.ttf') format('woff2');
 }
 
-// Imports
-
-@import 'layout/header';
-
-@import 'layout/footer';
-
 // Globals
 
 html {
@@ -59,18 +57,18 @@ html {
 body {
   min-width: 320px;
   font-weight: 500;
-  font-family: $global-font-primary;
-  font-size: $global-font-size-large;
-  line-height: $global-font-line-height;
-  color: $global-color-body;
+  font-family: variables.$global-font-primary;
+  font-size: variables.$global-font-size-large;
+  line-height: variables.$global-font-line-height;
+  color: variables.$global-color-body;
   text-rendering: optimizeLegibility;
   font-feature-settings: 'liga' on;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: $global-color-background;
+  background: variables.$global-color-background;
 
-  @include breakpoint('small') {
-    font-size: $global-font-size-small;
+  @include variables.breakpoint('small') {
+    font-size: variables.$global-font-size-small;
   }
 
   &.menu,
@@ -99,20 +97,21 @@ button {
 }
 
 main {
-  $global-font-spacing-large: 20px;
-  $global-font-spacing-small: 10px;
-
   margin: 0 auto;
+
+  @include meta.load-css('layout/content');
+  @include meta.load-css('layout/form');
+  @include meta.load-css('layout/columns');
 
   > article {
     margin: 0 auto;
-    max-width: $global-max-width;
-    padding: ($global-spacing-large * 1.5) $global-padding-large 0;
+    max-width: variables.$global-max-width;
+    padding: (variables.$global-spacing-large * 1.5) variables.$global-padding-large 0;
     background: bottom right repeat-y transparent;
 
-    @include breakpoint('small') {
-      margin-top: $global-spacing-small * 1.5;
-      padding: 0 $global-padding-small;
+    @include variables.breakpoint('small') {
+      margin-top: variables.$global-spacing-small * 1.5;
+      padding: 0 variables.$global-padding-small;
       background-size: 40%;
       background-position-x: 85%;
     }
@@ -122,13 +121,9 @@ main {
     }
 
     &.wide {
-      max-width: $global-max-width-wide;
+      max-width: variables.$global-max-width-wide;
     }
   }
-
-  @import 'layout/content';
-  @import 'layout/form';
-  @import 'layout/columns';
 }
 
 main .grid {
@@ -136,17 +131,17 @@ main .grid {
   grid-template-columns: 1fr 1fr 1fr;
   align-items: start;
   justify-items: stretch;
-  column-gap: $global-spacing-large;
-  row-gap: $global-spacing-large * 1.5;
+  column-gap: variables.$global-spacing-large;
+  row-gap: variables.$global-spacing-large * 1.5;
 
-  @include breakpoint('medium') {
+  @include variables.breakpoint('medium') {
     grid-template-columns: 1fr 1fr;
   }
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     grid-template-columns: 1fr;
-    column-gap: $global-spacing-small;
-    row-gap: $global-spacing-small * 1.5;
+    column-gap: variables.$global-spacing-small;
+    row-gap: variables.$global-spacing-small * 1.5;
   }
 }
 
@@ -155,15 +150,15 @@ main .details {
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  margin: ($global-spacing-large * 0.5) auto 0;
-  padding: 0 $global-padding-large;
-  max-width: $global-max-width;
+  margin: (variables.$global-spacing-large * 0.5) auto 0;
+  padding: 0 variables.$global-padding-large;
+  max-width: variables.$global-max-width;
 
   list-style: none;
 
-  @include breakpoint('small') {
-    margin-top: $global-spacing-small;
-    padding: 0 $global-padding-small;
+  @include variables.breakpoint('small') {
+    margin-top: variables.$global-spacing-small;
+    padding: 0 variables.$global-padding-small;
   }
 }
 
@@ -178,12 +173,12 @@ main .details > .category {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin-right: $global-spacing-large;
+  margin-right: variables.$global-spacing-large;
   font-weight: 500;
-  color: $global-color-body;
+  color: variables.$global-color-body;
 
-  @include breakpoint('small') {
-    margin-right: $global-spacing-small;
+  @include variables.breakpoint('small') {
+    margin-right: variables.$global-spacing-small;
     font-size: 14px;
     line-height: 14px;
   }
@@ -199,7 +194,7 @@ main .details > .category {
     background: center center no-repeat transparent;
     background-size: contain;
 
-    @include breakpoint('small') {
+    @include variables.breakpoint('small') {
       $size: 14px;
 
       margin-right: 5px;
