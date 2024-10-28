@@ -1,4 +1,4 @@
-@import '../../scss/variables';
+@use '../../scss/variables';
 
 .news > a {
   position: relative;
@@ -19,9 +19,9 @@
   margin: 0;
   font-size: 18px;
   line-height: 26px;
-  font-family: $global-font-primary;
+  font-family: variables.$global-font-primary;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     font-size: 16px;
     line-height: 24px;
   }
@@ -36,10 +36,10 @@
   margin-bottom: 10px;
   overflow: hidden;
   aspect-ratio: 16 / 9;
-  border-radius: $global-border-radius;
-  background: $global-color-background;
+  border-radius: variables.$global-border-radius;
+  background: variables.$global-color-background;
   
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     margin-bottom: 8px;
   }
 
@@ -53,8 +53,8 @@
     display: block;
     width: 100%;
     height: 100%;
-    background: rgba($global-color-grey, 0.4);
-    transition: opacity 1s $global-transition-ease-out-expo;
+    background: rgba(variables.$global-color-grey, 0.4);
+    transition: opacity 1s variables.$global-transition-ease-out-expo;
   }
 }
 
@@ -80,9 +80,9 @@
   margin-top: 10px;
   margin-right: 15px;
   font-weight: 500;
-  color: $global-color-body;
+  color: variables.$global-color-body;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     margin-top: 5px;
     margin-right: 10px;
     font-size: 12px;
@@ -100,7 +100,7 @@
     background: center center no-repeat transparent;
     background-size: contain;
 
-    @include breakpoint('small') {
+    @include variables.breakpoint('small') {
       $size: 14px;
 
       margin-right: 4px;

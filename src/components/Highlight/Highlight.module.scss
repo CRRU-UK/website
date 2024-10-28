@@ -1,12 +1,12 @@
-@import '../../scss/variables';
+@use '../../scss/variables';
 
 .highlight {
-  width: calc(100% + ($global-padding-large * 2));
-  margin: $global-spacing-large auto;
-  margin-left: -($global-spacing-large);
-  padding: $global-padding-large;
-  border-radius: $global-border-radius;
-  background: $global-color-secondary;
+  width: calc(100% + (variables.$global-padding-large * 2));
+  margin: variables.$global-spacing-large auto;
+  margin-left: -(variables.$global-spacing-large);
+  padding: variables.$global-padding-large;
+  border-radius: variables.$global-border-radius;
+  background: variables.$global-color-secondary;
 
   > *:first-child {
     margin-top: 0;
@@ -21,15 +21,15 @@
     background: inherit;
   }
 
-  @include breakpoint($global-max-width) {
+  @include variables.breakpoint(variables.$global-max-width) {
     border-radius: 0;
   }
 
-  @include breakpoint('small') {
-    width: calc(100% + ($global-padding-small * 2));
-    margin: $global-spacing-small auto;
-    margin-left: -($global-spacing-small);
-    padding: $global-padding-small;
+  @include variables.breakpoint('small') {
+    width: calc(100% + (variables.$global-padding-small * 2));
+    margin: variables.$global-spacing-small auto;
+    margin-left: -(variables.$global-spacing-small);
+    padding: variables.$global-padding-small;
   }
 
   &,
@@ -37,17 +37,17 @@
   h5,
   h6,
   a {
-    color: $global-color-body;
+    color: variables.$global-color-body;
   }
 
   h4,
   h5,
   h6 {
-    font-family: $global-font-primary;
+    font-family: variables.$global-font-primary;
     font-size: 26px;
     line-height: 26px;
 
-    @include breakpoint('small') {
+    @include variables.breakpoint('small') {
       font-size: 22px;
       line-height: 30px;
     }
@@ -59,5 +59,5 @@
 }
 
 .highlight-warning {
-  background: $global-color-secondary;
+  background: variables.$global-color-secondary;
 }

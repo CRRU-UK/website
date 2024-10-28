@@ -1,8 +1,8 @@
-@import '../../scss/variables';
+@use '../../scss/variables';
 
 .breadcrumbs-container {
   margin: 0 auto;
-  background: $global-color-background-dark;
+  background: variables.$global-color-background-dark;
 }
 
 .breadcrumbs {
@@ -12,22 +12,22 @@
   align-items: center;
   flex-wrap: wrap;
   margin: 0 auto;
-  padding: 5px $global-padding-large;
+  padding: 5px variables.$global-padding-large;
   width: 100%;
-  max-width: $global-max-width;
+  max-width: variables.$global-max-width;
   list-style: none;
   overflow: hidden;
 
   &.wide {
-    max-width: $global-max-width-wide;
+    max-width: variables.$global-max-width-wide;
   }
   
   &.inline {
     max-width: none;
   }
 
-  @include breakpoint('small') {
-    padding: 4px $global-padding-small;
+  @include variables.breakpoint('small') {
+    padding: 4px variables.$global-padding-small;
   }
 }
 
@@ -47,7 +47,7 @@
     background: url('../../../public/images/icons/small-arrow.svg') center center no-repeat;
     background-size: contain;
 
-    @include breakpoint('small') {
+    @include variables.breakpoint('small') {
       margin: 0 5px;
       width: 8px;
       height: 8px;
@@ -71,9 +71,9 @@
   font-size: $font-size;
   line-height: $font-size;
   font-weight: 700;
-  color: $global-color-body;
+  color: variables.$global-color-body;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     $font-size: 11px;
 
     padding: 6px 0;
@@ -83,10 +83,10 @@
 }
 
 .breadcrumbs > li > a:hover {
-  color: $global-color-primary-dark;
+  color: variables.$global-color-primary-dark;
 }
 
 .breadcrumbs > li > span {
   font-weight: 700;
-  color: $global-color-body;
+  color: variables.$global-color-body;
 }

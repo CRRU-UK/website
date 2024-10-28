@@ -1,7 +1,7 @@
 @use 'sass:math';
 @use 'sass:color';
 
-@import '../../../scss/variables';
+@use '../../../scss/variables';
 
 // Container
 
@@ -10,19 +10,19 @@
   flex-direction: row;
   margin: 0 auto;
   width: 100%;
-  max-width: $global-catalogue-max-width;
+  max-width: variables.$global-catalogue-max-width;
   overflow: hidden;
 
-  @include breakpoint($global-catalogue-breakpoint-small) {
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
     flex-direction: column;
   }
 }
 
 // Main
 
-$grid-spacing-large: $global-spacing-large / 2;
-$grid-spacing-medium: $global-spacing-medium / 2;
-$grid-spacing-small: $global-spacing-small / 2;
+$grid-spacing-large: math.div(variables.$global-spacing-large, 2);
+$grid-spacing-medium: math.div(variables.$global-spacing-medium, 2);
+$grid-spacing-small: math.div(variables.$global-spacing-small, 2);
 
 .main {
   margin: 0;
@@ -30,42 +30,42 @@ $grid-spacing-small: $global-spacing-small / 2;
   width: 100%;
   max-width: none;
 
-  @media (min-width: $global-catalogue-max-width) {
-    border-left: 2px solid $global-color-catalogue;
-    border-bottom: 2px solid $global-color-catalogue;
-    border-bottom-left-radius: $global-border-radius;
+  @media (min-width: variables.$global-catalogue-max-width) {
+    border-left: 2px solid variables.$global-color-catalogue;
+    border-bottom: 2px solid variables.$global-color-catalogue;
+    border-bottom-left-radius: variables.$global-border-radius;
   }
 
   > .wrapper {
-    border-top: 2px solid $global-color-catalogue;
-    padding: ($global-padding-large + ($global-padding-large / 2)) $global-padding-large;
+    border-top: 2px solid variables.$global-color-catalogue;
+    padding: (variables.$global-padding-large + math.div(variables.$global-padding-large, 2)) variables.$global-padding-large;
 
-    @include breakpoint($global-catalogue-breakpoint-medium) {
-      padding: ($global-padding-medium + ($global-padding-medium / 2)) $global-padding-medium;
+    @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
+      padding: (variables.$global-padding-medium + math.div(variables.$global-padding-medium, 2)) variables.$global-padding-medium;
     }
 
-    @include breakpoint($global-catalogue-breakpoint-small) {
-      padding: ($global-padding-small + ($global-padding-small / 2)) $global-padding-small;
+    @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
+      padding: (variables.$global-padding-small + math.div(variables.$global-padding-small, 2)) variables.$global-padding-small;
     }
   }
 }
 
 .main h1 {
   display: block;
-  margin: 0 0 $global-spacing-large;
+  margin: 0 0 variables.$global-spacing-large;
   font-weight: 700;
   font-size: 38px;
   line-height: 38px;
-  font-family: $global-font-primary;
+  font-family: variables.$global-font-primary;
 
-  @include breakpoint($global-catalogue-breakpoint-medium) {
-    margin-bottom: $global-spacing-medium;
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
+    margin-bottom: variables.$global-spacing-medium;
     font-size: 28px;
     line-height: 28px;
   }
 
-  @include breakpoint($global-catalogue-breakpoint-small) {
-    margin-bottom: $global-spacing-small;
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
+    margin-bottom: variables.$global-spacing-small;
     font-size: 24px;
     line-height: 24px;
   }
@@ -79,16 +79,16 @@ $grid-spacing-small: $global-spacing-small / 2;
   font-weight: 700;
   font-size: 18px;
   line-height: 18px;
-  font-family: $global-font-primary;
-  color: $global-color-body-dark;
+  font-family: variables.$global-font-primary;
+  color: variables.$global-color-body-dark;
 
-  @include breakpoint($global-catalogue-breakpoint-medium) {
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
     margin-bottom: 12px;
     font-size: 16px;
     line-height: 16px;
   }
 
-  @include breakpoint($global-catalogue-breakpoint-small) {
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
     margin-bottom: 10px;
     font-size: 14px;
     line-height: 14px;
@@ -105,7 +105,7 @@ $grid-spacing-small: $global-spacing-small / 2;
     background-color: transparent;
     background-size: contain;
 
-    @include breakpoint($global-catalogue-breakpoint-small) {
+    @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
       width: 24px;
       height: 16px;
     }
@@ -129,13 +129,13 @@ $grid-spacing-small: $global-spacing-small / 2;
   row-gap: $grid-spacing-large;
   list-style: none;
 
-  @include breakpoint($global-catalogue-breakpoint-medium) {
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: $grid-spacing-medium;
     row-gap: $grid-spacing-medium;
   }
 
-  @include breakpoint($global-catalogue-breakpoint-small) {
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
     column-gap: $grid-spacing-small;
     row-gap: $grid-spacing-small;
   }
@@ -149,17 +149,17 @@ $grid-spacing-small: $global-spacing-small / 2;
   font-size: 22px;
   font-weight: 700;
   line-height: 22px;
-  background: $global-color-catalogue-light;
-  border-radius: $global-border-radius;
+  background: variables.$global-color-catalogue-light;
+  border-radius: variables.$global-border-radius;
 
-  @include breakpoint($global-catalogue-breakpoint-medium) {
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
     padding: 18px;
     grid-column: span 1;
     font-size: 18px;
     line-height: 18px;
   }
 
-  @include breakpoint($global-catalogue-breakpoint-small) {
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
     padding: 15px;
     font-size: 16px;
     line-height: 16px;
@@ -171,7 +171,7 @@ $grid-spacing-small: $global-spacing-small / 2;
     line-height: 18px;
     font-weight: 500;
 
-    @include breakpoint($global-catalogue-breakpoint-small) {
+    @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
       font-size: 14px;
       line-height: 14px;
     }
@@ -186,9 +186,9 @@ $grid-spacing-small: $global-spacing-small / 2;
     font-size: 18px;
     line-height: 18px;
     font-weight: 500;
-    color: $global-color-grey;
+    color: variables.$global-color-grey;
 
-    @include breakpoint($global-catalogue-breakpoint-small) {
+    @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
       margin-bottom: 8px;
       font-size: 16px;
       line-height: 16px;
@@ -209,7 +209,7 @@ $grid-spacing-small: $global-spacing-small / 2;
   &.info-item-wide {
     grid-column: span 4;
 
-    @include breakpoint($global-catalogue-breakpoint-medium) {
+    @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
       grid-column: span 1;
     }
   }
@@ -222,7 +222,7 @@ $grid-spacing-small: $global-spacing-small / 2;
     grid-column: span 6;
   }
 
-  @include breakpoint($global-catalogue-breakpoint-medium) {
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
     &.info-item-half {
       grid-column: span 1;
     }
@@ -232,7 +232,7 @@ $grid-spacing-small: $global-spacing-small / 2;
     }
   }
 
-  @include breakpoint($global-catalogue-breakpoint-small) {
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
     &.info-item-half {
       grid-column: span 2;
     }
@@ -247,7 +247,7 @@ $grid-spacing-small: $global-spacing-small / 2;
     column-gap: 20px;
     row-gap: 20px;
 
-    @include breakpoint($global-catalogue-breakpoint-medium) {
+    @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
       grid-template-columns: repeat(2, 1fr);
       column-gap: 10px;
       row-gap: 10px;
@@ -264,10 +264,10 @@ $grid-spacing-small: $global-spacing-small / 2;
     justify-content: flex-start;
     align-items: center;
     font-style: italic;
-    color: $global-color-body-dark;
+    color: variables.$global-color-body-dark;
 
     > span {
-      border-bottom: 1px dotted $global-color-body-dark;
+      border-bottom: 1px dotted variables.$global-color-body-dark;
     }
 
     > span:hover {
@@ -311,25 +311,25 @@ $sections: (
 }
 
 .last-updated {
-  margin: $global-spacing-large auto 0;
-  padding: 0 $global-padding-large;
+  margin: variables.$global-spacing-large auto 0;
+  padding: 0 variables.$global-padding-large;
   display: block;
-  max-width: $global-catalogue-max-width;
+  max-width: variables.$global-catalogue-max-width;
   font-size: 16px;
   line-height: 16px;
-  color: $global-color-body-dark;
+  color: variables.$global-color-body-dark;
   text-align: left;
 
-  @include breakpoint($global-catalogue-breakpoint-medium) {
-    margin-top: $global-spacing-medium;
-    padding: 0 $global-padding-medium;
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
+    margin-top: variables.$global-spacing-medium;
+    padding: 0 variables.$global-padding-medium;
     font-size: 14px;
     line-height: 14px;
   }
 
-  @include breakpoint($global-catalogue-breakpoint-small) {
-    margin-top: $global-spacing-small;
-    padding: 0 $global-padding-small;
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
+    margin-top: variables.$global-spacing-small;
+    padding: 0 variables.$global-padding-small;
     font-size: 12px;
     line-height: 12px;
     text-align: center;
@@ -347,30 +347,30 @@ $sidebar-size-medium: 480px;
   justify-content: space-between;
   align-items: center;
   flex-shrink: 0;
-  padding: ($global-padding-large * 2) 0 $global-padding-large;
+  padding: (variables.$global-padding-large * 2) 0 variables.$global-padding-large;
   width: $sidebar-size-large;
-  border-left: 2px solid $global-color-catalogue;
-  border-bottom: 2px solid $global-color-catalogue;
-  border-bottom-left-radius: $global-border-radius;
-  background: top left repeat url('../../../../public/images/catalogue-background.svg') $global-color-catalogue-light;
+  border-left: 2px solid variables.$global-color-catalogue;
+  border-bottom: 2px solid variables.$global-color-catalogue;
+  border-bottom-left-radius: variables.$global-border-radius;
+  background: top left repeat url('../../../../public/images/catalogue-background.svg') variables.$global-color-catalogue-light;
 
-  @media (min-width: $global-catalogue-max-width) {
-    border-right: 2px solid $global-color-catalogue;
+  @media (min-width: variables.$global-catalogue-max-width) {
+    border-right: 2px solid variables.$global-color-catalogue;
     border-bottom-left-radius: 0;
-    border-bottom-right-radius: $global-border-radius;
+    border-bottom-right-radius: variables.$global-border-radius;
   }
 
-  @include breakpoint($global-catalogue-breakpoint-medium) {
-    padding: ($global-padding-medium * 2) 0 $global-padding-medium;
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
+    padding: (variables.$global-padding-medium * 2) 0 variables.$global-padding-medium;
     width: $sidebar-size-medium;
   }
 
-  @include breakpoint($global-catalogue-breakpoint-small) {
-    padding: ($global-padding-small * 2) 0 $global-padding-small;
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
+    padding: (variables.$global-padding-small * 2) 0 variables.$global-padding-small;
     width: 100%;
     border-left: 0;
     border-radius: 0;
-    border-top: 2px solid $global-color-catalogue;
+    border-top: 2px solid variables.$global-color-catalogue;
   }
 }
 
@@ -380,14 +380,14 @@ $sidebar-size-medium: 480px;
   font-weight: 700;
   line-height: 24px;
   text-align: center;
-  color: $global-color-catalogue-dark;
+  color: variables.$global-color-catalogue-dark;
 
-  @include breakpoint($global-catalogue-breakpoint-medium) {
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
     font-size: 20px;
     line-height: 20px;
   }
 
-  @include breakpoint($global-catalogue-breakpoint-small) {
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
     font-size: 16px;
     line-height: 16px;
   }
@@ -399,31 +399,31 @@ $sidebar-size-medium: 480px;
   display: inline-flex;
   flex-direction: row;
   align-items: center;
-  margin: ($global-spacing-large * 2) auto 0;
+  margin: (variables.$global-spacing-large * 2) auto 0;
   padding: 12px 15px;
-  border-radius: $global-border-radius;
+  border-radius: variables.$global-border-radius;
   font-size: 16px;
   line-height: 16px;
-  color: rgba($global-color-body, 0.7);
+  color: rgba(variables.$global-color-body, 0.7);
   text-decoration: none;
-  border: 2px solid $global-color-catalogue;
-  background: $global-color-background;
+  border: 2px solid variables.$global-color-catalogue;
+  background: variables.$global-color-background;
 
-  @include breakpoint($global-catalogue-breakpoint-medium) {
-    margin-top: ($global-spacing-medium * 2);
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
+    margin-top: (variables.$global-spacing-medium * 2);
   }
 
-  @include breakpoint($global-catalogue-breakpoint-small) {
-    margin-top: ($global-spacing-small * 2);
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
+    margin-top: (variables.$global-spacing-small * 2);
     padding: 8px 10px;
     font-size: 12px;
     line-height: 12px;
   }
 
   &:hover {
-    color: $global-color-primary-dark;
+    color: variables.$global-color-primary-dark;
     text-decoration: underline;
-    border-color: $global-color-primary-dark;
+    border-color: variables.$global-color-primary-dark;
   }
 
   &::before {
@@ -437,7 +437,7 @@ $sidebar-size-medium: 480px;
     background-size: contain;
     transform: rotate(-90deg);
 
-    @include breakpoint($global-catalogue-breakpoint-small) {
+    @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
       margin-right: 8px;
       min-width: 12px;
       min-height: 12px;

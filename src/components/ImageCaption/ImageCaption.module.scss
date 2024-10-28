@@ -1,13 +1,13 @@
-@import '../../scss/variables';
+@use '../../scss/variables';
 
 .image {
   z-index: 0;
   position: relative;
-  margin: $global-spacing-large auto;
+  margin: variables.$global-spacing-large auto;
   width: 100%;
 
-  @include breakpoint('small') {
-    margin: $global-spacing-small auto;
+  @include variables.breakpoint('small') {
+    margin: variables.$global-spacing-small auto;
   }
 
   > img {
@@ -21,9 +21,9 @@
 }
 
 .image + .image {
-  margin-left: $global-spacing-large;
+  margin-left: variables.$global-spacing-large;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     margin-left: 0;
   }
 }
@@ -44,7 +44,7 @@ $caption-size-small: $icon-size-small + ($icon-padding-small * 2);
   bottom: 0;
   display: block;
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     width: $icon-padding-small + ($icon-padding-small * 2);
     height: $icon-padding-small + ($icon-padding-small * 2);
   }
@@ -71,7 +71,7 @@ $caption-size-small: $icon-size-small + ($icon-padding-small * 2);
     background-size: contain;
   }
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     padding: $icon-padding-small;
     width: $caption-size-small;
     height: $caption-size-small;
@@ -88,8 +88,8 @@ $caption-size-small: $icon-size-small + ($icon-padding-small * 2);
   opacity: 1;
 }
 
-$easing-in: 0.6s $global-transition-ease-out-expo;
-$easing-out: 0.6s $global-transition-ease-in-expo;
+$easing-in: 0.6s variables.$global-transition-ease-out-expo;
+$easing-out: 0.6s variables.$global-transition-ease-in-expo;
 
 .caption-text {
   pointer-events: none;
@@ -104,8 +104,8 @@ $easing-out: 0.6s $global-transition-ease-in-expo;
   line-height: 20px;
   text-align: left;
   border-radius: 5px;
-  box-shadow: 0 0 5px rgba($global-color-body, 0.3);
-  background: $global-color-background;
+  box-shadow: 0 0 5px rgba(variables.$global-color-body, 0.3);
+  background: variables.$global-color-background;
   transform: translateY($icon-padding-large);
   transition: opacity $easing-in, transform $easing-in;
 
@@ -113,7 +113,7 @@ $easing-out: 0.6s $global-transition-ease-in-expo;
     margin-top: 0;
   }
 
-  @include breakpoint('small') {
+  @include variables.breakpoint('small') {
     right: $icon-padding-small;
     bottom: $caption-size-small;
     transform: translateY($icon-padding-small);
