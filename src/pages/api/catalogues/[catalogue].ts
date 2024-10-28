@@ -1,15 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import type { NextApiResponse } from 'next';
-import type { LogtailAPIRequest } from '@logtail/next';
-
-import { withLogtail } from '@logtail/next';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { Catalogues } from '@/helpers/constants';
 import { getCatalogueList } from '@/helpers/getCatalogue';
 
 const handler = async (
-  req: LogtailAPIRequest,
+  req: NextApiRequest,
   res: NextApiResponse,
 ) => {
   if (req.method !== 'GET') {
@@ -52,4 +49,4 @@ const handler = async (
   return res.json(data);
 };
 
-export default withLogtail(handler);
+export default handler;

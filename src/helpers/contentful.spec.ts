@@ -7,7 +7,7 @@ jest.mock('contentful', () => ({
 }));
 
 beforeAll(() => {
-  require('./contentful');
+  require('./contentful'); // eslint-disable-line @typescript-eslint/no-require-imports
 });
 
 afterEach(() => {

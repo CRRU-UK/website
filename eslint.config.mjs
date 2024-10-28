@@ -1,12 +1,31 @@
 import globals from 'globals';
-import pluginJs from '@eslint/js';
-import tseslint from 'typescript-eslint';
+import pluginJS from '@eslint/js';
+import pluginTS from 'typescript-eslint';
 import pluginReact from 'eslint-plugin-react';
+import pluginReactHooks from 'eslint-plugin-react-hooks';
+import pluginNext from '@next/eslint-plugin-next';
+import pluginJest from 'eslint-plugin-jest';
 
 const recommendedConfigs = [
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
+  pluginJS.configs.recommended,
+  ...pluginTS.configs.recommended,
   pluginReact.configs.flat.recommended,
+  pluginJest.configs['flat/recommended'],
+
+  // Custom config until packages support flat configs
+  {
+    files: ['src/**/*.{js,ts,jsx,tsx}'],
+    plugins: {
+      'react-hooks': pluginReactHooks,
+      '@next/next': pluginNext,
+    },
+    rules: {
+      'react/react-in-jsx-scope': 'off',
+      'react/prop-types': 'off',
+      ...pluginReactHooks.configs.recommended.rules,
+      ...pluginNext.configs.recommended.rules,
+    },
+  },
 ];
 
 const customConfigs = [
@@ -15,8 +34,8 @@ const customConfigs = [
   },
   {
     ignores: [
-      ".next/",
-      "coverage/",
+      '.next/',
+      'coverage/',
     ],
   },
   {
@@ -27,14 +46,11 @@ const customConfigs = [
     },
   },
   {
-    languageOptions: { globals: {...globals.browser, ...globals.node} },
-  },
-  {
-    rules: {
-      '@typescript-eslint/no-unsafe-function-type': 'off',
-      '@typescript-eslint/no-require-imports': 'off',
-      'react/prop-types': 'off',
-      'react/react-in-jsx-scope': 'off',
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
     },
   },
 ];
