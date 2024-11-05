@@ -24,6 +24,7 @@ const recommendedConfigs = [
       'react/prop-types': 'off',
       ...pluginReactHooks.configs.recommended.rules,
       ...pluginNext.configs.recommended.rules,
+      ...pluginNext.configs['core-web-vitals'].rules,
     },
   },
 ];
