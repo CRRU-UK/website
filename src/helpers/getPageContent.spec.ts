@@ -26,10 +26,11 @@ it('Returns page content entry with defaults', async () => {
       items: [{
         sys: { id: 'test-id' },
         fields: {
+          description: 'test description',
           content: 'test content',
+          data: { foo: 'bar' },
           image: 'test image',
           background: 'test background',
-          description: 'test description',
           references: ['test-reference-1', 'test-reference-2'],
         },
       }],
@@ -49,10 +50,11 @@ it('Returns page content entry with defaults', async () => {
 
   expect(result).toStrictEqual({
     id: 'test-id',
+    description: 'test description',
     content: 'test content',
+    data: { foo: 'bar' },
     image: 'test image',
     background: 'test background',
-    description: 'test description',
   });
 });
 
@@ -62,10 +64,11 @@ it('Returns page content entry with options', async () => {
       items: [{
         sys: { id: 'test-id' },
         fields: {
+          description: 'test description',
           content: 'test content',
+          data: { foo: 'bar' },
           image: 'test image',
           background: 'test background',
-          description: 'test description',
           references: ['test-reference-1', 'test-reference-2'],
         },
       }],
@@ -75,10 +78,11 @@ it('Returns page content entry with options', async () => {
 
   expect(result).toStrictEqual({
     id: 'test-id',
+    description: 'test description',
     content: 'test content',
+    data: { foo: 'bar' },
     image: 'test image',
     background: 'test background',
-    description: 'test description',
     references: ['test-reference-1', 'test-reference-2'],
   });
 });
@@ -89,10 +93,11 @@ it('Returns page content entry using preview client', async () => {
       items: [{
         sys: { id: 'test-id' },
         fields: {
+          description: 'test description',
           content: 'test content',
+          data: { foo: 'bar' },
           image: 'test image',
           background: 'test background',
-          description: 'test description',
           references: ['test-reference-1', 'test-reference-2'],
         },
       }],
@@ -112,10 +117,11 @@ it('Returns page content entry using preview client', async () => {
 
   expect(result).toStrictEqual({
     id: 'test-id',
+    description: 'test description',
     content: 'test content',
+    data: { foo: 'bar' },
     image: 'test image',
     background: 'test background',
-    description: 'test description',
   });
 });
 
@@ -132,10 +138,11 @@ it('Returns page content entry with missing fields', async () => {
 
   expect(result).toStrictEqual({
     id: 'test-id',
+    description: null,
     content: null,
+    data: null,
     image: null,
     background: null,
-    description: null,
     references: null,
   });
 });
