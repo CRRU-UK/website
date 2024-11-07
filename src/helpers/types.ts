@@ -25,8 +25,9 @@ export type FlattenedVideo = {
 
 export type PageData = {
   id?: string,
-  content: Document | null,
   description: string | null,
+  content: Document | null,
+  data?: object | null,
   image: FlattenedImage | null,
   background: FlattenedImage | null,
   references?: Array<Entry> | null,
@@ -156,9 +157,10 @@ export type ContentTypePageContent = {
   fields: {
     name: EntryFieldTypes.Symbol,
     path: EntryFieldTypes.Symbol,
+    description?: EntryFieldTypes.Symbol,
     content: EntryFieldTypes.RichText,
     references?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<ContentTypePerson | ContentTypeSponsor | ContentTypeUsefulLink>>,
-    description?: EntryFieldTypes.Symbol,
+    data?: EntryFieldTypes.Object,
     image?: EntryFieldTypes.AssetLink,
     background?: EntryFieldTypes.AssetLink,
   },

@@ -32,19 +32,20 @@ const getPageContent = async (
 
   const [{ sys, fields }] = items;
 
-  const data: PageData = {
+  const pageData: PageData = {
     id: sys.id,
+    description: fields.description ?? null,
     content: fields.content ?? null,
+    data: fields.data ?? null,
     image: fields.image ? flattenImageAssetFields(fields.image) : null,
     background: fields.background ? flattenImageAssetFields(fields.background) : null,
-    description: fields.description ?? null,
   };
 
   if (options?.references) {
-    data.references = fields.references as PageData['references'] ?? null;
+    pageData.references = fields.references as PageData['references'] ?? null;
   }
 
-  return data;
+  return pageData;
 };
 
 export default getPageContent;

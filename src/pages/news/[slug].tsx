@@ -54,6 +54,8 @@ const Page: NextPage<PageProps> = ({
     fields: { content: { [LOCALE]: content } },
   });
 
+  const formattedDate = new Date(date).toISOString();
+
   return (
     <>
       <SEO
@@ -76,15 +78,14 @@ const Page: NextPage<PageProps> = ({
         images={[image.url]}
         section={category}
         keywords={keywords.join(',')}
-        dateCreated={date}
-        datePublished={date}
-        dateModified={date}
+        dateCreated={formattedDate}
+        datePublished={formattedDate}
+        dateModified={formattedDate}
         authorName={[{ name: DEFAULT_SITE_NAME, url: DEFAULT_SITE_DOMAIN }]}
         publisherName={DEFAULT_SITE_NAME}
         publisherLogo={`${DEFAULT_SITE_DOMAIN}/images/logo.png`}
         description={description}
         body={documentToPlainTextString(content)}
-        isAccessibleForFree
       />
 
       <Hero

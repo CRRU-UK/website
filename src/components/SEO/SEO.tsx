@@ -12,6 +12,7 @@ import {
   DEFAULT_SITE_DESCRIPTION,
   DEFAULT_SITE_DOMAIN,
   DEFAULT_SEO_IMAGE,
+  SOCIAL_MEDIA_ACCOUNTS,
 } from '@/helpers/constants';
 
 interface Props {
@@ -73,13 +74,7 @@ const SEO = ({
         type="Organization"
         name={DEFAULT_SITE_NAME}
         url={DEFAULT_SITE_DOMAIN}
-        sameAs={[
-          'https://instagram.com/crru.org.uk',
-          'https://facebook.com/crru.org.uk',
-          'https://twitter.com/CRRU',
-          'https://youtube.com/@crruorguk',
-          'https://linkedin.com/company/cetacean-research-&-rescue-unit-crru-',
-        ]}
+        sameAs={SOCIAL_MEDIA_ACCOUNTS}
       />
     </>
   );

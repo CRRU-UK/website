@@ -4,6 +4,8 @@ import type { NextPage, GetServerSideProps } from 'next';
 import type { Asset } from 'contentful';
 
 import React, { useRef, useState, useEffect } from 'react';
+import { OrganizationJsonLd } from 'next-seo';
+import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -20,7 +22,15 @@ import { contentfulDeliveryClient, contentfulPreviewClient } from '@/helpers/con
 import { flattenImageAssetFields, flattenVideoAssetFields } from '@/helpers/flattenAssetFields';
 import getNews from '@/helpers/getNews';
 
-import { ContentTypes, InlineContentEntries } from '@/helpers/constants';
+import {
+  ContentTypes,
+  InlineContentEntries,
+  DEFAULT_SITE_NAME,
+  DEFAULT_SITE_ALTERNATE_NAME,
+  DEFAULT_SITE_DESCRIPTION,
+  DEFAULT_SITE_DOMAIN,
+  SOCIAL_MEDIA_ACCOUNTS,
+} from '@/helpers/constants';
 
 import { News, SEO } from '@/components';
 
@@ -70,6 +80,44 @@ const Page: NextPage<PageProps> = ({
       <SEO
         page={{ title: 'Cetacean Research & Rescue Unit', path: sitemap.home.path }}
         breadcrumbs={[sitemap.home]}
+      />
+
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: DEFAULT_SITE_NAME,
+            alternateName: DEFAULT_SITE_ALTERNATE_NAME,
+            url: DEFAULT_SITE_DOMAIN,
+          })}}
+        />
+      </Head>
+
+      <OrganizationJsonLd
+        type="NGO"
+        name={DEFAULT_SITE_NAME}
+        alternateName={DEFAULT_SITE_ALTERNATE_NAME}
+        description={DEFAULT_SITE_DESCRIPTION}
+        url={DEFAULT_SITE_DOMAIN}
+        id="https://crru.org.uk/about"
+        logo="https://crru.org.uk/images/logo.png"
+        foundingDate="1999"
+        address={{
+          streetAddress: '48 Seatown',
+          addressLocality: 'Banff',
+          addressRegion: 'Scotland',
+          postalCode: 'AB45 3YQ',
+          addressCountry: 'GB',
+        }}
+        contactPoint={[{
+          telephone: '+44-0126-185-1696',
+          contactType: 'General',
+          email: 'info@crru.org.uk',
+          availableLanguage: ['English'],
+        }]}
+        sameAs={SOCIAL_MEDIA_ACCOUNTS}
       />
 
       <section className={styles.banner}>

@@ -26,6 +26,7 @@ const Page: NextPage<PageProps> = ({
         name: DEFAULT_SITE_NAME,
         url: `${DEFAULT_SITE_DOMAIN}${sitemap['mmo-training'].path}`,
       }}
+      { ...data.data }
     />
 
     <CommonPage
