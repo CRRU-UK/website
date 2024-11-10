@@ -8,17 +8,17 @@ import { contentfulDeliveryClient } from './contentful';
 import { flattenImageAssetFields } from './flattenAssetFields';
 
 interface Options {
-  limit: number,
+  limit?: number,
 }
 
 /**
  * Queries and returns news articles entries from Contentful.
  * @param options Options.
- * @param options.limit Number of entries to query.
+ * @param [options.limit] Number of entries to query.
  * @returns News article entries.
  */
 const getNews = async ({
-  limit,
+  limit = 1000,
 }: Options): Promise<Array<NewsArticle>> => {
   const { items } = await contentfulDeliveryClient.getEntries<ContentTypeNews>({
     content_type: ContentTypes.NewsArticle,
