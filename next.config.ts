@@ -54,7 +54,7 @@ const nextConfig: NextConfig = {
         value: 'SAMEORIGIN https://app.contentful.com',
       }, {
         key: 'Content-Security-Policy',
-        value: [CSPHeader, `frame-ancestors 'self' https://app.contentful.com`].join('; '),
+        value: CSPHeader.replace(`frame-ancestors 'none'`, `frame-ancestors 'self' https://app.contentful.com`),
       }],
     }];
   },
