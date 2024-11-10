@@ -17,6 +17,7 @@ import {
 
 interface Props {
   page: SitemapItem,
+  type?: 'website' | 'article',
   images?: Array<{
     url: string,
     width?: number,
@@ -28,6 +29,7 @@ interface Props {
 
 const SEO = ({
   page,
+  type = 'website',
   images = DEFAULT_SEO_IMAGE,
   breadcrumbs,
 }: Props) => {
@@ -49,6 +51,7 @@ const SEO = ({
         canonical={pageCanonicalURL}
         themeColor="#000000"
         openGraph={{
+          type,
           url: pageCanonicalURL,
           title,
           description,

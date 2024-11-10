@@ -188,7 +188,7 @@ const Page: NextPage<PageProps> = ({
                           src={item.url}
                           width={item.width}
                           height={item.height}
-                          alt=""
+                          alt={`General photo of ${name}`}
                           className={styles.image}
                         />
                       </li>

@@ -9,7 +9,7 @@ const Page: NextPage = () => (
     </Head>
 
     <article className="content">
-      <h3>Not Found</h3>
+      <h2>Not Found</h2>
       <p>The requested resource cannot be found (404).</p>
     </article>
   </>

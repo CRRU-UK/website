@@ -39,7 +39,7 @@
     padding: 0 variables.$global-padding-small;
   }
 
-  h2 {
+  h1 {
     margin-bottom: variables.$global-spacing-large;
     font-family: variables.$global-font-primary;
     font-size: 48px;
@@ -359,7 +359,7 @@
   }
 }
 
-.news > h3 {
+.news > h2 {
   display: flex;
   margin-top: 0;
   align-items: center;

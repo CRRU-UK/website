@@ -71,19 +71,19 @@
   max-width: variables.$global-max-width-wide;
 }
 
-.hero-container > h2,
-.hero-container > h3 {
+.hero-container > h1,
+.hero-container > h2 {
   margin: 0;
   padding: 0;
   color: variables.$global-color-background;
 }
 
-.hero-plain > .hero-container > h2,
-.hero-plain > .hero-container > h3 {
+.hero-plain > .hero-container > h1,
+.hero-plain > .hero-container > h2 {
   color: variables.$global-color-body;
 }
 
-.hero-container > h2 {
+.hero-container > h1 {
   font-size: 28px;
   line-height: 28px;
 
@@ -94,7 +94,7 @@
   }
 }
 
-.hero-container > h3 {
+.hero-container > h2 {
   font-size: 60px;
   line-height: 72px;
 

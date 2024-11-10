@@ -19,8 +19,8 @@ const Hero = ({
 }: Props) => (
   <div className={`${styles.hero} ${!background && styles['hero-no-image']} ${plain && styles['hero-plain']}`}>
     <div className={`${styles['hero-container']} ${wide ? styles.wide : ''}`}>
-      <h2>{subtitle}</h2>
-      {title && <h3>{title}</h3>}
+      <h1>{subtitle}</h1>
+      {title && <h2>{title}</h2>}
     </div>
     {background && (
       <Image

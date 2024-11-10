@@ -64,6 +64,7 @@ const Page: NextPage<PageProps> = ({
           description,
           path: pagePath,
         }}
+        type='article'
         images={[{
           url: image.url,
           width: image.width,
