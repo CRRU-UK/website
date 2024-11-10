@@ -2,17 +2,17 @@ import type { NextConfig } from 'next';
 
 import redirects from './redirects.json';
 
-const cspHeader = [
+const CSPHeader = [
   `default-src 'self'`,
-  `script-src 'self' 'unsafe-eval' 'unsafe-inline'`,
+  `script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com`,
   `style-src 'self' 'unsafe-inline'`,
-  `img-src 'self' blob: data:'`,
-  `media-src ctfassets.com`,
+  `img-src 'self' *.ctfassets.net blob: data:'`,
+  `media-src 'self' *.ctfassets.net blob:`,
   `font-src 'self'`,
   `object-src 'none'`,
   `base-uri 'self'`,
   `form-action 'self'`,
-  `frame-src youtube.com www.youtube.com`,
+  `frame-src 'self' *.youtube.com *.youtube-nocookie.com`,
   `frame-ancestors 'none'`,
   `upgrade-insecure-requests'`,
 ].join('; ');
@@ -37,7 +37,7 @@ const nextConfig: NextConfig = {
       source: '/(.*)',
       headers: [{
         key: 'Content-Security-Policy',
-        value: cspHeader,
+        value: CSPHeader,
       }, {
         key: 'X-Content-Type-Options',
         value: 'nosniff',
@@ -54,7 +54,7 @@ const nextConfig: NextConfig = {
         value: 'SAMEORIGIN https://app.contentful.com',
       }, {
         key: 'Content-Security-Policy',
-        value: [cspHeader, `frame-ancestors 'self' https://app.contentful.com`].join('; '),
+        value: [CSPHeader, `frame-ancestors 'self' https://app.contentful.com`].join('; '),
       }],
     }];
   },
