@@ -7,10 +7,12 @@ const cspHeader = [
   `script-src 'self' 'unsafe-eval' 'unsafe-inline'`,
   `style-src 'self' 'unsafe-inline'`,
   `img-src 'self' blob: data:'`,
+  `media-src ctfassets.com`,
   `font-src 'self'`,
   `object-src 'none'`,
   `base-uri 'self'`,
   `form-action 'self'`,
+  `frame-src youtube.com www.youtube.com`,
   `frame-ancestors 'none'`,
   `upgrade-insecure-requests'`,
 ].join('; ');
