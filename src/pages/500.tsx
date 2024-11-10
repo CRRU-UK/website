@@ -9,7 +9,7 @@ const Page: NextPage = () => (
     </Head>
 
     <article className="content">
-      <h3>Error</h3>
+      <h2>Error</h2>
       <p>Internal Server Error (500).</p>
     </article>
   </>

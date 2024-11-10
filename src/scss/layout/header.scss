@@ -42,25 +42,18 @@ header {
 
 // Logo
 
-header > h1 {
+header > .logo {
   @extend %flex-center;
 
   z-index: 10;
   position: relative;
   margin-left: -10px;
+  padding: 10px;
   height: 100%;
 
   @include variables.breakpoint('small') {
     margin: 0 auto;
-  }
-
-  a {
-    padding: 10px;
-    height: 100%;
-
-    @include variables.breakpoint('small') {
-      padding: 5px;
-    }
+    padding: 5px;
   }
 
   img {

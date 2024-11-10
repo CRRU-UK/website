@@ -64,7 +64,7 @@ const Footer = () => (
                 <Link href="https://www.johnlewispartnership.co.uk/foundation0.html" rel="noopener noreferrer" target="_blank">
                   <Image
                     src="/images/footer/logo-jlp-foundation.svg"
-                    alt="John Lewis Partnership Foundation"
+                    alt="John Lewis Partnership Foundation logo"
                     width={144}
                     height={50}
                   />
@@ -74,7 +74,7 @@ const Footer = () => (
                 <Link href="https://www.bornfree.org.uk" rel="noopener noreferrer" target="_blank">
                   <Image
                     src="/images/footer/logo-born-free.svg"
-                    alt="Born Free UK"
+                    alt="Born Free UK logo"
                     width={142}
                     height={50}
                   />
@@ -84,7 +84,7 @@ const Footer = () => (
                 <Link href="https://www.landrover.com/explore-land-rover/responsibility/born-free-foundation.html" rel="noopener noreferrer" target="_blank">
                   <Image
                     src="/images/footer/logo-land-rover.svg"
-                    alt="Land Rover"
+                    alt="Land Rover logo"
                     width={95}
                     height={50}
                   />

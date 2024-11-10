@@ -56,7 +56,7 @@ const Page: NextPage<PageProps> = ({
 );
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
-  const data = await getNews({ limit: 12 });
+  const data = await getNews({ limit: 1000 });
 
   return {
     props: {

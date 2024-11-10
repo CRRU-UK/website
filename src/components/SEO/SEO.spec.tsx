@@ -39,6 +39,7 @@ it('Renders SEO tags with optional props', async () => {
         title: 'Foo',
         path: '/hello/world',
       }}
+      type='article'
       images={[{
         url: 'foo.jpg',
         width: 100,

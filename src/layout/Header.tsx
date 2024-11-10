@@ -166,19 +166,17 @@ const Header = () => {
         <Link href={sitemap.stranded.path} className="stranding">Report A <br /> Stranding</Link>
       </div>
 
-      <h1>
-        <Link href={sitemap.home.path}>
-          <Image
-            src="/images/header/logo-header.png"
-            width={200}
-            height={200}
-            title="CRRU"
-            alt="CRRU"
-            priority
-            quality={100}
-          />
-        </Link>
-      </h1>
+      <Link href={sitemap.home.path} className="logo">
+        <Image
+          src="/images/header/logo-header.png"
+          width={200}
+          height={200}
+          title="CRRU"
+          alt="CRRU logo"
+          priority
+          quality={100}
+        />
+      </Link>
 
       <nav>
         <ul className="menu">

@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const additionalPages = [];
 
   if (species) {
-    additionalPages.push(...species.map(({ slug }) => `/species/${slug}`));
+    additionalPages.push(...species.map(({ slug }) => `/education/species/${slug}`));
   }
 
   if (news) {

@@ -32,7 +32,7 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-it('Queries new articlesit', async () => {
+it('Queries news articles', async () => {
   const result = await getNews({ limit: 12 });
 
   expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);

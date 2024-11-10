@@ -122,7 +122,7 @@ const Page: NextPage<PageProps> = ({
 
       <section className={styles.banner}>
         <div className={styles['banner-text']}>
-          <h2>Dedicated to the understanding, conservation and protection of cetaceans in Scottish waters</h2>
+          <h1>Dedicated to the understanding, conservation and protection of cetaceans in Scottish waters</h1>
           <Link href={sitemap.about.path} className={styles['banner-cta']}>
             Learn more
             <svg fill="none" width="64" height="64" viewBox="0 0 64 64">
@@ -180,7 +180,7 @@ const Page: NextPage<PageProps> = ({
       </section>
 
       <section className={styles.news}>
-        <h3>Latest News</h3>
+        <h2>Latest News</h2>
 
         <div className={styles['news-container']}>
           {newsArticles.map((item) => (
