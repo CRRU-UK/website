@@ -16,11 +16,22 @@ const Hero = ({
   background,
   plain = false,
   wide = false,
-}: Props) => (
-  <div className={`${styles.hero} ${!background && styles['hero-no-image']} ${plain && styles['hero-plain']}`}>
+}: Props) => {
+  const classes = [styles.hero];
+
+  if (!background) {
+    classes.push(styles['hero-no-image']);
+  }
+
+  if (plain) {
+    classes.push(styles['hero-plain']);
+  }
+
+  return (
+    <div className={classes.join(' ')}>
     <div className={`${styles['hero-container']} ${wide ? styles.wide : ''}`}>
-      <h1>{subtitle}</h1>
-      {title && <h2>{title}</h2>}
+      {subtitle && <h2>{subtitle}</h2>}
+      <h1>{title}</h1>
     </div>
     {background && (
       <Image
@@ -32,6 +43,7 @@ const Hero = ({
       />
     )}
   </div>
-);
+  );
+};
 
 export default Hero;

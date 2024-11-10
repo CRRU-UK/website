@@ -84,6 +84,16 @@
 }
 
 .hero-container > h1 {
+  font-size: 60px;
+  line-height: 72px;
+
+  @include variables.breakpoint('small') {
+    font-size: 32px;
+    line-height: 38px;
+  }
+}
+
+.hero-container > h2 {
   font-size: 28px;
   line-height: 28px;
 
@@ -91,16 +101,6 @@
     margin-bottom: 5px;
     font-size: 20px;
     line-height: 20px;
-  }
-}
-
-.hero-container > h2 {
-  font-size: 60px;
-  line-height: 72px;
-
-  @include variables.breakpoint('small') {
-    font-size: 32px;
-    line-height: 38px;
   }
 }
 

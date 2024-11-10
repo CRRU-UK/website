@@ -2,6 +2,19 @@ import type { NextConfig } from 'next';
 
 import redirects from './redirects.json';
 
+const cspHeader = [
+  `default-src 'self'`,
+  `script-src 'self' 'unsafe-eval' 'unsafe-inline'`,
+  `style-src 'self' 'unsafe-inline'`,
+  `img-src 'self' blob: data:'`,
+  `font-src 'self'`,
+  `object-src 'none'`,
+  `base-uri 'self'`,
+  `form-action 'self'`,
+  `frame-ancestors 'none'`,
+  `upgrade-insecure-requests'`,
+].join('; ');
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
@@ -19,6 +32,15 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [{
+      source: '/(.*)',
+      headers: [{
+        key: 'Content-Security-Policy',
+        value: cspHeader,
+      }, {
+        key: 'X-Content-Type-Options',
+        value: 'nosniff',
+      }],
+    }, {
       source: '/:path*',
       has: [{
         type: 'query',
@@ -30,7 +52,7 @@ const nextConfig: NextConfig = {
         value: 'SAMEORIGIN https://app.contentful.com',
       }, {
         key: 'Content-Security-Policy',
-        value: 'frame-ancestors \'self\' https://app.contentful.com',
+        value: [cspHeader, `frame-ancestors 'self' https://app.contentful.com`].join('; '),
       }],
     }];
   },
