@@ -7,8 +7,10 @@ on:
       - main
 
 jobs:
-  test:
+  test-app:
     runs-on: ubuntu-latest
+
+    name: Test app
 
     steps:
       - uses: actions/checkout@v4
@@ -34,3 +36,21 @@ jobs:
 
       - name: Test unit
         run: npm run test:unit
+
+  test-terraform:
+    runs-on: ubuntu-latest
+
+    name: Test Terraform
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.10.3
+
+      - name: Terraform fmt
+        run: terraform fmt -list=true -check -recursive -diff

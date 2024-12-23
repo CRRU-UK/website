@@ -10,8 +10,15 @@ coverage/
 # Environment Variables
 .env
 
-# Ignore generated credentials from google-github-actions/auth
-gha-creds-*.json
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*tfplan*
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
 
 # Misc
 .DS_Store

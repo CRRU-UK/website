@@ -12,11 +12,10 @@
 2. [Overview](#overview)
 3. [Installation](#installation)
 4. [Development](#development)
-5. [Deployment](#deployment)
 
 ## Introduction
 
-Source code for the [CRRU website](https://crru.org.uk) – built in NextJS, TypeScript, React, and SCSS.
+Source code for the [crru.org.uk](https://crru.org.uk) website – built in NextJS, TypeScript, React, and SCSS and managed with Terraform.
 
 The website primarily uses Contentful as the main source of data.
 
@@ -34,6 +33,7 @@ The app is made up of the following parts:
   * [`src/data`](src/data) contains static JSON data
 * [`public/`](public/) contains static assets (e.g. fonts and icons)
 * [`redirects.json`](redirects.json) contains permanent redirects for the previous website
+* [`terraform/`](terraform/) contains the Terraform code for the website infrastructure
 
 ## Installation
 
@@ -66,16 +66,12 @@ Below are the NPM commands that can be used for development:
 
 | Command                 | Description                                                          |
 | ----------------------- | -------------------------------------------------------------------- |
-| `start`                 | Starts the app (requires `build` to be run).                         |
+| `start`                 | Starts the app (requires `build` to be run) on port 3000.            |
 | `build`                 | Builds the app for production.                                       |
-| `dev`                   | Runs the app in development mode.                                    |
+| `dev`                   | Runs the app in development mode on port 3000.                       |
 | `test`                  | Runs `test:eslint`, `test:typescript`, and `test:unit` sequentially. |
 | `test:eslint`           | Runs ESLint tests.                                                   |
 | `test:stylelint`        | Runs stylelint tests.                                                |
 | `test:typescript`       | Runs TypeScript tests.                                               |
 | `test:unit`             | Runs unit and integration tests and generates a coverage report.     |
 | `test:unit:watch`       | Same as `test:unit` but runs it in watch mode.                       |
-
-## Deployment
-
-The app runs on port 3000.
