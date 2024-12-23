@@ -173,6 +173,21 @@ footer .footer-left .footer-links li {
   }
 }
 
+footer .footer-left .footer-links li a.external::after {
+  content: '';
+  display: inline-block;
+  margin-left: 5px;
+  width: 10px;
+  height: 10px;
+  background: url('../../../public/images/icons/external-light.svg') center center no-repeat transparent;
+  background-size: contain;
+
+  @include variables.breakpoint('small') {
+    width: 8px;
+    height: 8px;
+  }
+}
+
 footer .footer-left .footer-contact {
   flex-direction: column;
   margin-bottom: 20px;
