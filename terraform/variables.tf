@@ -65,6 +65,6 @@ variable "smtp_password" {
 }
 
 variable "sighting_email" {
-  type        = string
-  sensitive   = true
+  type      = string
+  sensitive = true
 }
