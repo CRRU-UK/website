@@ -1,6 +1,6 @@
 locals {
   app_name          = "app"
-  digitalocean_host = replace(digitalocean_app.deployment.default_ingress, "/(http(s)?://)/", "")
+  digitalocean_host = replace(digitalocean_app.website_app.default_ingress, "/(http(s)?://)/", "")
 }
 
 resource "digitalocean_app" "website_app" {
