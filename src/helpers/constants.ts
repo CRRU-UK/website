@@ -37,6 +37,7 @@ export const AMAZON_REFERRAL_LINK = 'https://www.amazon.co.uk/exec/obidos/redire
 export const SOCIAL_MEDIA_ACCOUNTS = [
   'https://instagram.com/crru.org.uk',
   'https://facebook.com/crru.org.uk',
+  'https://bsky.app/profile/crru.org.uk',
   'https://twitter.com/CRRU',
   'https://youtube.com/@crruorguk',
   'https://linkedin.com/company/cetacean-research-&-rescue-unit-crru-',
