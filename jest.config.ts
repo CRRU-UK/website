@@ -27,8 +27,8 @@ const config: Config.InitialOptions = {
     'src/',
   ],
   testMatch: [
-    '**/*.spec.ts',
-    '**/*.spec.tsx',
+    '**/*.test.ts',
+    '**/*.test.tsx',
   ],
   testPathIgnorePatterns: [
     '<rootDir>/node_modules/',
