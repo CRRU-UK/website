@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import type { NextPage, GetServerSideProps } from 'next';
-import type { Asset } from 'contentful';
+import type { Asset, Entry } from 'contentful';
 
 import React, { useRef, useState, useEffect } from 'react';
 import { OrganizationJsonLd } from 'next-seo';
@@ -14,6 +14,9 @@ import type {
   FlattenedImage,
   FlattenedVideo,
   NewsArticle,
+  ContentTypeNews,
+  ContentTypePageContent,
+  ContentTypeSpeciesPage,
 } from '@/helpers/types';
 
 import sitemap from '@/data/sitemap.json';
@@ -24,7 +27,6 @@ import getNews from '@/helpers/getNews';
 
 import {
   ContentTypes,
-  InlineContentEntries,
   DEFAULT_SITE_NAME,
   DEFAULT_SITE_ALTERNATE_NAME,
   DEFAULT_SITE_DESCRIPTION,
@@ -223,20 +225,25 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
 
   const [{ fields }] = homepageData.items;
 
-  // TODO: Type this properly
-  const flattenAssetReference = (data: any) => {
+  const flattenReference = (
+    data: Entry<ContentTypeNews | ContentTypePageContent | ContentTypeSpeciesPage> | undefined,
+  ) => {
+    if (!data) {
+      return '';
+    }
+
     const contentTypeID = data?.sys?.contentType?.sys?.id;
 
-    if (contentTypeID === InlineContentEntries.Page) {
-      return data.fields.path;
+    if (contentTypeID === ContentTypes.NewsArticle) {
+      return `/news/${(data as Entry<ContentTypeNews>).fields.slug}`;
     }
 
-    if (contentTypeID === InlineContentEntries.Species) {
-      return `/education/species/${data.fields.slug}`;
+    if (contentTypeID === ContentTypes.PageContent) {
+      return `${(data as Entry<ContentTypePageContent>).fields.path}`;
     }
 
-    if (contentTypeID === InlineContentEntries.News) {
-      return `/news/${data.fields.slug}`;
+    if (contentTypeID === ContentTypes.SpeciesPage) {
+      return `/education/species/${(data as Entry<ContentTypeSpeciesPage>).fields.slug}`;
     }
 
     return '';
@@ -251,11 +258,11 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
         highlightLeftTitle: fields.highlightLeftTitle,
         highlightLeftSubtitle: fields.highlightLeftSubtitle,
         highlightLeftImage: flattenImageAssetFields(fields.highlightLeftImage as Asset),
-        highlightLeftLink: flattenAssetReference(fields.highlightLeftLink),
+        highlightLeftLink: flattenReference(fields.highlightLeftLink),
         highlightRightTitle: fields.highlightRightTitle,
         highlightRightSubtitle: fields.highlightRightSubtitle,
         highlightRightImage: flattenImageAssetFields(fields.highlightRightImage as Asset),
-        highlightRightLink: flattenAssetReference(fields.highlightRightLink),
+        highlightRightLink: flattenReference(fields.highlightRightLink),
       },
       newsArticles,
     },
