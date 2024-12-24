@@ -1,5 +1,9 @@
 import '@testing-library/jest-dom';
 
+import type {
+  Props,
+} from './Breadcrumbs';
+
 import { act } from 'react';
 import { render } from '@testing-library/react';
 import { axe, toHaveNoViolations } from 'jest-axe';
@@ -39,6 +43,22 @@ it('Passes accessibility with optional props', async () => act(async () => {
         title: 'Bar',
         path: '/hello/foo',
       }]}
+    />,
+  );
+
+  const results = await axe(container);
+
+  expect(results).toHaveNoViolations();
+}));
+
+it.each([
+  'wide',
+  'inline',
+])('Passes accessibility with different styles', async (style) => act(async () => {
+  const { container } = render(
+    <Breadcrumbs
+      style={style as Props['style']}
+      items={[]}
     />,
   );
 

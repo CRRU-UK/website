@@ -21,3 +21,27 @@ it('Passes accessibility with default props', async () => act(async () => {
 
   expect(results).toHaveNoViolations();
 }));
+
+it('Displays single timeline', async () => act(async () => {
+  const { container } = render(
+    <Timeline
+      items={['item 1']}
+    />,
+  );
+
+  const results = await axe(container);
+
+  expect(results).toHaveNoViolations();
+}));
+
+it('Returns null for no items', async () => act(async () => {
+  const { container } = render(
+    <Timeline
+      items={[]}
+    />,
+  );
+
+  const results = await axe(container);
+
+  expect(results).toHaveNoViolations();
+}));
