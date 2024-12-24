@@ -18,7 +18,7 @@ import { Card, Filters, Loading } from '@/components';
 
 import styles from './index.module.scss';
 
-interface updateURLProps {
+interface UpdateURLProps {
   catalogue: Catalogues,
   page: number,
   search: string,
@@ -28,7 +28,7 @@ const updateURL = ({
   catalogue,
   page,
   search,
-}: updateURLProps) => {
+}: UpdateURLProps) => {
   let newURL: URL | string = new URL(location.toString());
 
   newURL.searchParams.set('catalogue', catalogue);

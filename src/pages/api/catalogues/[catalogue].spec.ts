@@ -24,7 +24,7 @@ it.each([
     method: 'GET',
     url: `/api/catalogues/${value}`,
     query: {
-      catalogue: value, // TODO: Fix path parameter not working correctly
+      catalogue: value,
       page: 2,
     },
   }) as NextApiRequest;
@@ -48,7 +48,7 @@ it.each([
     method: 'GET',
     url: `/api/catalogues/${value}`,
     query: {
-      catalogue: value, // TODO: Fix path parameter not working correctly
+      catalogue: value,
       page: 1,
       search: 'hello',
     },
@@ -70,7 +70,7 @@ it('Handles incorrect catalogue', async () => {
     method: 'GET',
     url: '/api/catalogues/kangaroo',
     query: {
-      catalogue: 'kangaroo', // TODO: Fix path parameter not working correctly
+      catalogue: 'kangaroo',
       page: 1,
     },
   }) as NextApiRequest;
@@ -90,7 +90,7 @@ it('Handles incorrect method', async () => {
     method: 'POST',
     url: '/api/catalogues/bottlenose-dolphin',
     query: {
-      catalogue: 'bottlenose-dolphin', // TODO: Fix path parameter not working correctly
+      catalogue: 'bottlenose-dolphin',
       page: 1,
     },
   }) as NextApiRequest;
@@ -110,7 +110,7 @@ it('Handles missing page query', async () => {
     method: 'GET',
     url: '/api/catalogues/bottlenose-dolphin',
     query: {
-      catalogue: 'bottlenose-dolphin', // TODO: Fix path parameter not working correctly
+      catalogue: 'bottlenose-dolphin',
     },
   }) as NextApiRequest;
 
@@ -133,7 +133,7 @@ it.each([
     method: 'GET',
     url: '/api/catalogues/bottlenose-dolphin',
     query: {
-      catalogue: 'bottlenose-dolphin', // TODO: Fix path parameter not working correctly
+      catalogue: 'bottlenose-dolphin',
       page: value,
     },
   }) as NextApiRequest;
