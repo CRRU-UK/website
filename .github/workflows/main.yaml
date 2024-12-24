@@ -58,5 +58,5 @@ jobs:
         with:
           terraform_version: 1.10.3
 
-      - name: Terraform fmt
+      - name: Test formatting
         run: terraform fmt -list=true -check -recursive -diff
