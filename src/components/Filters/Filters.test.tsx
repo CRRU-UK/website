@@ -29,7 +29,10 @@ it('Passes accessibility with default dropdown props', async () => act(async () 
     <Filters
       dropdowns={[{
         name: 'test name',
-        options: [],
+        options: [{
+          text: 'test text',
+          value: 'text-value',
+        }],
         callback: jest.fn(),
       }]}
     />,
