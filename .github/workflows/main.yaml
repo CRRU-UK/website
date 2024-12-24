@@ -37,6 +37,12 @@ jobs:
       - name: Test unit
         run: npm run test:unit
 
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   test-terraform:
     runs-on: ubuntu-latest
 
