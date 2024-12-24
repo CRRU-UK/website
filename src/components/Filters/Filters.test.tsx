@@ -10,9 +10,32 @@ beforeAll(() => {
   expect.extend(toHaveNoViolations);
 });
 
-it('Passes accessibility with default props', async () => act(async () => {
+it('Passes accessibility with default search props', async () => act(async () => {
   const { container } = render(
-    <Filters />,
+    <Filters
+      search={{
+        callback: jest.fn(),
+      }}
+    />,
+  );
+
+  const results = await axe(container);
+
+  expect(results).toHaveNoViolations();
+}));
+
+it('Passes accessibility with default dropdown props', async () => act(async () => {
+  const { container } = render(
+    <Filters
+      dropdowns={[{
+        name: 'test name',
+        options: [{
+          text: 'test text',
+          value: 'text-value',
+        }],
+        callback: jest.fn(),
+      }]}
+    />,
   );
 
   const results = await axe(container);
@@ -23,7 +46,11 @@ it('Passes accessibility with default props', async () => act(async () => {
 it('Passes accessibility with optional props', async () => act(async () => {
   const { container } = render(
     <Filters
-      search={{ callback: jest.fn(), label: 'mocked label', defaultValue: 'mocked default value' }}
+      search={{
+        callback: jest.fn(),
+        label: 'mocked label',
+        defaultValue: 'mocked default value',
+      }}
       dropdowns={[{
         name: 'test name',
         defaultValue: 'mocked default value',

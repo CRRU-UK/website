@@ -53,7 +53,10 @@ afterEach(() => {
 });
 
 describe('getCatalogueList', () => {
-  it('Returns catalogue entries', async () => {
+  it.each([
+    ['bottlenose-dolphin', 'catalogueBottlenoseDolphin'],
+    ['minke-whale', 'catalogueMinkeWhale']
+  ])('Returns catalogue entries (%p)', async (catalogue, contentType) => {
     (contentfulDeliveryClient.getEntries as jest.Mock).mockImplementation(() => ({
       total: 100,
       items: mockedEntries,
@@ -61,13 +64,13 @@ describe('getCatalogueList', () => {
 
     const result = await getCatalogueList(
       // @ts-expect-error String of enum value
-      'bottlenose-dolphin',
+      catalogue,
       { page: 2 },
     );
 
     expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
     expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(1, {
-      content_type: 'catalogueBottlenoseDolphin',
+      content_type: contentType,
       order: ['fields.id'],
       limit: 30,
       skip: 30,
@@ -396,9 +399,7 @@ describe('getMinkeWhaleCatalogueItem', () => {
       items: [],
     }));
 
-    const result = await getBottlenoseDolphinCatalogueItem('mocked-slug');
-
-    expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
+    const result = await getMinkeWhaleCatalogueItem('mocked-slug');
 
     expect(result).toBe(null);
   });

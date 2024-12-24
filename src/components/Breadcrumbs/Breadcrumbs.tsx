@@ -6,7 +6,7 @@ import sitemap from '@/data/sitemap.json';
 
 import styles from './Breadcrumbs.module.scss';
 
-interface Props {
+export interface Props {
   items: Array<SitemapItem>,
   style?: 'normal' | 'wide' | 'inline',
 }

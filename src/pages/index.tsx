@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import type { NextPage, GetServerSideProps } from 'next';
 import type { Asset, Entry } from 'contentful';
 

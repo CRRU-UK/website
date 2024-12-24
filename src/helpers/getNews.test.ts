@@ -32,7 +32,7 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-it('Queries news articles', async () => {
+it('Gets news articles', async () => {
   const result = await getNews({ limit: 12 });
 
   expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
@@ -45,7 +45,18 @@ it('Queries news articles', async () => {
   expect(result).toStrictEqual([mockedEntries]);
 });
 
-it('Queries new articles with no keywords', async () => {
+it('Gets news articles with default limit', async () => {
+  await getNews({});
+
+  expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
+  expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(1, {
+    content_type: 'newsArticle',
+    order: ['-fields.date'],
+    limit: 1000,
+  });
+});
+
+it('Gets new articles with no keywords', async () => {
   (contentfulDeliveryClient.getEntries as jest.Mock)
     .mockImplementation(() => ({
       items: [{
