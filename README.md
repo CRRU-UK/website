@@ -7,6 +7,7 @@
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=bugs)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=CRRU-UK_website&metric=coverage)](https://sonarcloud.io/summary/new_code?id=CRRU-UK_website)
 
 1. [Introduction](#introduction)
 2. [Overview](#overview)
