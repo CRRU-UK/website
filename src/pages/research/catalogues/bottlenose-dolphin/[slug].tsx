@@ -114,7 +114,7 @@ const Page: NextPage<PageProps> = ({
               <li className={styles['info-item-aulfs']}>
                 <b>AULFS Ref # <Tooltip text="Aberdeen University Lighthouse Field Station catalogue reference" /></b>
                 {reference ? <Link
-                  href="https://www.abdn.ac.uk/sbs/outreach/lighthouse/gallery/album13/"
+                  href="https://www.abdn.ac.uk/sbs/outreach/lighthouse/research/bottlenose-dolphins/"
                   rel="noopener noreferrer"
                   target="_blank"
                   className="external"
