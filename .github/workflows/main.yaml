@@ -25,8 +25,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Test eslint
-        run: npm run test:eslint
+      - name: Test linting
+        run: npm run test:linting
 
       - name: Test stylelint
         run: npm run test:stylelint

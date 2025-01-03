@@ -65,14 +65,14 @@ The following environment variables should be provided when running the server (
 
 Below are the NPM commands that can be used for development:
 
-| Command                 | Description                                                          |
-| ----------------------- | -------------------------------------------------------------------- |
-| `start`                 | Starts the app (requires `build` to be run) on port 3000.            |
-| `build`                 | Builds the app for production.                                       |
-| `dev`                   | Runs the app in development mode on port 3000.                       |
-| `test`                  | Runs `test:eslint`, `test:typescript`, and `test:unit` sequentially. |
-| `test:eslint`           | Runs ESLint tests.                                                   |
-| `test:stylelint`        | Runs stylelint tests.                                                |
-| `test:typescript`       | Runs TypeScript tests.                                               |
-| `test:unit`             | Runs unit and integration tests and generates a coverage report.     |
-| `test:unit:watch`       | Same as `test:unit` but runs it in watch mode.                       |
+| Command                 | Description                                                           |
+| ----------------------- | --------------------------------------------------------------------- |
+| `start`                 | Starts the app (requires `build` to be run) on port 3000.             |
+| `build`                 | Builds the app for production.                                        |
+| `dev`                   | Runs the app in development mode on port 3000.                        |
+| `test`                  | Runs `test:linting`, `test:typescript`, and `test:unit` sequentially. |
+| `test:linting`          | Runs ESLint and Prettier tests.                                       |
+| `test:stylelint`        | Runs stylelint tests.                                                 |
+| `test:typescript`       | Runs TypeScript tests.                                                |
+| `test:unit`             | Runs unit and integration tests and generates a coverage report.      |
+| `test:unit:watch`       | Same as `test:unit` but runs it in watch mode.                        |
