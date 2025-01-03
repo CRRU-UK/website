@@ -1,4 +1,4 @@
-@use '../../scss/variables';
+@use "../../scss/variables";
 
 $icon-size-large: 18px;
 $icon-size-small: 14px;
@@ -15,7 +15,7 @@ $tooltip-spacing: 10px;
   vertical-align: middle;
   transform: translateY(-1px);
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     width: $icon-size-small;
     height: $icon-size-small;
     transform: translateY(0);
@@ -32,10 +32,11 @@ $tooltip-spacing: 10px;
   z-index: 0;
   width: $icon-size-large;
   height: $icon-size-large;
-  background: url('../../../public/images/icons/tooltip.svg') center center no-repeat transparent;
+  background: url("../../../public/images/icons/tooltip.svg") center center
+    no-repeat transparent;
   background-size: contain;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     width: $icon-size-small;
     height: $icon-size-small;
   }
@@ -66,7 +67,9 @@ $easing-out: 0.6s variables.$global-transition-ease-in-expo;
   box-shadow: 0 0 5px rgba(variables.$global-color-body, 0.3);
   background: variables.$global-color-background;
   transform: translateY(20%);
-  transition: opacity $easing-in, transform $easing-in;
+  transition:
+    opacity $easing-in,
+    transform $easing-in;
 }
 
 .tooltip-text-active {

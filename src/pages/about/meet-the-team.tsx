@@ -1,26 +1,26 @@
-import type { Asset } from 'contentful';
-import type { NextPage, GetServerSideProps } from 'next';
+import type { Asset } from "contentful";
+import type { NextPage, GetServerSideProps } from "next";
 
-import Image from 'next/image';
+import Image from "next/image";
 
-import type { FlattenedImage, PageData } from '@/helpers/types';
+import type { FlattenedImage, PageData } from "@/helpers/types";
 
-import sitemap from '@/data/sitemap.json';
+import sitemap from "@/data/sitemap.json";
 
-import getPageContent from '@/helpers/getPageContent';
-import { flattenImageAssetFields } from '@/helpers/flattenAssetFields';
+import getPageContent from "@/helpers/getPageContent";
+import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 
-import CommonPage from '@/layout/CommonPage';
+import CommonPage from "@/layout/CommonPage";
 
-import styles from './meet-the-team.module.scss';
+import styles from "./meet-the-team.module.scss";
 
 type PersonDataReduced = {
-  name: string,
-  title: string,
-  qualifications: Array<string>,
-  description: string,
-  image: FlattenedImage,
-  background?: FlattenedImage,
+  name: string;
+  title: string;
+  qualifications: Array<string>;
+  description: string;
+  image: FlattenedImage;
+  background?: FlattenedImage;
 };
 
 const renderPerson = (data: PersonDataReduced) => (
@@ -39,9 +39,11 @@ const renderPerson = (data: PersonDataReduced) => (
       <h3 className={styles.name}>{data.name}</h3>
       <h4 className={styles.title}>{data.title}</h4>
       {!!data?.qualifications?.length && (
-        <p className={styles['qualifications-list']}>
+        <p className={styles["qualifications-list"]}>
           {data.qualifications.map((item: string) => (
-            <span className={styles.qualification} key={item}>{item}</span>
+            <span className={styles.qualification} key={item}>
+              {item}
+            </span>
           ))}
         </p>
       )}
@@ -51,43 +53,40 @@ const renderPerson = (data: PersonDataReduced) => (
 );
 
 interface PageProps {
-  pageData: PageData,
-  personData: Array<PersonDataReduced> | null,
+  pageData: PageData;
+  personData: Array<PersonDataReduced> | null;
 }
 
-const Page: NextPage<PageProps> = ({
-  pageData,
-  personData,
-}) => (
+const Page: NextPage<PageProps> = ({ pageData, personData }) => (
   <CommonPage
-    page={sitemap['meet-the-team']}
+    page={sitemap["meet-the-team"]}
     parent={sitemap.about}
-    breadcrumbs={[sitemap.about, sitemap['meet-the-team']]}
+    breadcrumbs={[sitemap.about, sitemap["meet-the-team"]]}
     data={pageData}
   >
     {personData ? personData.map((item) => renderPerson(item)) : undefined}
   </CommonPage>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const preview = ctx?.query.preview === 'true';
-  const data = await getPageContent(sitemap['meet-the-team'].path, { preview, references: true });
+export const getServerSideProps: GetServerSideProps<PageProps> = async (
+  ctx,
+) => {
+  const preview = ctx?.query.preview === "true";
+  const data = await getPageContent(sitemap["meet-the-team"].path, {
+    preview,
+    references: true,
+  });
 
-  const {
-    content,
-    image,
-    background,
-    description,
-    references,
-  } = data;
+  const { content, image, background, description, references } = data;
 
-  const personData = references?.map(({ fields }) => ({
-    name: fields.name as string,
-    title: fields.title as string,
-    qualifications: fields.qualifications as Array<string> ?? null,
-    description: fields.description as string,
-    image: flattenImageAssetFields(fields.image as Asset),
-  })) ?? null;
+  const personData =
+    references?.map(({ fields }) => ({
+      name: fields.name as string,
+      title: fields.title as string,
+      qualifications: (fields.qualifications as Array<string>) ?? null,
+      description: fields.description as string,
+      image: flattenImageAssetFields(fields.image as Asset),
+    })) ?? null;
 
   return {
     props: {

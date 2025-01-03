@@ -1,4 +1,4 @@
-@use '../../../scss/variables';
+@use "../../../scss/variables";
 
 .contents-table {
   $spacing: 15px;
@@ -14,11 +14,11 @@
   max-width: variables.$global-max-width;
   list-style: none;
 
-  @include variables.breakpoint('medium') {
+  @include variables.breakpoint("medium") {
     grid-template-columns: 1fr 1fr;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     $spacing: 10px;
 
     grid-template-columns: 1fr;

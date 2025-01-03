@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import type { NextPage, GetServerSideProps } from 'next';
+import type { NextPage, GetServerSideProps } from "next";
 
-import React, { useState } from 'react';
-import Script from 'next/script';
+import React, { useState } from "react";
+import Script from "next/script";
 
-import type { PageData } from '@/helpers/types';
+import type { PageData } from "@/helpers/types";
 
-import sitemap from '@/data/sitemap.json';
+import sitemap from "@/data/sitemap.json";
 
-import getPageContent from '@/helpers/getPageContent';
+import getPageContent from "@/helpers/getPageContent";
 
-import CommonPage from '@/layout/CommonPage';
+import CommonPage from "@/layout/CommonPage";
 
 const UseSightingsForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -34,33 +34,33 @@ const UseSightingsForm = () => {
       name: event.target.name.value,
       email: event.target.email.value,
       date: event.target.date.value,
-      'time-start': event.target['time-start'].value,
-      'time-end': event.target['time-end'].value,
+      "time-start": event.target["time-start"].value,
+      "time-end": event.target["time-end"].value,
       location: event.target.location.value,
       species: event.target.species.value,
       longitude: event.target.longitude.value || undefined,
       latitude: event.target.latitude.value || undefined,
       amount: event.target.amount.value || undefined,
-      'sea-state': event.target['sea-state'].value || undefined,
+      "sea-state": event.target["sea-state"].value || undefined,
       weather: event.target.weather.value || undefined,
       depth: event.target.depth.value || undefined,
       vessel: event.target.vessel.value || undefined,
       notes: event.target.notes.value || undefined,
-      'cf-turnstile-response': event.target['cf-turnstile-response'].value,
+      "cf-turnstile-response": event.target["cf-turnstile-response"].value,
     });
 
     let request;
 
     try {
-      request = await fetch('/api/report-sighting', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      request = await fetch("/api/report-sighting", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: data,
       });
     } catch (error: any) {
-      console.error('Unable to submit form:', error);
+      console.error("Unable to submit form:", error);
 
-      setErrorMessages(['Unable to submit form, please try again']);
+      setErrorMessages(["Unable to submit form, please try again"]);
       setLoading(false);
       return;
     }
@@ -82,58 +82,110 @@ const UseSightingsForm = () => {
     setLoading(false);
   };
 
-  const errorMessageElements = (
-    errorMessages.length > 0 && (
-      <ul className="form-errors">
-        {errorMessages.map((message) => (
-          <li key={message}>{message}</li>
-        ))}
-      </ul>
-    )
+  const errorMessageElements = errorMessages.length > 0 && (
+    <ul className="form-errors">
+      {errorMessages.map((message) => (
+        <li key={message}>{message}</li>
+      ))}
+    </ul>
   );
 
   return (
     <>
-      <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
+      <Script
+        src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+        async
+        defer
+      />
 
-      <form onSubmit={handleSubmit} className={loading ? 'form-loading' : ''}>
+      <form onSubmit={handleSubmit} className={loading ? "form-loading" : ""}>
         <div className="form-columns">
           <label htmlFor="name">
             <span>Name of observer: *</span>
-            <input type="text" id="name" name="name" required disabled={loading} />
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              disabled={loading}
+            />
           </label>
 
           <label htmlFor="email">
             <span>Email: *</span>
-            <input type="email" id="email" name="email" required disabled={loading} />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              disabled={loading}
+            />
           </label>
 
           <label htmlFor="date">
             <span>Date of sighting: *</span>
-            <input type="date" id="date" name="date" defaultValue={defaultDate} required disabled={loading} />
+            <input
+              type="date"
+              id="date"
+              name="date"
+              defaultValue={defaultDate}
+              required
+              disabled={loading}
+            />
           </label>
 
           <label htmlFor="time-start">
             <span>Time (start): *</span>
-            <input type="time" id="time-start" name="time-start" defaultValue={defaultTime} required disabled={loading} />
+            <input
+              type="time"
+              id="time-start"
+              name="time-start"
+              defaultValue={defaultTime}
+              required
+              disabled={loading}
+            />
           </label>
 
           <label htmlFor="time-end">
             <span>Time (end): *</span>
-            <input type="time" id="time-end" name="time-end" defaultValue={defaultTime} required disabled={loading} />
+            <input
+              type="time"
+              id="time-end"
+              name="time-end"
+              defaultValue={defaultTime}
+              required
+              disabled={loading}
+            />
           </label>
 
           <label htmlFor="location">
             <span>Location / landmark: *</span>
-            <input type="text" id="location" name="location" required disabled={loading} />
+            <input
+              type="text"
+              id="location"
+              name="location"
+              required
+              disabled={loading}
+            />
           </label>
 
           <label htmlFor="species">
             <span>Species observed: *</span>
-            <select name="species" id="species" defaultValue="" disabled={loading}>
-              <option disabled value="">Select an option</option>
-              <option value="Unidentified dolphin species">Unidentified dolphin species</option>
-              <option value="Unidentified whale species">Unidentified whale species</option>
+            <select
+              name="species"
+              id="species"
+              defaultValue=""
+              disabled={loading}
+            >
+              <option disabled value="">
+                Select an option
+              </option>
+              <option value="Unidentified dolphin species">
+                Unidentified dolphin species
+              </option>
+              <option value="Unidentified whale species">
+                Unidentified whale species
+              </option>
               <option value="Harbour porpoise">Harbour porpoise</option>
               <option value="Bottlenose dolphin">Bottlenose dolphin</option>
               <option value="Minke whale">Minke whale</option>
@@ -144,7 +196,9 @@ const UseSightingsForm = () => {
               <option value="Pilot whale">Pilot whale</option>
               <option value="Sperm whale">Sperm whale</option>
               <option value="White-beaked dolphin">White-beaked dolphin</option>
-              <option value="Atlantic white-sided dolphin">Atlantic white-sided dolphin</option>
+              <option value="Atlantic white-sided dolphin">
+                Atlantic white-sided dolphin
+              </option>
               <option value="Humpback whale">Humpback whale</option>
               <option value="Fin whale">Fin whale</option>
               <option value="Sei whale">Sei whale</option>
@@ -154,12 +208,22 @@ const UseSightingsForm = () => {
 
           <label htmlFor="longitude">
             <span>Longitude:</span>
-            <input type="text" id="longitude" name="longitude" disabled={loading} />
+            <input
+              type="text"
+              id="longitude"
+              name="longitude"
+              disabled={loading}
+            />
           </label>
 
           <label htmlFor="latitude">
             <span>Latitude:</span>
-            <input type="text" id="latitude" name="latitude" disabled={loading} />
+            <input
+              type="text"
+              id="latitude"
+              name="latitude"
+              disabled={loading}
+            />
           </label>
 
           <label htmlFor="amount">
@@ -169,8 +233,15 @@ const UseSightingsForm = () => {
 
           <label htmlFor="sea-state">
             <span>Sea state:</span>
-            <select name="sea-state" id="sea-state" defaultValue="" disabled={loading}>
-              <option disabled value="">Select an option</option>
+            <select
+              name="sea-state"
+              id="sea-state"
+              defaultValue=""
+              disabled={loading}
+            >
+              <option disabled value="">
+                Select an option
+              </option>
               <option value="calm">Calm</option>
               <option value="ripples">Ripples</option>
               <option value="wavelets">Wavelets</option>
@@ -181,8 +252,15 @@ const UseSightingsForm = () => {
 
           <label htmlFor="weather">
             <span>Weather conditions:</span>
-            <select name="weather" id="weather" defaultValue="" disabled={loading}>
-              <option disabled value="">Select an option</option>
+            <select
+              name="weather"
+              id="weather"
+              defaultValue=""
+              disabled={loading}
+            >
+              <option disabled value="">
+                Select an option
+              </option>
               <option value="no-cloud">No cloud</option>
               <option value="25-cloud">25% cloud</option>
               <option value="50-cloud">50% cloud</option>
@@ -203,35 +281,40 @@ const UseSightingsForm = () => {
         </div>
 
         <label htmlFor="notes">
-          <span>Additional notes (e.g. behaviour observed, direction of travel, composition of group i.e. number of adults and calves, other):</span>
+          <span>
+            Additional notes (e.g. behaviour observed, direction of travel,
+            composition of group i.e. number of adults and calves, other):
+          </span>
           <textarea id="notes" name="notes" rows={5} disabled={loading} />
         </label>
 
         <div
           className="cf-turnstile"
-          data-sitekey={String(process.env.NEXT_PUBLIC_CLOUDFLARE_CHALLENGE_SITE_KEY)}
+          data-sitekey={String(
+            process.env.NEXT_PUBLIC_CLOUDFLARE_CHALLENGE_SITE_KEY,
+          )}
           data-theme="light"
         />
 
         {errorMessageElements}
 
-        {success && <span className="form-success">Sighting successfully submitted, thank you.</span>}
+        {success && (
+          <span className="form-success">
+            Sighting successfully submitted, thank you.
+          </span>
+        )}
 
-        <button type="submit">
-          {loading ? 'Submitting...' : 'Submit'}
-        </button>
+        <button type="submit">{loading ? "Submitting..." : "Submit"}</button>
       </form>
     </>
   );
 };
 
 interface PageProps {
-  data: PageData,
+  data: PageData;
 }
 
-const Page: NextPage<PageProps> = ({
-  data,
-}) => (
+const Page: NextPage<PageProps> = ({ data }) => (
   <CommonPage
     page={sitemap.sightings}
     breadcrumbs={[sitemap.sightings]}
@@ -241,8 +324,10 @@ const Page: NextPage<PageProps> = ({
   </CommonPage>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const preview = ctx?.query.preview === 'true';
+export const getServerSideProps: GetServerSideProps<PageProps> = async (
+  ctx,
+) => {
+  const preview = ctx?.query.preview === "true";
   const data = await getPageContent(sitemap.sightings.path, { preview });
 
   return {

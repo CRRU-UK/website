@@ -50,8 +50,8 @@ $global-color-catalogue-light: #fafafa;
 
 // Fonts
 
-$global-font-primary: 'Poppins', 'Helvetica', 'Arial', 'Verdana', sans-serif;
-$global-font-secondary: 'EB Garamond', 'Times New Roman', serif;
+$global-font-primary: "Poppins", "Helvetica", "Arial", "Verdana", sans-serif;
+$global-font-secondary: "EB Garamond", "Times New Roman", serif;
 
 $global-font-size-large: 18px;
 $global-font-size-small: 16px;
@@ -70,19 +70,17 @@ $global-transition-ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
 // Mixins
 
 @mixin breakpoint($size) {
-  @if $size == 'medium' {
+  @if $size == "medium" {
     @media (max-width: $global-breakpoint-medium) {
       @content;
     }
   }
 
-  @if $size == 'small' {
+  @if $size == "small" {
     @media (max-width: $global-breakpoint-small) {
       @content;
     }
-  }
-
-  @else {
+  } @else {
     @media (max-width: $size) {
       @content;
     }

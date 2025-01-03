@@ -3,9 +3,9 @@ import {
   LogoJsonLd,
   BreadcrumbJsonLd,
   SocialProfileJsonLd,
-} from 'next-seo';
+} from "next-seo";
 
-import type { SitemapItem } from '@/helpers/types';
+import type { SitemapItem } from "@/helpers/types";
 
 import {
   DEFAULT_SITE_NAME,
@@ -13,31 +13,27 @@ import {
   DEFAULT_SITE_DOMAIN,
   DEFAULT_SEO_IMAGE,
   SOCIAL_MEDIA_ACCOUNTS,
-} from '@/helpers/constants';
+} from "@/helpers/constants";
 
 interface Props {
-  page: SitemapItem,
-  type?: 'website' | 'article',
+  page: SitemapItem;
+  type?: "website" | "article";
   images?: Array<{
-    url: string,
-    width?: number,
-    height?: number,
-    alt?: string,
-  }>,
-  breadcrumbs: Array<SitemapItem>,
+    url: string;
+    width?: number;
+    height?: number;
+    alt?: string;
+  }>;
+  breadcrumbs: Array<SitemapItem>;
 }
 
 const SEO = ({
   page,
-  type = 'website',
+  type = "website",
   images = DEFAULT_SEO_IMAGE,
   breadcrumbs,
 }: Props) => {
-  const {
-    title,
-    path,
-    description = DEFAULT_SITE_DESCRIPTION,
-  } = page;
+  const { title, path, description = DEFAULT_SITE_DESCRIPTION } = page;
 
   const pageCanonicalURL = `${DEFAULT_SITE_DOMAIN}${path}`;
 

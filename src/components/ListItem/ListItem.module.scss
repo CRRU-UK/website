@@ -1,6 +1,6 @@
-@use 'sass:math';
+@use "sass:math";
 
-@use '../../scss/variables';
+@use "../../scss/variables";
 
 .item {
   display: flex;
@@ -11,7 +11,7 @@
   border-radius: variables.$global-border-radius;
   border: 2px solid variables.$global-color-background-dark;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     align-items: flex-start;
     margin-bottom: math.div(variables.$global-spacing-small, 2);
     padding: math.div(variables.$global-padding-small, 2);
@@ -22,7 +22,7 @@
   width: 150px;
   padding-right: variables.$global-padding-large;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     padding-top: 5px;
     padding-right: variables.$global-padding-small;
     width: 100px;
@@ -39,7 +39,7 @@
   justify-content: space-between;
   margin-bottom: 10px;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     flex-direction: column-reverse;
     margin-bottom: 5px;
   }
@@ -51,7 +51,7 @@
   font-size: 16px;
   line-height: 24px;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     font-size: 14px;
     line-height: 22px;
   }
@@ -61,7 +61,7 @@
   margin: 0;
   padding-right: 10px;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     padding-right: 5px;
   }
 }
@@ -69,7 +69,7 @@
 .description {
   margin-top: 15px;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-top: 10px;
   }
 }
@@ -90,7 +90,7 @@
   text-align: center;
   font-weight: 700;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin: 5px auto 10px 0;
     padding: 4px 8px;
     font-size: 10px;
@@ -106,7 +106,7 @@ $categories: (
   (5, #000, #dedede, transparent),
   (6, #000, transparent, #636363),
   (7, #000, #f2cb30, transparent),
-  (8, #000, #939393, transparent),
+  (8, #000, #939393, transparent)
 );
 
 @each $style, $text, $background, $border in $categories {

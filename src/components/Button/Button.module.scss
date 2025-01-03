@@ -1,7 +1,7 @@
-@use 'sass:math';
-@use 'sass:color';
+@use "sass:math";
+@use "sass:color";
 
-@use '../../scss/variables';
+@use "../../scss/variables";
 
 .button {
   display: flex;
@@ -15,7 +15,7 @@
   text-align: center;
   text-decoration: none;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     padding: 10px;
     font-size: 14px;
     line-height: 18px;
@@ -24,7 +24,10 @@
   &:hover {
     text-decoration: underline;
     color: color.adjust(variables.$global-color-primary-dark, $blackness: 10%);
-    border-color: color.adjust(variables.$global-color-primary-dark, $blackness: 10%);
+    border-color: color.adjust(
+      variables.$global-color-primary-dark,
+      $blackness: 10%
+    );
     background: variables.$global-color-primary-light;
   }
 }
@@ -34,7 +37,7 @@
   margin-top: math.div(variables.$global-spacing-large, 2);
   padding: 10px;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-top: math.div(variables.$global-spacing-small, 2);
     padding: 8px;
   }

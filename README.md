@@ -24,17 +24,17 @@ The website primarily uses Contentful as the main source of data.
 
 The app is made up of the following parts:
 
-* [`src/`](src/) contains the main code
-  * [`src/pages`](src/pages) contains the app routes and pages
-  * [`src/layout`](src/layout) contains single-use React components (e.g. header and footer)
-  * [`src/components`](src/components) contains common React components
-  * [`src/scss`](src/scss) contains global SCSS styles
-  * [`src/helpers`](src/helpers) contains common helpers, utility functions, and constants
-    * [`src/helpers/rendering`](src/helpers/rendering) contains Contentful rich text rendering handling
-  * [`src/data`](src/data) contains static JSON data
-* [`public/`](public/) contains static assets (e.g. fonts and icons)
-* [`redirects.json`](redirects.json) contains permanent redirects for the previous website
-* [`terraform/`](terraform/) contains the Terraform code for the website infrastructure
+- [`src/`](src/) contains the main code
+  - [`src/pages`](src/pages) contains the app routes and pages
+  - [`src/layout`](src/layout) contains single-use React components (e.g. header and footer)
+  - [`src/components`](src/components) contains common React components
+  - [`src/scss`](src/scss) contains global SCSS styles
+  - [`src/helpers`](src/helpers) contains common helpers, utility functions, and constants
+    - [`src/helpers/rendering`](src/helpers/rendering) contains Contentful rich text rendering handling
+  - [`src/data`](src/data) contains static JSON data
+- [`public/`](public/) contains static assets (e.g. fonts and icons)
+- [`redirects.json`](redirects.json) contains permanent redirects for the previous website
+- [`terraform/`](terraform/) contains the Terraform code for the website infrastructure
 
 ## Installation
 
@@ -65,14 +65,14 @@ The following environment variables should be provided when running the server (
 
 Below are the NPM commands that can be used for development:
 
-| Command                 | Description                                                           |
-| ----------------------- | --------------------------------------------------------------------- |
-| `start`                 | Starts the app (requires `build` to be run) on port 3000.             |
-| `build`                 | Builds the app for production.                                        |
-| `dev`                   | Runs the app in development mode on port 3000.                        |
-| `test`                  | Runs `test:linting`, `test:typescript`, and `test:unit` sequentially. |
-| `test:linting`          | Runs ESLint and Prettier tests.                                       |
-| `test:stylelint`        | Runs stylelint tests.                                                 |
-| `test:typescript`       | Runs TypeScript tests.                                                |
-| `test:unit`             | Runs unit and integration tests and generates a coverage report.      |
-| `test:unit:watch`       | Same as `test:unit` but runs it in watch mode.                        |
+| Command           | Description                                                           |
+| ----------------- | --------------------------------------------------------------------- |
+| `start`           | Starts the app (requires `build` to be run) on port 3000.             |
+| `build`           | Builds the app for production.                                        |
+| `dev`             | Runs the app in development mode on port 3000.                        |
+| `test`            | Runs `test:linting`, `test:typescript`, and `test:unit` sequentially. |
+| `test:linting`    | Runs ESLint and Prettier tests.                                       |
+| `test:stylelint`  | Runs stylelint tests.                                                 |
+| `test:typescript` | Runs TypeScript tests.                                                |
+| `test:unit`       | Runs unit and integration tests and generates a coverage report.      |
+| `test:unit:watch` | Same as `test:unit` but runs it in watch mode.                        |

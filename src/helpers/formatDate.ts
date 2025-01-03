@@ -1,10 +1,10 @@
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import localizedFormat from "dayjs/plugin/localizedFormat";
 
-import 'dayjs/locale/en-gb';
+import "dayjs/locale/en-gb";
 
-dayjs.locale('en-gb');
+dayjs.locale("en-gb");
 
 dayjs.extend(relativeTime);
 dayjs.extend(localizedFormat);
@@ -15,17 +15,14 @@ dayjs.extend(localizedFormat);
  * @param [currentDate] Current date to compared against (for testing).
  * @returns Formatted date as relative time (up to two weeks).
  */
-const formatDateRelative = (
-  date: string,
-  currentDate?: string,
-): string => {
+const formatDateRelative = (date: string, currentDate?: string): string => {
   let formattedDate;
 
   const targetDate = dayjs(date);
   const now = dayjs(currentDate ?? undefined);
 
-  if (now.diff(targetDate, 'week') >= 2) {
-    formattedDate = targetDate.format('DD/MM/YYYY');
+  if (now.diff(targetDate, "week") >= 2) {
+    formattedDate = targetDate.format("DD/MM/YYYY");
   } else {
     formattedDate = targetDate.from(now);
   }
@@ -38,8 +35,7 @@ const formatDateRelative = (
  * @param date Date to format.
  * @returns Formatted date as long format.
  */
-const formatDateMonth = (
-  date: string,
-): string => dayjs(date).format('MMMM YYYY');
+const formatDateMonth = (date: string): string =>
+  dayjs(date).format("MMMM YYYY");
 
 export { formatDateRelative, formatDateMonth };

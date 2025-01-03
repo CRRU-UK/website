@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 
-import { BLOCKS } from '@contentful/rich-text-types';
-import { NodeRenderer } from '@contentful/rich-text-react-renderer';
+import { BLOCKS } from "@contentful/rich-text-types";
+import { NodeRenderer } from "@contentful/rich-text-react-renderer";
 
 const renderHeading1: NodeRenderer = (data, children) => (
   <p className="large">
@@ -26,7 +26,7 @@ const renderParagraph: NodeRenderer = (data, children) => {
     return null;
   }
 
-  return (<p>{children}</p>);
+  return <p>{children}</p>;
 };
 
 const renderTypography = {

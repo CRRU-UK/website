@@ -1,6 +1,6 @@
-@use 'sass:math';
+@use "sass:math";
 
-@use '../variables';
+@use "../variables";
 
 .top-link {
   display: table;
@@ -9,7 +9,7 @@
   line-height: 16px;
   text-align: center;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-top: (variables.$global-spacing-small * 2);
     font-size: 14px;
     line-height: 14px;
@@ -25,12 +25,13 @@
   color: variables.$global-color-body;
 
   &::before {
-    content: '';
+    content: "";
     display: block;
     margin-right: 10px;
     width: 18px;
     height: 18px;
-    background: center center no-repeat url('../../../public/images/icons/large-arrow.svg');
+    background: center center no-repeat
+      url("../../../public/images/icons/large-arrow.svg");
     background-size: contain;
   }
 }
@@ -38,7 +39,7 @@
 footer {
   margin-top: math.div(variables.$global-spacing-large, 2);
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-top: math.div(variables.$global-spacing-small, 2);
   }
 }
@@ -47,7 +48,7 @@ footer * {
   font-size: 14px;
   line-height: 14px;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     font-size: 12px;
     line-height: 12px;
   }
@@ -59,12 +60,14 @@ footer .footer-wrapper {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: variables.$global-spacing-large variables.$global-spacing-large variables.$global-spacing-large;
+  padding: variables.$global-spacing-large variables.$global-spacing-large
+    variables.$global-spacing-large;
   color: variables.$global-color-background;
   background: variables.$global-color-body;
 
-  @include variables.breakpoint('small') {
-    padding: variables.$global-spacing-small variables.$global-spacing-small (variables.$global-spacing-small * 2);
+  @include variables.breakpoint("small") {
+    padding: variables.$global-spacing-small variables.$global-spacing-small
+      (variables.$global-spacing-small * 2);
     flex-direction: column;
   }
 }
@@ -83,7 +86,7 @@ footer ul {
   flex-direction: row;
   justify-content: flex-start;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin: 0 auto;
     justify-content: center;
   }
@@ -93,7 +96,7 @@ footer ul > li {
   margin: 0;
   padding: 0;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     text-align: center;
   }
 }
@@ -108,7 +111,7 @@ footer .footer-left {
   margin-right: auto;
   padding-right: 10px;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin: 0 0 variables.$global-spacing-small;
     padding: 0;
     align-items: flex-start;
@@ -124,11 +127,11 @@ footer .footer-left > .footer-logo > img {
 footer .footer-left > .footer-logo {
   margin-right: variables.$global-spacing-large;
 
-  @include variables.breakpoint('medium') {
+  @include variables.breakpoint("medium") {
     margin-right: variables.$global-spacing-medium;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin: 0 auto variables.$global-spacing-small;
   }
 }
@@ -137,12 +140,12 @@ footer .footer-left > .footer-logo > img {
   width: 150px;
   height: 150px;
 
-  @include variables.breakpoint('medium') {
+  @include variables.breakpoint("medium") {
     width: 120px;
     height: 120px;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     width: 70px;
     height: 70px;
   }
@@ -174,15 +177,16 @@ footer .footer-left .footer-links li {
 }
 
 footer .footer-left .footer-links li a.external::after {
-  content: '';
+  content: "";
   display: inline-block;
   margin-left: 5px;
   width: 10px;
   height: 10px;
-  background: url('../../../public/images/icons/external-light.svg') center center no-repeat transparent;
+  background: url("../../../public/images/icons/external-light.svg") center
+    center no-repeat transparent;
   background-size: contain;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     width: 8px;
     height: 8px;
   }
@@ -204,7 +208,7 @@ footer .footer-left .footer-contact li {
 footer .footer-left .footer-credits {
   line-height: 20px !important;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     text-align: center;
   }
 }
@@ -218,7 +222,7 @@ footer .footer-right {
   justify-content: center;
   align-items: flex-end;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin: 0 auto;
     align-items: center;
   }
@@ -227,7 +231,7 @@ footer .footer-right {
 footer .footer-right .social-links {
   margin-bottom: variables.$global-spacing-large;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-bottom: variables.$global-spacing-small;
   }
 }
@@ -236,11 +240,11 @@ footer .footer-right .social-links li,
 footer .footer-right .footer-support li {
   margin-right: 20px;
 
-  @include variables.breakpoint('medium') {
+  @include variables.breakpoint("medium") {
     margin-right: 15px;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-right: variables.$global-spacing-small;
   }
 
@@ -277,7 +281,7 @@ footer .footer-right .footer-support p {
   margin: 0 0 10px;
   text-align: right;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     text-align: center;
   }
 }
@@ -287,11 +291,11 @@ footer .footer-right .footer-support li > a > img {
   width: auto;
   height: 50px;
 
-  @include variables.breakpoint('medium') {
+  @include variables.breakpoint("medium") {
     height: 40px;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     height: 30px;
   }
 }

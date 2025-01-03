@@ -1,6 +1,6 @@
-@use 'sass:math';
+@use "sass:math";
 
-@use '../../../scss/variables';
+@use "../../../scss/variables";
 
 .taxonomy {
   $spacing: 15px;
@@ -18,7 +18,7 @@
   list-style: none;
   background: variables.$global-color-secondary;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     padding: math.div(variables.$global-padding-small, 2);
     grid-template-columns: 1fr 1fr;
   }
@@ -33,7 +33,7 @@
       padding-right: 0;
     }
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       font-size: 14px;
       line-height: 18px;
     }
@@ -45,7 +45,7 @@
   }
 
   > li > em {
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       display: inline;
     }
   }
@@ -54,7 +54,7 @@
 .wide {
   grid-column: 2 / -1;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     grid-column: 1 / -1;
   }
 }

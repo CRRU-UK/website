@@ -1,15 +1,15 @@
 /* stylelint-disable selector-max-id */
 
-@use 'sass:math';
+@use "sass:math";
 
-@use '../../scss/variables';
+@use "../../scss/variables";
 
 .loading {
   display: block;
   width: 100px;
   height: auto;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     width: 70px;
   }
 }
@@ -20,8 +20,12 @@
   animation: wave 1.5s infinite linear;
 
   @keyframes wave {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-$distance); }
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-$distance);
+    }
   }
 }
 
@@ -35,9 +39,15 @@
   animation-delay: -0.5s;
 
   @keyframes dolphin {
-    0% { transform: translateY($distance) rotate(-$rotation); }
-    50% { transform: translateY(0) rotate(0deg); }
-    100% { transform: translateY($distance) rotate($rotation); }
+    0% {
+      transform: translateY($distance) rotate(-$rotation);
+    }
+    50% {
+      transform: translateY(0) rotate(0deg);
+    }
+    100% {
+      transform: translateY($distance) rotate($rotation);
+    }
   }
 }
 
@@ -50,8 +60,14 @@
   animation-delay: -1.4s;
 
   @keyframes whale {
-    0% { transform: translateY(0); }
-    50% { transform: translateY($distance); }
-    100% { transform: translateY(0); }
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY($distance);
+    }
+    100% {
+      transform: translateY(0);
+    }
   }
 }

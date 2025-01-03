@@ -1,51 +1,51 @@
-@use 'sass:color';
-@use 'sass:meta';
+@use "sass:color";
+@use "sass:meta";
 
-@use 'variables';
+@use "variables";
 
-@include meta.load-css('layout/header');
-@include meta.load-css('layout/footer');
+@include meta.load-css("layout/header");
+@include meta.load-css("layout/footer");
 
 // Fonts
 
 @font-face {
   font-display: swap;
-  font-family: 'EB Garamond';
+  font-family: "EB Garamond";
   font-style: normal;
   font-weight: 700;
-  src: url('/fonts/EBGaramond-VariableFont_wght.ttf') format('woff2');
+  src: url("/fonts/EBGaramond-VariableFont_wght.ttf") format("woff2");
 }
 
 @font-face {
   font-display: swap;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
-  src: url('/fonts/Poppins-Medium.ttf') format('woff2');
+  src: url("/fonts/Poppins-Medium.ttf") format("woff2");
 }
 
 @font-face {
   font-display: swap;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-style: italic;
   font-weight: 500;
-  src: url('/fonts/Poppins-MediumItalic.ttf') format('woff2');
+  src: url("/fonts/Poppins-MediumItalic.ttf") format("woff2");
 }
 
 @font-face {
   font-display: swap;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-style: normal;
   font-weight: 700;
-  src: url('/fonts/Poppins-Bold.ttf') format('woff2');
+  src: url("/fonts/Poppins-Bold.ttf") format("woff2");
 }
 
 @font-face {
   font-display: swap;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-style: italic;
   font-weight: 700;
-  src: url('/fonts/Poppins-BoldItalic.ttf') format('woff2');
+  src: url("/fonts/Poppins-BoldItalic.ttf") format("woff2");
 }
 
 // Globals
@@ -62,12 +62,12 @@ body {
   line-height: variables.$global-font-line-height;
   color: variables.$global-color-body;
   text-rendering: optimizeLegibility;
-  font-feature-settings: 'liga' on;
+  font-feature-settings: "liga" on;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: variables.$global-color-background;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     font-size: variables.$global-font-size-small;
   }
 
@@ -99,17 +99,18 @@ button {
 main {
   margin: 0 auto;
 
-  @include meta.load-css('layout/content');
-  @include meta.load-css('layout/form');
-  @include meta.load-css('layout/columns');
+  @include meta.load-css("layout/content");
+  @include meta.load-css("layout/form");
+  @include meta.load-css("layout/columns");
 
   > article {
     margin: 0 auto;
     max-width: variables.$global-max-width;
-    padding: (variables.$global-spacing-large * 1.5) variables.$global-padding-large 0;
+    padding: (variables.$global-spacing-large * 1.5)
+      variables.$global-padding-large 0;
     background: bottom right repeat-y transparent;
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       margin-top: variables.$global-spacing-small * 1.5;
       padding: 0 variables.$global-padding-small;
       background-size: 40%;
@@ -134,11 +135,11 @@ main .grid {
   column-gap: variables.$global-spacing-large;
   row-gap: variables.$global-spacing-large * 1.5;
 
-  @include variables.breakpoint('medium') {
+  @include variables.breakpoint("medium") {
     grid-template-columns: 1fr 1fr;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     grid-template-columns: 1fr;
     column-gap: variables.$global-spacing-small;
     row-gap: variables.$global-spacing-small * 1.5;
@@ -156,7 +157,7 @@ main .details {
 
   list-style: none;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-top: variables.$global-spacing-small;
     padding: 0 variables.$global-padding-small;
   }
@@ -177,7 +178,7 @@ main .details > .category {
   font-weight: 500;
   color: variables.$global-color-body;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-right: variables.$global-spacing-small;
     font-size: 14px;
     line-height: 14px;
@@ -186,7 +187,7 @@ main .details > .category {
   &::before {
     $size: 24px;
 
-    content: '';
+    content: "";
     display: block;
     margin-right: 8px;
     width: $size;
@@ -194,7 +195,7 @@ main .details > .category {
     background: center center no-repeat transparent;
     background-size: contain;
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       $size: 14px;
 
       margin-right: 5px;
@@ -205,9 +206,9 @@ main .details > .category {
 }
 
 main .details > .date::before {
-  background-image: url('../../public/images/icons/date.svg');
+  background-image: url("../../public/images/icons/date.svg");
 }
 
 main .details > .category::before {
-  background-image: url('../../public/images/icons/category.svg');
+  background-image: url("../../public/images/icons/category.svg");
 }

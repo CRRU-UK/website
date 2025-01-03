@@ -1,6 +1,6 @@
-@use 'sass:math';
+@use "sass:math";
 
-@use '../../scss/variables';
+@use "../../scss/variables";
 
 $tree-item-width-large: 200px;
 $tree-item-width-medium: 180px;
@@ -25,7 +25,7 @@ $tree-label-border-width: 5px;
   @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
     width: $tree-item-width-medium;
   }
-  
+
   @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
     width: $tree-item-width-small;
   }
@@ -46,7 +46,7 @@ $tree-label-border-width: 5px;
   }
 
   &::after {
-    content: '';
+    content: "";
     z-index: 0;
     position: absolute;
     left: calc(50% - math.floor(math.div($tree-line-size, 2)));
@@ -68,7 +68,9 @@ $tree-label-border-width: 5px;
     background: variables.$global-color-secondary;
     text-transform: uppercase;
 
-    @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
+    @include variables.breakpoint(
+      variables.$global-catalogue-breakpoint-small
+    ) {
       padding: 6px 8px;
       font-size: 12px;
       line-height: 12px;
@@ -121,7 +123,7 @@ $tree-label-border-width: 5px;
 
   // Row lines
   &::before {
-    content: '';
+    content: "";
     z-index: 0;
     position: absolute;
     top: 50%;
@@ -141,11 +143,15 @@ $tree-label-border-width: 5px;
 
     // Column line
     &::after {
-      content: '';
+      content: "";
       z-index: 0;
       position: absolute;
-      right: 0 - math.div($tree-column-gap, 2) - math.ceil(math.div($tree-line-size, 2));
-      bottom: calc(50% - $tree-line-size + math.floor(math.div($tree-line-size, 2)));
+      right: 0 - math.div($tree-column-gap, 2) - math.ceil(
+          math.div($tree-line-size, 2)
+        );
+      bottom: calc(
+        50% - $tree-line-size + math.floor(math.div($tree-line-size, 2))
+      );
       width: $tree-line-size;
       height: calc(100% + $tree-row-gap);
       background: $tree-line-color;

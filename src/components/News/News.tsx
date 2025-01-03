@@ -1,42 +1,33 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from "next/link";
+import Image from "next/image";
 
-import { formatDateRelative } from '@/helpers/formatDate';
+import { formatDateRelative } from "@/helpers/formatDate";
 
-import styles from './News.module.scss';
+import styles from "./News.module.scss";
 
 interface Props {
   image: {
-    src: string,
-    width: number,
-    height: number,
-    alt: string,
-  },
-  link: string,
-  title: string,
-  date?: string,
-  category?: string,
+    src: string;
+    width: number;
+    height: number;
+    alt: string;
+  };
+  link: string;
+  title: string;
+  date?: string;
+  category?: string;
 }
 
-const News = ({
-  link,
-  image,
-  title,
-  date,
-  category,
-}: Props) => {
+const News = ({ link, image, title, date, category }: Props) => {
   let imageURL = image.src;
-  if (imageURL.startsWith('//')) {
+  if (imageURL.startsWith("//")) {
     imageURL = `https:${imageURL}`;
   }
 
   return (
     <article className={styles.news}>
-      <Link
-        href={link}
-        className="news"
-      >
-        <div className={styles['image-container']}>
+      <Link href={link} className="news">
+        <div className={styles["image-container"]}>
           <Image
             src={imageURL}
             alt=""
@@ -47,7 +38,11 @@ const News = ({
         </div>
         <h4>{title}</h4>
         <div className={styles.subtitles}>
-          {date && <p className={styles.date} title={date}>{formatDateRelative(date)}</p>}
+          {date && (
+            <p className={styles.date} title={date}>
+              {formatDateRelative(date)}
+            </p>
+          )}
           {category && <p className={styles.category}>{category}</p>}
         </div>
       </Link>

@@ -1,4 +1,4 @@
-@use '../../scss/variables';
+@use "../../scss/variables";
 
 $input-height: 50px;
 
@@ -31,8 +31,12 @@ $toolbar-height-small: 50px;
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .search {
@@ -62,9 +66,13 @@ $toolbar-height-small: 50px;
     border: 2px solid variables.$global-color-catalogue;
     border-radius: variables.$global-border-radius;
     outline: 0;
-    background: 15px center no-repeat url('../../../public/images/icons/catalogues/search.svg') variables.$global-color-background;
+    background: 15px center no-repeat
+      url("../../../public/images/icons/catalogues/search.svg")
+      variables.$global-color-background;
 
-    @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
+    @include variables.breakpoint(
+      variables.$global-catalogue-breakpoint-small
+    ) {
       width: 100%;
       height: 100%;
       padding-left: 40px;
@@ -107,7 +115,9 @@ $toolbar-height-small: 50px;
     overflow: hidden;
     overflow-y: scroll;
 
-    @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
+    @include variables.breakpoint(
+      variables.$global-catalogue-breakpoint-small
+    ) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       padding: variables.$global-padding-small;
       column-gap: variables.$global-spacing-small;
@@ -205,7 +215,9 @@ $toolbar-height-small: 50px;
   + .button {
     margin-left: 10px;
 
-    @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
+    @include variables.breakpoint(
+      variables.$global-catalogue-breakpoint-small
+    ) {
       margin-left: 0;
     }
   }
@@ -215,7 +227,9 @@ $toolbar-height-small: 50px;
     text-decoration: underline;
     border-color: variables.$global-color-primary-dark;
 
-    @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
+    @include variables.breakpoint(
+      variables.$global-catalogue-breakpoint-small
+    ) {
       border-color: variables.$global-color-catalogue;
       background: variables.$global-color-catalogue-light;
     }
@@ -227,13 +241,14 @@ $toolbar-height-small: 50px;
     display: block;
     min-width: 16px;
     min-height: 16px;
-    background: url('../../../public/images/icons/small-arrow.svg') center center no-repeat;
+    background: url("../../../public/images/icons/small-arrow.svg") center
+      center no-repeat;
     background-size: contain;
   }
 }
 
 .button-previous::before {
-  content: '';
+  content: "";
   margin-right: 10px;
   transform: rotate(180deg);
 
@@ -243,7 +258,7 @@ $toolbar-height-small: 50px;
 }
 
 .button-next::after {
-  content: '';
+  content: "";
   margin-left: 10px;
 
   @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {

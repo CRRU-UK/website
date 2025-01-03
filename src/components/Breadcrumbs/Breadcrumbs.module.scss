@@ -1,4 +1,4 @@
-@use '../../scss/variables';
+@use "../../scss/variables";
 
 .breadcrumbs-container {
   margin: 0 auto;
@@ -21,12 +21,12 @@
   &.wide {
     max-width: variables.$global-max-width-wide;
   }
-  
+
   &.inline {
     max-width: none;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     padding: 4px variables.$global-padding-small;
   }
 }
@@ -39,15 +39,16 @@
   justify-content: flex-start;
 
   &::after {
-    content: '';
+    content: "";
     margin: 0 10px;
     display: block;
     width: 10px;
     height: 10px;
-    background: url('../../../public/images/icons/small-arrow.svg') center center no-repeat;
+    background: url("../../../public/images/icons/small-arrow.svg") center
+      center no-repeat;
     background-size: contain;
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       margin: 0 5px;
       width: 8px;
       height: 8px;
@@ -73,7 +74,7 @@
   font-weight: 700;
   color: variables.$global-color-body;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     $font-size: 11px;
 
     padding: 6px 0;

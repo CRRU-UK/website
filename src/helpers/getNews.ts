@@ -1,14 +1,14 @@
-import type { Asset } from 'contentful';
+import type { Asset } from "contentful";
 
-import type { ContentTypeNews, NewsArticle } from './types';
+import type { ContentTypeNews, NewsArticle } from "./types";
 
-import { ContentTypes } from './constants';
+import { ContentTypes } from "./constants";
 
-import { contentfulDeliveryClient } from './contentful';
-import { flattenImageAssetFields } from './flattenAssetFields';
+import { contentfulDeliveryClient } from "./contentful";
+import { flattenImageAssetFields } from "./flattenAssetFields";
 
 interface Options {
-  limit?: number,
+  limit?: number;
 }
 
 /**
@@ -22,7 +22,7 @@ const getNews = async ({
 }: Options): Promise<Array<NewsArticle>> => {
   const { items } = await contentfulDeliveryClient.getEntries<ContentTypeNews>({
     content_type: ContentTypes.NewsArticle,
-    order: ['-fields.date'],
+    order: ["-fields.date"],
     limit,
   });
 

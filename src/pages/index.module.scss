@@ -1,7 +1,7 @@
-@use 'sass:math';
-@use 'sass:color';
+@use "sass:math";
+@use "sass:color";
 
-@use '../scss/variables';
+@use "../scss/variables";
 
 // Banner
 
@@ -12,18 +12,27 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: calc(100vh - variables.$global-header-height-large - variables.$global-spacing-large);
+  height: calc(
+    100vh - variables.$global-header-height-large -
+      variables.$global-spacing-large
+  );
   min-height: 600px;
   background: variables.$global-color-body;
 
-  @include variables.breakpoint('medium') {
-    height: calc(100vh - variables.$global-header-height-medium - variables.$global-spacing-large);
+  @include variables.breakpoint("medium") {
+    height: calc(
+      100vh - variables.$global-header-height-medium -
+        variables.$global-spacing-large
+    );
     min-height: 300px;
     max-height: 800px;
   }
 
-  @include variables.breakpoint('small') {
-    height: calc(60vh - variables.$global-header-height-small - variables.$global-spacing-small);
+  @include variables.breakpoint("small") {
+    height: calc(
+      60vh - variables.$global-header-height-small -
+        variables.$global-spacing-small
+    );
     min-height: 400px;
   }
 }
@@ -32,10 +41,11 @@
   z-index: 10;
   position: relative;
   max-width: 1110px;
-  padding: 0 variables.$global-padding-large variables.$global-header-height-large;
+  padding: 0 variables.$global-padding-large
+    variables.$global-header-height-large;
   text-align: center;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     padding: 0 variables.$global-padding-small;
   }
 
@@ -47,12 +57,12 @@
     text-shadow: 0 0 8px rgba(#000, 80%);
     color: variables.$global-color-background;
 
-    @include variables.breakpoint('medium') {
+    @include variables.breakpoint("medium") {
       font-size: 32px;
       line-height: 58px;
     }
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       margin-bottom: variables.$global-spacing-small;
       font-size: 26px;
       line-height: 36px;
@@ -74,7 +84,7 @@
   color: variables.$global-color-body;
   background: variables.$global-color-secondary;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     padding: 10px;
     font-size: 14px;
     line-height: 18px;
@@ -91,7 +101,7 @@
     transform: translateX(-5px);
     transition: transform 0.6s variables.$global-transition-ease-out-expo;
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       $size: 12px;
 
       margin-left: 10px;
@@ -109,7 +119,10 @@
     opacity: 1;
     color: inherit;
     text-decoration: underline;
-    background: color.adjust(variables.$global-color-secondary, $blackness: 10%);
+    background: color.adjust(
+      variables.$global-color-secondary,
+      $blackness: 10%
+    );
 
     > svg {
       transform: translateX(0);
@@ -134,7 +147,7 @@
   top: variables.$global-spacing-large;
   right: variables.$global-spacing-large;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     top: 0;
     right: 0;
     padding: variables.$global-padding-small;
@@ -143,14 +156,14 @@
   &::after {
     $icon-size: 48px;
 
-    content: '';
+    content: "";
     display: block;
     width: $icon-size;
     height: $icon-size;
     background: center center no-repeat;
     background-size: contain;
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       $icon-size: 32px;
 
       width: $icon-size;
@@ -164,11 +177,11 @@
 }
 
 .video-toggle-playing::after {
-  background-image: url('../../public/images/icons/pause.svg');
+  background-image: url("../../public/images/icons/pause.svg");
 }
 
 .video-toggle-paused::after {
-  background-image: url('../../public/images/icons/play.svg');
+  background-image: url("../../public/images/icons/play.svg");
 }
 
 // Highlights
@@ -184,7 +197,7 @@
   margin-bottom: -(variables.$global-header-height-large);
   transform: translateY(-(variables.$global-header-height-large));
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     width: 100%;
     margin: 0 auto;
     padding: 0;
@@ -213,7 +226,7 @@
   }
 
   &::before {
-    content: '';
+    content: "";
     z-index: 20;
     position: absolute;
     left: 0;
@@ -231,21 +244,25 @@
   }
 
   &::after {
-    content: '';
+    content: "";
     z-index: 10;
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: 50%;
-    background: linear-gradient(180deg, rgba(variables.$global-color-blue, 0.8) 0%, rgba(variables.$global-color-blue, 0) 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(variables.$global-color-blue, 0.8) 0%,
+      rgba(variables.$global-color-blue, 0) 100%
+    );
   }
 
-  @include variables.breakpoint('medium') {
+  @include variables.breakpoint("medium") {
     padding: variables.$global-padding-medium;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-top: variables.$global-spacing-small;
     padding: variables.$global-padding-small;
     border-radius: 0;
@@ -275,7 +292,7 @@
   line-height: 32px;
   text-decoration: underline;
 
-  @include variables.breakpoint('medium') {
+  @include variables.breakpoint("medium") {
     font-size: 24px;
     line-height: 24px;
   }
@@ -283,15 +300,16 @@
   &::after {
     $size: 28px;
 
-    content: '';
+    content: "";
     display: block;
     width: $size;
     height: $size;
-    background: url('../../public/images/icons/right-arrow.svg') center center no-repeat transparent;
+    background: url("../../public/images/icons/right-arrow.svg") center center
+      no-repeat transparent;
     background-size: contain;
     transform: translateY(4px);
 
-    @include variables.breakpoint('medium') {
+    @include variables.breakpoint("medium") {
       $size: 18px;
 
       width: $size;
@@ -299,7 +317,7 @@
       transform: translateY(2px);
     }
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       $size: 24px;
 
       width: $size;
@@ -308,7 +326,7 @@
     }
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     font-size: 22px;
     line-height: 22px;
   }
@@ -319,12 +337,12 @@
   line-height: 20px;
   font-weight: 700;
 
-  @include variables.breakpoint('medium') {
+  @include variables.breakpoint("medium") {
     font-size: 18px;
     line-height: 18px;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     font-size: 16px;
     line-height: 16px;
   }
@@ -340,7 +358,7 @@
   height: 100%;
   object-fit: cover;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     transition: none;
   }
 }
@@ -352,7 +370,7 @@
   padding: 0 variables.$global-padding-large;
   max-width: variables.$global-max-width * 2;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin: (variables.$global-spacing-small * 2) auto 0;
     padding: 0 variables.$global-padding-small;
     max-width: none;
@@ -370,13 +388,13 @@
   line-height: 32px;
   font-family: variables.$global-font-primary;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     font-size: 22px;
     line-height: 22px;
   }
 
   &::after {
-    content: '';
+    content: "";
     margin-left: 20px;
     display: block;
     width: 100%;
@@ -386,15 +404,17 @@
 }
 
 .news-container {
-  margin: variables.$global-spacing-large 0 (variables.$global-spacing-large * 2);
+  margin: variables.$global-spacing-large 0
+    (variables.$global-spacing-large * 2);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     flex-direction: column;
-    margin: variables.$global-spacing-small 0 (variables.$global-spacing-small * 2);
+    margin: variables.$global-spacing-small 0
+      (variables.$global-spacing-small * 2);
   }
 }
 
@@ -406,7 +426,7 @@
     margin-right: 0;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-right: 0;
     margin-bottom: variables.$global-spacing-small;
     width: 100%;

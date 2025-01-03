@@ -1,17 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import styles from './Note.module.scss';
+import styles from "./Note.module.scss";
 
 interface Props {
-  children: any,
+  children: any;
 }
 
-const Note = ({
-  children,
-}: Props) => (
-  <section className={styles.note}>
-    {children}
-  </section>
+const Note = ({ children }: Props) => (
+  <section className={styles.note}>{children}</section>
 );
 
 export default Note;

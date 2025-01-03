@@ -1,4 +1,4 @@
-import * as contentful from 'contentful';
+import * as contentful from "contentful";
 
 const contentfulDeliveryClient = contentful.createClient({
   space: String(process.env.NODE_CONTENTFUL_SPACE_ID),
@@ -10,10 +10,7 @@ const contentfulPreviewClient = contentful.createClient({
   space: String(process.env.NODE_CONTENTFUL_SPACE_ID),
   environment: String(process.env.NODE_CONTENTFUL_ENVIRONMENT),
   accessToken: String(process.env.NODE_CONTENTFUL_PREVIEW_API_TOKEN),
-  host: 'preview.contentful.com',
+  host: "preview.contentful.com",
 }).withoutUnresolvableLinks;
 
-export {
-  contentfulDeliveryClient,
-  contentfulPreviewClient,
-};
+export { contentfulDeliveryClient, contentfulPreviewClient };

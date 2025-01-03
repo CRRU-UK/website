@@ -1,4 +1,4 @@
-@use '../../scss/variables';
+@use "../../scss/variables";
 
 .image {
   z-index: 0;
@@ -6,7 +6,7 @@
   margin: variables.$global-spacing-large auto;
   width: 100%;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin: variables.$global-spacing-small auto;
   }
 
@@ -23,7 +23,7 @@
 .image + .image {
   margin-left: variables.$global-spacing-large;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-left: 0;
   }
 }
@@ -44,7 +44,7 @@ $caption-size-small: $icon-size-small + ($icon-padding-small * 2);
   bottom: 0;
   display: block;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     width: $icon-padding-small + ($icon-padding-small * 2);
     height: $icon-padding-small + ($icon-padding-small * 2);
   }
@@ -63,15 +63,16 @@ $caption-size-small: $icon-size-small + ($icon-padding-small * 2);
   height: $caption-size-large;
 
   &::before {
-    content: '';
+    content: "";
     display: block;
     width: $icon-size-large;
     height: $icon-size-large;
-    background: url('../../../public/images/icons/image-caption.svg') center center no-repeat transparent;
+    background: url("../../../public/images/icons/image-caption.svg") center
+      center no-repeat transparent;
     background-size: contain;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     padding: $icon-padding-small;
     width: $caption-size-small;
     height: $caption-size-small;
@@ -107,13 +108,15 @@ $easing-out: 0.6s variables.$global-transition-ease-in-expo;
   box-shadow: 0 0 5px rgba(variables.$global-color-body, 0.3);
   background: variables.$global-color-background;
   transform: translateY($icon-padding-large);
-  transition: opacity $easing-in, transform $easing-in;
+  transition:
+    opacity $easing-in,
+    transform $easing-in;
 
   > *:first-child {
     margin-top: 0;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     right: $icon-padding-small;
     bottom: $caption-size-small;
     transform: translateY($icon-padding-small);

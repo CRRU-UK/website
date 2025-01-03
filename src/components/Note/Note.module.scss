@@ -1,9 +1,10 @@
-@use 'sass:math';
+@use "sass:math";
 
-@use '../../scss/variables';
+@use "../../scss/variables";
 
 section.note {
-  margin: math.div(variables.$global-spacing-large, 2) 0 math.div(variables.$global-spacing-large, 2) variables.$global-spacing-large;
+  margin: math.div(variables.$global-spacing-large, 2) 0
+    math.div(variables.$global-spacing-large, 2) variables.$global-spacing-large;
   margin-right: -(variables.$global-spacing-large);
   float: right;
   width: 350px;
@@ -11,7 +12,7 @@ section.note {
   border-radius: variables.$global-border-radius;
   background: variables.$global-color-grey;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     width: 100%;
     margin: variables.$global-spacing-small auto;
     padding: variables.$global-padding-small;

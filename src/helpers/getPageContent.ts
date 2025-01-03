@@ -1,12 +1,15 @@
-import type { PageData, ContentTypePageContent } from './types';
+import type { PageData, ContentTypePageContent } from "./types";
 
-import { ContentTypes } from './constants';
-import { contentfulDeliveryClient, contentfulPreviewClient } from './contentful';
-import { flattenImageAssetFields } from './flattenAssetFields';
+import { ContentTypes } from "./constants";
+import {
+  contentfulDeliveryClient,
+  contentfulPreviewClient,
+} from "./contentful";
+import { flattenImageAssetFields } from "./flattenAssetFields";
 
 interface Options {
-  references?: boolean,
-  preview?: boolean,
+  references?: boolean;
+  preview?: boolean;
 }
 
 /**
@@ -25,7 +28,7 @@ const getPageContent = async (
 
   const { items } = await client.getEntries<ContentTypePageContent>({
     content_type: ContentTypes.PageContent,
-    'fields.path': path,
+    "fields.path": path,
     limit: 1,
     include: 2,
   });
@@ -38,11 +41,13 @@ const getPageContent = async (
     content: fields.content ?? null,
     data: fields.data ?? null,
     image: fields.image ? flattenImageAssetFields(fields.image) : null,
-    background: fields.background ? flattenImageAssetFields(fields.background) : null,
+    background: fields.background
+      ? flattenImageAssetFields(fields.background)
+      : null,
   };
 
   if (options?.references) {
-    pageData.references = fields.references as PageData['references'] ?? null;
+    pageData.references = (fields.references as PageData["references"]) ?? null;
   }
 
   return pageData;

@@ -1,20 +1,18 @@
-import type { NextPage, GetServerSideProps } from 'next';
+import type { NextPage, GetServerSideProps } from "next";
 
-import type { PageData } from '@/helpers/types';
+import type { PageData } from "@/helpers/types";
 
-import sitemap from '@/data/sitemap.json';
+import sitemap from "@/data/sitemap.json";
 
-import getPageContent from '@/helpers/getPageContent';
+import getPageContent from "@/helpers/getPageContent";
 
-import CommonPage from '@/layout/CommonPage';
+import CommonPage from "@/layout/CommonPage";
 
 interface PageProps {
-  data: PageData,
+  data: PageData;
 }
 
-const Page: NextPage<PageProps> = ({
-  data,
-}) => (
+const Page: NextPage<PageProps> = ({ data }) => (
   <CommonPage
     page={sitemap.donate}
     parent={sitemap.help}
@@ -23,8 +21,10 @@ const Page: NextPage<PageProps> = ({
   />
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const preview = ctx?.query.preview === 'true';
+export const getServerSideProps: GetServerSideProps<PageProps> = async (
+  ctx,
+) => {
+  const preview = ctx?.query.preview === "true";
   const data = await getPageContent(sitemap.donate.path, { preview });
 
   return {

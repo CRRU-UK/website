@@ -1,6 +1,6 @@
-@use 'sass:math';
+@use "sass:math";
 
-@use '../../scss/variables';
+@use "../../scss/variables";
 
 .item {
   display: flex;
@@ -11,7 +11,7 @@
   border-radius: variables.$global-border-radius;
   border: 2px solid variables.$global-color-background-dark;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     align-items: flex-start;
     flex-direction: column;
     margin-bottom: math.div(variables.$global-spacing-small, 2);
@@ -25,7 +25,7 @@
   height: auto;
   border-radius: variables.$global-border-radius;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-bottom: 20px;
   }
 }
@@ -42,7 +42,7 @@
   font-size: 28px;
   line-height: 28px;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-bottom: 5px;
     font-size: 24px;
     line-height: 24px;
@@ -54,7 +54,7 @@
   font-size: 20px;
   line-height: 20px;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-bottom: 5px;
     font-size: 18px;
     line-height: 18px;
@@ -65,7 +65,7 @@
   margin-bottom: 10px;
   font-weight: 700;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-bottom: 5px;
   }
 }
@@ -74,7 +74,7 @@
   width: 100%;
   max-width: 250px;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     max-width: 50%;
   }
 }
@@ -83,7 +83,7 @@
   padding-left: variables.$global-padding-large;
   width: 100%;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     padding-left: 0;
   }
 }
@@ -91,7 +91,7 @@
 .qualification-list {
   margin: 10px 0;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin: 5px 0;
   }
 }
@@ -116,7 +116,7 @@
     margin-right: 0;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     padding: 0 8px;
     font-size: 10px;
     line-height: 10px;
@@ -134,7 +134,7 @@
     margin-bottom: 10px;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-top: 10px;
     font-size: 14px;
     line-height: 24px;

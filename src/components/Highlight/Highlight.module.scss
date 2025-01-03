@@ -1,4 +1,4 @@
-@use '../../scss/variables';
+@use "../../scss/variables";
 
 .highlight {
   width: calc(100% + (variables.$global-padding-large * 2));
@@ -25,7 +25,7 @@
     border-radius: 0;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     width: calc(100% + (variables.$global-padding-small * 2));
     margin: variables.$global-spacing-small auto;
     margin-left: -(variables.$global-spacing-small);
@@ -47,7 +47,7 @@
     font-size: 26px;
     line-height: 26px;
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       font-size: 22px;
       line-height: 30px;
     }

@@ -1,28 +1,22 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from "next/link";
+import Image from "next/image";
 
-import type { FlattenedImage } from '@/helpers/types';
+import type { FlattenedImage } from "@/helpers/types";
 
-import styles from './ListItem.module.scss';
+import styles from "./ListItem.module.scss";
 
 interface Props {
-  title: string,
-  description?: string,
-  link?: string,
-  image?: FlattenedImage,
+  title: string;
+  description?: string;
+  link?: string;
+  image?: FlattenedImage;
   category?: {
-    text: string,
-    style?: number,
-  },
+    text: string;
+    style?: number;
+  };
 }
 
-const ListItem = ({
-  title,
-  description,
-  link,
-  image,
-  category,
-}: Props) => {
+const ListItem = ({ title, description, link, image, category }: Props) => {
   const imageElement = image ? (
     <Image
       src={image.url}
@@ -35,7 +29,18 @@ const ListItem = ({
 
   const titleElement = (
     <p className={styles.title}>
-      {link ? (<Link href={link} rel="noopener noreferrer" target="_blank" className="external">{title}</Link>) : title}
+      {link ? (
+        <Link
+          href={link}
+          rel="noopener noreferrer"
+          target="_blank"
+          className="external"
+        >
+          {title}
+        </Link>
+      ) : (
+        title
+      )}
     </p>
   );
 
@@ -43,7 +48,9 @@ const ListItem = ({
     <p className={styles.description}>{description}</p>
   ) : null;
 
-  const categoryClass = category ? styles[`category-style-${category.style ?? 1}`] : null;
+  const categoryClass = category
+    ? styles[`category-style-${category.style ?? 1}`]
+    : null;
 
   const categoryElement = category ? (
     <p className={`${styles.category} ${categoryClass}`}>{category.text}</p>
@@ -54,8 +61,12 @@ const ListItem = ({
       {image && (
         <div className={styles.side}>
           {link ? (
-            <Link href={link} rel="noopener noreferrer" target="_blank">{imageElement}</Link>
-          ) : imageElement}
+            <Link href={link} rel="noopener noreferrer" target="_blank">
+              {imageElement}
+            </Link>
+          ) : (
+            imageElement
+          )}
         </div>
       )}
 
