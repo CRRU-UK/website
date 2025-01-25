@@ -71,7 +71,7 @@ Below are the NPM commands that can be used for development:
 | `start`           | Starts the app (requires `build` to be run) on port 3000.        |
 | `build`           | Builds the app for production.                                   |
 | `dev`             | Runs the app in development mode on port 3000.                   |
-| `test`            | Runs `test:linting`, `test:types`, and `test:unit` sequentially. |
+| `test`            | Runs `test:linting`, `test:types`, and `test:jest` sequentially. |
 | `test:linting`    | Runs ESLint, Prettier, and Stylelint tests.                      |
 | `test:types`      | Runs TypeScript tests.                                           |
 | `test:jest`       | Runs unit and integration tests and generates a coverage report. |
