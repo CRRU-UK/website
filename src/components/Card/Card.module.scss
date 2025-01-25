@@ -1,11 +1,9 @@
-@use 'sass:color';
-
-@use '../../scss/variables';
+@use "sass:color";
+@use "../../scss/variables";
 
 $height-large: 70px;
 $height-medium: 60px;
 $height-small: 50px;
-
 $bottom-border-size: 5px;
 
 .card {
@@ -22,17 +20,18 @@ $bottom-border-size: 5px;
   color: variables.$global-color-body;
   text-decoration: none;
   border: 2px solid variables.$global-color-catalogue;
-  box-shadow: 0 $bottom-border-size 0 color.adjust(variables.$global-color-catalogue, $lightness: 5%);
+  box-shadow: 0 $bottom-border-size 0
+    color.adjust(variables.$global-color-catalogue, $lightness: 5%);
   background: variables.$global-color-background;
 
-  @include variables.breakpoint('medium') {
+  @include variables.breakpoint("medium") {
     padding: 8px 12px;
     height: $height-medium;
     font-size: 14px;
     line-height: 16px;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     padding: 6px 10px;
     height: $height-small;
   }
@@ -59,12 +58,12 @@ $bottom-border-size: 5px;
     background: center center no-repeat;
     background-size: contain;
 
-    @include variables.breakpoint('medium') {
+    @include variables.breakpoint("medium") {
       min-width: $icon-size-medium;
       min-height: $icon-size-medium;
     }
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       min-width: $icon-size-small;
       min-height: $icon-size-small;
     }
@@ -72,11 +71,11 @@ $bottom-border-size: 5px;
 }
 
 .dolphin > .icon {
-  background-image: url('../../../public/images/icons/catalogues/dolphin.svg');
+  background-image: url("../../../public/images/icons/catalogues/dolphin.svg");
 }
 
 .whale > .icon {
-  background-image: url('../../../public/images/icons/catalogues/whale.svg');
+  background-image: url("../../../public/images/icons/catalogues/whale.svg");
 }
 
 .disabled {
@@ -120,7 +119,7 @@ $bottom-border-size: 5px;
   line-height: 12px;
   font-weight: 500;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     font-size: 10px;
     line-height: 10px;
   }

@@ -1,33 +1,37 @@
-import type { NextPage, GetServerSideProps } from 'next';
+import type { NextPage, GetServerSideProps } from "next";
 
-import Link from 'next/link';
+import Link from "next/link";
 
-import type { PageData } from '@/helpers/types';
+import type { PageData } from "@/helpers/types";
 
-import sitemap from '@/data/sitemap.json';
+import sitemap from "@/data/sitemap.json";
 
-import getPageContent from '@/helpers/getPageContent';
+import getPageContent from "@/helpers/getPageContent";
 
-import CommonPage from '@/layout/CommonPage';
+import CommonPage from "@/layout/CommonPage";
 
 interface PageProps {
-  data: PageData,
+  data: PageData;
 }
 
-const Page: NextPage<PageProps> = ({
-  data,
-}) => (
+const Page: NextPage<PageProps> = ({ data }) => (
   <CommonPage
     page={sitemap.contact}
     parent={sitemap.about}
     breadcrumbs={[sitemap.about, sitemap.contact]}
     data={data}
   >
-    <p><strong>Email:</strong> <Link href="mailto:info@crru.org.uk">info@crru.org.uk</Link></p>
+    <p>
+      <strong>Email:</strong> <Link href="mailto:info@crru.org.uk">info@crru.org.uk</Link>
+    </p>
 
-    <p><strong>Telephone:</strong> <Link href="tel:+4401261851696">01261 851696</Link></p>
+    <p>
+      <strong>Telephone:</strong> <Link href="tel:+4401261851696">01261 851696</Link>
+    </p>
 
-    <p><strong>Address:</strong></p>
+    <p>
+      <strong>Address:</strong>
+    </p>
 
     <address>
       Cetacean Research & Rescue Unit (CRRU) <br />
@@ -50,7 +54,7 @@ const Page: NextPage<PageProps> = ({
 );
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const preview = ctx?.query.preview === 'true';
+  const preview = ctx?.query.preview === "true";
   const data = await getPageContent(sitemap.contact.path, { preview });
 
   return {

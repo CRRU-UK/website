@@ -1,7 +1,6 @@
-@use 'sass:math';
-@use 'sass:color';
-
-@use '../variables';
+@use "sass:math";
+@use "sass:color";
+@use "../variables";
 
 form:not(.paypal) {
   width: calc(100% + (variables.$global-padding-large * 2));
@@ -15,7 +14,7 @@ form:not(.paypal) {
     border-radius: 0;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     width: calc(100% + (variables.$global-padding-small * 2));
     margin: variables.$global-spacing-small auto;
     margin-left: -(variables.$global-spacing-small);
@@ -34,20 +33,17 @@ form:not(.paypal) {
   > .form-columns {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    align-items: start;
-    justify-items: stretch;
-    column-gap: variables.$global-spacing-large;
-    row-gap: variables.$global-spacing-large;
+    place-items: start stretch;
+    gap: variables.$global-spacing-large variables.$global-spacing-large;
     margin-bottom: variables.$global-spacing-large;
 
-    @include variables.breakpoint('medium') {
+    @include variables.breakpoint("medium") {
       grid-template-columns: 1fr 1fr;
     }
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       grid-template-columns: 1fr;
-      column-gap: variables.$global-spacing-small;
-      row-gap: variables.$global-spacing-small;
+      gap: variables.$global-spacing-small variables.$global-spacing-small;
       margin-bottom: variables.$global-spacing-small;
     }
   }
@@ -64,7 +60,7 @@ form:not(.paypal) {
     line-height: 24px;
     font-weight: 700;
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       font-size: 14px;
       line-height: 20px;
     }
@@ -85,7 +81,7 @@ form:not(.paypal) {
     border-radius: variables.$global-border-radius;
     background: variables.$global-color-background;
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       margin-top: 5px;
       padding: 0 10px;
       height: 40px;
@@ -112,7 +108,7 @@ form:not(.paypal) {
     color: variables.$global-color-background;
     background: variables.$global-color-primary-dark;
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       margin-top: variables.$global-spacing-small;
     }
 
@@ -121,7 +117,7 @@ form:not(.paypal) {
       background: color.adjust(variables.$global-color-primary-dark, $blackness: 10%);
     }
   }
-  
+
   .form-errors,
   .form-success {
     margin: variables.$global-spacing-large auto 0;
@@ -131,7 +127,7 @@ form:not(.paypal) {
     line-height: 16px;
     border-radius: variables.$global-border-radius;
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       margin-top: variables.$global-spacing-small;
       font-size: 14px;
       line-height: 14px;

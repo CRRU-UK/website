@@ -1,6 +1,5 @@
-@use 'sass:math';
-
-@use '../variables';
+@use "sass:math";
+@use "../variables";
 
 .columns {
   margin: variables.$global-spacing-large auto 0;
@@ -8,7 +7,7 @@
   flex-direction: row;
   align-items: center;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     display: block;
     margin-top: variables.$global-spacing-small;
   }
@@ -18,7 +17,7 @@
 .columns > .columns-right {
   min-width: 50%;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     min-width: 100%;
   }
 
@@ -44,7 +43,7 @@
 .columns > .columns-left {
   padding-right: math.div(variables.$global-padding-large, 2);
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     padding-right: 0;
   }
 }
@@ -52,7 +51,7 @@
 .columns > .columns-right {
   padding-left: math.div(variables.$global-padding-large, 2);
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     padding-left: 0;
   }
 }

@@ -1,27 +1,20 @@
-import styles from './Tree.module.scss';
+import styles from "./Tree.module.scss";
 
-import type { CatalogueBottlenoseDolphin } from '@/helpers/types';
+import type { CatalogueBottlenoseDolphin } from "@/helpers/types";
 
-import { Catalogues } from '@/helpers/constants';
+import { Catalogues } from "@/helpers/constants";
 
-import { Card } from '@/components';
+import { Card } from "@/components";
 
 interface Props {
-  type: Catalogues.BottlenoseDolphin,
-  data: CatalogueBottlenoseDolphin,
+  type: Catalogues.BottlenoseDolphin;
+  data: CatalogueBottlenoseDolphin;
 }
 
-const Tree = ({
-  type,
-  data,
-}: Props) => {
-  const {
-    entry,
-    mother,
-    calves,
-  } = data;
+const Tree = ({ type, data }: Props) => {
+  const { entry, mother, calves } = data;
 
-  const emptyElement = (<span className={styles.empty}>Unknown</span>)
+  const emptyElement = <span className={styles.empty}>Unknown</span>;
 
   let motherElement = emptyElement;
   if (mother) {
@@ -40,20 +33,18 @@ const Tree = ({
   if (calves.length) {
     calvesElement = (
       <ul>
-        {
-          calves.map((item, index) => (
-            <li key={item.id}>
-              {index === 0 && (<span className={styles.last}>Last recorded calf</span>)}
-              <Card
-                type={type}
-                id={`#${item.id}`}
-                reference={item?.reference ? `#${item.reference}` : undefined}
-                name={item?.name ?? undefined}
-                link={item.slug}
-              />
-            </li>
-          ))
-        }
+        {calves.map((item, index) => (
+          <li key={item.id}>
+            {index === 0 && <span className={styles.last}>Last recorded calf</span>}
+            <Card
+              type={type}
+              id={`#${item.id}`}
+              reference={item?.reference ? `#${item.reference}` : undefined}
+              name={item?.name ?? undefined}
+              link={item.slug}
+            />
+          </li>
+        ))}
       </ul>
     );
   }
@@ -61,7 +52,9 @@ const Tree = ({
   return (
     <ul className={styles.tree}>
       <li className={styles.mother}>
-        <b><span>Mother</span></b>
+        <b>
+          <span>Mother</span>
+        </b>
         {motherElement}
       </li>
 
@@ -71,17 +64,19 @@ const Tree = ({
           id={`#${entry.id}`}
           reference={entry?.reference ? `#${entry.reference}` : undefined}
           name={entry.name ?? undefined}
-          link={''}
+          link={""}
           disabled
         />
       </li>
 
       <li className={styles.calves}>
-        <b><span>Calves</span></b>
+        <b>
+          <span>Calves</span>
+        </b>
         {calvesElement}
       </li>
     </ul>
-  ); 
-}
+  );
+};
 
 export default Tree;

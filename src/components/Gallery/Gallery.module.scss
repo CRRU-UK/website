@@ -1,13 +1,12 @@
-@use 'sass:math';
-
-@use '../../scss/variables';
+@use "sass:math";
+@use "../../scss/variables";
 
 .gallery {
   position: relative;
   margin: variables.$global-spacing-large auto;
   aspect-ratio: 4 / 3;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     width: calc(100% + (variables.$global-padding-small * 2));
     margin-top: variables.$global-spacing-small;
     margin-bottom: variables.$global-spacing-small;
@@ -27,7 +26,7 @@
   width: 100%;
   scroll-snap-align: start;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     width: 100vw;
   }
 
@@ -47,7 +46,7 @@
   align-items: center;
   transform: translateX(-50%);
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     bottom: 15px;
   }
 }
@@ -58,15 +57,15 @@
 
   opacity: 0.5;
   padding: math.div($pagination-size, 2);
-  
+
   &::before {
-    content: '';
+    content: "";
     display: block;
     width: $pagination-size;
     height: $pagination-size;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     $pagination-size: 10px;
 
     padding: math.div($pagination-size, 2);
@@ -86,7 +85,7 @@
 }
 
 .pagination-arrow::before {
-  background: url('../../../public/images/icons/gallery-arrow.svg') center center no-repeat;
+  background: url("../../../public/images/icons/gallery-arrow.svg") center center no-repeat;
   background-size: contain;
 
   &:hover {

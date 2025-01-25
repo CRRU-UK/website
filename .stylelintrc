@@ -1,0 +1,21 @@
+{
+  "extends": ["stylelint-prettier/recommended", "stylelint-config-standard-scss"],
+  "plugins": ["stylelint-scss", "stylelint-order"],
+  "rules": {
+    "max-nesting-depth": 2,
+    "selector-max-compound-selectors": null,
+    "selector-no-qualifying-type": null,
+    "value-keyword-case": [
+      "lower",
+      {
+        "camelCaseSvgKeywords": true
+      }
+    ],
+    "no-descending-specificity": [
+      true,
+      {
+        "ignore": ["selectors-within-list"]
+      }
+    ]
+  }
+}

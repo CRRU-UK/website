@@ -1,28 +1,22 @@
-import type { NextPage, GetServerSideProps } from 'next';
-import type { ParsedUrlQuery } from 'querystring';
+import type { NextPage, GetServerSideProps } from "next";
+import type { ParsedUrlQuery } from "querystring";
 
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from "next/link";
+import Image from "next/image";
 
-import type { CatalogueMinkeWhale } from '@/helpers/types';
+import type { CatalogueMinkeWhale } from "@/helpers/types";
 
-import sitemap from '@/data/sitemap.json';
+import sitemap from "@/data/sitemap.json";
 
-import { Catalogues } from '@/helpers/constants';
-import { formatDateMonth } from '@/helpers/formatDate';
-import { getMinkeWhaleCatalogueItem, getMinkeWhaleItemEntrySlug } from '@/helpers/getCatalogue';
+import { Catalogues } from "@/helpers/constants";
+import { formatDateMonth } from "@/helpers/formatDate";
+import { getMinkeWhaleCatalogueItem, getMinkeWhaleItemEntrySlug } from "@/helpers/getCatalogue";
 
-import {
-  Breadcrumbs,
-  SEO,
-  Timeline,
-  Tooltip,
-  Toolbar,
-} from '@/components';
+import { Breadcrumbs, SEO, Timeline, Tooltip, Toolbar } from "@/components";
 
-import styles from '../[slug].module.scss';
+import styles from "../[slug].module.scss";
 
 const Unknown = () => (
   <span
@@ -34,12 +28,10 @@ const Unknown = () => (
 );
 
 interface PageProps {
-  catalogueData: CatalogueMinkeWhale,
+  catalogueData: CatalogueMinkeWhale;
 }
 
-const Page: NextPage<PageProps> = ({
-  catalogueData,
-}: PageProps) => {
+const Page: NextPage<PageProps> = ({ catalogueData }: PageProps) => {
   const {
     id,
     reference,
@@ -58,11 +50,14 @@ const Page: NextPage<PageProps> = ({
   const image = leftDorsalFin ?? rightDorsalFin;
   const breadcrumbs = [
     sitemap.research,
-    { title: sitemap.catalogues.title, path: `${sitemap.catalogues.path}?catalogue=${Catalogues.MinkeWhale}` },
+    {
+      title: sitemap.catalogues.title,
+      path: `${sitemap.catalogues.path}?catalogue=${Catalogues.MinkeWhale}`,
+    },
     { title: `Minke Whale: ${title}`, path },
   ];
 
-  const noImage = <span className={styles['no-image']}>No image</span>;
+  const noImage = <span className={styles["no-image"]}>No image</span>;
 
   const router = useRouter();
 
@@ -75,11 +70,17 @@ const Page: NextPage<PageProps> = ({
           path,
         }}
         breadcrumbs={breadcrumbs}
-        images={image ? [{
-          url: image.url,
-          width: image.width,
-          height: image.height,
-        }] : undefined}
+        images={
+          image
+            ? [
+                {
+                  url: image.url,
+                  width: image.width,
+                  height: image.height,
+                },
+              ]
+            : undefined
+        }
       />
 
       {/* key is needed to reset search state on navigation */}
@@ -95,67 +96,104 @@ const Page: NextPage<PageProps> = ({
           <Breadcrumbs style="inline" items={breadcrumbs} />
 
           <div className={styles.wrapper}>
-            <h2 className={styles['icon-whale']}>Minke Whale</h2>
+            <h2 className={styles["icon-whale"]}>Minke Whale</h2>
             <h1>{title}</h1>
 
             <ul className={styles.info}>
-              <li className={[styles['info-item-half'], styles['info-item-crru']].join(' ')}>
+              <li className={[styles["info-item-half"], styles["info-item-crru"]].join(" ")}>
                 <b>CRRU ID #</b>
                 {id}
               </li>
 
-              <li className={[styles['info-item-half'], styles['info-item-hwdt']].join(' ')}>
-                <b>HWDT Ref # <Tooltip text="Hebridean Whale and Dolphin Trust catalogue reference" /></b>
-                {reference ? <Link
-                  href="https://hwdt.org/catalogue-minke-whale"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  className="external"
-                >{reference}</Link> : "-"}
+              <li className={[styles["info-item-half"], styles["info-item-hwdt"]].join(" ")}>
+                <b>
+                  HWDT Ref #{" "}
+                  <Tooltip text="Hebridean Whale and Dolphin Trust catalogue reference" />
+                </b>
+                {reference ? (
+                  <Link
+                    href="https://hwdt.org/catalogue-minke-whale"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="external"
+                  >
+                    {reference}
+                  </Link>
+                ) : (
+                  "-"
+                )}
               </li>
 
-              <li className={[styles['info-item-half'], styles['info-item-name']].join(' ')}>
+              <li className={[styles["info-item-half"], styles["info-item-name"]].join(" ")}>
                 <b>Name</b>
                 {name ?? <i className={styles.unknown}>Unnamed</i>}
               </li>
 
-              <li className={[styles['info-item-half'], styles['info-item-total-recaptures']].join(' ')}>
+              <li
+                className={[styles["info-item-half"], styles["info-item-total-recaptures"]].join(
+                  " ",
+                )}
+              >
                 <b>No. of Recaptures</b>
                 {totalRecaptures ?? <Unknown />}
               </li>
 
-              <li className={[styles['info-item-full'], styles['info-item-years-recaptured']].join(' ')}>
+              <li
+                className={[styles["info-item-full"], styles["info-item-years-recaptured"]].join(
+                  " ",
+                )}
+              >
                 <b>Years Recaptured</b>
-                {yearsRecaptured ? <Timeline items={yearsRecaptured} /> : <i className={styles.unknown}>N/A</i>}
+                {yearsRecaptured ? (
+                  <Timeline items={yearsRecaptured} />
+                ) : (
+                  <i className={styles.unknown}>N/A</i>
+                )}
               </li>
 
-              <li className={[styles['info-item-half'], styles['info-item-dorsal-fin-left']].join(' ')}>
+              <li
+                className={[styles["info-item-half"], styles["info-item-dorsal-fin-left"]].join(
+                  " ",
+                )}
+              >
                 <b>Left Dorsal Fin</b>
-                {leftDorsalFin ? <Image
-                  src={leftDorsalFin.url}
-                  width={leftDorsalFin.width}
-                  height={leftDorsalFin.height}
-                  alt="Left Dorsal Fin"
-                  className={styles.image}
-                /> : (noImage)}
+                {leftDorsalFin ? (
+                  <Image
+                    src={leftDorsalFin.url}
+                    width={leftDorsalFin.width}
+                    height={leftDorsalFin.height}
+                    alt="Left Dorsal Fin"
+                    className={styles.image}
+                  />
+                ) : (
+                  noImage
+                )}
               </li>
 
-              <li className={[styles['info-item-half'], styles['info-item-dorsal-fin-right']].join(' ')}>
+              <li
+                className={[styles["info-item-half"], styles["info-item-dorsal-fin-right"]].join(
+                  " ",
+                )}
+              >
                 <b>Right Dorsal Fin</b>
-                {rightDorsalFin ? <Image
-                  src={rightDorsalFin.url}
-                  width={rightDorsalFin.width}
-                  height={rightDorsalFin.height}
-                  alt="Left Dorsal Fin"
-                  className={styles.image}
-                /> : (noImage)}
+                {rightDorsalFin ? (
+                  <Image
+                    src={rightDorsalFin.url}
+                    width={rightDorsalFin.width}
+                    height={rightDorsalFin.height}
+                    alt="Left Dorsal Fin"
+                    className={styles.image}
+                  />
+                ) : (
+                  noImage
+                )}
               </li>
             </ul>
           </div>
         </article>
 
         <article className={styles.sidebar}>
-          <p className={styles['no-data']}>No family data available</p>
+          <p className={styles["no-data"]}>No family data available</p>
 
           <Link
             href={`${sitemap.catalogues.path}?catalogue=${Catalogues.MinkeWhale}`}
@@ -166,13 +204,13 @@ const Page: NextPage<PageProps> = ({
         </article>
       </section>
 
-      <p className={styles['last-updated']}>Last updated: {formatDateMonth(lastUpdated)}</p>
+      <p className={styles["last-updated"]}>Last updated: {formatDateMonth(lastUpdated)}</p>
     </>
   );
 };
 
 interface PageParams extends ParsedUrlQuery {
-  slug: string,
+  slug: string;
 }
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
@@ -181,7 +219,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
   const catalogueData = await getMinkeWhaleCatalogueItem(slug);
 
   if (!catalogueData) {
-    const [id] = slug.split('-');
+    const [id] = slug.split("-");
 
     const newSlug = await getMinkeWhaleItemEntrySlug(id);
     if (newSlug) {

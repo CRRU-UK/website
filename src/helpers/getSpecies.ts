@@ -1,11 +1,11 @@
-import type { Asset } from 'contentful';
+import type { Asset } from "contentful";
 
-import type { SpeciesEntry, ContentTypeSpeciesPage } from './types';
+import type { SpeciesEntry, ContentTypeSpeciesPage } from "./types";
 
-import { ContentTypes } from './constants';
+import { ContentTypes } from "./constants";
 
-import { contentfulDeliveryClient } from './contentful';
-import { flattenImageAssetFields } from './flattenAssetFields';
+import { contentfulDeliveryClient } from "./contentful";
+import { flattenImageAssetFields } from "./flattenAssetFields";
 
 /**
  * Queries and returns species page entries from Contentful.
@@ -14,7 +14,7 @@ import { flattenImageAssetFields } from './flattenAssetFields';
 const getSpecies = async (): Promise<Array<SpeciesEntry>> => {
   const { items } = await contentfulDeliveryClient.getEntries<ContentTypeSpeciesPage>({
     content_type: ContentTypes.SpeciesPage,
-    order: ['fields.name'],
+    order: ["fields.name"],
     limit: 1000,
   });
 

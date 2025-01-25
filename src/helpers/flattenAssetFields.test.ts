@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { flattenImageAssetFields, flattenVideoAssetFields } from './flattenAssetFields';
+import { flattenImageAssetFields, flattenVideoAssetFields } from "./flattenAssetFields";
 
-describe('flattenImageAssetFields', () => {
+describe("flattenImageAssetFields", () => {
   const mockedImageFields = {
     file: {
-      url: '//example.com/test-url',
+      url: "//example.com/test-url",
       details: {
         image: {
           width: 100,
@@ -15,29 +15,29 @@ describe('flattenImageAssetFields', () => {
     },
   };
 
-  it('Flattens asset field', () => {
+  it("Flattens asset field", () => {
     const result = flattenImageAssetFields({
       fields: {
         ...mockedImageFields,
-        description: 'test description',
+        description: "test description",
       },
     } as any);
 
     expect(result).toStrictEqual({
-      url: 'https://example.com/test-url',
+      url: "https://example.com/test-url",
       width: 100,
       height: 200,
-      alt: 'test description',
+      alt: "test description",
     });
   });
 
-  it('Flattens asset field without description', () => {
+  it("Flattens asset field without description", () => {
     const result = flattenImageAssetFields({
       fields: mockedImageFields,
     } as any);
 
     expect(result).toStrictEqual({
-      url: 'https://example.com/test-url',
+      url: "https://example.com/test-url",
       width: 100,
       height: 200,
       alt: null,
@@ -45,22 +45,22 @@ describe('flattenImageAssetFields', () => {
   });
 });
 
-describe('flattenVideoAssetFields', () => {
+describe("flattenVideoAssetFields", () => {
   const mockedImageFields = {
     file: {
-      url: '//example.com/test-url',
-      contentType: 'video/mp4',
+      url: "//example.com/test-url",
+      contentType: "video/mp4",
     },
   };
 
-  it('Flattens asset field', () => {
+  it("Flattens asset field", () => {
     const result = flattenVideoAssetFields({
       fields: mockedImageFields,
     } as any);
 
     expect(result).toStrictEqual({
-      url: 'https://example.com/test-url',
-      type: 'video/mp4',
+      url: "https://example.com/test-url",
+      type: "video/mp4",
     });
   });
 });

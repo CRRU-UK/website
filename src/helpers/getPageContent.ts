@@ -1,12 +1,12 @@
-import type { PageData, ContentTypePageContent } from './types';
+import type { PageData, ContentTypePageContent } from "./types";
 
-import { ContentTypes } from './constants';
-import { contentfulDeliveryClient, contentfulPreviewClient } from './contentful';
-import { flattenImageAssetFields } from './flattenAssetFields';
+import { ContentTypes } from "./constants";
+import { contentfulDeliveryClient, contentfulPreviewClient } from "./contentful";
+import { flattenImageAssetFields } from "./flattenAssetFields";
 
 interface Options {
-  references?: boolean,
-  preview?: boolean,
+  references?: boolean;
+  preview?: boolean;
 }
 
 /**
@@ -14,10 +14,7 @@ interface Options {
  * @param path Path field to query.
  * @returns Species page entries.
  */
-const getPageContent = async (
-  path: string,
-  options?: Options,
-): Promise<PageData> => {
+const getPageContent = async (path: string, options?: Options): Promise<PageData> => {
   let client = contentfulDeliveryClient;
   if (options?.preview) {
     client = contentfulPreviewClient;
@@ -25,7 +22,7 @@ const getPageContent = async (
 
   const { items } = await client.getEntries<ContentTypePageContent>({
     content_type: ContentTypes.PageContent,
-    'fields.path': path,
+    "fields.path": path,
     limit: 1,
     include: 2,
   });
@@ -42,7 +39,7 @@ const getPageContent = async (
   };
 
   if (options?.references) {
-    pageData.references = fields.references as PageData['references'] ?? null;
+    pageData.references = (fields.references as PageData["references"]) ?? null;
   }
 
   return pageData;

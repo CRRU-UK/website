@@ -1,37 +1,25 @@
-import type { NextPage, GetServerSideProps } from 'next';
+import type { NextPage, GetServerSideProps } from "next";
 
-import type { NewsArticle } from '@/helpers/types';
+import type { NewsArticle } from "@/helpers/types";
 
-import sitemap from '@/data/sitemap.json';
+import sitemap from "@/data/sitemap.json";
 
-import getNews from '@/helpers/getNews';
+import getNews from "@/helpers/getNews";
 
-import Hero from '@/components/Hero/Hero';
-import { Breadcrumbs, News, SEO } from '@/components';
+import Hero from "@/components/Hero/Hero";
+import { Breadcrumbs, News, SEO } from "@/components";
 
 interface PageProps {
-  data: Array<NewsArticle>,
+  data: Array<NewsArticle>;
 }
 
-const Page: NextPage<PageProps> = ({
-  data,
-}) => (
+const Page: NextPage<PageProps> = ({ data }) => (
   <>
-    <SEO
-      page={sitemap.news}
-      breadcrumbs={[sitemap.news]}
-    />
+    <SEO page={sitemap.news} breadcrumbs={[sitemap.news]} />
 
-    <Hero
-      title={sitemap.news.title}
-      wide
-      plain
-    />
+    <Hero title={sitemap.news.title} wide plain />
 
-    <Breadcrumbs
-      items={[sitemap.news]}
-      style="wide"
-    />
+    <Breadcrumbs items={[sitemap.news]} style="wide" />
 
     <article className="wide">
       <div className="grid">
@@ -41,7 +29,7 @@ const Page: NextPage<PageProps> = ({
             link={`/news/${item.slug}`}
             image={{
               src: item.image.url,
-              alt: '',
+              alt: "",
               width: item.image.width,
               height: item.image.height,
             }}

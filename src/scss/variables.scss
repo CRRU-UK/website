@@ -2,7 +2,6 @@
 
 $global-breakpoint-medium: 990px;
 $global-breakpoint-small: 800px;
-
 $global-catalogue-breakpoint-medium: 1200px;
 $global-catalogue-breakpoint-small: 950px;
 
@@ -11,17 +10,13 @@ $global-catalogue-breakpoint-small: 950px;
 $global-max-width: 1050px;
 $global-max-width-wide: 1300px;
 $global-catalogue-max-width: 2000px;
-
 $global-header-height-large: 100px;
 $global-header-height-medium: 80px;
 $global-header-height-small: 60px;
-
 $global-border-radius: 8px;
-
 $global-spacing-large: 40px;
 $global-spacing-medium: 30px;
 $global-spacing-small: 20px;
-
 $global-padding-large: 40px;
 $global-padding-medium: 30px;
 $global-padding-small: 20px;
@@ -30,33 +25,26 @@ $global-padding-small: 20px;
 
 $global-color-body: #000;
 $global-color-body-dark: #444;
-
 $global-color-background: #fff;
 $global-color-background-dark: #f0f0f0;
-
 $global-color-primary: #59d15b;
 $global-color-primary-dark: #2ca02e;
 $global-color-primary-light: #cff2d0;
-
 $global-color-secondary: #f2cb30;
-
 $global-color-grey: #363636;
 $global-color-blue: #00366b;
 $global-color-red: #c0372b;
-
 $global-color-catalogue: #dedede;
 $global-color-catalogue-dark: #202027;
 $global-color-catalogue-light: #fafafa;
 
 // Fonts
 
-$global-font-primary: 'Poppins', 'Helvetica', 'Arial', 'Verdana', sans-serif;
-$global-font-secondary: 'EB Garamond', 'Times New Roman', serif;
-
+$global-font-primary: "Poppins", "Helvetica", "Arial", "Verdana", sans-serif;
+$global-font-secondary: "EB Garamond", "Times New Roman", serif;
 $global-font-size-large: 18px;
 $global-font-size-small: 16px;
 $global-font-line-height: 1.8;
-
 $global-font-spacing-large: 20px;
 $global-font-spacing-small: 10px;
 
@@ -70,19 +58,17 @@ $global-transition-ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
 // Mixins
 
 @mixin breakpoint($size) {
-  @if $size == 'medium' {
+  @if $size == "medium" {
     @media (max-width: $global-breakpoint-medium) {
       @content;
     }
   }
 
-  @if $size == 'small' {
+  @if $size == "small" {
     @media (max-width: $global-breakpoint-small) {
       @content;
     }
-  }
-
-  @else {
+  } @else {
     @media (max-width: $size) {
       @content;
     }

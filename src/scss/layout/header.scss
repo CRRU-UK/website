@@ -1,6 +1,7 @@
-@use 'sass:math';
+/* stylelint-disable no-descending-specificity */
 
-@use '../variables';
+@use "sass:math";
+@use "../variables";
 
 %flex-center {
   align-items: center;
@@ -23,11 +24,11 @@ header {
   height: variables.$global-header-height-large;
   background: variables.$global-color-body;
 
-  @include variables.breakpoint('medium') {
+  @include variables.breakpoint("medium") {
     height: variables.$global-header-height-medium;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     height: variables.$global-header-height-small;
   }
 
@@ -51,7 +52,7 @@ header > .logo {
   padding: 10px;
   height: 100%;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin: 0 auto;
     padding: 5px;
   }
@@ -72,7 +73,7 @@ header > nav {
   align-items: flex-end;
   height: 100%;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     position: absolute;
     top: variables.$global-header-height-small;
     left: 0;
@@ -95,7 +96,7 @@ header > nav ul.menu {
   margin: 0 auto;
   padding: 0;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     flex-direction: column;
     padding-top: variables.$global-spacing-small;
     width: 100%;
@@ -106,8 +107,8 @@ header > nav ul.menu > li {
   height: 100%;
   position: relative;
 
-  @include variables.breakpoint('small') {
-    position: static; // Required for submenu positioning
+  @include variables.breakpoint("small") {
+    position: static;
     margin: 0 auto;
     width: 100%;
   }
@@ -115,13 +116,13 @@ header > nav ul.menu > li {
   &.mobile {
     display: none;
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       display: inherit;
     }
   }
 
   &.dropdown > a > span::after {
-    content: '';
+    content: "";
     opacity: 1;
     position: absolute;
     left: 0;
@@ -129,14 +130,14 @@ header > nav ul.menu > li {
     display: block;
     width: 100%;
     height: 5px;
-    background: url('../../../public/images/header/icon-dropdown.svg') center center no-repeat;
+    background: url("../../../public/images/header/icon-dropdown.svg") center center no-repeat;
     background-size: contain;
 
-    @include variables.breakpoint('medium') {
+    @include variables.breakpoint("medium") {
       bottom: 7px;
     }
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       $icon-size: 12px;
 
       opacity: 1;
@@ -150,7 +151,7 @@ header > nav ul.menu > li {
 }
 
 header > nav ul.menu > li.dropdown:hover > a > span::after {
-  background-image: url('../../../public/images/header/icon-dropdown-active.svg');
+  background-image: url("../../../public/images/header/icon-dropdown-active.svg");
 }
 
 header > nav ul.menu > li > a {
@@ -164,12 +165,12 @@ header > nav ul.menu > li > a {
   width: 100%;
   height: 100%;
 
-  @include variables.breakpoint('medium') {
+  @include variables.breakpoint("medium") {
     font-size: 16px;
     line-height: 16px;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     align-items: center;
     padding: variables.$global-spacing-small (variables.$global-spacing-small * 2);
     font-size: 22px;
@@ -181,7 +182,7 @@ header > nav ul.menu > li > a:hover > span {
   color: variables.$global-color-primary-dark;
   text-decoration: underline;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     background: none;
   }
 }
@@ -196,11 +197,11 @@ header > nav ul.menu > li > a > span {
   width: 100%;
   text-align: center;
 
-  @include variables.breakpoint('medium') {
+  @include variables.breakpoint("medium") {
     padding: 10px 8px;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     padding: 0;
     justify-content: flex-start;
     border-radius: 0;
@@ -230,7 +231,7 @@ header > nav ul.submenu {
     display: none;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     z-index: 20;
     display: none;
     left: 0;
@@ -265,7 +266,7 @@ header > nav ul.submenu > li.mobile {
     color: variables.$global-color-background;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     display: block;
   }
 }
@@ -281,11 +282,11 @@ header > nav ul.submenu a {
   border-radius: variables.$global-border-radius;
   color: variables.$global-color-background;
 
-  @include variables.breakpoint('medium') {
+  @include variables.breakpoint("medium") {
     padding: 10px;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     padding: variables.$global-spacing-small (variables.$global-spacing-small * 2);
     justify-content: flex-start;
     border-radius: 0;
@@ -303,25 +304,27 @@ header > nav ul.submenu a {
   &::after {
     $size: 14px;
 
-    content: '';
+    content: "";
     margin-left: 20px;
     opacity: 0;
     display: block;
     width: $size;
     height: $size;
-    background: center center no-repeat url('../../../public/images/header/icon-submenu.svg');
+    background: center center no-repeat url("../../../public/images/header/icon-submenu.svg");
     background-size: contain;
     transform: translateX(-5px);
-    transition: opacity 0.6s variables.$global-transition-ease-out-expo, transform 0.6s variables.$global-transition-ease-out-expo;
+    transition:
+      opacity 0.6s variables.$global-transition-ease-out-expo,
+      transform 0.6s variables.$global-transition-ease-out-expo;
 
-    @include variables.breakpoint('medium') {
+    @include variables.breakpoint("medium") {
       $size: 12px;
 
       width: $size;
       height: $size;
     }
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       $size: 12px;
 
       opacity: 1;
@@ -335,7 +338,7 @@ header > nav ul.submenu a {
   }
 
   &.external::after {
-    background-image: url('../../../public/images/icons/external.svg');
+    background-image: url("../../../public/images/icons/external.svg");
   }
 
   .text {
@@ -344,12 +347,12 @@ header > nav ul.submenu a {
     font-size: 16px;
     line-height: 16px;
 
-    @include variables.breakpoint('medium') {
+    @include variables.breakpoint("medium") {
       font-size: 14px;
       line-height: 14px;
     }
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       font-size: 18px;
       line-height: 18px;
     }
@@ -368,11 +371,11 @@ header > .actions {
   justify-content: flex-start;
   align-items: center;
 
-  @include variables.breakpoint('medium') {
+  @include variables.breakpoint("medium") {
     top: 15px;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     left: variables.$global-padding-small;
     top: 50%;
     right: 0;
@@ -402,7 +405,7 @@ header > .actions > a {
     margin-right: 0;
   }
 
-  @include variables.breakpoint('medium') {
+  @include variables.breakpoint("medium") {
     $font-size: 12px;
 
     margin-right: math.div(variables.$global-spacing-medium, 2);
@@ -410,7 +413,7 @@ header > .actions > a {
     line-height: $font-size;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     $font-size: 12px;
 
     font-size: $font-size;
@@ -420,7 +423,7 @@ header > .actions > a {
   &::before {
     $size: 14px;
 
-    content: '';
+    content: "";
     display: block;
     width: $size;
     height: $size;
@@ -428,7 +431,7 @@ header > .actions > a {
     background: center center no-repeat;
     background-size: contain;
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       $size: 12px;
 
       width: $size;
@@ -437,27 +440,27 @@ header > .actions > a {
   }
 
   &.shop::before {
-    background-image: url('../../../public/images/icons/shop.svg');
+    background-image: url("../../../public/images/icons/shop.svg");
   }
 
   &.donate::before {
-    background-image: url('../../../public/images/icons/donate.svg');
+    background-image: url("../../../public/images/icons/donate.svg");
   }
 
   &.news::before {
-    background-image: url('../../../public/images/icons/news.svg');
+    background-image: url("../../../public/images/icons/news.svg");
   }
 
   &.sighting {
     margin-left: math.div(variables.$global-spacing-large, 2);
     color: variables.$global-color-primary;
 
-    @include variables.breakpoint('medium') {
+    @include variables.breakpoint("medium") {
       margin-left: math.div(variables.$global-spacing-medium, 2);
     }
 
     &::before {
-      background-image: url('../../../public/images/icons/sighting.svg');
+      background-image: url("../../../public/images/icons/sighting.svg");
     }
   }
 
@@ -465,7 +468,7 @@ header > .actions > a {
     color: variables.$global-color-secondary;
 
     &::before {
-      background-image: url('../../../public/images/icons/stranding.svg');
+      background-image: url("../../../public/images/icons/stranding.svg");
     }
   }
 
@@ -473,7 +476,7 @@ header > .actions > a {
     display: none;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     display: none;
     font-size: 10px;
     line-height: 12px;
@@ -517,13 +520,13 @@ header > .back {
   }
 
   &::after {
-    content: 'Back';
+    content: "Back";
     font-size: 10px;
     line-height: 10px;
     color: variables.$global-color-background;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     display: flex;
   }
 }
@@ -551,13 +554,13 @@ header > .burger {
   }
 
   &::after {
-    content: 'Menu';
+    content: "Menu";
     font-size: 10px;
     line-height: 10px;
     color: variables.$global-color-background;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     display: flex;
   }
 }
@@ -574,7 +577,7 @@ body.menu header > .burger > .burger-icon > #whale {
 }
 
 body.menu header > .burger::after {
-  content: 'Close';
+  content: "Close";
 }
 
 // Social
@@ -588,11 +591,11 @@ header > .social-links {
   padding: 0;
   list-style: none;
 
-  @include variables.breakpoint('medium') {
+  @include variables.breakpoint("medium") {
     margin-bottom: 15px;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     position: fixed;
     left: 0;
     bottom: 0;
@@ -613,11 +616,11 @@ header > .social-links {
 header > .social-links > li {
   margin: 0 15px 0 0;
 
-  @include variables.breakpoint('medium') {
+  @include variables.breakpoint("medium") {
     margin-right: 10px;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-right: 20px;
   }
 
@@ -645,14 +648,14 @@ header > .social-links > li > a > svg {
     height: $size;
   }
 
-  @include variables.breakpoint('medium') {
+  @include variables.breakpoint("medium") {
     $size: 15px;
 
     width: $size;
     height: $size;
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     $size: 24px;
 
     width: $size;

@@ -1,16 +1,12 @@
-import styles from './Filters.module.scss';
+import styles from "./Filters.module.scss";
 
 interface UseSearchProps {
-  callback: Function, // eslint-disable-line @typescript-eslint/no-unsafe-function-type
-  label?: string,
-  defaultValue?: string,
+  callback: Function; // eslint-disable-line @typescript-eslint/no-unsafe-function-type
+  label?: string;
+  defaultValue?: string;
 }
 
-const UseSearch = ({
-  callback,
-  label = 'Search...',
-  defaultValue,
-}: UseSearchProps) => (
+const UseSearch = ({ callback, label = "Search...", defaultValue }: UseSearchProps) => (
   <input
     type="search"
     name="search"
@@ -23,21 +19,16 @@ const UseSearch = ({
 );
 
 interface DropdownProps {
-  name: string,
-  defaultValue?: string,
+  name: string;
+  defaultValue?: string;
   options: Array<{
-    text: string,
-    value: string,
-  }>,
-  callback: Function, // eslint-disable-line @typescript-eslint/no-unsafe-function-type
+    text: string;
+    value: string;
+  }>;
+  callback: Function; // eslint-disable-line @typescript-eslint/no-unsafe-function-type
 }
 
-const UseDropdown = ({
-  name,
-  defaultValue,
-  options,
-  callback,
-}: DropdownProps) => (
+const UseDropdown = ({ name, defaultValue, options, callback }: DropdownProps) => (
   <select
     onInput={({ target }) => callback((target as HTMLSelectElement).value)}
     defaultValue={defaultValue ?? options[0].value}
@@ -46,20 +37,19 @@ const UseDropdown = ({
     key={name}
   >
     {options.map((option) => (
-      <option value={option.value} key={option.value}>{option.text}</option>
+      <option value={option.value} key={option.value}>
+        {option.text}
+      </option>
     ))}
   </select>
 );
 
 interface Props {
-  search?: UseSearchProps,
-  dropdowns?: Array<DropdownProps>,
+  search?: UseSearchProps;
+  dropdowns?: Array<DropdownProps>;
 }
 
-const Filters = ({
-  search,
-  dropdowns,
-}: Props) => (
+const Filters = ({ search, dropdowns }: Props) => (
   <div className={styles.filters}>
     {dropdowns?.map((item) => UseDropdown(item))}
     {search && UseSearch(search)}

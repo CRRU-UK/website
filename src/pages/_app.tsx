@@ -1,17 +1,17 @@
-import type { AppProps } from 'next/app';
+import type { AppProps } from "next/app";
 
-import Head from 'next/head';
-import Script from 'next/script';
-import { DefaultSeo } from 'next-seo';
+import Head from "next/head";
+import Script from "next/script";
+import { DefaultSeo } from "next-seo";
 
-import { ContentfulLivePreviewProvider } from '@contentful/live-preview/react';
+import { ContentfulLivePreviewProvider } from "@contentful/live-preview/react";
 
-import '../scss/globals.scss';
+import "../scss/globals.scss";
 
-import Header from '@/layout/Header';
-import Footer from '@/layout/Footer';
+import Header from "@/layout/Header";
+import Footer from "@/layout/Footer";
 
-import { DEFAULT_SEO_OPTIONS, LOCALE } from '@/helpers/constants';
+import { DEFAULT_SEO_OPTIONS, LOCALE } from "@/helpers/constants";
 
 const App = ({ Component, pageProps }: AppProps) => {
   const preview = pageProps.preview || false;
@@ -62,6 +62,6 @@ const App = ({ Component, pageProps }: AppProps) => {
       </Script>
     </>
   );
-}
+};
 
 export default App;

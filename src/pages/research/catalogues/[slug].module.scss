@@ -1,7 +1,6 @@
-@use 'sass:math';
-@use 'sass:color';
-
-@use '../../../scss/variables';
+@use "sass:math";
+@use "sass:color";
+@use "../../../scss/variables";
 
 // Container
 
@@ -38,14 +37,17 @@ $grid-spacing-small: math.div(variables.$global-spacing-small, 2);
 
   > .wrapper {
     border-top: 2px solid variables.$global-color-catalogue;
-    padding: (variables.$global-padding-large + math.div(variables.$global-padding-large, 2)) variables.$global-padding-large;
+    padding: (variables.$global-padding-large + math.div(variables.$global-padding-large, 2))
+      variables.$global-padding-large;
 
     @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
-      padding: (variables.$global-padding-medium + math.div(variables.$global-padding-medium, 2)) variables.$global-padding-medium;
+      padding: (variables.$global-padding-medium + math.div(variables.$global-padding-medium, 2))
+        variables.$global-padding-medium;
     }
 
     @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
-      padding: (variables.$global-padding-small + math.div(variables.$global-padding-small, 2)) variables.$global-padding-small;
+      padding: (variables.$global-padding-small + math.div(variables.$global-padding-small, 2))
+        variables.$global-padding-small;
     }
   }
 }
@@ -95,7 +97,7 @@ $grid-spacing-small: math.div(variables.$global-spacing-small, 2);
   }
 
   &::before {
-    content: '';
+    content: "";
     display: block;
     margin-right: 5px;
     width: 32px;
@@ -113,11 +115,11 @@ $grid-spacing-small: math.div(variables.$global-spacing-small, 2);
 }
 
 .icon-dolphin::before {
-  background-image: url('../../../../public/images/icons/catalogues/dolphin.svg');
+  background-image: url("../../../../public/images/icons/catalogues/dolphin.svg");
 }
 
 .icon-whale::before {
-  background-image: url('../../../../public/images/icons/catalogues/whale.svg');
+  background-image: url("../../../../public/images/icons/catalogues/whale.svg");
 }
 
 .info {
@@ -125,19 +127,16 @@ $grid-spacing-small: math.div(variables.$global-spacing-small, 2);
   padding: 0;
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  column-gap: $grid-spacing-large;
-  row-gap: $grid-spacing-large;
+  gap: $grid-spacing-large $grid-spacing-large;
   list-style: none;
 
   @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: $grid-spacing-medium;
-    row-gap: $grid-spacing-medium;
+    gap: $grid-spacing-medium $grid-spacing-medium;
   }
 
   @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
-    column-gap: $grid-spacing-small;
-    row-gap: $grid-spacing-small;
+    gap: $grid-spacing-small $grid-spacing-small;
   }
 }
 
@@ -195,7 +194,7 @@ $grid-spacing-small: math.div(variables.$global-spacing-small, 2);
     }
 
     &::before {
-      content: '';
+      content: "";
       display: block;
       margin-right: 5px;
       min-width: 14px;
@@ -244,13 +243,11 @@ $grid-spacing-small: math.div(variables.$global-spacing-small, 2);
     list-style: none;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    column-gap: 20px;
-    row-gap: 20px;
+    gap: 20px;
 
     @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
       grid-template-columns: repeat(2, 1fr);
-      column-gap: 10px;
-      row-gap: 10px;
+      gap: 10px;
     }
 
     > li {
@@ -285,26 +282,26 @@ $grid-spacing-small: math.div(variables.$global-spacing-small, 2);
 }
 
 $sections: (
-  'crru': 'crru.svg',
-  'aulfs': 'aulfs.svg',
-  'hwdt': 'hwdt.png',
-  'name': 'name.svg',
-  'birth-year': 'birth-year.svg',
-  'age': 'age.svg',
-  'sex': 'sex.svg',
-  'calves': 'calves.svg',
-  'total-recaptures': 'total-recaptures.svg',
-  'years-recaptured': 'years-recaptured.svg',
-  'dorsal-fin-left': 'dorsal-fin.svg',
-  'dorsal-fin-right': 'dorsal-fin.svg',
-  'other-images': 'other-images.svg',
+  "crru": "crru.svg",
+  "aulfs": "aulfs.svg",
+  "hwdt": "hwdt.png",
+  "name": "name.svg",
+  "birth-year": "birth-year.svg",
+  "age": "age.svg",
+  "sex": "sex.svg",
+  "calves": "calves.svg",
+  "total-recaptures": "total-recaptures.svg",
+  "years-recaptured": "years-recaptured.svg",
+  "dorsal-fin-left": "dorsal-fin.svg",
+  "dorsal-fin-right": "dorsal-fin.svg",
+  "other-images": "other-images.svg",
 );
 
 @each $section, $icon in $sections {
   .info-item-#{$section} > b::before {
-    background-image: url('../../../../public/images/icons/catalogues/#{$icon}');
+    background-image: url("../../../../public/images/icons/catalogues/#{$icon}");
 
-    @if $section == 'dorsal-fin-right' {
+    @if $section == "dorsal-fin-right" {
       transform: scale(-1, 1);
     }
   }
@@ -352,7 +349,8 @@ $sidebar-size-medium: 480px;
   border-left: 2px solid variables.$global-color-catalogue;
   border-bottom: 2px solid variables.$global-color-catalogue;
   border-bottom-left-radius: variables.$global-border-radius;
-  background: top left repeat url('../../../../public/images/catalogue-background.svg') variables.$global-color-catalogue-light;
+  background: top left repeat url("../../../../public/images/catalogue-background.svg")
+    variables.$global-color-catalogue-light;
 
   @media (min-width: variables.$global-catalogue-max-width) {
     border-right: 2px solid variables.$global-color-catalogue;
@@ -427,13 +425,13 @@ $sidebar-size-medium: 480px;
   }
 
   &::before {
-    content: '';
+    content: "";
     opacity: 0.7;
     display: block;
     margin-right: 10px;
     min-width: 16px;
     min-height: 16px;
-    background: url('../../../../public/images/icons/large-arrow.svg') center center no-repeat;
+    background: url("../../../../public/images/icons/large-arrow.svg") center center no-repeat;
     background-size: contain;
     transform: rotate(-90deg);
 

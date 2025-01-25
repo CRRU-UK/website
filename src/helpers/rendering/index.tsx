@@ -1,14 +1,14 @@
 /* istanbul ignore file */
 
-import { INLINES, BLOCKS } from '@contentful/rich-text-types';
+import { INLINES, BLOCKS } from "@contentful/rich-text-types";
 
-import renderInlinedHyperlink from './inlined-hyperlink';
-import renderInlinedHyperlinks from './inlined-entry-hyperlink';
-import renderInlinedAssetHyperlink from './inlined-asset-hyperlink';
-import renderInlinedEntries from './inlined-entries';
-import renderEmbeddedEntries from './embedded-entries';
-import renderEmbeddedAssets from './embedded-assets';
-import renderTypography from './typography';
+import renderInlinedHyperlink from "./inlined-hyperlink";
+import renderInlinedHyperlinks from "./inlined-entry-hyperlink";
+import renderInlinedAssetHyperlink from "./inlined-asset-hyperlink";
+import renderInlinedEntries from "./inlined-entries";
+import renderEmbeddedEntries from "./embedded-entries";
+import renderEmbeddedAssets from "./embedded-assets";
+import renderTypography from "./typography";
 
 const pageRenderOptions = {
   renderNode: {

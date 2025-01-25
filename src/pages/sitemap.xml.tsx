@@ -1,38 +1,41 @@
-import type { NextPage, GetServerSideProps } from 'next';
+import type { NextPage, GetServerSideProps } from "next";
 
-import sitemap from '@/data/sitemap.json';
+import sitemap from "@/data/sitemap.json";
 
-import { DEFAULT_SITE_DOMAIN } from '@/helpers/constants';
-import getSpecies from '@/helpers/getSpecies';
-import getNews from '@/helpers/getNews';
+import { DEFAULT_SITE_DOMAIN } from "@/helpers/constants";
+import getSpecies from "@/helpers/getSpecies";
+import getNews from "@/helpers/getNews";
 
-const Page: NextPage = () => (
-  <>Sitemap</>
-);
+const Page: NextPage = () => <>Sitemap</>;
 
-const generateSiteMap = (
-  additionalPages: Array<string>,
-) => `
+const generateSiteMap = (additionalPages: Array<string>) =>
+  `
   <?xml version="1.0" encoding="UTF-8"?>
   <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    ${Object.values(sitemap).filter(({ path }) => path.startsWith('/')).map(({ path }) => `
+    ${Object.values(sitemap)
+      .filter(({ path }) => path.startsWith("/"))
+      .map(
+        ({ path }) => `
       <url>
         <loc>${DEFAULT_SITE_DOMAIN}${path}</loc>
       </url>
-    `).join('\n')}
-    ${additionalPages.map((path) => `
+    `,
+      )
+      .join("\n")}
+    ${additionalPages
+      .map(
+        (path) => `
       <url>
         <loc>${DEFAULT_SITE_DOMAIN}${path}</loc>
       </url>
-    `).join('\n')}
+    `,
+      )
+      .join("\n")}
   </urlset>
 `.trim();
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  const [species, news] = await Promise.all([
-    getSpecies(),
-    getNews({ limit: 1000 }),
-  ]);
+  const [species, news] = await Promise.all([getSpecies(), getNews({ limit: 1000 })]);
 
   const additionalPages = [];
 
@@ -46,7 +49,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 
   const content = generateSiteMap(additionalPages);
 
-  res.setHeader('Content-Type', 'text/xml');
+  res.setHeader("Content-Type", "text/xml");
   res.write(content);
   res.end();
 

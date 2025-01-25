@@ -1,6 +1,5 @@
-@use 'sass:math';
-
-@use '../../../scss/variables';
+@use "sass:math";
+@use "../../../scss/variables";
 
 .loading {
   &:hover {
@@ -18,7 +17,7 @@
   line-height: 16px;
   color: variables.$global-color-body-dark;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-bottom: variables.$global-spacing-small;
     font-size: 12px;
     line-height: 12px;
@@ -30,19 +29,16 @@
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: math.div(variables.$global-spacing-large, 2);
-  row-gap: math.div(variables.$global-spacing-large, 2);
+  gap: math.div(variables.$global-spacing-large, 2) math.div(variables.$global-spacing-large, 2);
   list-style: none;
 
-  @include variables.breakpoint('medium') {
-    column-gap: math.div(variables.$global-spacing-medium, 2);
-    row-gap: math.div(variables.$global-spacing-medium, 2);
+  @include variables.breakpoint("medium") {
+    gap: math.div(variables.$global-spacing-medium, 2) math.div(variables.$global-spacing-medium, 2);
   }
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: math.div(variables.$global-spacing-small, 2);
-    row-gap: math.div(variables.$global-spacing-small, 2);
+    gap: math.div(variables.$global-spacing-small, 2) math.div(variables.$global-spacing-small, 2);
   }
 }
 
@@ -60,7 +56,7 @@
   align-items: center;
   list-style: none;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-top: variables.$global-spacing-small;
   }
 }
@@ -68,14 +64,14 @@
 .pagination > li {
   margin: 0 10px 10px;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin: 0 5px 5px;
   }
 
   &:last-child {
     margin-bottom: 10px;
 
-    @include variables.breakpoint('small') {
+    @include variables.breakpoint("small") {
       margin-bottom: 5px;
     }
   }
@@ -90,7 +86,7 @@
   border-radius: variables.$global-border-radius;
   font-weight: bold;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     width: 30px;
     height: 30px;
     font-size: 14px;
@@ -103,7 +99,7 @@
   }
 }
 
-.current-page > button {
+.pagination > li.current-page > button {
   color: variables.$global-color-background;
   background: variables.$global-color-primary;
 

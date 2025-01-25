@@ -1,6 +1,5 @@
-@use 'sass:math';
-
-@use '../../scss/variables';
+@use "sass:math";
+@use "../../scss/variables";
 
 .info {
   margin-bottom: math.div(variables.$global-spacing-large, 2);
@@ -8,7 +7,7 @@
   line-height: 16px;
   color: variables.$global-color-body-dark;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-bottom: variables.$global-spacing-small;
     font-size: 12px;
     line-height: 12px;
@@ -21,7 +20,7 @@
   border-radius: variables.$global-border-radius;
   border: 2px solid variables.$global-color-background-dark;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-bottom: math.div(variables.$global-spacing-small, 2);
     padding: math.div(variables.$global-padding-small, 2);
   }
@@ -32,7 +31,7 @@
   font-size: 16px;
   line-height: 24px;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     font-size: 14px;
     line-height: 22px;
   }
@@ -44,7 +43,7 @@
   justify-content: space-between;
   margin-bottom: 10px;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     flex-direction: column-reverse;
     margin-bottom: 5px;
   }
@@ -56,7 +55,7 @@
   font-size: inherit;
   line-height: inherit;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-right: 0;
   }
 }
@@ -75,7 +74,7 @@
   text-transform: uppercase;
   font-weight: 700;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin: 5px auto 10px 0;
     padding: 0 8px;
     font-size: 10px;
@@ -112,7 +111,7 @@
   line-height: 24px;
   font-weight: 700;
 
-  @include variables.breakpoint('small') {
+  @include variables.breakpoint("small") {
     margin-left: auto;
     font-size: 14px;
     line-height: 22px;

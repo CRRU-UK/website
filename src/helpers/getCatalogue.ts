@@ -1,4 +1,4 @@
-import type { Entry, Asset } from 'contentful';
+import type { Entry, Asset } from "contentful";
 
 import type {
   CatalogueAPIResponse,
@@ -7,12 +7,12 @@ import type {
   ContentTypeCatalogueBottlenoseDolphin,
   CatalogueMinkeWhale,
   ContentTypeCatalogueMinkeWhale,
-} from './types';
+} from "./types";
 
-import { Catalogues, ContentTypes, CATALOGUE_RESULTS_LIMIT } from './constants';
+import { Catalogues, ContentTypes, CATALOGUE_RESULTS_LIMIT } from "./constants";
 
-import { contentfulDeliveryClient } from './contentful';
-import { flattenImageAssetFields } from './flattenAssetFields';
+import { contentfulDeliveryClient } from "./contentful";
+import { flattenImageAssetFields } from "./flattenAssetFields";
 
 /**
  * Reduces bottlenose dolphin catalogue entry.
@@ -29,8 +29,8 @@ const reduceCatalogueItem = (
 });
 
 interface GetCatalogueListOptions {
-  page: number,
-  search?: string,
+  page: number;
+  search?: string;
 }
 
 /**
@@ -41,12 +41,12 @@ interface GetCatalogueListOptions {
  * @param [options.search] Text to search on `slug` field.
  * @returns Catalogue entries.
  */
-const getCatalogueList = async (catalogue: Catalogues, {
-  page,
-  search,
-}: GetCatalogueListOptions): Promise<CatalogueAPIResponse | null> => {
+const getCatalogueList = async (
+  catalogue: Catalogues,
+  { page, search }: GetCatalogueListOptions,
+): Promise<CatalogueAPIResponse | null> => {
   const query = {
-    order: ['fields.id'],
+    order: ["fields.id"],
     limit: CATALOGUE_RESULTS_LIMIT,
     skip: CATALOGUE_RESULTS_LIMIT * (page - 1),
   };
@@ -90,14 +90,13 @@ const getCatalogueList = async (catalogue: Catalogues, {
  * @param entryID Contentful entry ID.
  * @returns Array of calf catalogue entries.
  */
-const getBottlenoseEntryCalves = async (
-  entryID: string,
-): Promise<Array<CatalogueBasicInfo>> => {
-  const { items } = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>({
-    content_type: ContentTypes.CatalogueBottlenoseDolphin,
-    'fields.mother.sys.id': entryID,
-    order: ['-fields.id'], // Order so 'current calf' is first
-  });
+const getBottlenoseEntryCalves = async (entryID: string): Promise<Array<CatalogueBasicInfo>> => {
+  const { items } =
+    await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>({
+      content_type: ContentTypes.CatalogueBottlenoseDolphin,
+      "fields.mother.sys.id": entryID,
+      order: ["-fields.id"], // Order so 'current calf' is first
+    });
 
   const data = items.map((entry) => reduceCatalogueItem(entry));
 
@@ -112,11 +111,12 @@ const getBottlenoseEntryCalves = async (
 const getBottlenoseDolphinCatalogueItem = async (
   slug: string,
 ): Promise<CatalogueBottlenoseDolphin | null> => {
-  const { items } = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>({
-    content_type: ContentTypes.CatalogueBottlenoseDolphin,
-    limit: 1,
-    'fields.slug': slug,
-  });
+  const { items } =
+    await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>({
+      content_type: ContentTypes.CatalogueBottlenoseDolphin,
+      limit: 1,
+      "fields.slug": slug,
+    });
 
   if (!items.length) {
     return null;
@@ -133,13 +133,18 @@ const getBottlenoseDolphinCatalogueItem = async (
       name: entry.fields?.name ?? null,
       slug: entry.fields.slug,
       birthYear: entry.fields?.birthYear ?? null,
-      sex: entry.fields?.sex ?? 'UNKNOWN',
+      sex: entry.fields?.sex ?? "UNKNOWN",
       totalRecaptures: entry.fields?.totalRecaptures ?? null,
       yearsRecaptured: entry.fields?.yearsRecaptured ?? null,
       totalCalves: entry.fields.totalCalves ?? null,
-      leftDorsalFin: entry.fields?.leftDorsalFin ? flattenImageAssetFields(entry.fields.leftDorsalFin) : null,
-      rightDorsalFin: entry.fields?.rightDorsalFin ? flattenImageAssetFields(entry.fields.rightDorsalFin) : null,
-      otherImages: entry.fields.otherImages?.map((item) => flattenImageAssetFields(item as Asset)) ?? [],
+      leftDorsalFin: entry.fields?.leftDorsalFin
+        ? flattenImageAssetFields(entry.fields.leftDorsalFin)
+        : null,
+      rightDorsalFin: entry.fields?.rightDorsalFin
+        ? flattenImageAssetFields(entry.fields.rightDorsalFin)
+        : null,
+      otherImages:
+        entry.fields.otherImages?.map((item) => flattenImageAssetFields(item as Asset)) ?? [],
       lastUpdated: entry.sys.updatedAt,
     },
     mother: entry.fields.mother ? reduceCatalogueItem(entry.fields.mother) : null,
@@ -157,13 +162,14 @@ const getBottlenoseDolphinCatalogueItem = async (
  * @returns Bottlenose dolphin catalogue entry slug.
  */
 const getBottlenoseDolphinItemEntrySlug = async (
-  id: CatalogueBottlenoseDolphin['entry']['id'],
-): Promise<CatalogueBottlenoseDolphin['entry']['slug'] | null> => {
-  const { items } = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>({
-    content_type: ContentTypes.CatalogueBottlenoseDolphin,
-    limit: 1,
-    'fields.id': id,
-  });
+  id: CatalogueBottlenoseDolphin["entry"]["id"],
+): Promise<CatalogueBottlenoseDolphin["entry"]["slug"] | null> => {
+  const { items } =
+    await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>({
+      content_type: ContentTypes.CatalogueBottlenoseDolphin,
+      limit: 1,
+      "fields.id": id,
+    });
 
   if (!items.length) {
     return null;
@@ -179,13 +185,11 @@ const getBottlenoseDolphinItemEntrySlug = async (
  * @param slug Entry `slug` field value.
  * @returns Minke whale catalogue entry.
  */
-const getMinkeWhaleCatalogueItem = async (
-  slug: string,
-): Promise<CatalogueMinkeWhale | null> => {
+const getMinkeWhaleCatalogueItem = async (slug: string): Promise<CatalogueMinkeWhale | null> => {
   const { items } = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueMinkeWhale>({
     content_type: ContentTypes.CatalogueMinkeWhale,
     limit: 1,
-    'fields.slug': slug,
+    "fields.slug": slug,
   });
 
   if (!items.length) {
@@ -202,8 +206,12 @@ const getMinkeWhaleCatalogueItem = async (
       slug: entry.fields.slug,
       totalRecaptures: entry.fields?.totalRecaptures ?? null,
       yearsRecaptured: entry.fields?.yearsRecaptured ?? null,
-      leftDorsalFin: entry.fields?.leftDorsalFin ? flattenImageAssetFields(entry.fields.leftDorsalFin) : null,
-      rightDorsalFin: entry.fields?.rightDorsalFin ? flattenImageAssetFields(entry.fields.rightDorsalFin) : null,
+      leftDorsalFin: entry.fields?.leftDorsalFin
+        ? flattenImageAssetFields(entry.fields.leftDorsalFin)
+        : null,
+      rightDorsalFin: entry.fields?.rightDorsalFin
+        ? flattenImageAssetFields(entry.fields.rightDorsalFin)
+        : null,
       lastUpdated: entry.sys.updatedAt,
     },
     previous: entry.fields.previousEntry ? reduceCatalogueItem(entry.fields.previousEntry) : null,
@@ -219,12 +227,12 @@ const getMinkeWhaleCatalogueItem = async (
  * @returns Bottlenose dolphin catalogue entry slug.
  */
 const getMinkeWhaleItemEntrySlug = async (
-  id: CatalogueMinkeWhale['entry']['id'],
-): Promise<CatalogueMinkeWhale['entry']['slug'] | null> => {
+  id: CatalogueMinkeWhale["entry"]["id"],
+): Promise<CatalogueMinkeWhale["entry"]["slug"] | null> => {
   const { items } = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueMinkeWhale>({
     content_type: ContentTypes.CatalogueMinkeWhale,
     limit: 1,
-    'fields.id': id,
+    "fields.id": id,
   });
 
   if (!items.length) {

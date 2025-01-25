@@ -1,12 +1,12 @@
 /* istanbul ignore file */
 
-import type { Node } from '@contentful/rich-text-types';
+import type { Node } from "@contentful/rich-text-types";
 
-import Link from 'next/link';
+import Link from "next/link";
 
-import sitemap from '@/data/sitemap.json';
+import sitemap from "@/data/sitemap.json";
 
-import { InlineContentEntries } from '../constants';
+import { InlineContentEntries } from "../constants";
 
 const renderInlinedEntries = ({ data }: Node) => {
   const contentTypeID = data.target.sys.contentType.sys.id;
@@ -16,15 +16,17 @@ const renderInlinedEntries = ({ data }: Node) => {
     if (!result?.title) {
       return null;
     }
-    return (<Link href={data.target.fields.path}>{result.title}</Link>);
+    return <Link href={data.target.fields.path}>{result.title}</Link>;
   }
 
   if (contentTypeID === InlineContentEntries.Species) {
-    return (<Link href={`/education/species/${data.target.fields.slug}`}>{data.target.fields.name}</Link>);
+    return (
+      <Link href={`/education/species/${data.target.fields.slug}`}>{data.target.fields.name}</Link>
+    );
   }
 
   if (contentTypeID === InlineContentEntries.News) {
-    return (<Link href={`/news/${data.target.fields.slug}`}>{data.target.fields.title}</Link>);
+    return <Link href={`/news/${data.target.fields.slug}`}>{data.target.fields.title}</Link>;
   }
 
   return null;

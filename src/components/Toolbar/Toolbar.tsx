@@ -1,32 +1,28 @@
-import styles from './Toolbar.module.scss';
+import styles from "./Toolbar.module.scss";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import type { CatalogueAPIResponse, CatalogueBasicInfo } from '@/helpers/types';
+import type { CatalogueAPIResponse, CatalogueBasicInfo } from "@/helpers/types";
 
-import Link from 'next/link';
+import Link from "next/link";
 
-import { Catalogues } from '@/helpers/constants';
+import { Catalogues } from "@/helpers/constants";
 
-import { Card, Loading } from '@/components';
+import { Card, Loading } from "@/components";
 
 interface Props {
-  catalogue: Catalogues,
-  previous: CatalogueBasicInfo | null,
-  next: CatalogueBasicInfo | null,
+  catalogue: Catalogues;
+  previous: CatalogueBasicInfo | null;
+  next: CatalogueBasicInfo | null;
 }
 
-const Toolbar = ({
-  catalogue,
-  previous,
-  next,
-}: Props) => {
-  const [search, setSearch] = useState<string>('');
+const Toolbar = ({ catalogue, previous, next }: Props) => {
+  const [search, setSearch] = useState<string>("");
   const [data, setData] = useState<null | CatalogueAPIResponse>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    if (search === '') {
+    if (search === "") {
       setData(null);
       return;
     }
@@ -54,57 +50,54 @@ const Toolbar = ({
 
   const showResults = loading || data;
 
-  const noResultsElement = <li className={styles['no-results']}>No results</li>;
+  const noResultsElement = <li className={styles["no-results"]}>No results</li>;
 
-  const resultsElements = data?.meta?.totalItems === 0 ? noResultsElement : data?.items.map((item) => (
-    <li key={item.id}>
-      <Card
-        type={catalogue}
-        id={`#${item.id}`}
-        name={item?.name ? String(item.name) : undefined}
-        reference={item?.reference ? `#${item.reference}` : undefined}
-        link={`/research/catalogues/${catalogue}/${item.slug}`}
-      />
-    </li>
-  ));
+  const resultsElements =
+    data?.meta?.totalItems === 0
+      ? noResultsElement
+      : data?.items.map((item) => (
+          <li key={item.id}>
+            <Card
+              type={catalogue}
+              id={`#${item.id}`}
+              name={item?.name ? String(item.name) : undefined}
+              reference={item?.reference ? `#${item.reference}` : undefined}
+              link={`/research/catalogues/${catalogue}/${item.slug}`}
+            />
+          </li>
+        ));
 
-  const controlButton = (
-    data: CatalogueBasicInfo | null,
-    type: 'previous' | 'next',
-  ) => {
+  const controlButton = (data: CatalogueBasicInfo | null, type: "previous" | "next") => {
     const classes = [styles.button];
 
-    if (type === 'previous') {
-      classes.push(styles['button-previous']);
-    } else if (type === 'next') {
-      classes.push(styles['button-next']);
+    if (type === "previous") {
+      classes.push(styles["button-previous"]);
+    } else if (type === "next") {
+      classes.push(styles["button-next"]);
     }
 
-    const text = type === 'previous' ? 'Previous' : 'Next';
+    const text = type === "previous" ? "Previous" : "Next";
 
     if (!data) {
-      classes.push(styles['button-disabled']);
+      classes.push(styles["button-disabled"]);
 
       return (
-        <div className={classes.join(' ')}>
+        <div className={classes.join(" ")}>
           <span>{text}</span>
         </div>
       );
     }
-    
+
     return (
-      <Link
-        href={`/research/catalogues/${catalogue}/${data.slug}`}
-        className={classes.join(' ')}
-      >
+      <Link href={`/research/catalogues/${catalogue}/${data.slug}`} className={classes.join(" ")}>
         <span>{text}</span>
       </Link>
     );
-  }
+  };
 
   return (
     <section className={styles.toolbar}>
-      <div className={searchClasses.join(' ')}>
+      <div className={searchClasses.join(" ")}>
         <input
           type="search"
           placeholder="Search by name, ID, reference, birth year..."
@@ -113,16 +106,22 @@ const Toolbar = ({
 
         {showResults && (
           <ul className={styles.results}>
-            {loading ? <li className={styles['loading']}><Loading type={catalogue} /></li> : resultsElements}
+            {loading ? (
+              <li className={styles["loading"]}>
+                <Loading type={catalogue} />
+              </li>
+            ) : (
+              resultsElements
+            )}
           </ul>
         )}
       </div>
       <div className={styles.controls}>
-        {controlButton(previous, 'previous')}
-        {controlButton(next, 'next')}
+        {controlButton(previous, "previous")}
+        {controlButton(next, "next")}
       </div>
     </section>
   );
-}
+};
 
 export default Toolbar;
