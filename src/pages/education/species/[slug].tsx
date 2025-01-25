@@ -15,10 +15,7 @@ import sitemap from "@/data/sitemap.json";
 
 import pageRenderOptions from "@/helpers/rendering";
 import { ContentTypes, LOCALE } from "@/helpers/constants";
-import {
-  contentfulDeliveryClient,
-  contentfulPreviewClient,
-} from "@/helpers/contentful";
+import { contentfulDeliveryClient, contentfulPreviewClient } from "@/helpers/contentful";
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 
 import Hero from "@/components/Hero/Hero";
@@ -100,11 +97,7 @@ const Page: NextPage<PageProps> = ({
         breadcrumbs={pageBreadcrumbs}
       />
 
-      <Hero
-        title={name}
-        subtitle={sitemap["cetacean-fact-files"].title}
-        background={image?.url}
-      />
+      <Hero title={name} subtitle={sitemap["cetacean-fact-files"].title} background={image?.url} />
 
       <Breadcrumbs items={pageBreadcrumbs} />
 
@@ -180,9 +173,7 @@ const Page: NextPage<PageProps> = ({
           </li>
         </ul>
 
-        <span
-          {...previewProps({ entryId: previewData.sys.id, fieldId: "content" })}
-        >
+        <span {...previewProps({ entryId: previewData.sys.id, fieldId: "content" })}>
           {documentToReactComponents(content, pageRenderOptions)}
         </span>
       </article>
@@ -194,9 +185,7 @@ interface PageParams extends ParsedUrlQuery {
   slug: string;
 }
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (
-  ctx,
-) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const preview = ctx?.query.preview === "true";
 
   const { slug } = ctx.params as PageParams;

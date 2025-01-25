@@ -164,9 +164,7 @@ export type ContentTypePageContent = {
     description?: EntryFieldTypes.Symbol;
     content: EntryFieldTypes.RichText;
     references?: EntryFieldTypes.Array<
-      EntryFieldTypes.EntryLink<
-        ContentTypePerson | ContentTypeSponsor | ContentTypeUsefulLink
-      >
+      EntryFieldTypes.EntryLink<ContentTypePerson | ContentTypeSponsor | ContentTypeUsefulLink>
     >;
     data?: EntryFieldTypes.Object;
     image?: EntryFieldTypes.AssetLink;

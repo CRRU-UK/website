@@ -13,16 +13,10 @@ interface PageProps {
 }
 
 const Page: NextPage<PageProps> = ({ data }) => (
-  <CommonPage
-    page={sitemap.rescue}
-    breadcrumbs={[sitemap.rescue]}
-    data={data}
-  />
+  <CommonPage page={sitemap.rescue} breadcrumbs={[sitemap.rescue]} data={data} />
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (
-  ctx,
-) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const preview = ctx?.query.preview === "true";
   const data = await getPageContent(sitemap.rescue.path, { preview });
 

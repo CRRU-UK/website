@@ -8,9 +8,7 @@ interface Props {
 }
 
 const Highlight = ({ children, warning }: Props) => (
-  <section
-    className={`${styles.highlight} ${warning && styles["highlight-warning"]}`}
-  >
+  <section className={`${styles.highlight} ${warning && styles["highlight-warning"]}`}>
     {children}
   </section>
 );

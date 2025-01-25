@@ -34,11 +34,7 @@ const updateURL = ({ catalogue, page, search }: UpdateURLProps) => {
   }
 
   newURL = newURL.toString();
-  history.replaceState(
-    { ...window.history.state, as: newURL, url: newURL },
-    "",
-    newURL,
-  );
+  history.replaceState({ ...window.history.state, as: newURL, url: newURL }, "", newURL);
 };
 
 interface PageProps {
@@ -53,10 +49,7 @@ const Page: NextPage<PageProps> = ({ pageData }: PageProps) => {
   const searchParams = useSearchParams();
 
   const paramCatalogue = searchParams.get("catalogue");
-  if (
-    paramCatalogue &&
-    Object.values(Catalogues).includes(paramCatalogue as any)
-  ) {
+  if (paramCatalogue && Object.values(Catalogues).includes(paramCatalogue as any)) {
     initCatalogue = paramCatalogue as Catalogues;
   }
 
@@ -86,9 +79,7 @@ const Page: NextPage<PageProps> = ({ pageData }: PageProps) => {
         query.push(`search=${search}`);
       }
 
-      const response = await fetch(
-        `/api/catalogues/${catalogue}?${query.join("&")}`,
-      );
+      const response = await fetch(`/api/catalogues/${catalogue}?${query.join("&")}`);
       const result: CatalogueAPIResponse = await response.json();
       setSearchText(search);
       setData(result);
@@ -116,10 +107,7 @@ const Page: NextPage<PageProps> = ({ pageData }: PageProps) => {
     pageElements = [];
     for (let i = 0; i < data.meta.totalPages; i += 1) {
       pageElements.push(
-        <li
-          key={i}
-          className={i + 1 === page ? styles["current-page"] : undefined}
-        >
+        <li key={i} className={i + 1 === page ? styles["current-page"] : undefined}>
           <button type="button" onClick={() => setPage(i + 1)}>
             {i + 1}
           </button>
@@ -171,9 +159,7 @@ const Page: NextPage<PageProps> = ({ pageData }: PageProps) => {
       <div className={loading ? styles.loading : ""}>
         {loading && <Loading type={catalogue} />}
 
-        {!loading && infoText !== "" && (
-          <p className={styles.info}>{infoText}</p>
-        )}
+        {!loading && infoText !== "" && <p className={styles.info}>{infoText}</p>}
 
         {!loading && data?.items && (
           <ul className={styles.list}>
@@ -197,9 +183,7 @@ const Page: NextPage<PageProps> = ({ pageData }: PageProps) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (
-  ctx,
-) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const preview = ctx?.query.preview === "true";
   const pageData = await getPageContent(sitemap.catalogues.path, { preview });
 

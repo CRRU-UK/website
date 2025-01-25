@@ -44,13 +44,7 @@ const Caption = (caption: string) => {
   );
 };
 
-const ImageCaption = ({
-  src,
-  width,
-  height,
-  caption,
-  alt,
-}: ImageCaptionProps) => (
+const ImageCaption = ({ src, width, height, caption, alt }: ImageCaptionProps) => (
   <figure className={styles.image}>
     {caption && Caption(caption)}
     <Image

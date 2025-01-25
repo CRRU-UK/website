@@ -12,17 +12,13 @@ const renderInlinedEntryHyperlink = ({ content, data }: any) => {
 
   if (contentTypeID === InlineContentEntries.Page) {
     return (
-      <Link href={(data as Node["data"]).target.fields.path}>
-        {(content[0] as Text).value}
-      </Link>
+      <Link href={(data as Node["data"]).target.fields.path}>{(content[0] as Text).value}</Link>
     );
   }
 
   if (contentTypeID === InlineContentEntries.Species) {
     return (
-      <Link
-        href={`/education/species/${(data as Node["data"]).target.fields.slug}`}
-      >
+      <Link href={`/education/species/${(data as Node["data"]).target.fields.slug}`}>
         {(content[0] as Text).value}
       </Link>
     );

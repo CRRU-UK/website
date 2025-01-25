@@ -16,18 +16,12 @@ const Page: NextPage<PageProps> = ({ data }) => (
   <CommonPage
     page={sitemap.taxonomy}
     parent={sitemap["cetacean-fact-files"]}
-    breadcrumbs={[
-      sitemap.education,
-      sitemap["cetacean-fact-files"],
-      sitemap.taxonomy,
-    ]}
+    breadcrumbs={[sitemap.education, sitemap["cetacean-fact-files"], sitemap.taxonomy]}
     data={data}
   />
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (
-  ctx,
-) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const preview = ctx?.query.preview === "true";
   const data = await getPageContent(sitemap.taxonomy.path, { preview });
 

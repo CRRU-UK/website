@@ -1,9 +1,4 @@
-import {
-  NextSeo,
-  LogoJsonLd,
-  BreadcrumbJsonLd,
-  SocialProfileJsonLd,
-} from "next-seo";
+import { NextSeo, LogoJsonLd, BreadcrumbJsonLd, SocialProfileJsonLd } from "next-seo";
 
 import type { SitemapItem } from "@/helpers/types";
 
@@ -27,12 +22,7 @@ interface Props {
   breadcrumbs: Array<SitemapItem>;
 }
 
-const SEO = ({
-  page,
-  type = "website",
-  images = DEFAULT_SEO_IMAGE,
-  breadcrumbs,
-}: Props) => {
+const SEO = ({ page, type = "website", images = DEFAULT_SEO_IMAGE, breadcrumbs }: Props) => {
   const { title, path, description = DEFAULT_SITE_DESCRIPTION } = page;
 
   const pageCanonicalURL = `${DEFAULT_SITE_DOMAIN}${path}`;
@@ -56,10 +46,7 @@ const SEO = ({
         }}
       />
 
-      <LogoJsonLd
-        logo={`${DEFAULT_SITE_DOMAIN}/images/logo.png`}
-        url={DEFAULT_SITE_DOMAIN}
-      />
+      <LogoJsonLd logo={`${DEFAULT_SITE_DOMAIN}/images/logo.png`} url={DEFAULT_SITE_DOMAIN} />
 
       <BreadcrumbJsonLd
         itemListElements={breadcrumbs.map((item, index) => ({

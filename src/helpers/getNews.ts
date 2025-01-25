@@ -17,9 +17,7 @@ interface Options {
  * @param [options.limit] Number of entries to query.
  * @returns News article entries.
  */
-const getNews = async ({
-  limit = 1000,
-}: Options): Promise<Array<NewsArticle>> => {
+const getNews = async ({ limit = 1000 }: Options): Promise<Array<NewsArticle>> => {
   const { items } = await contentfulDeliveryClient.getEntries<ContentTypeNews>({
     content_type: ContentTypes.NewsArticle,
     order: ["-fields.date"],

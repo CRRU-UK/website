@@ -32,17 +32,11 @@ const Page: NextPage<PageProps> = ({ data, courseSchema }) => (
       />
     </Head>
 
-    <CommonPage
-      page={sitemap.training}
-      breadcrumbs={[sitemap.training]}
-      data={data}
-    />
+    <CommonPage page={sitemap.training} breadcrumbs={[sitemap.training]} data={data} />
   </>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (
-  ctx,
-) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const preview = ctx?.query.preview === "true";
   const data = await getPageContent(sitemap.training.path, { preview });
 

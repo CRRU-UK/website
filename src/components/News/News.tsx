@@ -28,13 +28,7 @@ const News = ({ link, image, title, date, category }: Props) => {
     <article className={styles.news}>
       <Link href={link} className="news">
         <div className={styles["image-container"]}>
-          <Image
-            src={imageURL}
-            alt=""
-            width={image.width}
-            height={image.height}
-            quality={90}
-          />
+          <Image src={imageURL} alt="" width={image.width} height={image.height} quality={90} />
         </div>
         <h4>{title}</h4>
         <div className={styles.subtitles}>

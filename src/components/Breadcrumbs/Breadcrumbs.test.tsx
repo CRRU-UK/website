@@ -57,16 +57,12 @@ it("Passes accessibility with optional props", async () =>
     expect(results).toHaveNoViolations();
   }));
 
-it.each(["wide", "inline"])(
-  "Passes accessibility with different styles",
-  async (style) =>
-    act(async () => {
-      const { container } = render(
-        <Breadcrumbs style={style as Props["style"]} items={[]} />,
-      );
+it.each(["wide", "inline"])("Passes accessibility with different styles", async (style) =>
+  act(async () => {
+    const { container } = render(<Breadcrumbs style={style as Props["style"]} items={[]} />);
 
-      const results = await axe(container);
+    const results = await axe(container);
 
-      expect(results).toHaveNoViolations();
-    }),
+    expect(results).toHaveNoViolations();
+  }),
 );

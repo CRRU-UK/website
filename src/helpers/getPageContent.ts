@@ -1,10 +1,7 @@
 import type { PageData, ContentTypePageContent } from "./types";
 
 import { ContentTypes } from "./constants";
-import {
-  contentfulDeliveryClient,
-  contentfulPreviewClient,
-} from "./contentful";
+import { contentfulDeliveryClient, contentfulPreviewClient } from "./contentful";
 import { flattenImageAssetFields } from "./flattenAssetFields";
 
 interface Options {
@@ -17,10 +14,7 @@ interface Options {
  * @param path Path field to query.
  * @returns Species page entries.
  */
-const getPageContent = async (
-  path: string,
-  options?: Options,
-): Promise<PageData> => {
+const getPageContent = async (path: string, options?: Options): Promise<PageData> => {
   let client = contentfulDeliveryClient;
   if (options?.preview) {
     client = contentfulPreviewClient;
@@ -41,9 +35,7 @@ const getPageContent = async (
     content: fields.content ?? null,
     data: fields.data ?? null,
     image: fields.image ? flattenImageAssetFields(fields.image) : null,
-    background: fields.background
-      ? flattenImageAssetFields(fields.background)
-      : null,
+    background: fields.background ? flattenImageAssetFields(fields.background) : null,
   };
 
   if (options?.references) {

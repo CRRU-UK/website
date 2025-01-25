@@ -92,34 +92,18 @@ const UseSightingsForm = () => {
 
   return (
     <>
-      <Script
-        src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-        async
-        defer
-      />
+      <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
 
       <form onSubmit={handleSubmit} className={loading ? "form-loading" : ""}>
         <div className="form-columns">
           <label htmlFor="name">
             <span>Name of observer: *</span>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              disabled={loading}
-            />
+            <input type="text" id="name" name="name" required disabled={loading} />
           </label>
 
           <label htmlFor="email">
             <span>Email: *</span>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              disabled={loading}
-            />
+            <input type="email" id="email" name="email" required disabled={loading} />
           </label>
 
           <label htmlFor="date">
@@ -160,32 +144,17 @@ const UseSightingsForm = () => {
 
           <label htmlFor="location">
             <span>Location / landmark: *</span>
-            <input
-              type="text"
-              id="location"
-              name="location"
-              required
-              disabled={loading}
-            />
+            <input type="text" id="location" name="location" required disabled={loading} />
           </label>
 
           <label htmlFor="species">
             <span>Species observed: *</span>
-            <select
-              name="species"
-              id="species"
-              defaultValue=""
-              disabled={loading}
-            >
+            <select name="species" id="species" defaultValue="" disabled={loading}>
               <option disabled value="">
                 Select an option
               </option>
-              <option value="Unidentified dolphin species">
-                Unidentified dolphin species
-              </option>
-              <option value="Unidentified whale species">
-                Unidentified whale species
-              </option>
+              <option value="Unidentified dolphin species">Unidentified dolphin species</option>
+              <option value="Unidentified whale species">Unidentified whale species</option>
               <option value="Harbour porpoise">Harbour porpoise</option>
               <option value="Bottlenose dolphin">Bottlenose dolphin</option>
               <option value="Minke whale">Minke whale</option>
@@ -196,9 +165,7 @@ const UseSightingsForm = () => {
               <option value="Pilot whale">Pilot whale</option>
               <option value="Sperm whale">Sperm whale</option>
               <option value="White-beaked dolphin">White-beaked dolphin</option>
-              <option value="Atlantic white-sided dolphin">
-                Atlantic white-sided dolphin
-              </option>
+              <option value="Atlantic white-sided dolphin">Atlantic white-sided dolphin</option>
               <option value="Humpback whale">Humpback whale</option>
               <option value="Fin whale">Fin whale</option>
               <option value="Sei whale">Sei whale</option>
@@ -208,22 +175,12 @@ const UseSightingsForm = () => {
 
           <label htmlFor="longitude">
             <span>Longitude:</span>
-            <input
-              type="text"
-              id="longitude"
-              name="longitude"
-              disabled={loading}
-            />
+            <input type="text" id="longitude" name="longitude" disabled={loading} />
           </label>
 
           <label htmlFor="latitude">
             <span>Latitude:</span>
-            <input
-              type="text"
-              id="latitude"
-              name="latitude"
-              disabled={loading}
-            />
+            <input type="text" id="latitude" name="latitude" disabled={loading} />
           </label>
 
           <label htmlFor="amount">
@@ -233,12 +190,7 @@ const UseSightingsForm = () => {
 
           <label htmlFor="sea-state">
             <span>Sea state:</span>
-            <select
-              name="sea-state"
-              id="sea-state"
-              defaultValue=""
-              disabled={loading}
-            >
+            <select name="sea-state" id="sea-state" defaultValue="" disabled={loading}>
               <option disabled value="">
                 Select an option
               </option>
@@ -252,12 +204,7 @@ const UseSightingsForm = () => {
 
           <label htmlFor="weather">
             <span>Weather conditions:</span>
-            <select
-              name="weather"
-              id="weather"
-              defaultValue=""
-              disabled={loading}
-            >
+            <select name="weather" id="weather" defaultValue="" disabled={loading}>
               <option disabled value="">
                 Select an option
               </option>
@@ -282,26 +229,22 @@ const UseSightingsForm = () => {
 
         <label htmlFor="notes">
           <span>
-            Additional notes (e.g. behaviour observed, direction of travel,
-            composition of group i.e. number of adults and calves, other):
+            Additional notes (e.g. behaviour observed, direction of travel, composition of group
+            i.e. number of adults and calves, other):
           </span>
           <textarea id="notes" name="notes" rows={5} disabled={loading} />
         </label>
 
         <div
           className="cf-turnstile"
-          data-sitekey={String(
-            process.env.NEXT_PUBLIC_CLOUDFLARE_CHALLENGE_SITE_KEY,
-          )}
+          data-sitekey={String(process.env.NEXT_PUBLIC_CLOUDFLARE_CHALLENGE_SITE_KEY)}
           data-theme="light"
         />
 
         {errorMessageElements}
 
         {success && (
-          <span className="form-success">
-            Sighting successfully submitted, thank you.
-          </span>
+          <span className="form-success">Sighting successfully submitted, thank you.</span>
         )}
 
         <button type="submit">{loading ? "Submitting..." : "Submit"}</button>
@@ -315,18 +258,12 @@ interface PageProps {
 }
 
 const Page: NextPage<PageProps> = ({ data }) => (
-  <CommonPage
-    page={sitemap.sightings}
-    breadcrumbs={[sitemap.sightings]}
-    data={data}
-  >
+  <CommonPage page={sitemap.sightings} breadcrumbs={[sitemap.sightings]} data={data}>
     {UseSightingsForm()}
   </CommonPage>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (
-  ctx,
-) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const preview = ctx?.query.preview === "true";
   const data = await getPageContent(sitemap.sightings.path, { preview });
 

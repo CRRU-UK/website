@@ -54,8 +54,4 @@ const customConfigs = [
   },
 ];
 
-export default [
-  ...recommendedConfigs,
-  ...customConfigs,
-  eslintPluginPrettierRecommended,
-];
+export default [...recommendedConfigs, ...customConfigs, eslintPluginPrettierRecommended];

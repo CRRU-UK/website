@@ -35,17 +35,12 @@ const generateSiteMap = (additionalPages: Array<string>) =>
 `.trim();
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  const [species, news] = await Promise.all([
-    getSpecies(),
-    getNews({ limit: 1000 }),
-  ]);
+  const [species, news] = await Promise.all([getSpecies(), getNews({ limit: 1000 })]);
 
   const additionalPages = [];
 
   if (species) {
-    additionalPages.push(
-      ...species.map(({ slug }) => `/education/species/${slug}`),
-    );
+    additionalPages.push(...species.map(({ slug }) => `/education/species/${slug}`));
   }
 
   if (news) {

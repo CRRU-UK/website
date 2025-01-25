@@ -35,7 +35,6 @@ const formatDateRelative = (date: string, currentDate?: string): string => {
  * @param date Date to format.
  * @returns Formatted date as long format.
  */
-const formatDateMonth = (date: string): string =>
-  dayjs(date).format("MMMM YYYY");
+const formatDateMonth = (date: string): string => dayjs(date).format("MMMM YYYY");
 
 export { formatDateRelative, formatDateMonth };

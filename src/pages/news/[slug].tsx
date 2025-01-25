@@ -14,17 +14,9 @@ import type { NewsArticle, ContentTypeNews } from "@/helpers/types";
 
 import sitemap from "@/data/sitemap.json";
 
-import {
-  ContentTypes,
-  DEFAULT_SITE_NAME,
-  DEFAULT_SITE_DOMAIN,
-  LOCALE,
-} from "@/helpers/constants";
+import { ContentTypes, DEFAULT_SITE_NAME, DEFAULT_SITE_DOMAIN, LOCALE } from "@/helpers/constants";
 import pageRenderOptions from "@/helpers/rendering";
-import {
-  contentfulDeliveryClient,
-  contentfulPreviewClient,
-} from "@/helpers/contentful";
+import { contentfulDeliveryClient, contentfulPreviewClient } from "@/helpers/contentful";
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 import { formatDateRelative } from "@/helpers/formatDate";
 
@@ -49,10 +41,7 @@ const Page: NextPage<PageProps> = ({
   const pageTitle = title;
   const pageBody = documentToReactComponents(content, pageRenderOptions);
   const pagePath = `/news/${slug}`;
-  const pageBreadcrumbs = [
-    sitemap.news,
-    { title: pageTitle, description, path: pagePath },
-  ];
+  const pageBreadcrumbs = [sitemap.news, { title: pageTitle, description, path: pagePath }];
 
   const previewProps = useContentfulInspectorMode();
   const previewData = useContentfulLiveUpdates({
@@ -134,9 +123,7 @@ interface PageParams extends ParsedUrlQuery {
   slug: string;
 }
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (
-  ctx,
-) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const preview = ctx?.query.preview === "true";
   const { slug } = ctx.params as PageParams;
 

@@ -30,12 +30,7 @@ const ListItem = ({ title, description, link, image, category }: Props) => {
   const titleElement = (
     <p className={styles.title}>
       {link ? (
-        <Link
-          href={link}
-          rel="noopener noreferrer"
-          target="_blank"
-          className="external"
-        >
+        <Link href={link} rel="noopener noreferrer" target="_blank" className="external">
           {title}
         </Link>
       ) : (
@@ -48,9 +43,7 @@ const ListItem = ({ title, description, link, image, category }: Props) => {
     <p className={styles.description}>{description}</p>
   ) : null;
 
-  const categoryClass = category
-    ? styles[`category-style-${category.style ?? 1}`]
-    : null;
+  const categoryClass = category ? styles[`category-style-${category.style ?? 1}`] : null;
 
   const categoryElement = category ? (
     <p className={`${styles.category} ${categoryClass}`}>{category.text}</p>

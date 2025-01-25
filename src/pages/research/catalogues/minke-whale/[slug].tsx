@@ -12,10 +12,7 @@ import sitemap from "@/data/sitemap.json";
 
 import { Catalogues } from "@/helpers/constants";
 import { formatDateMonth } from "@/helpers/formatDate";
-import {
-  getMinkeWhaleCatalogueItem,
-  getMinkeWhaleItemEntrySlug,
-} from "@/helpers/getCatalogue";
+import { getMinkeWhaleCatalogueItem, getMinkeWhaleItemEntrySlug } from "@/helpers/getCatalogue";
 
 import { Breadcrumbs, SEO, Timeline, Tooltip, Toolbar } from "@/components";
 
@@ -103,22 +100,12 @@ const Page: NextPage<PageProps> = ({ catalogueData }: PageProps) => {
             <h1>{title}</h1>
 
             <ul className={styles.info}>
-              <li
-                className={[
-                  styles["info-item-half"],
-                  styles["info-item-crru"],
-                ].join(" ")}
-              >
+              <li className={[styles["info-item-half"], styles["info-item-crru"]].join(" ")}>
                 <b>CRRU ID #</b>
                 {id}
               </li>
 
-              <li
-                className={[
-                  styles["info-item-half"],
-                  styles["info-item-hwdt"],
-                ].join(" ")}
-              >
+              <li className={[styles["info-item-half"], styles["info-item-hwdt"]].join(" ")}>
                 <b>
                   HWDT Ref #{" "}
                   <Tooltip text="Hebridean Whale and Dolphin Trust catalogue reference" />
@@ -137,31 +124,24 @@ const Page: NextPage<PageProps> = ({ catalogueData }: PageProps) => {
                 )}
               </li>
 
-              <li
-                className={[
-                  styles["info-item-half"],
-                  styles["info-item-name"],
-                ].join(" ")}
-              >
+              <li className={[styles["info-item-half"], styles["info-item-name"]].join(" ")}>
                 <b>Name</b>
                 {name ?? <i className={styles.unknown}>Unnamed</i>}
               </li>
 
               <li
-                className={[
-                  styles["info-item-half"],
-                  styles["info-item-total-recaptures"],
-                ].join(" ")}
+                className={[styles["info-item-half"], styles["info-item-total-recaptures"]].join(
+                  " ",
+                )}
               >
                 <b>No. of Recaptures</b>
                 {totalRecaptures ?? <Unknown />}
               </li>
 
               <li
-                className={[
-                  styles["info-item-full"],
-                  styles["info-item-years-recaptured"],
-                ].join(" ")}
+                className={[styles["info-item-full"], styles["info-item-years-recaptured"]].join(
+                  " ",
+                )}
               >
                 <b>Years Recaptured</b>
                 {yearsRecaptured ? (
@@ -172,10 +152,9 @@ const Page: NextPage<PageProps> = ({ catalogueData }: PageProps) => {
               </li>
 
               <li
-                className={[
-                  styles["info-item-half"],
-                  styles["info-item-dorsal-fin-left"],
-                ].join(" ")}
+                className={[styles["info-item-half"], styles["info-item-dorsal-fin-left"]].join(
+                  " ",
+                )}
               >
                 <b>Left Dorsal Fin</b>
                 {leftDorsalFin ? (
@@ -192,10 +171,9 @@ const Page: NextPage<PageProps> = ({ catalogueData }: PageProps) => {
               </li>
 
               <li
-                className={[
-                  styles["info-item-half"],
-                  styles["info-item-dorsal-fin-right"],
-                ].join(" ")}
+                className={[styles["info-item-half"], styles["info-item-dorsal-fin-right"]].join(
+                  " ",
+                )}
               >
                 <b>Right Dorsal Fin</b>
                 {rightDorsalFin ? (
@@ -226,9 +204,7 @@ const Page: NextPage<PageProps> = ({ catalogueData }: PageProps) => {
         </article>
       </section>
 
-      <p className={styles["last-updated"]}>
-        Last updated: {formatDateMonth(lastUpdated)}
-      </p>
+      <p className={styles["last-updated"]}>Last updated: {formatDateMonth(lastUpdated)}</p>
     </>
   );
 };
@@ -237,9 +213,7 @@ interface PageParams extends ParsedUrlQuery {
   slug: string;
 }
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (
-  ctx,
-) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const { slug } = ctx.params as PageParams;
 
   const catalogueData = await getMinkeWhaleCatalogueItem(slug);

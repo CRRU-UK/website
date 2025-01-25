@@ -19,14 +19,8 @@ import type {
 
 import sitemap from "@/data/sitemap.json";
 
-import {
-  contentfulDeliveryClient,
-  contentfulPreviewClient,
-} from "@/helpers/contentful";
-import {
-  flattenImageAssetFields,
-  flattenVideoAssetFields,
-} from "@/helpers/flattenAssetFields";
+import { contentfulDeliveryClient, contentfulPreviewClient } from "@/helpers/contentful";
+import { flattenImageAssetFields, flattenVideoAssetFields } from "@/helpers/flattenAssetFields";
 import getNews from "@/helpers/getNews";
 
 import {
@@ -133,8 +127,8 @@ const Page: NextPage<PageProps> = ({ homepage, newsArticles }: PageProps) => {
       <section className={styles.banner}>
         <div className={styles["banner-text"]}>
           <h1>
-            Dedicated to the understanding, conservation and protection of
-            cetaceans in Scottish waters
+            Dedicated to the understanding, conservation and protection of cetaceans in Scottish
+            waters
           </h1>
           <Link href={sitemap.about.path} className={styles["banner-cta"]}>
             Learn more
@@ -154,14 +148,7 @@ const Page: NextPage<PageProps> = ({ homepage, newsArticles }: PageProps) => {
           aria-label={videoPlaying ? "Pause video" : "Play video"}
         />
 
-        <video
-          poster={homepage.heroImage.url}
-          ref={videoElement}
-          playsInline
-          autoPlay
-          muted
-          loop
-        >
+        <video poster={homepage.heroImage.url} ref={videoElement} playsInline autoPlay muted loop>
           {homepage.heroVideos.map((item) => (
             <source src={item.url} type={item.type} key={item.url} />
           ))}
@@ -169,13 +156,8 @@ const Page: NextPage<PageProps> = ({ homepage, newsArticles }: PageProps) => {
       </section>
 
       <section className={styles.highlights}>
-        <Link
-          href={homepage.highlightLeftLink}
-          className={styles["highlights-item"]}
-        >
-          <span className={styles["highlights-item-title"]}>
-            {homepage.highlightLeftTitle}
-          </span>
+        <Link href={homepage.highlightLeftLink} className={styles["highlights-item"]}>
+          <span className={styles["highlights-item-title"]}>{homepage.highlightLeftTitle}</span>
           <span className={styles["highlights-item-subtitle"]}>
             {homepage.highlightLeftSubtitle}
           </span>
@@ -187,13 +169,8 @@ const Page: NextPage<PageProps> = ({ homepage, newsArticles }: PageProps) => {
           />
         </Link>
 
-        <Link
-          href={homepage.highlightRightLink}
-          className={styles["highlights-item"]}
-        >
-          <span className={styles["highlights-item-title"]}>
-            {homepage.highlightRightTitle}
-          </span>
+        <Link href={homepage.highlightRightLink} className={styles["highlights-item"]}>
+          <span className={styles["highlights-item-title"]}>{homepage.highlightRightTitle}</span>
           <span className={styles["highlights-item-subtitle"]}>
             {homepage.highlightRightSubtitle}
           </span>
@@ -231,9 +208,7 @@ const Page: NextPage<PageProps> = ({ homepage, newsArticles }: PageProps) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (
-  ctx,
-) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const preview = ctx?.query.preview === "true";
 
   let client = contentfulDeliveryClient;
@@ -253,9 +228,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (
   const [{ fields }] = homepageData.items;
 
   const flattenReference = (
-    data:
-      | Entry<ContentTypeNews | ContentTypePageContent | ContentTypeSpeciesPage>
-      | undefined,
+    data: Entry<ContentTypeNews | ContentTypePageContent | ContentTypeSpeciesPage> | undefined,
   ) => {
     if (!data) {
       return "";
@@ -282,21 +255,15 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (
     props: {
       preview,
       homepage: {
-        heroVideos: fields.heroVideos.map((item) =>
-          flattenVideoAssetFields(item as Asset),
-        ),
+        heroVideos: fields.heroVideos.map((item) => flattenVideoAssetFields(item as Asset)),
         heroImage: flattenImageAssetFields(fields.heroImage as Asset),
         highlightLeftTitle: fields.highlightLeftTitle,
         highlightLeftSubtitle: fields.highlightLeftSubtitle,
-        highlightLeftImage: flattenImageAssetFields(
-          fields.highlightLeftImage as Asset,
-        ),
+        highlightLeftImage: flattenImageAssetFields(fields.highlightLeftImage as Asset),
         highlightLeftLink: flattenReference(fields.highlightLeftLink),
         highlightRightTitle: fields.highlightRightTitle,
         highlightRightSubtitle: fields.highlightRightSubtitle,
-        highlightRightImage: flattenImageAssetFields(
-          fields.highlightRightImage as Asset,
-        ),
+        highlightRightImage: flattenImageAssetFields(fields.highlightRightImage as Asset),
         highlightRightLink: flattenReference(fields.highlightRightLink),
       },
       newsArticles,

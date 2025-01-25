@@ -1,7 +1,4 @@
-import {
-  contentfulDeliveryClient,
-  contentfulPreviewClient,
-} from "./contentful";
+import { contentfulDeliveryClient, contentfulPreviewClient } from "./contentful";
 
 import getPageContent from "./getPageContent";
 

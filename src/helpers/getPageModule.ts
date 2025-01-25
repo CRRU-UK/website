@@ -9,12 +9,11 @@ import { contentfulDeliveryClient } from "./contentful";
  * @returns Species page entries.
  */
 const getPageModule = async (id: string): Promise<PageModule | null> => {
-  const { items } =
-    await contentfulDeliveryClient.getEntries<ContentTypePageModule>({
-      content_type: ContentTypes.PageModule,
-      "fields.id": id,
-      limit: 1,
-    });
+  const { items } = await contentfulDeliveryClient.getEntries<ContentTypePageModule>({
+    content_type: ContentTypes.PageModule,
+    "fields.id": id,
+    limit: 1,
+  });
 
   if (!items.length) {
     return null;

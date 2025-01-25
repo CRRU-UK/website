@@ -5,18 +5,12 @@ import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 
-import type {
-  PageData,
-  ContentTypeScientificPublication,
-} from "@/helpers/types";
+import type { PageData, ContentTypeScientificPublication } from "@/helpers/types";
 
 import sitemap from "@/data/sitemap.json";
 
 import getPageContent from "@/helpers/getPageContent";
-import {
-  ContentTypes,
-  ScientificPublicationCategories,
-} from "@/helpers/constants";
+import { ContentTypes, ScientificPublicationCategories } from "@/helpers/constants";
 import { contentfulDeliveryClient } from "@/helpers/contentful";
 
 import CommonPage from "@/layout/CommonPage";
@@ -36,12 +30,7 @@ interface PageProps {
   publicationsData: Array<PublicationDataReduced>;
 }
 
-const PublicationEntry = ({
-  category,
-  title,
-  description,
-  attachment,
-}: PublicationDataReduced) => {
+const PublicationEntry = ({ category, title, description, attachment }: PublicationDataReduced) => {
   let download = null;
 
   if (attachment) {
@@ -81,8 +70,7 @@ const PublicationEntry = ({
 
 const categories = {
   all: "All categories",
-  [ScientificPublicationCategories.ResearchPaper]:
-    "Peer Reviewed Research Papers",
+  [ScientificPublicationCategories.ResearchPaper]: "Peer Reviewed Research Papers",
   [ScientificPublicationCategories.Report]: "Reports & Workshop Proceedings",
   [ScientificPublicationCategories.Conference]: "Conference Presentations",
   [ScientificPublicationCategories.Thesis]: "Theses",
@@ -97,10 +85,7 @@ const UsePublicationsContent = (data: Array<PublicationDataReduced>) => {
       .filter((item) => {
         if (search === "") return item;
         const searchText = search.toLowerCase();
-        return [item.title, item.description]
-          .join("")
-          .toLowerCase()
-          .includes(searchText);
+        return [item.title, item.description].join("").toLowerCase().includes(searchText);
       })
       .filter((item) => {
         if (category === "all") return true;
@@ -150,27 +135,22 @@ const Page: NextPage<PageProps> = ({ pageData, publicationsData }) => (
   </CommonPage>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (
-  ctx,
-) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const preview = ctx?.query.preview === "true";
   const pageData = await getPageContent(sitemap.publications.path, { preview });
 
   const publicationsData =
-    await contentfulDeliveryClient.getEntries<ContentTypeScientificPublication>(
-      {
-        content_type: ContentTypes.ScientificPublication,
-        order: ["-fields.date"],
-        limit: 1000,
-      },
-    );
+    await contentfulDeliveryClient.getEntries<ContentTypeScientificPublication>({
+      content_type: ContentTypes.ScientificPublication,
+      order: ["-fields.date"],
+      limit: 1000,
+    });
 
   const publicationsDataReduced = publicationsData.items.map((item) => ({
     category: item.fields.category as ScientificPublicationCategories,
     title: item.fields.title,
     description: item.fields.description,
-    attachment:
-      (item.fields.attachment?.fields?.file as AssetFile)?.url || null,
+    attachment: (item.fields.attachment?.fields?.file as AssetFile)?.url || null,
   }));
 
   return {

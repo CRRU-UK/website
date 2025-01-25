@@ -6,8 +6,6 @@ interface Props {
   children: any;
 }
 
-const Note = ({ children }: Props) => (
-  <section className={styles.note}>{children}</section>
-);
+const Note = ({ children }: Props) => <section className={styles.note}>{children}</section>;
 
 export default Note;

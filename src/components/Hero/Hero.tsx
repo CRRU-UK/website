@@ -10,13 +10,7 @@ interface Props {
   wide?: boolean;
 }
 
-const Hero = ({
-  title,
-  subtitle,
-  background,
-  plain = false,
-  wide = false,
-}: Props) => {
+const Hero = ({ title, subtitle, background, plain = false, wide = false }: Props) => {
   const classes = [styles.hero];
 
   if (!background) {
@@ -33,9 +27,7 @@ const Hero = ({
         {subtitle && <h2>{subtitle}</h2>}
         <h1>{title}</h1>
       </div>
-      {background && (
-        <Image src={background} alt="" quality={90} priority fill />
-      )}
+      {background && <Image src={background} alt="" quality={90} priority fill />}
     </div>
   );
 };

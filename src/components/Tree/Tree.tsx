@@ -35,9 +35,7 @@ const Tree = ({ type, data }: Props) => {
       <ul>
         {calves.map((item, index) => (
           <li key={item.id}>
-            {index === 0 && (
-              <span className={styles.last}>Last recorded calf</span>
-            )}
+            {index === 0 && <span className={styles.last}>Last recorded calf</span>}
             <Card
               type={type}
               id={`#${item.id}`}

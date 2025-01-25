@@ -30,9 +30,7 @@ const Toolbar = ({ catalogue, previous, next }: Props) => {
     const getData = async () => {
       setLoading(true);
 
-      const response = await fetch(
-        `/api/catalogues/${catalogue}?search=${search}&page=1`,
-      );
+      const response = await fetch(`/api/catalogues/${catalogue}?search=${search}&page=1`);
       const result: CatalogueAPIResponse = await response.json();
       setData(result);
 
@@ -69,10 +67,7 @@ const Toolbar = ({ catalogue, previous, next }: Props) => {
           </li>
         ));
 
-  const controlButton = (
-    data: CatalogueBasicInfo | null,
-    type: "previous" | "next",
-  ) => {
+  const controlButton = (data: CatalogueBasicInfo | null, type: "previous" | "next") => {
     const classes = [styles.button];
 
     if (type === "previous") {
@@ -94,10 +89,7 @@ const Toolbar = ({ catalogue, previous, next }: Props) => {
     }
 
     return (
-      <Link
-        href={`/research/catalogues/${catalogue}/${data.slug}`}
-        className={classes.join(" ")}
-      >
+      <Link href={`/research/catalogues/${catalogue}/${data.slug}`} className={classes.join(" ")}>
         <span>{text}</span>
       </Link>
     );
@@ -109,9 +101,7 @@ const Toolbar = ({ catalogue, previous, next }: Props) => {
         <input
           type="search"
           placeholder="Search by name, ID, reference, birth year..."
-          onChange={({ target }) =>
-            handleSearchChange((target as HTMLInputElement).value)
-          }
+          onChange={({ target }) => handleSearchChange((target as HTMLInputElement).value)}
         />
 
         {showResults && (

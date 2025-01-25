@@ -21,9 +21,7 @@ it("Passes accessibility with default props", async () =>
 
 it("Passes accessibility with optional props", async () =>
   act(async () => {
-    const { container } = render(
-      <Button text="test text" link="/test-link" external inline />,
-    );
+    const { container } = render(<Button text="test text" link="/test-link" external inline />);
 
     const results = await axe(container);
 

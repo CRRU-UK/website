@@ -23,12 +23,7 @@ const Footer = () => (
       <div className="footer-wrapper">
         <div className="footer-left">
           <Link href={sitemap.home.path} className="footer-logo">
-            <Image
-              src="/images/footer/logo-footer.jpg"
-              alt="CRRU logo"
-              width={150}
-              height={150}
-            />
+            <Image src="/images/footer/logo-footer.jpg" alt="CRRU logo" width={150} height={150} />
           </Link>
 
           <div className="footer-left-content">
@@ -59,12 +54,10 @@ const Footer = () => (
 
             <ul className="footer-contact">
               <li>
-                <strong>Email:</strong>{" "}
-                <Link href="mailto:info@crru.org.uk">info@crru.org.uk</Link>
+                <strong>Email:</strong> <Link href="mailto:info@crru.org.uk">info@crru.org.uk</Link>
               </li>
               <li>
-                <strong>Phone:</strong>{" "}
-                <Link href="tel:+4401261851696">01261 851696</Link>
+                <strong>Phone:</strong> <Link href="tel:+4401261851696">01261 851696</Link>
               </li>
             </ul>
 
@@ -98,11 +91,7 @@ const Footer = () => (
                 </Link>
               </li>
               <li>
-                <Link
-                  href="https://www.bornfree.org.uk"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
+                <Link href="https://www.bornfree.org.uk" rel="noopener noreferrer" target="_blank">
                   <Image
                     src="/images/footer/logo-born-free.svg"
                     alt="Born Free UK logo"

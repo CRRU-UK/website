@@ -27,9 +27,7 @@ const Page: NextPage<PageProps> = ({ data }) => (
   </>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (
-  ctx,
-) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const preview = ctx?.query.preview === "true";
   const data = await getPageContent("/presentations", { preview });
 

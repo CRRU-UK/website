@@ -17,14 +17,7 @@ import {
   getBottlenoseDolphinItemEntrySlug,
 } from "@/helpers/getCatalogue";
 
-import {
-  Breadcrumbs,
-  SEO,
-  Timeline,
-  Tooltip,
-  Tree,
-  Toolbar,
-} from "@/components";
+import { Breadcrumbs, SEO, Timeline, Tooltip, Tree, Toolbar } from "@/components";
 
 import styles from "../[slug].module.scss";
 
@@ -159,12 +152,7 @@ const Page: NextPage<PageProps> = ({ catalogueData, ageText }: PageProps) => {
                 {sex === "Unknown" ? <Unknown /> : sex}
               </li>
 
-              <li
-                className={[
-                  styles["info-item-half"],
-                  styles["info-item-calves"],
-                ].join(" ")}
-              >
+              <li className={[styles["info-item-half"], styles["info-item-calves"]].join(" ")}>
                 <b>No. of Known Calves</b>
                 {sex !== "Female" ? (
                   <i className={styles.unknown}>N/A</i>
@@ -174,20 +162,18 @@ const Page: NextPage<PageProps> = ({ catalogueData, ageText }: PageProps) => {
               </li>
 
               <li
-                className={[
-                  styles["info-item-half"],
-                  styles["info-item-total-recaptures"],
-                ].join(" ")}
+                className={[styles["info-item-half"], styles["info-item-total-recaptures"]].join(
+                  " ",
+                )}
               >
                 <b>No. of Recaptures</b>
                 {totalRecaptures ?? <Unknown />}
               </li>
 
               <li
-                className={[
-                  styles["info-item-full"],
-                  styles["info-item-years-recaptured"],
-                ].join(" ")}
+                className={[styles["info-item-full"], styles["info-item-years-recaptured"]].join(
+                  " ",
+                )}
               >
                 <b>Years Recaptured</b>
                 {yearsRecaptured ? (
@@ -198,10 +184,9 @@ const Page: NextPage<PageProps> = ({ catalogueData, ageText }: PageProps) => {
               </li>
 
               <li
-                className={[
-                  styles["info-item-half"],
-                  styles["info-item-dorsal-fin-left"],
-                ].join(" ")}
+                className={[styles["info-item-half"], styles["info-item-dorsal-fin-left"]].join(
+                  " ",
+                )}
               >
                 <b>Left Dorsal Fin</b>
                 {leftDorsalFin ? (
@@ -218,10 +203,9 @@ const Page: NextPage<PageProps> = ({ catalogueData, ageText }: PageProps) => {
               </li>
 
               <li
-                className={[
-                  styles["info-item-half"],
-                  styles["info-item-dorsal-fin-right"],
-                ].join(" ")}
+                className={[styles["info-item-half"], styles["info-item-dorsal-fin-right"]].join(
+                  " ",
+                )}
               >
                 <b>Right Dorsal Fin</b>
                 {rightDorsalFin ? (
@@ -239,10 +223,7 @@ const Page: NextPage<PageProps> = ({ catalogueData, ageText }: PageProps) => {
 
               {otherImages.length > 0 && (
                 <li
-                  className={[
-                    styles["info-item-full"],
-                    styles["info-item-other-images"],
-                  ].join(" ")}
+                  className={[styles["info-item-full"], styles["info-item-other-images"]].join(" ")}
                 >
                   <b>Other Images</b>
                   <ul>
@@ -276,9 +257,7 @@ const Page: NextPage<PageProps> = ({ catalogueData, ageText }: PageProps) => {
         </article>
       </section>
 
-      <p className={styles["last-updated"]}>
-        Last updated: {formatDateMonth(lastUpdated)}
-      </p>
+      <p className={styles["last-updated"]}>Last updated: {formatDateMonth(lastUpdated)}</p>
     </>
   );
 };
@@ -287,9 +266,7 @@ interface PageParams extends ParsedUrlQuery {
   slug: string;
 }
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (
-  ctx,
-) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const { slug } = ctx.params as PageParams;
 
   const catalogueData = await getBottlenoseDolphinCatalogueItem(slug);

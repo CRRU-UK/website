@@ -127,27 +127,22 @@ it("Handles missing page query", async () => {
   expect(response._getData()).toBe("Missing `page` param");
 });
 
-it.each(["foo", 0, 1.5])(
-  "Handles incorrect page query value (%p)",
-  async (value) => {
-    const request = createRequest({
-      method: "GET",
-      url: "/api/catalogues/bottlenose-dolphin",
-      query: {
-        catalogue: "bottlenose-dolphin",
-        page: value,
-      },
-    }) as NextApiRequest;
+it.each(["foo", 0, 1.5])("Handles incorrect page query value (%p)", async (value) => {
+  const request = createRequest({
+    method: "GET",
+    url: "/api/catalogues/bottlenose-dolphin",
+    query: {
+      catalogue: "bottlenose-dolphin",
+      page: value,
+    },
+  }) as NextApiRequest;
 
-    const response = createResponse();
+  const response = createResponse();
 
-    await handler(request, response as any);
+  await handler(request, response as any);
 
-    expect(getCatalogueList).toHaveBeenCalledTimes(0);
+  expect(getCatalogueList).toHaveBeenCalledTimes(0);
 
-    expect(response.statusCode).toBe(400);
-    expect(response._getData()).toBe(
-      "`page` param must be an integer greater than 0",
-    );
-  },
-);
+  expect(response.statusCode).toBe(400);
+  expect(response._getData()).toBe("`page` param must be an integer greater than 0");
+});

@@ -12,12 +12,11 @@ import { flattenImageAssetFields } from "./flattenAssetFields";
  * @returns Species page entries.
  */
 const getSpecies = async (): Promise<Array<SpeciesEntry>> => {
-  const { items } =
-    await contentfulDeliveryClient.getEntries<ContentTypeSpeciesPage>({
-      content_type: ContentTypes.SpeciesPage,
-      order: ["fields.name"],
-      limit: 1000,
-    });
+  const { items } = await contentfulDeliveryClient.getEntries<ContentTypeSpeciesPage>({
+    content_type: ContentTypes.SpeciesPage,
+    order: ["fields.name"],
+    limit: 1000,
+  });
 
   const data = items.map(({ fields }) => ({
     name: fields.name,

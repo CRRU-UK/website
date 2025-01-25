@@ -1,82 +1,322 @@
 [
-  { "from": "/stranding(s?)", "to": "/rescue/stranded" },
-  { "from": "/sighting(s?)", "to": "/help/sightings-reports" },
-  { "from": "/index.asp", "to": "/" },
-  { "from": "/about_us.asp", "to": "/about" },
-  { "from": "/about_us-staff.asp", "to": "/about/meet-the-team" },
-  { "from": "/find_us.asp", "to": "/about/contact-us" },
-  { "from": "/funders_sponsors.asp", "to": "/about/funders-and-sponsors" },
-  { "from": "/contact_us.asp", "to": "/about/contact-us" },
-  { "from": "/research.asp", "to": "/research" },
-  { "from": "/bottlenose_studies.asp", "to": "/research/catalogues" },
-  { "from": "/bottlenose_archive.asp", "to": "/research/catalogues" },
-  { "from": "/research/bottlenose-archive", "to": "/research/catalogues" },
-  { "from": "/research/catalogues/bottlenose-dolphin", "to": "/research/catalogues" },
-  { "from": "/catalogues", "to": "/research/catalogues" },
-  { "from": "/minke.asp", "to": "/research/minke-whales" },
-  { "from": "/seismic_observation.asp", "to": "/research/environmental-mitigation" },
-  { "from": "/gibraltar.asp", "to": "/research" },
-  { "from": "/publications.asp", "to": "/research/publications" },
-  { "from": "/collaborations.asp", "to": "/research/collaborators" },
-  { "from": "/education.asp", "to": "/education" },
-  { "from": "/school_visits.asp", "to": "/education/school-visits" },
-  { "from": "/teaching_resources.asp", "to": "/" },
-  { "from": "/events_and_talks.asp", "to": "/education/events-and-talks" },
-  { "from": "/stands_and_exhibits.asp", "to": "/education/stands-and-exhibits" },
-  { "from": "/species.asp", "to": "/education/species" },
-  { "from": "/taxonomy.asp", "to": "/education/species/taxonomy" },
-  { "from": "/harbour_porpoise.asp", "to": "/education/species/harbour-porpoise" },
-  { "from": "/bottlenose_dolphin.asp", "to": "/education/species/bottlenose-dolphin" },
-  { "from": "/striped_dolphin.asp", "to": "/education/species/striped-dolphin" },
-  { "from": "/common_dolphin.asp", "to": "/education/species/common-dolphin" },
-  { "from": "/whitesided_dolphin.asp", "to": "/education/species/atlantic-white-sided-dolphin" },
-  { "from": "/whitebeaked_dolphin.asp", "to": "/education/species/white-beaked-dolphin" },
-  { "from": "/rissos_dolphin.asp", "to": "/education/species/rissos-dolphin" },
-  { "from": "/pilot_whale.asp", "to": "/education/species/long-finned-pilot-whale" },
-  { "from": "/orca.asp", "to": "/education/species/killer-whale" },
-  { "from": "/sperm_whale.asp", "to": "/education/species/sperm-whale" },
-  { "from": "/bottlenose_whale.asp", "to": "/education/species/northern-bottlenose-whale" },
-  { "from": "/cuviers_beakedwhale.asp", "to": "/education/species/cuviers-beaked-whale" },
-  { "from": "/sowerbys_beakedwhale.asp", "to": "/education/species/sowerbys-beaked-whale" },
-  { "from": "/minke_whale.asp", "to": "/education/species/minke-whale" },
-  { "from": "/humpback.asp", "to": "/education/species/humpback-whale" },
-  { "from": "/sei_whale.asp", "to": "/education/species/sei-whale" },
-  { "from": "/fin_whale.asp", "to": "/education/species/fin-whale" },
-  { "from": "/right_whale.asp", "to": "/education/species/northern-right-whale" },
-  { "from": "/mmo_course.asp", "to": "/training/mmo-training" },
-  { "from": "/rescue.asp", "to": "/rescue" },
-  { "from": "/stranded.asp", "to": "/rescue/stranded" },
-  { "from": "/cetaceans_identification.asp", "to": "/rescue/species-identification-key" },
-  { "from": "/rescue_training.asp", "to": "/rescue/rescue-training" },
-  { "from": "/help.asp", "to": "/help" },
-  { "from": "/sightings_reports.asp", "to": "/help/sightings-reports" },
-  { "from": "/join_the_team.asp", "to": "/training/summer-training-placements" },
-  { "from": "/training/summer-training-internships", "to": "/training/summer-training-placements" },
-  { "from": "/join", "to": "/training/summer-training-placements" },
-  { "from": "/become_a_member.asp", "to": "/help/become-a-friend" },
-  { "from": "/fundraising.asp", "to": "/help/fundraising-support" },
-  { "from": "/bequests.asp", "to": "/help/bequests" },
-  { "from": "/links.asp", "to": "/about/useful-links" },
-  { "from": "/online_shop.asp", "to": "/" },
-  { "from": "/presentations.asp", "to": "/presentations" },
-  { "from": "/terms.asp", "to": "/terms" },
-  { "from": "/photo_credits.asp", "to": "/credits" },
-  { "from": "/sitemap.asp", "to": "/sitemap" },
-  { "from": "/news.asp", "to": "/news" },
-  { "from": "/newsarticle.asp", "to": "/news" },
-  { "from": "/cust_images/pdfs/:file*", "to": "/research/publications" },
-  { "from": "/__friendly__URL__whitebeaked_dolphin.asp", "to": "/education/species/white-beaked-dolphin" },
-  { "from": "/__friendly__URL__whitesided_dolphin.asp", "to": "/education/species/atlantic-white-sided-dolphin" },
-  { "from": "/__friendly__URL__harbour_porpoise.asp", "to": "/education/species/harbour-porpoise" },
-  { "from": "/__friendly__URL__sperm_whale.asp", "to": "/education/species/sperm-whale" },
-  { "from": "/__friendly__URL__humpback.asp", "to": "/education/species/humpback-whale" },
-  { "from": "/__friendly__URL__stranded.asp", "to": "/rescue/stranded" },
-  { "from": "/join_the_team.asp%22", "to": "/training/summer-training-placements" },
-  { "from": "/education/factfiles/sperm.html", "to": "/education/species/sperm-whale" },
-  { "from": "/new-boat", "to": "https://www.avivacommunityfund.co.uk/p/whale-and-dolphin-rescue-boat-in-scotland" },
-  { "from": "/join", "to": "/training/summer-training-placements" },
-  { "from": "/page.asp", "to": "/" },
-  { "from": "/:page*.asp", "to": "/" },
-  { "from": "/:page*.html", "to": "/" },
-  { "from": "/:page*.htm", "to": "/" }
+  {
+    "from": "/stranding(s?)",
+    "to": "/rescue/stranded"
+  },
+  {
+    "from": "/sighting(s?)",
+    "to": "/help/sightings-reports"
+  },
+  {
+    "from": "/index.asp",
+    "to": "/"
+  },
+  {
+    "from": "/about_us.asp",
+    "to": "/about"
+  },
+  {
+    "from": "/about_us-staff.asp",
+    "to": "/about/meet-the-team"
+  },
+  {
+    "from": "/find_us.asp",
+    "to": "/about/contact-us"
+  },
+  {
+    "from": "/funders_sponsors.asp",
+    "to": "/about/funders-and-sponsors"
+  },
+  {
+    "from": "/contact_us.asp",
+    "to": "/about/contact-us"
+  },
+  {
+    "from": "/research.asp",
+    "to": "/research"
+  },
+  {
+    "from": "/bottlenose_studies.asp",
+    "to": "/research/catalogues"
+  },
+  {
+    "from": "/bottlenose_archive.asp",
+    "to": "/research/catalogues"
+  },
+  {
+    "from": "/research/bottlenose-archive",
+    "to": "/research/catalogues"
+  },
+  {
+    "from": "/research/catalogues/bottlenose-dolphin",
+    "to": "/research/catalogues"
+  },
+  {
+    "from": "/catalogues",
+    "to": "/research/catalogues"
+  },
+  {
+    "from": "/minke.asp",
+    "to": "/research/minke-whales"
+  },
+  {
+    "from": "/seismic_observation.asp",
+    "to": "/research/environmental-mitigation"
+  },
+  {
+    "from": "/gibraltar.asp",
+    "to": "/research"
+  },
+  {
+    "from": "/publications.asp",
+    "to": "/research/publications"
+  },
+  {
+    "from": "/collaborations.asp",
+    "to": "/research/collaborators"
+  },
+  {
+    "from": "/education.asp",
+    "to": "/education"
+  },
+  {
+    "from": "/school_visits.asp",
+    "to": "/education/school-visits"
+  },
+  {
+    "from": "/teaching_resources.asp",
+    "to": "/"
+  },
+  {
+    "from": "/events_and_talks.asp",
+    "to": "/education/events-and-talks"
+  },
+  {
+    "from": "/stands_and_exhibits.asp",
+    "to": "/education/stands-and-exhibits"
+  },
+  {
+    "from": "/species.asp",
+    "to": "/education/species"
+  },
+  {
+    "from": "/taxonomy.asp",
+    "to": "/education/species/taxonomy"
+  },
+  {
+    "from": "/harbour_porpoise.asp",
+    "to": "/education/species/harbour-porpoise"
+  },
+  {
+    "from": "/bottlenose_dolphin.asp",
+    "to": "/education/species/bottlenose-dolphin"
+  },
+  {
+    "from": "/striped_dolphin.asp",
+    "to": "/education/species/striped-dolphin"
+  },
+  {
+    "from": "/common_dolphin.asp",
+    "to": "/education/species/common-dolphin"
+  },
+  {
+    "from": "/whitesided_dolphin.asp",
+    "to": "/education/species/atlantic-white-sided-dolphin"
+  },
+  {
+    "from": "/whitebeaked_dolphin.asp",
+    "to": "/education/species/white-beaked-dolphin"
+  },
+  {
+    "from": "/rissos_dolphin.asp",
+    "to": "/education/species/rissos-dolphin"
+  },
+  {
+    "from": "/pilot_whale.asp",
+    "to": "/education/species/long-finned-pilot-whale"
+  },
+  {
+    "from": "/orca.asp",
+    "to": "/education/species/killer-whale"
+  },
+  {
+    "from": "/sperm_whale.asp",
+    "to": "/education/species/sperm-whale"
+  },
+  {
+    "from": "/bottlenose_whale.asp",
+    "to": "/education/species/northern-bottlenose-whale"
+  },
+  {
+    "from": "/cuviers_beakedwhale.asp",
+    "to": "/education/species/cuviers-beaked-whale"
+  },
+  {
+    "from": "/sowerbys_beakedwhale.asp",
+    "to": "/education/species/sowerbys-beaked-whale"
+  },
+  {
+    "from": "/minke_whale.asp",
+    "to": "/education/species/minke-whale"
+  },
+  {
+    "from": "/humpback.asp",
+    "to": "/education/species/humpback-whale"
+  },
+  {
+    "from": "/sei_whale.asp",
+    "to": "/education/species/sei-whale"
+  },
+  {
+    "from": "/fin_whale.asp",
+    "to": "/education/species/fin-whale"
+  },
+  {
+    "from": "/right_whale.asp",
+    "to": "/education/species/northern-right-whale"
+  },
+  {
+    "from": "/mmo_course.asp",
+    "to": "/training/mmo-training"
+  },
+  {
+    "from": "/rescue.asp",
+    "to": "/rescue"
+  },
+  {
+    "from": "/stranded.asp",
+    "to": "/rescue/stranded"
+  },
+  {
+    "from": "/cetaceans_identification.asp",
+    "to": "/rescue/species-identification-key"
+  },
+  {
+    "from": "/rescue_training.asp",
+    "to": "/rescue/rescue-training"
+  },
+  {
+    "from": "/help.asp",
+    "to": "/help"
+  },
+  {
+    "from": "/sightings_reports.asp",
+    "to": "/help/sightings-reports"
+  },
+  {
+    "from": "/join_the_team.asp",
+    "to": "/training/summer-training-placements"
+  },
+  {
+    "from": "/training/summer-training-internships",
+    "to": "/training/summer-training-placements"
+  },
+  {
+    "from": "/join",
+    "to": "/training/summer-training-placements"
+  },
+  {
+    "from": "/become_a_member.asp",
+    "to": "/help/become-a-friend"
+  },
+  {
+    "from": "/fundraising.asp",
+    "to": "/help/fundraising-support"
+  },
+  {
+    "from": "/bequests.asp",
+    "to": "/help/bequests"
+  },
+  {
+    "from": "/links.asp",
+    "to": "/about/useful-links"
+  },
+  {
+    "from": "/online_shop.asp",
+    "to": "/"
+  },
+  {
+    "from": "/presentations.asp",
+    "to": "/presentations"
+  },
+  {
+    "from": "/terms.asp",
+    "to": "/terms"
+  },
+  {
+    "from": "/photo_credits.asp",
+    "to": "/credits"
+  },
+  {
+    "from": "/sitemap.asp",
+    "to": "/sitemap"
+  },
+  {
+    "from": "/news.asp",
+    "to": "/news"
+  },
+  {
+    "from": "/newsarticle.asp",
+    "to": "/news"
+  },
+  {
+    "from": "/cust_images/pdfs/:file*",
+    "to": "/research/publications"
+  },
+  {
+    "from": "/__friendly__URL__whitebeaked_dolphin.asp",
+    "to": "/education/species/white-beaked-dolphin"
+  },
+  {
+    "from": "/__friendly__URL__whitesided_dolphin.asp",
+    "to": "/education/species/atlantic-white-sided-dolphin"
+  },
+  {
+    "from": "/__friendly__URL__harbour_porpoise.asp",
+    "to": "/education/species/harbour-porpoise"
+  },
+  {
+    "from": "/__friendly__URL__sperm_whale.asp",
+    "to": "/education/species/sperm-whale"
+  },
+  {
+    "from": "/__friendly__URL__humpback.asp",
+    "to": "/education/species/humpback-whale"
+  },
+  {
+    "from": "/__friendly__URL__stranded.asp",
+    "to": "/rescue/stranded"
+  },
+  {
+    "from": "/join_the_team.asp%22",
+    "to": "/training/summer-training-placements"
+  },
+  {
+    "from": "/education/factfiles/sperm.html",
+    "to": "/education/species/sperm-whale"
+  },
+  {
+    "from": "/new-boat",
+    "to": "https://www.avivacommunityfund.co.uk/p/whale-and-dolphin-rescue-boat-in-scotland"
+  },
+  {
+    "from": "/join",
+    "to": "/training/summer-training-placements"
+  },
+  {
+    "from": "/page.asp",
+    "to": "/"
+  },
+  {
+    "from": "/:page*.asp",
+    "to": "/"
+  },
+  {
+    "from": "/:page*.html",
+    "to": "/"
+  },
+  {
+    "from": "/:page*.htm",
+    "to": "/"
+  }
 ]

@@ -39,9 +39,7 @@ const Page: NextPage<PageProps> = ({ pageData, speciesData }) => (
   </CommonPage>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (
-  ctx,
-) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const preview = ctx?.query.preview === "true";
   const [pageData, speciesData] = await Promise.all([
     getPageContent(sitemap["cetacean-fact-files"].path, { preview }),

@@ -1,9 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import {
-  flattenImageAssetFields,
-  flattenVideoAssetFields,
-} from "./flattenAssetFields";
+import { flattenImageAssetFields, flattenVideoAssetFields } from "./flattenAssetFields";
 
 describe("flattenImageAssetFields", () => {
   const mockedImageFields = {

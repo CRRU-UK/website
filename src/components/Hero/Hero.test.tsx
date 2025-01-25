@@ -13,11 +13,7 @@ beforeAll(() => {
 it("Passes accessibility with default props", async () =>
   act(async () => {
     const { container } = render(
-      <Hero
-        title="test title"
-        subtitle="test subtitle"
-        background="/test-image.jpg"
-      />,
+      <Hero title="test title" subtitle="test subtitle" background="/test-image.jpg" />,
     );
 
     const results = await axe(container);
@@ -27,9 +23,7 @@ it("Passes accessibility with default props", async () =>
 
 it("Passes accessibility with optional props", async () =>
   act(async () => {
-    const { container } = render(
-      <Hero title="test title" subtitle="test subtitle" plain wide />,
-    );
+    const { container } = render(<Hero title="test title" subtitle="test subtitle" plain wide />);
 
     const results = await axe(container);
 

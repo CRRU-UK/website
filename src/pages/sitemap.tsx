@@ -11,9 +11,7 @@ import getSpecies from "@/helpers/getSpecies";
 
 import CommonPage from "@/layout/CommonPage";
 
-const ListItem = ({ item }: { item: SitemapItem }) => (
-  <Link href={item.path}>{item.title}</Link>
-);
+const ListItem = ({ item }: { item: SitemapItem }) => <Link href={item.path}>{item.title}</Link>;
 
 type SpeciesDataReduced = {
   name: string;
@@ -26,11 +24,7 @@ interface PageProps {
 }
 
 const Page: NextPage<PageProps> = ({ pageData, speciesData }: PageProps) => (
-  <CommonPage
-    page={sitemap.sitemap}
-    breadcrumbs={[sitemap.sitemap]}
-    data={pageData}
-  >
+  <CommonPage page={sitemap.sitemap} breadcrumbs={[sitemap.sitemap]} data={pageData}>
     <ul>
       <li>
         <ListItem item={sitemap.home} />
@@ -107,9 +101,7 @@ const Page: NextPage<PageProps> = ({ pageData, speciesData }: PageProps) => (
           <ul>
             {speciesData.map(({ name, slug }) => (
               <li key="slug">
-                <ListItem
-                  item={{ title: name, path: `/education/species/${slug}` }}
-                />
+                <ListItem item={{ title: name, path: `/education/species/${slug}` }} />
               </li>
             ))}
           </ul>
@@ -171,9 +163,7 @@ const Page: NextPage<PageProps> = ({ pageData, speciesData }: PageProps) => (
   </CommonPage>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (
-  ctx,
-) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const preview = ctx?.query.preview === "true";
   const [pageData, speciesData] = await Promise.all([
     getPageContent(sitemap.sitemap.path, { preview: preview }),

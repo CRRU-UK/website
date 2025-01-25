@@ -45,9 +45,7 @@ const Page: NextPage<PageProps> = ({ pageData, sponsorsData }) => (
   </CommonPage>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (
-  ctx,
-) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const preview = ctx?.query.preview === "true";
 
   const data = await getPageContent(sitemap.sponsors.path, {

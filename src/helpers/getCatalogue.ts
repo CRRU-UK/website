@@ -20,9 +20,7 @@ import { flattenImageAssetFields } from "./flattenAssetFields";
  * @returns Simplified data of entry.
  */
 const reduceCatalogueItem = (
-  entry: Entry<
-    ContentTypeCatalogueBottlenoseDolphin | ContentTypeCatalogueMinkeWhale
-  >,
+  entry: Entry<ContentTypeCatalogueBottlenoseDolphin | ContentTypeCatalogueMinkeWhale>,
 ): CatalogueBasicInfo => ({
   id: String(entry.fields.id),
   reference: entry.fields?.reference ? String(entry.fields.reference) : null,
@@ -61,23 +59,17 @@ const getCatalogueList = async (
   let result;
 
   if (catalogue === Catalogues.BottlenoseDolphin) {
-    result =
-      await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>(
-        {
-          content_type: ContentTypes.CatalogueBottlenoseDolphin,
-          ...query,
-        },
-      );
+    result = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>({
+      content_type: ContentTypes.CatalogueBottlenoseDolphin,
+      ...query,
+    });
   }
 
   if (catalogue === Catalogues.MinkeWhale) {
-    result =
-      await contentfulDeliveryClient.getEntries<ContentTypeCatalogueMinkeWhale>(
-        {
-          content_type: ContentTypes.CatalogueMinkeWhale,
-          ...query,
-        },
-      );
+    result = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueMinkeWhale>({
+      content_type: ContentTypes.CatalogueMinkeWhale,
+      ...query,
+    });
   }
 
   const items = result!.items.map((entry) => reduceCatalogueItem(entry));
@@ -98,17 +90,13 @@ const getCatalogueList = async (
  * @param entryID Contentful entry ID.
  * @returns Array of calf catalogue entries.
  */
-const getBottlenoseEntryCalves = async (
-  entryID: string,
-): Promise<Array<CatalogueBasicInfo>> => {
+const getBottlenoseEntryCalves = async (entryID: string): Promise<Array<CatalogueBasicInfo>> => {
   const { items } =
-    await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>(
-      {
-        content_type: ContentTypes.CatalogueBottlenoseDolphin,
-        "fields.mother.sys.id": entryID,
-        order: ["-fields.id"], // Order so 'current calf' is first
-      },
-    );
+    await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>({
+      content_type: ContentTypes.CatalogueBottlenoseDolphin,
+      "fields.mother.sys.id": entryID,
+      order: ["-fields.id"], // Order so 'current calf' is first
+    });
 
   const data = items.map((entry) => reduceCatalogueItem(entry));
 
@@ -124,13 +112,11 @@ const getBottlenoseDolphinCatalogueItem = async (
   slug: string,
 ): Promise<CatalogueBottlenoseDolphin | null> => {
   const { items } =
-    await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>(
-      {
-        content_type: ContentTypes.CatalogueBottlenoseDolphin,
-        limit: 1,
-        "fields.slug": slug,
-      },
-    );
+    await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>({
+      content_type: ContentTypes.CatalogueBottlenoseDolphin,
+      limit: 1,
+      "fields.slug": slug,
+    });
 
   if (!items.length) {
     return null;
@@ -158,21 +144,13 @@ const getBottlenoseDolphinCatalogueItem = async (
         ? flattenImageAssetFields(entry.fields.rightDorsalFin)
         : null,
       otherImages:
-        entry.fields.otherImages?.map((item) =>
-          flattenImageAssetFields(item as Asset),
-        ) ?? [],
+        entry.fields.otherImages?.map((item) => flattenImageAssetFields(item as Asset)) ?? [],
       lastUpdated: entry.sys.updatedAt,
     },
-    mother: entry.fields.mother
-      ? reduceCatalogueItem(entry.fields.mother)
-      : null,
+    mother: entry.fields.mother ? reduceCatalogueItem(entry.fields.mother) : null,
     calves,
-    previous: entry.fields.previousEntry
-      ? reduceCatalogueItem(entry.fields.previousEntry)
-      : null,
-    next: entry.fields.nextEntry
-      ? reduceCatalogueItem(entry.fields.nextEntry)
-      : null,
+    previous: entry.fields.previousEntry ? reduceCatalogueItem(entry.fields.previousEntry) : null,
+    next: entry.fields.nextEntry ? reduceCatalogueItem(entry.fields.nextEntry) : null,
   };
 
   return data;
@@ -187,13 +165,11 @@ const getBottlenoseDolphinItemEntrySlug = async (
   id: CatalogueBottlenoseDolphin["entry"]["id"],
 ): Promise<CatalogueBottlenoseDolphin["entry"]["slug"] | null> => {
   const { items } =
-    await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>(
-      {
-        content_type: ContentTypes.CatalogueBottlenoseDolphin,
-        limit: 1,
-        "fields.id": id,
-      },
-    );
+    await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>({
+      content_type: ContentTypes.CatalogueBottlenoseDolphin,
+      limit: 1,
+      "fields.id": id,
+    });
 
   if (!items.length) {
     return null;
@@ -209,15 +185,12 @@ const getBottlenoseDolphinItemEntrySlug = async (
  * @param slug Entry `slug` field value.
  * @returns Minke whale catalogue entry.
  */
-const getMinkeWhaleCatalogueItem = async (
-  slug: string,
-): Promise<CatalogueMinkeWhale | null> => {
-  const { items } =
-    await contentfulDeliveryClient.getEntries<ContentTypeCatalogueMinkeWhale>({
-      content_type: ContentTypes.CatalogueMinkeWhale,
-      limit: 1,
-      "fields.slug": slug,
-    });
+const getMinkeWhaleCatalogueItem = async (slug: string): Promise<CatalogueMinkeWhale | null> => {
+  const { items } = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueMinkeWhale>({
+    content_type: ContentTypes.CatalogueMinkeWhale,
+    limit: 1,
+    "fields.slug": slug,
+  });
 
   if (!items.length) {
     return null;
@@ -241,12 +214,8 @@ const getMinkeWhaleCatalogueItem = async (
         : null,
       lastUpdated: entry.sys.updatedAt,
     },
-    previous: entry.fields.previousEntry
-      ? reduceCatalogueItem(entry.fields.previousEntry)
-      : null,
-    next: entry.fields.nextEntry
-      ? reduceCatalogueItem(entry.fields.nextEntry)
-      : null,
+    previous: entry.fields.previousEntry ? reduceCatalogueItem(entry.fields.previousEntry) : null,
+    next: entry.fields.nextEntry ? reduceCatalogueItem(entry.fields.nextEntry) : null,
   };
 
   return data;
@@ -260,12 +229,11 @@ const getMinkeWhaleCatalogueItem = async (
 const getMinkeWhaleItemEntrySlug = async (
   id: CatalogueMinkeWhale["entry"]["id"],
 ): Promise<CatalogueMinkeWhale["entry"]["slug"] | null> => {
-  const { items } =
-    await contentfulDeliveryClient.getEntries<ContentTypeCatalogueMinkeWhale>({
-      content_type: ContentTypes.CatalogueMinkeWhale,
-      limit: 1,
-      "fields.id": id,
-    });
+  const { items } = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueMinkeWhale>({
+    content_type: ContentTypes.CatalogueMinkeWhale,
+    limit: 1,
+    "fields.id": id,
+  });
 
   if (!items.length) {
     return null;

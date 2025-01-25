@@ -3,10 +3,7 @@
 import type { Asset, AssetFile } from "contentful";
 import type { Node } from "@contentful/rich-text-types";
 
-import {
-  NodeRenderer,
-  documentToReactComponents,
-} from "@contentful/rich-text-react-renderer";
+import { NodeRenderer, documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
 import pageRenderOptions from "@/helpers/rendering/index";
 import { EmbeddedContentEntries } from "@/helpers/constants";
@@ -15,9 +12,7 @@ import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 import { Gallery, ImageRow, Highlight, Note } from "@/components";
 
 const renderGallery = (data: Node["data"]) => {
-  const images = data.target.fields.images.map((item: Asset) =>
-    flattenImageAssetFields(item),
-  );
+  const images = data.target.fields.images.map((item: Asset) => flattenImageAssetFields(item));
 
   return <Gallery images={images} />;
 };
@@ -34,10 +29,7 @@ const renderImageRow = (data: Node["data"]) => {
 };
 
 const renderHighlight = (data: Node["data"]) => {
-  const content = documentToReactComponents(
-    data.target.fields.content,
-    pageRenderOptions,
-  );
+  const content = documentToReactComponents(data.target.fields.content, pageRenderOptions);
   const { style } = data.target.fields;
 
   if (style === "Note") {
@@ -58,16 +50,10 @@ const renderColumns = (data: Node["data"]) => {
   return (
     <section className={`columns ${style}`}>
       <div className="columns-left">
-        {documentToReactComponents(
-          data.target.fields.leftColumn,
-          pageRenderOptions,
-        )}
+        {documentToReactComponents(data.target.fields.leftColumn, pageRenderOptions)}
       </div>
       <div className="columns-right">
-        {documentToReactComponents(
-          data.target.fields.rightColumn,
-          pageRenderOptions,
-        )}
+        {documentToReactComponents(data.target.fields.rightColumn, pageRenderOptions)}
       </div>
     </section>
   );
@@ -87,11 +73,7 @@ const renderVideo = (data: Node["data"]) => (
 const renderModule = (data: Node["data"]) => {
   if (data.target.fields.id === "membership-paypal-button") {
     return (
-      <form
-        action="https://www.paypal.com/cgi-bin/webscr"
-        method="post"
-        className="paypal"
-      >
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" className="paypal">
         <input type="hidden" name="cmd" value="_s-xclick" />
         <input type="hidden" name="hosted_button_id" value="68DD5VDPDK3TQ" />
         <input

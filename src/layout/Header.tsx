@@ -210,10 +210,7 @@ const Header = () => {
             >
               <span>About Us</span>
             </Link>
-            <SubmenuItem
-              active={submenu === Submenus.About}
-              data={aboutSubmenu}
-            />
+            <SubmenuItem active={submenu === Submenus.About} data={aboutSubmenu} />
           </li>
           <li className="dropdown">
             <Link
@@ -222,10 +219,7 @@ const Header = () => {
             >
               <span>Research</span>
             </Link>
-            <SubmenuItem
-              active={submenu === Submenus.Research}
-              data={researchSubmenu}
-            />
+            <SubmenuItem active={submenu === Submenus.Research} data={researchSubmenu} />
           </li>
           <li className="dropdown">
             <Link
@@ -234,10 +228,7 @@ const Header = () => {
             >
               <span>Rescue</span>
             </Link>
-            <SubmenuItem
-              active={submenu === Submenus.Rescue}
-              data={rescueSubmenu}
-            />
+            <SubmenuItem active={submenu === Submenus.Rescue} data={rescueSubmenu} />
           </li>
           <li className="dropdown">
             <Link
@@ -246,10 +237,7 @@ const Header = () => {
             >
               <span>Education</span>
             </Link>
-            <SubmenuItem
-              active={submenu === Submenus.Education}
-              data={educationSubmenu}
-            />
+            <SubmenuItem active={submenu === Submenus.Education} data={educationSubmenu} />
           </li>
           <li className="dropdown">
             <Link
@@ -258,10 +246,7 @@ const Header = () => {
             >
               <span>Training</span>
             </Link>
-            <SubmenuItem
-              active={submenu === Submenus.Training}
-              data={trainingSubmenu}
-            />
+            <SubmenuItem active={submenu === Submenus.Training} data={trainingSubmenu} />
           </li>
           <li className="dropdown">
             <Link
@@ -270,10 +255,7 @@ const Header = () => {
             >
               <span>Help</span>
             </Link>
-            <SubmenuItem
-              active={submenu === Submenus.Help}
-              data={helpSubmenu}
-            />
+            <SubmenuItem active={submenu === Submenus.Help} data={helpSubmenu} />
           </li>
           <li className="mobile">
             <Link href={sitemap.news.path}>

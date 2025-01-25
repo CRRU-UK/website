@@ -6,11 +6,7 @@ interface UseSearchProps {
   defaultValue?: string;
 }
 
-const UseSearch = ({
-  callback,
-  label = "Search...",
-  defaultValue,
-}: UseSearchProps) => (
+const UseSearch = ({ callback, label = "Search...", defaultValue }: UseSearchProps) => (
   <input
     type="search"
     name="search"
@@ -32,12 +28,7 @@ interface DropdownProps {
   callback: Function; // eslint-disable-line @typescript-eslint/no-unsafe-function-type
 }
 
-const UseDropdown = ({
-  name,
-  defaultValue,
-  options,
-  callback,
-}: DropdownProps) => (
+const UseDropdown = ({ name, defaultValue, options, callback }: DropdownProps) => (
   <select
     onInput={({ target }) => callback((target as HTMLSelectElement).value)}
     defaultValue={defaultValue ?? options[0].value}

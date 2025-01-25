@@ -22,13 +22,11 @@ const Page: NextPage<PageProps> = ({ data }) => (
     data={data}
   >
     <p>
-      <strong>Email:</strong>{" "}
-      <Link href="mailto:info@crru.org.uk">info@crru.org.uk</Link>
+      <strong>Email:</strong> <Link href="mailto:info@crru.org.uk">info@crru.org.uk</Link>
     </p>
 
     <p>
-      <strong>Telephone:</strong>{" "}
-      <Link href="tel:+4401261851696">01261 851696</Link>
+      <strong>Telephone:</strong> <Link href="tel:+4401261851696">01261 851696</Link>
     </p>
 
     <p>
@@ -55,9 +53,7 @@ const Page: NextPage<PageProps> = ({ data }) => (
   </CommonPage>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (
-  ctx,
-) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const preview = ctx?.query.preview === "true";
   const data = await getPageContent(sitemap.contact.path, { preview });
 

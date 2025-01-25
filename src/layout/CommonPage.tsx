@@ -23,17 +23,8 @@ interface Props {
   wide?: boolean;
 }
 
-const CommonPage = ({
-  page,
-  parent,
-  breadcrumbs,
-  data,
-  children,
-  wide = false,
-}: Props) => {
-  const backgroundImage = data?.background?.url
-    ? `url(${data.background.url})`
-    : undefined;
+const CommonPage = ({ page, parent, breadcrumbs, data, children, wide = false }: Props) => {
+  const backgroundImage = data?.background?.url ? `url(${data.background.url})` : undefined;
 
   const previewProps = useContentfulInspectorMode();
   const previewData = useContentfulLiveUpdates({
@@ -59,12 +50,7 @@ const CommonPage = ({
         }
       />
 
-      <Hero
-        title={page.title}
-        subtitle={parent?.title}
-        background={data?.image?.url}
-        wide={wide}
-      />
+      <Hero title={page.title} subtitle={parent?.title} background={data?.image?.url} wide={wide} />
 
       <Breadcrumbs items={breadcrumbs} style={wide ? "wide" : "normal"} />
 
@@ -76,8 +62,7 @@ const CommonPage = ({
           fieldId: "content",
         })}
       >
-        {data.content &&
-          documentToReactComponents(data.content, pageRenderOptions)}
+        {data.content && documentToReactComponents(data.content, pageRenderOptions)}
         {children}
       </article>
     </>

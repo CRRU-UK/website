@@ -27,9 +27,7 @@ const Gallery = ({ images }: Props) => {
     const scrollEvent = () => {
       const { scrollLeft, offsetWidth } = cachedRef;
 
-      const scrollIndex = Math.floor(
-        (scrollLeft + offsetWidth / 2) / offsetWidth,
-      );
+      const scrollIndex = Math.floor((scrollLeft + offsetWidth / 2) / offsetWidth);
       setSlideIndex(scrollIndex);
     };
 
@@ -69,17 +67,8 @@ const Gallery = ({ images }: Props) => {
   };
 
   const imageElements = imagesRefs.map((item) => (
-    <div
-      key={item.url}
-      className={styles.item}
-      ref={item.ref as React.RefObject<HTMLDivElement>}
-    >
-      <ImageCaption
-        src={item.url}
-        width={1000}
-        height={750}
-        caption={item.alt ?? ""}
-      />
+    <div key={item.url} className={styles.item} ref={item.ref as React.RefObject<HTMLDivElement>}>
+      <ImageCaption src={item.url} width={1000} height={750} caption={item.alt ?? ""} />
     </div>
   ));
 
