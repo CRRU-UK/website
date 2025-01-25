@@ -5,10 +5,8 @@
 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  align-items: start;
-  justify-items: stretch;
-  column-gap: $spacing;
-  row-gap: $spacing;
+  place-items: start stretch;
+  gap: $spacing $spacing;
   margin: variables.$global-spacing-large auto 0;
   padding: 0 variables.$global-padding-large;
   max-width: variables.$global-max-width;

@@ -7,10 +7,9 @@
 
 .breadcrumbs {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
-  flex-wrap: wrap;
   margin: 0 auto;
   padding: 5px variables.$global-padding-large;
   width: 100%;
@@ -44,8 +43,7 @@
     display: block;
     width: 10px;
     height: 10px;
-    background: url("../../../public/images/icons/small-arrow.svg") center
-      center no-repeat;
+    background: url("../../../public/images/icons/small-arrow.svg") center center no-repeat;
     background-size: contain;
 
     @include variables.breakpoint("small") {

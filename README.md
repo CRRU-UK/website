@@ -41,6 +41,7 @@ The app is made up of the following parts:
 1. Clone the repository
 2. Ensure you are using Node version >= 22 (`nvm install 22` / `nvm use 22`)
 3. Install the dependencies by running [`npm ci`](https://docs.npmjs.com/cli/ci.html)
+4. If using VS Code, install [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint), and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions
 
 The following environment variables should be provided when running the server (an `.env` file in the root is supported – see [`.env.example`](.env.example) for an example):
 
@@ -65,14 +66,13 @@ The following environment variables should be provided when running the server (
 
 Below are the NPM commands that can be used for development:
 
-| Command           | Description                                                           |
-| ----------------- | --------------------------------------------------------------------- |
-| `start`           | Starts the app (requires `build` to be run) on port 3000.             |
-| `build`           | Builds the app for production.                                        |
-| `dev`             | Runs the app in development mode on port 3000.                        |
-| `test`            | Runs `test:linting`, `test:typescript`, and `test:unit` sequentially. |
-| `test:linting`    | Runs ESLint and Prettier tests.                                       |
-| `test:stylelint`  | Runs stylelint tests.                                                 |
-| `test:typescript` | Runs TypeScript tests.                                                |
-| `test:unit`       | Runs unit and integration tests and generates a coverage report.      |
-| `test:unit:watch` | Same as `test:unit` but runs it in watch mode.                        |
+| Command           | Description                                                      |
+| ----------------- | ---------------------------------------------------------------- |
+| `start`           | Starts the app (requires `build` to be run) on port 3000.        |
+| `build`           | Builds the app for production.                                   |
+| `dev`             | Runs the app in development mode on port 3000.                   |
+| `test`            | Runs `test:linting`, `test:types`, and `test:unit` sequentially. |
+| `test:linting`    | Runs ESLint, Prettier, and Stylelint tests.                      |
+| `test:types`      | Runs TypeScript tests.                                           |
+| `test:jest`       | Runs unit and integration tests and generates a coverage report. |
+| `test:jest:watch` | Same as `test:jest` but runs it in watch mode.                   |

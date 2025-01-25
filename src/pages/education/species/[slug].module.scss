@@ -1,5 +1,4 @@
 @use "sass:math";
-
 @use "../../../scss/variables";
 
 .taxonomy {
@@ -11,8 +10,7 @@
   align-items: start;
   justify-content: space-between;
   grid-template-columns: 1fr 1fr 1fr;
-  column-gap: $spacing;
-  row-gap: $spacing;
+  gap: $spacing $spacing;
   width: 100%;
   border-radius: variables.$global-border-radius;
   list-style: none;

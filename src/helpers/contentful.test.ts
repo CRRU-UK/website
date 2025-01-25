@@ -19,15 +19,15 @@ describe("Contentful Helpers", () => {
     expect(contentful.createClient).toHaveBeenCalledTimes(2);
 
     expect(contentful.createClient).toHaveBeenNthCalledWith(1, {
-      space: "mocked-contentful-space-id",
-      environment: "mocked-contentful-environment",
-      accessToken: "mocked-contentful-delivery-api-token",
+      space: "mock-contentful-space-id",
+      environment: "mock-contentful-environment",
+      accessToken: "mock-contentful-delivery-token",
     });
 
     expect(contentful.createClient).toHaveBeenNthCalledWith(2, {
-      space: "mocked-contentful-space-id",
-      environment: "mocked-contentful-environment",
-      accessToken: "mocked-contentful-preview-api-token",
+      space: "mock-contentful-space-id",
+      environment: "mock-contentful-environment",
+      accessToken: "mock-contentful-preview-token",
       host: "preview.contentful.com",
     });
   });

@@ -1,6 +1,5 @@
 @use "sass:math";
 @use "sass:color";
-
 @use "../scss/variables";
 
 // Banner
@@ -12,27 +11,18 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: calc(
-    100vh - variables.$global-header-height-large -
-      variables.$global-spacing-large
-  );
+  height: calc(100vh - variables.$global-header-height-large - variables.$global-spacing-large);
   min-height: 600px;
   background: variables.$global-color-body;
 
   @include variables.breakpoint("medium") {
-    height: calc(
-      100vh - variables.$global-header-height-medium -
-        variables.$global-spacing-large
-    );
+    height: calc(100vh - variables.$global-header-height-medium - variables.$global-spacing-large);
     min-height: 300px;
     max-height: 800px;
   }
 
   @include variables.breakpoint("small") {
-    height: calc(
-      60vh - variables.$global-header-height-small -
-        variables.$global-spacing-small
-    );
+    height: calc(60vh - variables.$global-header-height-small - variables.$global-spacing-small);
     min-height: 400px;
   }
 }
@@ -41,8 +31,7 @@
   z-index: 10;
   position: relative;
   max-width: 1110px;
-  padding: 0 variables.$global-padding-large
-    variables.$global-header-height-large;
+  padding: 0 variables.$global-padding-large variables.$global-header-height-large;
   text-align: center;
 
   @include variables.breakpoint("small") {
@@ -119,10 +108,7 @@
     opacity: 1;
     color: inherit;
     text-decoration: underline;
-    background: color.adjust(
-      variables.$global-color-secondary,
-      $blackness: 10%
-    );
+    background: color.adjust(variables.$global-color-secondary, $blackness: 10%);
 
     > svg {
       transform: translateX(0);
@@ -304,8 +290,7 @@
     display: block;
     width: $size;
     height: $size;
-    background: url("../../public/images/icons/right-arrow.svg") center center
-      no-repeat transparent;
+    background: url("../../public/images/icons/right-arrow.svg") center center no-repeat transparent;
     background-size: contain;
     transform: translateY(4px);
 
@@ -404,8 +389,7 @@
 }
 
 .news-container {
-  margin: variables.$global-spacing-large 0
-    (variables.$global-spacing-large * 2);
+  margin: variables.$global-spacing-large 0 (variables.$global-spacing-large * 2);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -413,8 +397,7 @@
 
   @include variables.breakpoint("small") {
     flex-direction: column;
-    margin: variables.$global-spacing-small 0
-      (variables.$global-spacing-small * 2);
+    margin: variables.$global-spacing-small 0 (variables.$global-spacing-small * 2);
   }
 }
 

@@ -1,5 +1,4 @@
 @use "sass:math";
-
 @use "../variables";
 
 .top-link {
@@ -30,8 +29,7 @@
     margin-right: 10px;
     width: 18px;
     height: 18px;
-    background: center center no-repeat
-      url("../../../public/images/icons/large-arrow.svg");
+    background: center center no-repeat url("../../../public/images/icons/large-arrow.svg");
     background-size: contain;
   }
 }
@@ -182,8 +180,8 @@ footer .footer-left .footer-links li a.external::after {
   margin-left: 5px;
   width: 10px;
   height: 10px;
-  background: url("../../../public/images/icons/external-light.svg") center
-    center no-repeat transparent;
+  background: url("../../../public/images/icons/external-light.svg") center center no-repeat
+    transparent;
   background-size: contain;
 
   @include variables.breakpoint("small") {
@@ -197,6 +195,7 @@ footer .footer-left .footer-contact {
   margin-bottom: 20px;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 footer .footer-left .footer-contact li {
   margin-bottom: 10px;
 

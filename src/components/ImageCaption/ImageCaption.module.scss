@@ -31,7 +31,6 @@
 $icon-size-large: 30px;
 $icon-padding-large: 20px;
 $caption-size-large: $icon-size-large + ($icon-padding-large * 2);
-
 $icon-size-small: 16px;
 $icon-padding-small: 16px;
 $caption-size-small: $icon-size-small + ($icon-padding-small * 2);
@@ -67,8 +66,8 @@ $caption-size-small: $icon-size-small + ($icon-padding-small * 2);
     display: block;
     width: $icon-size-large;
     height: $icon-size-large;
-    background: url("../../../public/images/icons/image-caption.svg") center
-      center no-repeat transparent;
+    background: url("../../../public/images/icons/image-caption.svg") center center no-repeat
+      transparent;
     background-size: contain;
   }
 

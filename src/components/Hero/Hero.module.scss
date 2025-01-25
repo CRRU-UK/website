@@ -1,5 +1,4 @@
 @use "sass:math";
-
 @use "../../scss/variables";
 
 .hero {
@@ -9,8 +8,7 @@
   align-items: flex-end;
   height: 550px;
   position: relative;
-  padding: variables.$global-padding-large 0
-    (variables.$global-padding-large - 5px); // Remove a little bit due to line height
+  padding: variables.$global-padding-large 0 (variables.$global-padding-large - 5px); // Remove a little bit due to line height
 
   &:not(.hero-no-image)::before,
   &:not(.hero-plain)::before {
@@ -33,8 +31,7 @@
   }
 
   @include variables.breakpoint("small") {
-    padding: variables.$global-padding-small 0
-      (variables.$global-padding-small - 5px); // Remove a little bit due to line height;
+    padding: variables.$global-padding-small 0 (variables.$global-padding-small - 5px); // Remove a little bit due to line height;
     height: 250px;
   }
 }

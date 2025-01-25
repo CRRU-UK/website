@@ -1,5 +1,4 @@
 @use "sass:math";
-
 @use "../../../scss/variables";
 
 .loading {
@@ -30,19 +29,16 @@
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: math.div(variables.$global-spacing-large, 2);
-  row-gap: math.div(variables.$global-spacing-large, 2);
+  gap: math.div(variables.$global-spacing-large, 2) math.div(variables.$global-spacing-large, 2);
   list-style: none;
 
   @include variables.breakpoint("medium") {
-    column-gap: math.div(variables.$global-spacing-medium, 2);
-    row-gap: math.div(variables.$global-spacing-medium, 2);
+    gap: math.div(variables.$global-spacing-medium, 2) math.div(variables.$global-spacing-medium, 2);
   }
 
   @include variables.breakpoint("small") {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: math.div(variables.$global-spacing-small, 2);
-    row-gap: math.div(variables.$global-spacing-small, 2);
+    gap: math.div(variables.$global-spacing-small, 2) math.div(variables.$global-spacing-small, 2);
   }
 }
 
@@ -103,7 +99,7 @@
   }
 }
 
-.current-page > button {
+.pagination > li.current-page > button {
   color: variables.$global-color-background;
   background: variables.$global-color-primary;
 

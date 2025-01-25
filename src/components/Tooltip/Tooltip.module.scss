@@ -2,7 +2,6 @@
 
 $icon-size-large: 18px;
 $icon-size-small: 14px;
-
 $tooltip-spacing: 10px;
 
 .tooltip {
@@ -32,8 +31,7 @@ $tooltip-spacing: 10px;
   z-index: 0;
   width: $icon-size-large;
   height: $icon-size-large;
-  background: url("../../../public/images/icons/tooltip.svg") center center
-    no-repeat transparent;
+  background: url("../../../public/images/icons/tooltip.svg") center center no-repeat transparent;
   background-size: contain;
 
   @include variables.breakpoint("small") {

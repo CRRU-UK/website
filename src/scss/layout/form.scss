@@ -1,6 +1,5 @@
 @use "sass:math";
 @use "sass:color";
-
 @use "../variables";
 
 form:not(.paypal) {
@@ -34,10 +33,8 @@ form:not(.paypal) {
   > .form-columns {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    align-items: start;
-    justify-items: stretch;
-    column-gap: variables.$global-spacing-large;
-    row-gap: variables.$global-spacing-large;
+    place-items: start stretch;
+    gap: variables.$global-spacing-large variables.$global-spacing-large;
     margin-bottom: variables.$global-spacing-large;
 
     @include variables.breakpoint("medium") {
@@ -46,8 +43,7 @@ form:not(.paypal) {
 
     @include variables.breakpoint("small") {
       grid-template-columns: 1fr;
-      column-gap: variables.$global-spacing-small;
-      row-gap: variables.$global-spacing-small;
+      gap: variables.$global-spacing-small variables.$global-spacing-small;
       margin-bottom: variables.$global-spacing-small;
     }
   }
@@ -118,10 +114,7 @@ form:not(.paypal) {
 
     &:hover {
       cursor: pointer;
-      background: color.adjust(
-        variables.$global-color-primary-dark,
-        $blackness: 10%
-      );
+      background: color.adjust(variables.$global-color-primary-dark, $blackness: 10%);
     }
   }
 

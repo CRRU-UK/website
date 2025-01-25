@@ -1,8 +1,6 @@
 @use "sass:color";
 @use "sass:meta";
-
 @use "variables";
-
 @include meta.load-css("layout/header");
 @include meta.load-css("layout/footer");
 
@@ -18,7 +16,7 @@
 
 @font-face {
   font-display: swap;
-  font-family: "Poppins";
+  font-family: Poppins;
   font-style: normal;
   font-weight: 500;
   src: url("/fonts/Poppins-Medium.ttf") format("woff2");
@@ -26,7 +24,7 @@
 
 @font-face {
   font-display: swap;
-  font-family: "Poppins";
+  font-family: Poppins;
   font-style: italic;
   font-weight: 500;
   src: url("/fonts/Poppins-MediumItalic.ttf") format("woff2");
@@ -34,7 +32,7 @@
 
 @font-face {
   font-display: swap;
-  font-family: "Poppins";
+  font-family: Poppins;
   font-style: normal;
   font-weight: 700;
   src: url("/fonts/Poppins-Bold.ttf") format("woff2");
@@ -42,7 +40,7 @@
 
 @font-face {
   font-display: swap;
-  font-family: "Poppins";
+  font-family: Poppins;
   font-style: italic;
   font-weight: 700;
   src: url("/fonts/Poppins-BoldItalic.ttf") format("woff2");
@@ -106,8 +104,7 @@ main {
   > article {
     margin: 0 auto;
     max-width: variables.$global-max-width;
-    padding: (variables.$global-spacing-large * 1.5)
-      variables.$global-padding-large 0;
+    padding: (variables.$global-spacing-large * 1.5) variables.$global-padding-large 0;
     background: bottom right repeat-y transparent;
 
     @include variables.breakpoint("small") {
@@ -130,10 +127,8 @@ main {
 main .grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  align-items: start;
-  justify-items: stretch;
-  column-gap: variables.$global-spacing-large;
-  row-gap: variables.$global-spacing-large * 1.5;
+  place-items: start stretch;
+  gap: variables.$global-spacing-large * 1.5 variables.$global-spacing-large;
 
   @include variables.breakpoint("medium") {
     grid-template-columns: 1fr 1fr;
@@ -141,8 +136,7 @@ main .grid {
 
   @include variables.breakpoint("small") {
     grid-template-columns: 1fr;
-    column-gap: variables.$global-spacing-small;
-    row-gap: variables.$global-spacing-small * 1.5;
+    gap: variables.$global-spacing-small * 1.5 variables.$global-spacing-small;
   }
 }
 
@@ -154,7 +148,6 @@ main .details {
   margin: (variables.$global-spacing-large * 0.5) auto 0;
   padding: 0 variables.$global-padding-large;
   max-width: variables.$global-max-width;
-
   list-style: none;
 
   @include variables.breakpoint("small") {

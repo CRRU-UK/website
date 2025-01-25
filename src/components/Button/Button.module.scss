@@ -1,6 +1,5 @@
 @use "sass:math";
 @use "sass:color";
-
 @use "../../scss/variables";
 
 .button {
@@ -24,10 +23,7 @@
   &:hover {
     text-decoration: underline;
     color: color.adjust(variables.$global-color-primary-dark, $blackness: 10%);
-    border-color: color.adjust(
-      variables.$global-color-primary-dark,
-      $blackness: 10%
-    );
+    border-color: color.adjust(variables.$global-color-primary-dark, $blackness: 10%);
     background: variables.$global-color-primary-light;
   }
 }

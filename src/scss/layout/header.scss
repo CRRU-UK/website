@@ -1,5 +1,6 @@
-@use "sass:math";
+/* stylelint-disable no-descending-specificity */
 
+@use "sass:math";
 @use "../variables";
 
 %flex-center {
@@ -107,7 +108,7 @@ header > nav ul.menu > li {
   position: relative;
 
   @include variables.breakpoint("small") {
-    position: static; // Required for submenu positioning
+    position: static;
     margin: 0 auto;
     width: 100%;
   }
@@ -129,8 +130,7 @@ header > nav ul.menu > li {
     display: block;
     width: 100%;
     height: 5px;
-    background: url("../../../public/images/header/icon-dropdown.svg") center
-      center no-repeat;
+    background: url("../../../public/images/header/icon-dropdown.svg") center center no-repeat;
     background-size: contain;
 
     @include variables.breakpoint("medium") {
@@ -172,8 +172,7 @@ header > nav ul.menu > li > a {
 
   @include variables.breakpoint("small") {
     align-items: center;
-    padding: variables.$global-spacing-small
-      (variables.$global-spacing-small * 2);
+    padding: variables.$global-spacing-small (variables.$global-spacing-small * 2);
     font-size: 22px;
     line-height: 22px;
   }
@@ -260,8 +259,7 @@ header > nav ul.submenu > li.mobile {
 
   &.header {
     opacity: 0.7;
-    padding: variables.$global-spacing-small
-      (variables.$global-spacing-small * 2);
+    padding: variables.$global-spacing-small (variables.$global-spacing-small * 2);
     font-weight: 700;
     font-size: 16px;
     line-height: 16px;
@@ -289,8 +287,7 @@ header > nav ul.submenu a {
   }
 
   @include variables.breakpoint("small") {
-    padding: variables.$global-spacing-small
-      (variables.$global-spacing-small * 2);
+    padding: variables.$global-spacing-small (variables.$global-spacing-small * 2);
     justify-content: flex-start;
     border-radius: 0;
   }
@@ -313,8 +310,7 @@ header > nav ul.submenu a {
     display: block;
     width: $size;
     height: $size;
-    background: center center no-repeat
-      url("../../../public/images/header/icon-submenu.svg");
+    background: center center no-repeat url("../../../public/images/header/icon-submenu.svg");
     background-size: contain;
     transform: translateX(-5px);
     transition:

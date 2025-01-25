@@ -1,6 +1,5 @@
 @use "sass:math";
 @use "sass:color";
-
 @use "../variables";
 
 h1,
@@ -28,8 +27,7 @@ a {
     margin-left: 5px;
     width: 12px;
     height: 12px;
-    background: url("../../../public/images/icons/external.svg") center center
-      no-repeat transparent;
+    background: url("../../../public/images/icons/external.svg") center center no-repeat transparent;
     background-size: contain;
 
     @include variables.breakpoint("small") {
@@ -189,8 +187,7 @@ hr {
     display: block;
     width: $size;
     height: $size;
-    background: url("../../../public/images/icons/horizontal-rule.svg") center
-      center no-repeat;
+    background: url("../../../public/images/icons/horizontal-rule.svg") center center no-repeat;
     background-size: contain;
   }
 }

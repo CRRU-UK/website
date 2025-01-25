@@ -1,6 +1,5 @@
 @use "sass:math";
 @use "sass:color";
-
 @use "../../../scss/variables";
 
 // Container
@@ -38,29 +37,16 @@ $grid-spacing-small: math.div(variables.$global-spacing-small, 2);
 
   > .wrapper {
     border-top: 2px solid variables.$global-color-catalogue;
-    padding: (
-        variables.$global-padding-large +
-          math.div(variables.$global-padding-large, 2)
-      )
+    padding: (variables.$global-padding-large + math.div(variables.$global-padding-large, 2))
       variables.$global-padding-large;
 
-    @include variables.breakpoint(
-      variables.$global-catalogue-breakpoint-medium
-    ) {
-      padding: (
-          variables.$global-padding-medium +
-            math.div(variables.$global-padding-medium, 2)
-        )
+    @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
+      padding: (variables.$global-padding-medium + math.div(variables.$global-padding-medium, 2))
         variables.$global-padding-medium;
     }
 
-    @include variables.breakpoint(
-      variables.$global-catalogue-breakpoint-small
-    ) {
-      padding: (
-          variables.$global-padding-small +
-            math.div(variables.$global-padding-small, 2)
-        )
+    @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
+      padding: (variables.$global-padding-small + math.div(variables.$global-padding-small, 2))
         variables.$global-padding-small;
     }
   }
@@ -121,9 +107,7 @@ $grid-spacing-small: math.div(variables.$global-spacing-small, 2);
     background-color: transparent;
     background-size: contain;
 
-    @include variables.breakpoint(
-      variables.$global-catalogue-breakpoint-small
-    ) {
+    @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
       width: 24px;
       height: 16px;
     }
@@ -143,19 +127,16 @@ $grid-spacing-small: math.div(variables.$global-spacing-small, 2);
   padding: 0;
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  column-gap: $grid-spacing-large;
-  row-gap: $grid-spacing-large;
+  gap: $grid-spacing-large $grid-spacing-large;
   list-style: none;
 
   @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: $grid-spacing-medium;
-    row-gap: $grid-spacing-medium;
+    gap: $grid-spacing-medium $grid-spacing-medium;
   }
 
   @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
-    column-gap: $grid-spacing-small;
-    row-gap: $grid-spacing-small;
+    gap: $grid-spacing-small $grid-spacing-small;
   }
 }
 
@@ -189,9 +170,7 @@ $grid-spacing-small: math.div(variables.$global-spacing-small, 2);
     line-height: 18px;
     font-weight: 500;
 
-    @include variables.breakpoint(
-      variables.$global-catalogue-breakpoint-small
-    ) {
+    @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
       font-size: 14px;
       line-height: 14px;
     }
@@ -208,9 +187,7 @@ $grid-spacing-small: math.div(variables.$global-spacing-small, 2);
     font-weight: 500;
     color: variables.$global-color-grey;
 
-    @include variables.breakpoint(
-      variables.$global-catalogue-breakpoint-small
-    ) {
+    @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
       margin-bottom: 8px;
       font-size: 16px;
       line-height: 16px;
@@ -231,9 +208,7 @@ $grid-spacing-small: math.div(variables.$global-spacing-small, 2);
   &.info-item-wide {
     grid-column: span 4;
 
-    @include variables.breakpoint(
-      variables.$global-catalogue-breakpoint-medium
-    ) {
+    @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
       grid-column: span 1;
     }
   }
@@ -268,15 +243,11 @@ $grid-spacing-small: math.div(variables.$global-spacing-small, 2);
     list-style: none;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    column-gap: 20px;
-    row-gap: 20px;
+    gap: 20px;
 
-    @include variables.breakpoint(
-      variables.$global-catalogue-breakpoint-medium
-    ) {
+    @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
       grid-template-columns: repeat(2, 1fr);
-      column-gap: 10px;
-      row-gap: 10px;
+      gap: 10px;
     }
 
     > li {
@@ -373,14 +344,12 @@ $sidebar-size-medium: 480px;
   justify-content: space-between;
   align-items: center;
   flex-shrink: 0;
-  padding: (variables.$global-padding-large * 2) 0
-    variables.$global-padding-large;
+  padding: (variables.$global-padding-large * 2) 0 variables.$global-padding-large;
   width: $sidebar-size-large;
   border-left: 2px solid variables.$global-color-catalogue;
   border-bottom: 2px solid variables.$global-color-catalogue;
   border-bottom-left-radius: variables.$global-border-radius;
-  background: top left repeat
-    url("../../../../public/images/catalogue-background.svg")
+  background: top left repeat url("../../../../public/images/catalogue-background.svg")
     variables.$global-color-catalogue-light;
 
   @media (min-width: variables.$global-catalogue-max-width) {
@@ -390,14 +359,12 @@ $sidebar-size-medium: 480px;
   }
 
   @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
-    padding: (variables.$global-padding-medium * 2) 0
-      variables.$global-padding-medium;
+    padding: (variables.$global-padding-medium * 2) 0 variables.$global-padding-medium;
     width: $sidebar-size-medium;
   }
 
   @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
-    padding: (variables.$global-padding-small * 2) 0
-      variables.$global-padding-small;
+    padding: (variables.$global-padding-small * 2) 0 variables.$global-padding-small;
     width: 100%;
     border-left: 0;
     border-radius: 0;
@@ -464,14 +431,11 @@ $sidebar-size-medium: 480px;
     margin-right: 10px;
     min-width: 16px;
     min-height: 16px;
-    background: url("../../../../public/images/icons/large-arrow.svg") center
-      center no-repeat;
+    background: url("../../../../public/images/icons/large-arrow.svg") center center no-repeat;
     background-size: contain;
     transform: rotate(-90deg);
 
-    @include variables.breakpoint(
-      variables.$global-catalogue-breakpoint-small
-    ) {
+    @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
       margin-right: 8px;
       min-width: 12px;
       min-height: 12px;

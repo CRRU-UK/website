@@ -1,5 +1,4 @@
 @use "sass:math";
-
 @use "../../scss/variables";
 
 .gallery {
@@ -86,8 +85,7 @@
 }
 
 .pagination-arrow::before {
-  background: url("../../../public/images/icons/gallery-arrow.svg") center
-    center no-repeat;
+  background: url("../../../public/images/icons/gallery-arrow.svg") center center no-repeat;
   background-size: contain;
 
   &:hover {

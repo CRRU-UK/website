@@ -1,13 +1,10 @@
 @use "sass:math";
-
 @use "../../scss/variables";
 
 $row-items: 7;
-
 $line-size-large: 4px;
 $circle-size-large: 15px + $line-size-large;
 $circle-margin-large: 10px;
-
 $line-size-small: 2px;
 $circle-size-small: 10px + $line-size-small;
 $circle-margin-small: 8px;
@@ -25,6 +22,11 @@ $circle-margin-small: 8px;
     margin-top: 15px;
     row-gap: 15px;
   }
+}
+
+.timeline-single > li::after {
+  content: none;
+  display: none;
 }
 
 .timeline > li {
@@ -125,9 +127,4 @@ $circle-margin-small: 8px;
     font-size: 12px;
     line-height: 12px;
   }
-}
-
-.timeline-single > li::after {
-  content: none;
-  display: none;
 }
