@@ -16,7 +16,7 @@
 
 ## Introduction
 
-Source code for the [crru.org.uk](https://crru.org.uk) website – built in NextJS, TypeScript, React, and SCSS and managed with Terraform.
+Source code for the [crru.org.uk](https://crru.org.uk) website – built in NextJS, TypeScript, Jest, React, and SCSS; with infrastructure managed with Terraform.
 
 The website primarily uses Contentful as the main source of data.
 
@@ -41,7 +41,7 @@ The app is made up of the following parts:
 1. Clone the repository
 2. Ensure you are using Node version >= 22 (`nvm install 22` / `nvm use 22`)
 3. Install the dependencies by running [`npm ci`](https://docs.npmjs.com/cli/ci.html)
-4. If using VS Code, install [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint), and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions
+4. If using VS Code install the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint), and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions
 
 The following environment variables should be provided when running the server (an `.env` file in the root is supported – see [`.env.example`](.env.example) for an example):
 
