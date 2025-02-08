@@ -4,7 +4,7 @@ import redirects from "./redirects.json";
 
 const CSPHeader = [
   `default-src 'self'`,
-  `script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com`,
+  `script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com challenges.cloudflare.com`,
   `style-src 'self' 'unsafe-inline'`,
   `img-src 'self' *.ctfassets.net blob: data:'`,
   `media-src 'self' *.ctfassets.net blob:`,
