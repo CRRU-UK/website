@@ -178,7 +178,7 @@ resource "cloudflare_turnstile_widget" "website_challenge" {
   bot_fight_mode = false
 }
 
-resource "cloudflare_record" "website_dns_apex" {
+resource "cloudflare_dns_record" "website_dns_apex" {
   zone_id = var.cloudflare_zone_id
 
   name    = "@"
@@ -189,7 +189,7 @@ resource "cloudflare_record" "website_dns_apex" {
   comment = "Website (apex)"
 }
 
-resource "cloudflare_record" "website_dns_www" {
+resource "cloudflare_dns_record" "website_dns_www" {
   zone_id = var.cloudflare_zone_id
 
   name    = "www"
