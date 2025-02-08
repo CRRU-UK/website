@@ -12,7 +12,7 @@ const CSPHeader = [
   `object-src 'none'`,
   `base-uri 'self'`,
   `form-action 'self'`,
-  `frame-src 'self' *.youtube.com *.youtube-nocookie.com`,
+  `frame-src 'self' challenges.cloudflare.com *.youtube.com *.youtube-nocookie.com`,
   `frame-ancestors 'none'`,
   `upgrade-insecure-requests'`,
 ].join("; ");
