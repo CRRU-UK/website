@@ -4,9 +4,9 @@ import redirects from "./redirects.json";
 
 const CSPHeader = [
   `default-src 'self'`,
-  `script-src 'self' 'unsafe-eval' 'unsafe-inline' *.googletagmanager.com challenges.cloudflare.com`,
+  `script-src 'self' 'unsafe-eval' 'unsafe-inline' challenges.cloudflare.com *.googletagmanager.com`,
   `style-src 'self' 'unsafe-inline'`,
-  `img-src 'self' *.ctfassets.net blob: data:'`,
+  `img-src 'self' *.ctfassets.net blob:`,
   `media-src 'self' *.ctfassets.net blob:`,
   `font-src 'self'`,
   `object-src 'none'`,
@@ -14,7 +14,7 @@ const CSPHeader = [
   `form-action 'self'`,
   `frame-src 'self' challenges.cloudflare.com *.youtube.com *.youtube-nocookie.com`,
   `frame-ancestors 'none'`,
-  `upgrade-insecure-requests'`,
+  `upgrade-insecure-requests`,
 ].join("; ");
 
 const nextConfig: NextConfig = {
