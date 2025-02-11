@@ -15,6 +15,10 @@
 }
 
 .item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
   margin-bottom: math.div(variables.$global-spacing-large, 2);
   padding: math.div(variables.$global-padding-large, 2);
   border-radius: variables.$global-border-radius;
@@ -23,6 +27,18 @@
   @include variables.breakpoint("small") {
     margin-bottom: math.div(variables.$global-spacing-small, 2);
     padding: math.div(variables.$global-padding-small, 2);
+  }
+}
+
+.item .image {
+  margin-right: math.div(variables.$global-spacing-large, 2);
+  display: block;
+  width: 100px;
+  height: auto;
+
+  @include variables.breakpoint("small") {
+    width: 80px;
+    margin-right: math.div(variables.$global-spacing-small, 2);
   }
 }
 
