@@ -70,7 +70,7 @@ const PublicationEntry = ({
       {image && (
         <Image
           src={image.url}
-          alt={image.alt || ""}
+          alt={image.alt ?? "Publication cover image."}
           width={image.width}
           height={image.height}
           className={styles.image}
