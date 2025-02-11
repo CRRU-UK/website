@@ -190,6 +190,7 @@ export type ContentTypeScientificPublication = {
     category: EntryFieldTypes.Symbol;
     date: EntryFieldTypes.Date;
     attachment: EntryFieldTypes.AssetLink;
+    image: EntryFieldTypes.AssetLink;
   };
 };
 

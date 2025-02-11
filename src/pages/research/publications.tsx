@@ -4,14 +4,16 @@ import type { AssetFile } from "contentful";
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
+import Image from "next/image";
 
-import type { PageData, ContentTypeScientificPublication } from "@/helpers/types";
+import type { PageData, ContentTypeScientificPublication, FlattenedImage } from "@/helpers/types";
 
 import sitemap from "@/data/sitemap.json";
 
 import getPageContent from "@/helpers/getPageContent";
 import { ContentTypes, ScientificPublicationCategories } from "@/helpers/constants";
 import { contentfulDeliveryClient } from "@/helpers/contentful";
+import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 
 import CommonPage from "@/layout/CommonPage";
 import { Filters } from "@/components";
@@ -23,6 +25,7 @@ type PublicationDataReduced = {
   title: string;
   description: string;
   attachment: string | null;
+  image: FlattenedImage | null;
 };
 
 interface PageProps {
@@ -30,7 +33,13 @@ interface PageProps {
   publicationsData: Array<PublicationDataReduced>;
 }
 
-const PublicationEntry = ({ category, title, description, attachment }: PublicationDataReduced) => {
+const PublicationEntry = ({
+  category,
+  title,
+  description,
+  attachment,
+  image,
+}: PublicationDataReduced) => {
   let download = null;
 
   if (attachment) {
@@ -58,12 +67,23 @@ const PublicationEntry = ({ category, title, description, attachment }: Publicat
 
   return (
     <article key={description} className={styles.item}>
-      <span className={styles.header}>
-        <p className={styles.title}>{title}</p>
-        <span className={categoryClasses.join(" ")}>{category}</span>
-      </span>
-      <ReactMarkdown>{description}</ReactMarkdown>
-      {download}
+      {image && (
+        <Image
+          src={image.url}
+          alt={image.alt ?? "Publication cover image."}
+          width={image.width}
+          height={image.height}
+          className={styles.image}
+        />
+      )}
+      <div className={styles.wrapper}>
+        <span className={styles.header}>
+          <p className={styles.title}>{title}</p>
+          <span className={categoryClasses.join(" ")}>{category}</span>
+        </span>
+        <ReactMarkdown>{description}</ReactMarkdown>
+        {download}
+      </div>
     </article>
   );
 };
@@ -151,6 +171,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
     title: item.fields.title,
     description: item.fields.description,
     attachment: (item.fields.attachment?.fields?.file as AssetFile)?.url || null,
+    image: item.fields?.image ? flattenImageAssetFields(item.fields.image) : null,
   }));
 
   return {
