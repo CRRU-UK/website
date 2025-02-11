@@ -33,11 +33,13 @@
 .item .image {
   margin-right: math.div(variables.$global-spacing-large, 2);
   display: block;
-  width: 100px;
+  width: 100%;
+  max-width: 100px;
   height: auto;
+  border: 1px solid variables.$global-color-body-dark;
 
   @include variables.breakpoint("small") {
-    width: 80px;
+    min-width: 80px;
     margin-right: math.div(variables.$global-spacing-small, 2);
   }
 }
