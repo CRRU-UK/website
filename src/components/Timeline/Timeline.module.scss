@@ -24,11 +24,6 @@ $circle-margin-small: 8px;
   }
 }
 
-.timeline-single > li::after {
-  content: none;
-  display: none;
-}
-
 .timeline > li {
   position: relative;
   display: flex;
@@ -112,6 +107,11 @@ $circle-margin-small: 8px;
   &:last-child::after {
     width: 50%;
   }
+}
+
+.timeline.single > li::after {
+  content: none;
+  display: none;
 }
 
 .timeline > li > span {

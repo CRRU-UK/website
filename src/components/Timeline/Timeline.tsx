@@ -11,7 +11,7 @@ const Timeline = ({ items }: Props) => {
 
   const classes = [styles.timeline];
   if (items.length === 1) {
-    classes.push(styles["timeline-single"]);
+    classes.push(styles.single);
   }
 
   const sortedItems = items.toSorted((a, b) => a.localeCompare(b));
