@@ -139,8 +139,8 @@ footer .footer-left > .footer-logo > img {
   height: 150px;
 
   @include variables.breakpoint("medium") {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
   }
 
   @include variables.breakpoint("small") {
@@ -291,7 +291,7 @@ footer .footer-right .footer-support li > a > img {
   height: 50px;
 
   @include variables.breakpoint("medium") {
-    height: 40px;
+    height: 35px;
   }
 
   @include variables.breakpoint("small") {

@@ -583,29 +583,21 @@ body.menu header > .burger::after {
 // Social
 
 header > .social-links {
-  display: flex;
   flex-direction: row;
-  justify-content: flex-end;
   align-items: center;
-  margin: auto 0 20px auto;
   padding: 0;
   list-style: none;
-
-  @include variables.breakpoint("medium") {
-    margin-bottom: 15px;
-  }
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: none;
+  justify-content: center;
+  margin: 0;
+  width: 100%;
+  height: $social-links-height-small;
+  background: rgba(variables.$global-color-body, 0.5);
 
   @include variables.breakpoint("small") {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    display: none;
-    justify-content: center;
-    margin: 0;
-    width: 100%;
-    height: $social-links-height-small;
-    background: rgba(variables.$global-color-body, 0.5);
-
     body.menu & {
       position: fixed;
       display: flex;

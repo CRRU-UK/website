@@ -40,16 +40,6 @@ const Footer = () => (
               <li>
                 <Link href={sitemap.sitemap.path}>Sitemap</Link>
               </li>
-              <li>
-                <Link
-                  href="https://github.com/CRRU-UK"
-                  className="external"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  Open Source
-                </Link>
-              </li>
             </ul>
 
             <ul className="footer-contact">
