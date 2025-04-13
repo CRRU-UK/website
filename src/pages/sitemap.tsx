@@ -100,7 +100,7 @@ const Page: NextPage<PageProps> = ({ pageData, speciesData }: PageProps) => (
           </li>
           <ul>
             {speciesData.map(({ name, slug }) => (
-              <li key="slug">
+              <li key={slug}>
                 <ListItem item={{ title: name, path: `/education/species/${slug}` }} />
               </li>
             ))}
