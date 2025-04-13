@@ -270,7 +270,7 @@ const Header = () => {
         </ul>
       </nav>
 
-      <Social />
+      <Social short />
 
       <button className="burger" onClick={toggleMenu} onKeyDown={toggleMenu}>
         <svg
