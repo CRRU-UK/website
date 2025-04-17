@@ -11,14 +11,14 @@ const schema = joi.object({
   "time-end": joi.string().required(),
   location: joi.string().required(),
   species: joi.string().required(),
-  longitude: joi.string().optional(),
-  latitude: joi.string().optional(),
-  amount: joi.number().optional(),
-  "sea-state": joi.string().optional(),
-  weather: joi.string().optional(),
-  depth: joi.number().optional(),
-  vessel: joi.string().optional(),
-  notes: joi.string().optional(),
+  longitude: joi.string().optional().allow(""),
+  latitude: joi.string().optional().allow(""),
+  amount: joi.number().optional().allow(""),
+  "sea-state": joi.string().optional().allow(""),
+  weather: joi.string().optional().allow(""),
+  depth: joi.number().optional().allow(""),
+  vessel: joi.string().optional().allow(""),
+  notes: joi.string().optional().allow(""),
   "cf-turnstile-response": joi.string().required(), // Required for CloudFlare challenge
 });
 
