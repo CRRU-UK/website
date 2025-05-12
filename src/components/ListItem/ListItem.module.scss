@@ -49,7 +49,7 @@
   margin: 0;
   font-size: 16px;
   line-height: 24px;
-  word-break: break-word;
+  overflow-wrap: anywhere;
 
   @include variables.breakpoint("small") {
     font-size: 14px;
