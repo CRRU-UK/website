@@ -67,6 +67,14 @@ resource "digitalocean_app" "website_app" {
         failure_threshold     = 9
       }
 
+      log_destination {
+        name = "Better Stack"
+
+        logtail {
+          token = logtail_source.website_log_forwarding.token
+        }
+      }
+
       alert {
         rule     = "RESTART_COUNT"
         value    = "2"
@@ -198,4 +206,9 @@ resource "cloudflare_dns_record" "website_dns_www" {
   ttl     = 1
   proxied = true
   comment = "Website (www)"
+}
+
+resource "logtail_source" "website_log_forwarding" {
+  name     = "DigitalOcean log forwarding"
+  platform = "digitalocean"
 }
