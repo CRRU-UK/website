@@ -1,7 +1,6 @@
 import type { AppProps } from "next/app";
 
 import Head from "next/head";
-import Script from "next/script";
 import { DefaultSeo } from "next-seo";
 
 import { ContentfulLivePreviewProvider } from "@contentful/live-preview/react";
