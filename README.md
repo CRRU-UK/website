@@ -55,7 +55,6 @@ The following environment variables should be provided when running the server (
 | `NODE_CONTENTFUL_ENVIRONMENT`               | Contentful environment.               |
 | `NEXT_PUBLIC_CLOUDFLARE_CHALLENGE_SITE_KEY` | Cloudflare Turnstile site key.        |
 | `NODE_CLOUDFLARE_CHALLENGE_SECRET_KEY`      | Cloudflare Turnstile secret key.      |
-| `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID`           | Google Analytics tracking ID.         |
 | `NODE_SMTP_HOST`                            | SMTP host for sending emails.         |
 | `NODE_SMTP_PORT`                            | SMTP port for sending emails.         |
 | `NODE_SMTP_USERNAME`                        | SMTP username for sending emails.     |

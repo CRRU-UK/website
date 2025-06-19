@@ -8,10 +8,6 @@ variable "cloudflare_zone_id" {
   sensitive = true
 }
 
-variable "google_analytics_id" {
-  type = string
-}
-
 variable "website_domain" {
   type = string
 }

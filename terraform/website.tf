@@ -132,13 +132,6 @@ resource "digitalocean_app" "website_app" {
       }
 
       env {
-        key   = "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID"
-        value = var.google_analytics_id
-        scope = "BUILD_TIME"
-        type  = "GENERAL"
-      }
-
-      env {
         key   = "NODE_SMTP_HOST"
         value = var.smtp_host
         scope = "RUN_TIME"
