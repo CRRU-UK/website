@@ -33,11 +33,6 @@ export const DEFAULT_SEO_IMAGE = [
 
 // General
 
-export const PAYPAL_BUSINESS_ID = "TDCEPPBXUZGMA";
-
-export const AMAZON_REFERRAL_LINK =
-  "https://www.amazon.co.uk/exec/obidos/redirect-home?tag=cetaceresearr-21&site=amazon";
-
 export const SOCIAL_MEDIA_ACCOUNTS = [
   "https://instagram.com/crru.org.uk",
   "https://facebook.com/crru.org.uk",
