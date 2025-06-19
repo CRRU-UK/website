@@ -4,14 +4,14 @@ import redirects from "./redirects.json";
 
 const CSPHeader = [
   `default-src 'self'`,
-  `script-src 'self' 'unsafe-eval' 'unsafe-inline' challenges.cloudflare.com *.googletagmanager.com`,
+  `script-src 'self' 'unsafe-eval' 'unsafe-inline' challenges.cloudflare.com`,
   `style-src 'self' 'unsafe-inline'`,
-  `img-src 'self' blob: data: *.ctfassets.net`,
+  `img-src 'self' blob: data: *.ctfassets.net *.paypalobjects.com`,
   `media-src 'self' blob: *.ctfassets.net`,
   `font-src 'self'`,
   `object-src 'none'`,
   `base-uri 'self'`,
-  `form-action 'self'`,
+  `form-action 'self' *.paypal.com`,
   `frame-src 'self' challenges.cloudflare.com *.youtube.com *.youtube-nocookie.com *.google.com`,
   `frame-ancestors 'none'`,
   `upgrade-insecure-requests`,

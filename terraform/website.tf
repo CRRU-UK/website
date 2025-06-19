@@ -132,13 +132,6 @@ resource "digitalocean_app" "website_app" {
       }
 
       env {
-        key   = "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID"
-        value = var.google_analytics_id
-        scope = "BUILD_TIME"
-        type  = "GENERAL"
-      }
-
-      env {
         key   = "NODE_SMTP_HOST"
         value = var.smtp_host
         scope = "RUN_TIME"
@@ -209,6 +202,6 @@ resource "cloudflare_dns_record" "website_dns_www" {
 }
 
 resource "logtail_source" "website_log_forwarding" {
-  name     = "DigitalOcean log forwarding"
+  name     = "DigitalOcean"
   platform = "digitalocean"
 }

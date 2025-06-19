@@ -30,6 +30,7 @@ const renderEmbeddedEntriesAssets = ({ data }: Node) => {
   }
 
   if (contentType.startsWith("video")) {
+    // eslint-disable-next-line jsx-a11y/media-has-caption
     return <video src={`https:${file.url}`} className="video" controls />;
   }
 
