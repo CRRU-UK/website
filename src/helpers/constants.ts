@@ -25,7 +25,7 @@ export const DEFAULT_SEO_OPTIONS = {
 
 export const DEFAULT_SEO_IMAGE = [
   {
-    url: "https://images.ctfassets.net/xe1w9sqtia79/6zrbOLcLyjChTaNt2DpO4S/2cba83c76f0ac13e469297c0bdcca4a3/default-seo-image.png",
+    url: "https://images.ctfassets.net/xe1w9sqtia79/6zrbOLcLyjChTaNt2DpO4S/1e8abcbedf3c9580039183bd5cbf910e/default-seo-image.png",
     width: 1200,
     height: 630,
   },
