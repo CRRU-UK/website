@@ -202,6 +202,6 @@ resource "cloudflare_dns_record" "website_dns_www" {
 }
 
 resource "logtail_source" "website_log_forwarding" {
-  name     = "DigitalOcean log forwarding"
+  name     = "DigitalOcean"
   platform = "digitalocean"
 }
