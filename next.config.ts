@@ -36,6 +36,19 @@ const commonCacheDirectives = [
 ].join(", ");
 
 const productionHeaders = [
+  {
+    source: "/:path*",
+    headers: [
+      {
+        key: "Cache-Control",
+        value: commonCacheDirectives,
+      },
+      {
+        key: "Cache-Key",
+        value: "page",
+      },
+    ],
+  },
   ...staticPublicAssets.map((source) => ({
     source,
     headers: [
@@ -59,19 +72,6 @@ const productionHeaders = [
       {
         key: "Cache-Key",
         value: "data",
-      },
-    ],
-  },
-  {
-    source: "/:path*",
-    headers: [
-      {
-        key: "Cache-Control",
-        value: commonCacheDirectives,
-      },
-      {
-        key: "Cache-Key",
-        value: "page",
       },
     ],
   },
