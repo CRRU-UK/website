@@ -11,6 +11,7 @@ import sitemap from "@/data/sitemap.json";
 
 import { Catalogues } from "@/helpers/constants";
 import getPageContent from "@/helpers/getPageContent";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -186,6 +187,10 @@ const Page: NextPage<PageProps> = ({ pageData }: PageProps) => {
 export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const preview = ctx?.query.preview === "true";
   const pageData = await getPageContent(sitemap.catalogues.path, { preview });
+
+  if (!preview) {
+    setPageCacheHeaders(ctx);
+  }
 
   return {
     props: {

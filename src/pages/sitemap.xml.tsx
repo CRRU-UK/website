@@ -5,6 +5,7 @@ import sitemap from "@/data/sitemap.json";
 import { DEFAULT_SITE_DOMAIN } from "@/helpers/constants";
 import getSpecies from "@/helpers/getSpecies";
 import getNews from "@/helpers/getNews";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 const Page: NextPage = () => <>Sitemap</>;
 
@@ -34,7 +35,7 @@ const generateSiteMap = (additionalPages: Array<string>) =>
   </urlset>
 `.trim();
 
-export const getServerSideProps: GetServerSideProps = async ({ res }) => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const [species, news] = await Promise.all([getSpecies(), getNews({ limit: 1000 })]);
 
   const additionalPages = [];
@@ -49,9 +50,11 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 
   const content = generateSiteMap(additionalPages);
 
-  res.setHeader("Content-Type", "text/xml");
-  res.write(content);
-  res.end();
+  setPageCacheHeaders(ctx);
+
+  ctx.res.setHeader("Content-Type", "text/xml");
+  ctx.res.write(content);
+  ctx.res.end();
 
   return {
     props: {},

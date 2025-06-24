@@ -19,6 +19,7 @@ import pageRenderOptions from "@/helpers/rendering";
 import { contentfulDeliveryClient, contentfulPreviewClient } from "@/helpers/contentful";
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 import { formatDateRelative } from "@/helpers/formatDate";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import Hero from "@/components/Hero/Hero";
 import { Breadcrumbs, SEO } from "@/components";
@@ -141,6 +142,10 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
   }
 
   const [{ sys, fields }] = items;
+
+  if (!preview) {
+    setPageCacheHeaders(ctx);
+  }
 
   return {
     props: {

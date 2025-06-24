@@ -9,6 +9,7 @@ import sitemap from "@/data/sitemap.json";
 
 import getPageContent from "@/helpers/getPageContent";
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -85,6 +86,10 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
       description: fields.description as string,
       image: flattenImageAssetFields(fields.image as Asset),
     })) ?? null;
+
+  if (!preview) {
+    setPageCacheHeaders(ctx);
+  }
 
   return {
     props: {

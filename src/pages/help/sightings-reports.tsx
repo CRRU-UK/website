@@ -10,6 +10,7 @@ import type { PageData } from "@/helpers/types";
 import sitemap from "@/data/sitemap.json";
 
 import getPageContent from "@/helpers/getPageContent";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -266,6 +267,10 @@ const Page: NextPage<PageProps> = ({ data }) => (
 export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const preview = ctx?.query.preview === "true";
   const data = await getPageContent(sitemap.sightings.path, { preview });
+
+  if (!preview) {
+    setPageCacheHeaders(ctx);
+  }
 
   return {
     props: {

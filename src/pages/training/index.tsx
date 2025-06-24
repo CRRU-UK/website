@@ -6,9 +6,9 @@ import Head from "next/head";
 
 import sitemap from "@/data/sitemap.json";
 
-import getPageContent from "@/helpers/getPageContent";
-
 import { DEFAULT_SITE_NAME, DEFAULT_SITE_DOMAIN } from "@/helpers/constants";
+import getPageContent from "@/helpers/getPageContent";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -66,6 +66,10 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
       ...item?.data,
     },
   }));
+
+  if (!preview) {
+    setPageCacheHeaders(ctx);
+  }
 
   return {
     props: {

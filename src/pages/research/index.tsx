@@ -5,6 +5,7 @@ import type { PageData } from "@/helpers/types";
 import sitemap from "@/data/sitemap.json";
 
 import getPageContent from "@/helpers/getPageContent";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -16,8 +17,10 @@ const Page: NextPage<PageProps> = ({ data }) => (
   <CommonPage page={sitemap.research} breadcrumbs={[sitemap.research]} data={data} />
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const data = await getPageContent(sitemap.research.path);
+
+  setPageCacheHeaders(ctx);
 
   return {
     props: {

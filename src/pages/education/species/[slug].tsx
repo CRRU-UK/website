@@ -10,6 +10,7 @@ import {
 } from "@contentful/live-preview/react";
 
 import type { PageData, ContentTypeSpeciesPage } from "@/helpers/types";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import sitemap from "@/data/sitemap.json";
 
@@ -202,6 +203,10 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
   }
 
   const [{ sys, fields }] = items;
+
+  if (!preview) {
+    setPageCacheHeaders(ctx);
+  }
 
   return {
     props: {

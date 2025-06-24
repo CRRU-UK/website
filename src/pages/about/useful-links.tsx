@@ -10,6 +10,7 @@ import sitemap from "@/data/sitemap.json";
 import getPageContent from "@/helpers/getPageContent";
 import { UsefulLinksCategories } from "@/helpers/constants";
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import CommonPage from "@/layout/CommonPage";
 import { ListItem, Filters } from "@/components";
@@ -94,6 +95,10 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
       url: fields.url as string,
       image: flattenImageAssetFields(fields.image as Asset),
     })) ?? null;
+
+  if (!preview) {
+    setPageCacheHeaders(ctx);
+  }
 
   return {
     props: {

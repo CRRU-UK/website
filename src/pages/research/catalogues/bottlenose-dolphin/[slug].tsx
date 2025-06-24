@@ -16,6 +16,7 @@ import {
   getBottlenoseDolphinCatalogueItem,
   getBottlenoseDolphinItemEntrySlug,
 } from "@/helpers/getCatalogue";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import { Breadcrumbs, SEO, Timeline, Tooltip, Tree, Toolbar } from "@/components";
 
@@ -307,6 +308,8 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
 
     ageText = String(ageText);
   }
+
+  setPageCacheHeaders(ctx);
 
   return {
     props: {

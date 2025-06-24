@@ -253,10 +253,6 @@ resource "cloudflare_ruleset" "website_image_cache" {
           operation = "set"
           value     = local.image_cache_directives
         }
-        "Cache-Tag" = {
-          operation = "set"
-          value     = "images"
-        }
       }
     }
   }]

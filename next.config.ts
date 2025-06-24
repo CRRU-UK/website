@@ -29,38 +29,13 @@ const staticPublicAssets = [
   "/web-app-(.*).png",
 ];
 
-const commonCacheDirectives = [
-  "public",
-  "max-age=0",
-  "s-maxage=31536000", // 1 year
-  "stale-while-revalidate=1209600", // 2 weeks
-  "stale-if-error=604800", // 1 week
-].join(", ");
-
 const productionHeaders = [
-  {
-    source: "/:path*",
-    headers: [
-      {
-        key: "Cache-Control",
-        value: commonCacheDirectives,
-      },
-      {
-        key: "Cache-Tag",
-        value: "page",
-      },
-    ],
-  },
   ...staticPublicAssets.map((source) => ({
     source,
     headers: [
       {
         key: "Cache-Control",
         value: "public, max-age=31536000, immutable", // 1 year
-      },
-      {
-        key: "Cache-Tag",
-        value: "static",
       },
     ],
   })),

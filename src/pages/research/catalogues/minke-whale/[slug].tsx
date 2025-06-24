@@ -13,6 +13,7 @@ import sitemap from "@/data/sitemap.json";
 import { Catalogues } from "@/helpers/constants";
 import { formatDateMonth } from "@/helpers/formatDate";
 import { getMinkeWhaleCatalogueItem, getMinkeWhaleItemEntrySlug } from "@/helpers/getCatalogue";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import { Breadcrumbs, SEO, Timeline, Tooltip, Toolbar } from "@/components";
 
@@ -233,6 +234,8 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
 
     return { notFound: true };
   }
+
+  setPageCacheHeaders(ctx);
 
   return {
     props: {

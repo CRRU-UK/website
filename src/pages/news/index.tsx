@@ -5,6 +5,7 @@ import type { NewsArticle } from "@/helpers/types";
 import sitemap from "@/data/sitemap.json";
 
 import getNews from "@/helpers/getNews";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import Hero from "@/components/Hero/Hero";
 import { Breadcrumbs, News, SEO } from "@/components";
@@ -43,8 +44,10 @@ const Page: NextPage<PageProps> = ({ data }) => (
   </>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const data = await getNews({ limit: 1000 });
+
+  setPageCacheHeaders(ctx);
 
   return {
     props: {

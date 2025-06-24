@@ -101,3 +101,9 @@ export enum Catalogues {
 }
 
 export const CATALOGUE_RESULTS_LIMIT = 30;
+
+export const COMMON_CACHE_DIRECTIVES = [
+  "s-maxage=31536000", // 1 year
+  "stale-while-revalidate=1209600", // 2 weeks
+  "stale-if-error=604800", // 1 week
+].join(", ");

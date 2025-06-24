@@ -22,6 +22,7 @@ import sitemap from "@/data/sitemap.json";
 import { contentfulDeliveryClient, contentfulPreviewClient } from "@/helpers/contentful";
 import { flattenImageAssetFields, flattenVideoAssetFields } from "@/helpers/flattenAssetFields";
 import getNews from "@/helpers/getNews";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import {
   ContentTypes,
@@ -250,6 +251,10 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
 
     return "";
   };
+
+  if (!preview) {
+    setPageCacheHeaders(ctx);
+  }
 
   return {
     props: {

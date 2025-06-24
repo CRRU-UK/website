@@ -14,6 +14,7 @@ import getPageContent from "@/helpers/getPageContent";
 import { ContentTypes, ScientificPublicationCategories } from "@/helpers/constants";
 import { contentfulDeliveryClient } from "@/helpers/contentful";
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import CommonPage from "@/layout/CommonPage";
 import { Filters } from "@/components";
@@ -173,6 +174,10 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
     attachment: (item.fields.attachment?.fields?.file as AssetFile)?.url || null,
     image: item.fields?.image ? flattenImageAssetFields(item.fields.image) : null,
   }));
+
+  if (!preview) {
+    setPageCacheHeaders(ctx);
+  }
 
   return {
     props: {

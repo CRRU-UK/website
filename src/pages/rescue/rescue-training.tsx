@@ -5,6 +5,7 @@ import type { PageData } from "@/helpers/types";
 import sitemap from "@/data/sitemap.json";
 
 import getPageContent from "@/helpers/getPageContent";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -26,6 +27,10 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
   const data = await getPageContent(sitemap["rescue-training"].path, {
     preview,
   });
+
+  if (!preview) {
+    setPageCacheHeaders(ctx);
+  }
 
   return {
     props: {

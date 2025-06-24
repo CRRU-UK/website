@@ -7,6 +7,7 @@ import type { PageData } from "@/helpers/types";
 import sitemap from "@/data/sitemap.json";
 
 import getPageContent from "@/helpers/getPageContent";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import Hero from "@/components/Hero/Hero";
 import { Breadcrumbs, SEO } from "@/components";
@@ -633,6 +634,10 @@ const Page: NextPage<PageProps> = ({ pageImage }) => {
 export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const preview = ctx?.query.preview === "true";
   const pageData = await getPageContent(sitemap["species-identification-key"].path, { preview });
+
+  if (!preview) {
+    setPageCacheHeaders(ctx);
+  }
 
   return {
     props: {

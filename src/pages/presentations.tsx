@@ -5,6 +5,7 @@ import Head from "next/head";
 import type { PageData } from "@/helpers/types";
 
 import getPageContent from "@/helpers/getPageContent";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -30,6 +31,10 @@ const Page: NextPage<PageProps> = ({ data }) => (
 export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
   const preview = ctx?.query.preview === "true";
   const data = await getPageContent("/presentations", { preview });
+
+  if (!preview) {
+    setPageCacheHeaders(ctx);
+  }
 
   return {
     props: {

@@ -8,6 +8,7 @@ import sitemap from "@/data/sitemap.json";
 
 import getPageContent from "@/helpers/getPageContent";
 import getSpecies from "@/helpers/getSpecies";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -169,6 +170,10 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
     getPageContent(sitemap.sitemap.path, { preview: preview }),
     getSpecies(),
   ]);
+
+  if (!preview) {
+    setPageCacheHeaders(ctx);
+  }
 
   return {
     props: {
