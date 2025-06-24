@@ -51,7 +51,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         "stale-if-error=604800", // 1 week
       ].join(", "),
     );
-    res.setHeader("Cache-Key", "catalogue");
+    res.setHeader("Cache-Tag", "catalogue");
   }
 
   return res.json(data);

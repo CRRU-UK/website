@@ -46,7 +46,7 @@ const productionHeaders = [
         value: commonCacheDirectives,
       },
       {
-        key: "Cache-Key",
+        key: "Cache-Tag",
         value: "page",
       },
     ],
@@ -59,7 +59,7 @@ const productionHeaders = [
         value: "public, max-age=31536000, immutable", // 1 year
       },
       {
-        key: "Cache-Key",
+        key: "Cache-Tag",
         value: "static",
       },
     ],
@@ -72,7 +72,7 @@ const productionHeaders = [
         value: commonCacheDirectives,
       },
       {
-        key: "Cache-Key",
+        key: "Cache-Tag",
         value: "data",
       },
     ],
