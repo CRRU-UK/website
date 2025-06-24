@@ -225,7 +225,7 @@ resource "cloudflare_ruleset" "website_image_cache_enable" {
     action      = "set_cache_settings"
     description = "Enable cache for all requests"
 
-    expression = "(http.request.uri.path eq \"/_next/image\")"
+    expression = true
 
     action_parameters = {
       cache = true
