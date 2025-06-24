@@ -112,7 +112,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/(.*)",
+        source: "/:path*",
         has: [
           {
             type: "query",
