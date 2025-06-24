@@ -30,8 +30,6 @@ const staticPublicAssets = [
 ];
 
 const commonCacheDirectives = [
-  "public",
-  "max-age=0",
   "s-maxage=31536000", // 1 year
   "stale-while-revalidate=1209600", // 2 weeks
   "stale-if-error=604800", // 1 week
@@ -99,7 +97,7 @@ const nextConfig: NextConfig = {
     ],
   },
   async headers() {
-    let headers = [
+    const defaultHeaders = [
       {
         source: "/(.*)",
         headers: [
@@ -143,10 +141,10 @@ const nextConfig: NextConfig = {
     ];
 
     if (isProduction) {
-      headers = [...headers, ...productionHeaders];
+      return [...productionHeaders, ...defaultHeaders];
     }
 
-    return headers;
+    return defaultHeaders;
   },
   async redirects() {
     return [
