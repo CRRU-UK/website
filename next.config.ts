@@ -18,7 +18,7 @@ const CSPHeader = [
 ].join("; ");
 
 const staticPublicAssets = [
-  "/fonts/(.*)",
+  "/fonts/(.*).ttf",
   "/apple-touch-icon.png",
   "/android-chrome-(.*).png",
   "/bimi-logo.svg",
