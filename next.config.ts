@@ -64,19 +64,6 @@ const productionHeaders = [
       },
     ],
   })),
-  {
-    source: "/_next/data/(.*)",
-    headers: [
-      {
-        key: "Cache-Control",
-        value: commonCacheDirectives,
-      },
-      {
-        key: "Cache-Tag",
-        value: "data",
-      },
-    ],
-  },
 ];
 
 const isProduction = process.env.NODE_ENV === "production";
