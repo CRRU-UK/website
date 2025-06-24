@@ -29,13 +29,57 @@ const staticPublicAssets = [
   "/web-app-(.*).png",
 ];
 
-export const commonCacheDirectives = [
+const commonCacheDirectives = [
   "public",
-  "max-age=18000", // 1 hour
+  "max-age=0",
   "s-maxage=31536000", // 1 year
   "stale-while-revalidate=1209600", // 2 weeks
   "stale-if-error=604800", // 1 week
 ].join(", ");
+
+const productionHeaders = [
+  ...staticPublicAssets.map((source) => ({
+    source,
+    headers: [
+      {
+        key: "Cache-Control",
+        value: "public, max-age=31536000, immutable", // 1 year
+      },
+      {
+        key: "Cache-Key",
+        value: "static",
+      },
+    ],
+  })),
+  {
+    source: "/_next/data/(.*)",
+    headers: [
+      {
+        key: "Cache-Control",
+        value: commonCacheDirectives,
+      },
+      {
+        key: "Cache-Key",
+        value: "data",
+      },
+    ],
+  },
+  {
+    source: "/:path*",
+    headers: [
+      {
+        key: "Cache-Control",
+        value: commonCacheDirectives,
+      },
+      {
+        key: "Cache-Key",
+        value: "page",
+      },
+    ],
+  },
+];
+
+const isProduction = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -55,7 +99,7 @@ const nextConfig: NextConfig = {
     ],
   },
   async headers() {
-    return [
+    let headers = [
       {
         source: "/(.*)",
         headers: [
@@ -69,34 +113,8 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      ...staticPublicAssets.map((source) => ({
-        source,
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable", // 1 year
-          },
-          {
-            key: "Cache-Key",
-            value: "static",
-          },
-        ],
-      })),
       {
-        source: "/_next/data/(.*)",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: commonCacheDirectives,
-          },
-          {
-            key: "Cache-Key",
-            value: "data",
-          },
-        ],
-      },
-      {
-        source: "/:path*",
+        source: "/(.*)",
         has: [
           {
             type: "query",
@@ -123,6 +141,12 @@ const nextConfig: NextConfig = {
         ],
       },
     ];
+
+    if (isProduction) {
+      headers = [...headers, ...productionHeaders];
+    }
+
+    return headers;
   },
   async redirects() {
     return [

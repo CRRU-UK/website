@@ -5,8 +5,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { Catalogues } from "@/helpers/constants";
 import { getCatalogueList } from "@/helpers/getCatalogue";
 
-import { commonCacheDirectives } from "../../../../next.config";
-
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "GET") {
     return res.status(405).send("Method Not Allowed");
@@ -42,8 +40,19 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const data = await getCatalogueList(catalogue, query);
 
-  res.setHeader("Cache-Control", commonCacheDirectives);
-  res.setHeader("Cache-Key", "catalogue");
+  if (process.env.NODE_ENV === "production") {
+    res.setHeader(
+      "Cache-Control",
+      [
+        "public",
+        "max-age=0",
+        "s-maxage=31536000", // 1 year
+        "stale-while-revalidate=1209600", // 2 weeks
+        "stale-if-error=604800", // 1 week
+      ].join(", "),
+    );
+    res.setHeader("Cache-Key", "catalogue");
+  }
 
   return res.json(data);
 };
