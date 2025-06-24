@@ -17,6 +17,68 @@ const CSPHeader = [
   `upgrade-insecure-requests`,
 ].join("; ");
 
+const staticPublicAssets = [
+  "/fonts/(.*).ttf",
+  "/apple-touch-icon.png",
+  "/android-chrome-(.*).png",
+  "/bimi-logo.svg",
+  "/favicon-(.*).png",
+  "/favicon.ico",
+  "/robots.txt",
+  "/site.webmanifest",
+  "/web-app-(.*).png",
+];
+
+const commonCacheDirectives = [
+  "s-maxage=31536000", // 1 year
+  "stale-while-revalidate=1209600", // 2 weeks
+  "stale-if-error=604800", // 1 week
+].join(", ");
+
+const productionHeaders = [
+  ...staticPublicAssets.map((source) => ({
+    source,
+    headers: [
+      {
+        key: "Cache-Control",
+        value: "public, max-age=31536000, immutable", // 1 year
+      },
+      {
+        key: "Cache-Key",
+        value: "static",
+      },
+    ],
+  })),
+  {
+    source: "/_next/data/(.*)",
+    headers: [
+      {
+        key: "Cache-Control",
+        value: commonCacheDirectives,
+      },
+      {
+        key: "Cache-Key",
+        value: "data",
+      },
+    ],
+  },
+  {
+    source: "/:path*",
+    headers: [
+      {
+        key: "Cache-Control",
+        value: commonCacheDirectives,
+      },
+      {
+        key: "Cache-Key",
+        value: "page",
+      },
+    ],
+  },
+];
+
+const isProduction = process.env.NODE_ENV === "production";
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
@@ -35,7 +97,7 @@ const nextConfig: NextConfig = {
     ],
   },
   async headers() {
-    return [
+    const defaultHeaders = [
       {
         source: "/(.*)",
         headers: [
@@ -60,6 +122,10 @@ const nextConfig: NextConfig = {
         ],
         headers: [
           {
+            key: "Cache-Control",
+            value: "no-store",
+          },
+          {
             key: "X-Frame-Options",
             value: "SAMEORIGIN https://app.contentful.com",
           },
@@ -73,6 +139,12 @@ const nextConfig: NextConfig = {
         ],
       },
     ];
+
+    if (isProduction) {
+      return [...productionHeaders, ...defaultHeaders];
+    }
+
+    return defaultHeaders;
   },
   async redirects() {
     return [

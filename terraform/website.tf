@@ -1,12 +1,24 @@
 locals {
   app_name          = "app"
   digitalocean_host = replace(digitalocean_app.website_app.default_ingress, "/(http(s)?://)/", "")
+
+  image_cache_directives = join(", ", [
+    "public",
+    "max-age=18000",                  # 5 minutes
+    "s-maxage=31536000",              # 1 year
+    "stale-while-revalidate=1209600", # 2 weeks
+    "stale-if-error=604800",          # 1 week
+  ])
 }
 
 resource "digitalocean_app" "website_app" {
   spec {
     name   = "website"
     region = "lon"
+
+    disable_edge_cache              = true
+    disable_email_obfuscation       = true
+    enhanced_threat_control_enabled = false
 
     alert {
       rule     = "DEPLOYMENT_FAILED"
@@ -199,6 +211,35 @@ resource "cloudflare_dns_record" "website_dns_www" {
   ttl     = 1
   proxied = true
   comment = "Website (www)"
+}
+
+resource "cloudflare_ruleset" "website_image_cache" {
+  zone_id = var.cloudflare_zone_id
+
+  name  = "Custom caching for NextJS images"
+  phase = "http_response_headers_transform"
+  kind  = "zone"
+
+  rules = [{
+    enabled     = true
+    action      = "rewrite"
+    description = "Overwrite Cache-Control header"
+
+    expression = "(http.request.uri.path eq \"/_next/image\")"
+
+    action_parameters = {
+      headers = {
+        "Cache-Control" = {
+          operation = "set"
+          value     = local.image_cache_directives
+        }
+        "Cache-Tag" = {
+          operation = "set"
+          value     = "images"
+        }
+      }
+    }
+  }]
 }
 
 resource "logtail_source" "website_log_forwarding" {
