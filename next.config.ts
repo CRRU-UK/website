@@ -17,6 +17,26 @@ const CSPHeader = [
   `upgrade-insecure-requests`,
 ].join("; ");
 
+const staticPublicAssets = [
+  "/fonts/(.*)",
+  "/apple-touch-icon.png",
+  "/android-chrome-(.*).png",
+  "/bimi-logo.svg",
+  "/favicon-(.*).png",
+  "/favicon.ico",
+  "/robots.txt",
+  "/site.webmanifest",
+  "/web-app-(.*).png",
+];
+
+export const commonCacheDirectives = [
+  "public",
+  "max-age=18000", // 1 hour
+  "s-maxage=31536000", // 1 year
+  "stale-while-revalidate=1209600", // 2 weeks
+  "stale-if-error=604800", // 1 week
+].join(", ");
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
@@ -49,6 +69,32 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      ...staticPublicAssets.map((source) => ({
+        source,
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable", // 1 year
+          },
+          {
+            key: "Cache-Key",
+            value: "static",
+          },
+        ],
+      })),
+      {
+        source: "/_next/data/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: commonCacheDirectives,
+          },
+          {
+            key: "Cache-Key",
+            value: "data",
+          },
+        ],
+      },
       {
         source: "/:path*",
         has: [
@@ -59,6 +105,10 @@ const nextConfig: NextConfig = {
           },
         ],
         headers: [
+          {
+            key: "Cache-Control",
+            value: "no-store",
+          },
           {
             key: "X-Frame-Options",
             value: "SAMEORIGIN https://app.contentful.com",
