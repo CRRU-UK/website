@@ -213,7 +213,7 @@ resource "cloudflare_dns_record" "website_dns_www" {
   comment = "Website (www)"
 }
 
-resource "cloudflare_ruleset" "website_image_cache_enable" {
+resource "cloudflare_ruleset" "website_cache_enable" {
   zone_id = var.cloudflare_zone_id
 
   name  = "Enable caching"
@@ -233,7 +233,7 @@ resource "cloudflare_ruleset" "website_image_cache_enable" {
   }]
 }
 
-resource "cloudflare_ruleset" "website_image_cache_header" {
+resource "cloudflare_ruleset" "website_image_cache" {
   zone_id = var.cloudflare_zone_id
 
   name  = "Custom caching for NextJS images"
