@@ -4,10 +4,10 @@ locals {
 
   image_cache_directives = join(", ", [
     "public",
-    "max-age=18000", # 1 hour
-    "s-maxage=31536000", # 1 year
+    "max-age=18000",                  # 1 hour
+    "s-maxage=31536000",              # 1 year
     "stale-while-revalidate=1209600", # 2 weeks
-    "stale-if-error=604800", # 1 week
+    "stale-if-error=604800",          # 1 week
   ])
 }
 
@@ -228,16 +228,15 @@ resource "cloudflare_ruleset" "website_image_cache" {
     expression = "(http.request.uri.path eq \"/_next/image\")"
 
     action_parameters = {
-      headers = {
+      headers = [{
         name      = "Cache-Control"
         operation = "set"
         value     = local.image_cache_directives
-      }
-      headers = {
+        }, {
         name      = "Cache-Tag"
         operation = "set"
         value     = "images"
-      }
+      }]
     }
   }]
 }
