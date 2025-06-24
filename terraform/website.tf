@@ -217,12 +217,12 @@ resource "cloudflare_ruleset" "website_image_cache" {
   zone_id = var.cloudflare_zone_id
 
   name  = "Custom caching for NextJS images"
-  phase = "rewrite_response_headers"
+  phase = "http_response_headers_transform"
   kind  = "zone"
 
   rules = [{
     enabled     = true
-    action      = "set_cache_settings"
+    action      = "rewrite"
     description = "Overwrite Cache-Control header"
 
     expression = "(http.request.uri.path eq \"/_next/image\")"
