@@ -12,7 +12,7 @@ terraform {
 
     logtail = {
       source  = "BetterStackHQ/logtail"
-      version = "~> 0.5"
+      version = "~> 0.6"
     }
   }
 }
