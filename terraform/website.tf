@@ -261,4 +261,17 @@ resource "cloudflare_ruleset" "website_image_cache" {
 resource "logtail_source" "website_log_forwarding" {
   name     = "DigitalOcean"
   platform = "digitalocean"
+
+  data_region = "germany"
+
+  live_tail_pattern = "{message_json.msg|message::text}"
+}
+
+resource "logtail_metric" "website_log_metric_message" {
+  source_id = logtail_source.website_log_forwarding.id
+
+  name           = "message_json_msg"
+  type           = "string_low_cardinality"
+  aggregations   = []
+  sql_expression = "JSONExtract(json, 'message_json', 'msg', 'Nullable(String)')"
 }
