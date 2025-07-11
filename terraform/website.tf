@@ -271,7 +271,7 @@ resource "logtail_metric" "website_log_metric_message" {
   source_id = logtail_source.website_log_forwarding.id
 
   name           = "message_json_msg"
-  type           = "string"
+  type           = "string_low_cardinality"
   aggregations   = []
   sql_expression = "JSONExtract(json, 'message_json', 'msg', 'Nullable(String)')"
 }
