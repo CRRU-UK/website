@@ -56,6 +56,14 @@
     "to": "/research/catalogues"
   },
   {
+    "from": "/bottlenose-catalogue",
+    "to": "/research/catalogues?catalogue=bottlenose-dolphin"
+  },
+  {
+    "from": "/minke-catalogue",
+    "to": "/research/catalogues?catalogue=minke-whale"
+  },
+  {
     "from": "/minke.asp",
     "to": "/research/minke-whales"
   },
