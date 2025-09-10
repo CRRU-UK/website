@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+import { withSentryConfig } from "@sentry/nextjs";
+
 import redirects from "./redirects.json";
 
 const CSPHeader = [
@@ -127,4 +129,9 @@ const nextConfig: NextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default withSentryConfig(nextConfig, {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  widenClientFileUpload: true,
+  disableLogger: true,
+});
