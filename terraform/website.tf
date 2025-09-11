@@ -1,6 +1,5 @@
 locals {
   app_name          = "app"
-  digitalocean_host = replace(digitalocean_app.website_app.default_ingress, "/(http(s)?://)/", "")
 
   image_cache_directives = join(", ", [
     "public",
@@ -201,6 +200,10 @@ resource "digitalocean_app" "website_app" {
   }
 }
 
+data "digitalocean_app" "website_app_data" {
+  app_id = digitalocean_app.website_app.id
+}
+
 resource "cloudflare_turnstile_widget" "website_challenge" {
   account_id = var.cloudflare_account_id
 
@@ -214,9 +217,11 @@ resource "cloudflare_turnstile_widget" "website_challenge" {
 resource "cloudflare_dns_record" "website_dns_apex" {
   zone_id = var.cloudflare_zone_id
 
+  for_each = data.digitalocean_app.website_app_data.dedicated_ips
+
   name    = "@"
-  type    = "CNAME"
-  content = local.digitalocean_host
+  type    = "A"
+  content = each.value.ip
   ttl     = 1
   proxied = true
   comment = "Website (apex)"
@@ -225,9 +230,11 @@ resource "cloudflare_dns_record" "website_dns_apex" {
 resource "cloudflare_dns_record" "website_dns_www" {
   zone_id = var.cloudflare_zone_id
 
+  for_each = data.digitalocean_app.website_app_data.dedicated_ips
+
   name    = "www"
-  type    = "CNAME"
-  content = local.digitalocean_host
+  type    = "A"
+  content = each.value.ip
   ttl     = 1
   proxied = true
   comment = "Website (www)"
