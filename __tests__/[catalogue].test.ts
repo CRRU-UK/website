@@ -6,7 +6,7 @@ import { createRequest, createResponse } from "node-mocks-http";
 
 import { getCatalogueList } from "@/helpers/getCatalogue";
 
-import handler from "./[catalogue]";
+import handler from "../src/pages/api/catalogues/[catalogue]";
 
 jest.mock("@/helpers/getCatalogue", () => ({
   getCatalogueList: jest.fn(() => ({ foo: "bar" })),
