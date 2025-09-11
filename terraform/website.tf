@@ -173,7 +173,7 @@ resource "digitalocean_app" "website_app" {
       env {
         key   = "SENTRY_DSN"
         value = var.sentry_dsn
-        scope = "RUN_TIME"
+        scope = "RUN_AND_BUILD_TIME"
         type  = "SECRET"
       }
 
