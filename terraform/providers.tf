@@ -9,10 +9,5 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "~> 5.6"
     }
-
-    logtail = {
-      source  = "BetterStackHQ/logtail"
-      version = "~> 0.6"
-    }
   }
 }

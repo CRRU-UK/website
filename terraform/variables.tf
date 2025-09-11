@@ -54,3 +54,21 @@ variable "sighting_email" {
   type      = string
   sensitive = true
 }
+
+variable "sentry_dsn" {
+  type      = string
+  sensitive = true
+}
+
+variable "sentry_org" {
+  type = string
+}
+
+variable "sentry_project" {
+  type = string
+}
+
+variable "sentry_auth_token" {
+  type      = string
+  sensitive = true
+}

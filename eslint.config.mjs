@@ -39,7 +39,7 @@ const customConfigs = [
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
   },
   {
-    ignores: [".next/", "coverage/"],
+    ignores: [".next/", "coverage/", "next-env.d.ts"],
   },
   {
     settings: {
