@@ -71,7 +71,7 @@ resource "digitalocean_app" "website_app" {
       }
 
       health_check {
-        http_path             = "/api/status"
+        http_path             = "/api/health"
         initial_delay_seconds = 2
         period_seconds        = 10
         timeout_seconds       = 1
