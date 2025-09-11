@@ -70,14 +70,14 @@ resource "digitalocean_app" "website_app" {
         deploy_on_push = true
       }
 
-      health_check {
-        http_path             = "/api/status"
-        initial_delay_seconds = 0
-        period_seconds        = 10
-        timeout_seconds       = 1
-        success_threshold     = 1
-        failure_threshold     = 9
-      }
+      # health_check {
+      #   http_path             = "/api/status"
+      #   initial_delay_seconds = 2
+      #   period_seconds        = 10
+      #   timeout_seconds       = 1
+      #   success_threshold     = 1
+      #   failure_threshold     = 9
+      # }
 
       alert {
         rule     = "RESTART_COUNT"
