@@ -180,21 +180,21 @@ resource "digitalocean_app" "website_app" {
       env {
         key   = "SENTRY_ORG"
         value = var.sentry_org
-        scope = "RUN_TIME"
+        scope = "RUN_AND_BUILD_TIME"
         type  = "GENERAL"
       }
 
       env {
         key   = "SENTRY_PROJECT"
         value = var.sentry_project
-        scope = "RUN_TIME"
+        scope = "RUN_AND_BUILD_TIME"
         type  = "GENERAL"
       }
 
       env {
         key   = "SENTRY_AUTH_TOKEN"
         value = var.sentry_auth_token
-        scope = "RUN_TIME"
+        scope = "RUN_AND_BUILD_TIME"
         type  = "SECRET"
       }
     }
