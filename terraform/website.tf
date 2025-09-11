@@ -79,14 +79,6 @@ resource "digitalocean_app" "website_app" {
         failure_threshold     = 9
       }
 
-      log_destination {
-        name = "Better Stack"
-
-        logtail {
-          token = logtail_source.website_log_forwarding.token
-        }
-      }
-
       alert {
         rule     = "RESTART_COUNT"
         value    = "2"
@@ -177,6 +169,34 @@ resource "digitalocean_app" "website_app" {
         scope = "RUN_TIME"
         type  = "GENERAL"
       }
+
+      env {
+        key   = "SENTRY_DSN"
+        value = var.sentry_dsn
+        scope = "RUN_TIME"
+        type  = "SECRET"
+      }
+
+      env {
+        key   = "SENTRY_ORG"
+        value = var.sentry_org
+        scope = "RUN_TIME"
+        type  = "GENERAL"
+      }
+
+      env {
+        key   = "SENTRY_PROJECT"
+        value = var.sentry_project
+        scope = "RUN_TIME"
+        type  = "GENERAL"
+      }
+
+      env {
+        key   = "SENTRY_AUTH_TOKEN"
+        value = var.sentry_auth_token
+        scope = "RUN_TIME"
+        type  = "SECRET"
+      }
     }
   }
 }
@@ -256,22 +276,4 @@ resource "cloudflare_ruleset" "website_image_cache" {
       }
     }
   }]
-}
-
-resource "logtail_source" "website_log_forwarding" {
-  name     = "DigitalOcean"
-  platform = "digitalocean"
-
-  data_region = "germany"
-
-  live_tail_pattern = "{message_json.msg|message::text}"
-}
-
-resource "logtail_metric" "website_log_metric_message" {
-  source_id = logtail_source.website_log_forwarding.id
-
-  name           = "message_json_msg"
-  type           = "string_low_cardinality"
-  aggregations   = []
-  sql_expression = "JSONExtract(json, 'message_json', 'msg', 'Nullable(String)')"
 }
