@@ -217,7 +217,7 @@ resource "cloudflare_turnstile_widget" "website_challenge" {
 resource "cloudflare_dns_record" "website_dns_apex" {
   zone_id = var.cloudflare_zone_id
 
-  for_each = data.digitalocean_app.website_app.dedicated_ips
+  for_each = digitalocean_app.website_app.dedicated_ips
 
   name    = "@"
   type    = "A"
@@ -230,7 +230,7 @@ resource "cloudflare_dns_record" "website_dns_apex" {
 resource "cloudflare_dns_record" "website_dns_www" {
   zone_id = var.cloudflare_zone_id
 
-  for_each = data.digitalocean_app.website_app.dedicated_ips
+  for_each = digitalocean_app.website_app.dedicated_ips
 
   name    = "www"
   type    = "A"
