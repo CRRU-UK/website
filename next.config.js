@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+// @ts-check
 
 import { withSentryConfig } from "@sentry/nextjs";
 
@@ -45,7 +45,8 @@ const productionHeaders = [
 
 const isProduction = process.env.NODE_ENV === "production";
 
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   experimental: {
