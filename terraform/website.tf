@@ -194,7 +194,7 @@ resource "digitalocean_app" "website_app" {
       env {
         key   = "SENTRY_AUTH_TOKEN"
         value = var.sentry_auth_token
-        scope = "BUILD_TIME"
+        scope = "RUN_AND_BUILD_TIME"
         type  = "SECRET"
       }
     }
