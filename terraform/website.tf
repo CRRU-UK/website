@@ -1,5 +1,5 @@
 locals {
-  app_name          = "app"
+  app_name = "app"
 
   image_cache_directives = join(", ", [
     "public",
