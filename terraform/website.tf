@@ -70,7 +70,7 @@ resource "digitalocean_app" "website_app" {
       }
 
       health_check {
-        http_path             = "/api/status"
+        http_path             = "/api/health"
         initial_delay_seconds = 2
         period_seconds        = 10
         timeout_seconds       = 1
@@ -172,7 +172,7 @@ resource "digitalocean_app" "website_app" {
       env {
         key   = "SENTRY_DSN"
         value = var.sentry_dsn
-        scope = "RUN_TIME"
+        scope = "RUN_AND_BUILD_TIME"
         type  = "SECRET"
       }
 
@@ -193,7 +193,7 @@ resource "digitalocean_app" "website_app" {
       env {
         key   = "SENTRY_AUTH_TOKEN"
         value = var.sentry_auth_token
-        scope = "BUILD_TIME"
+        scope = "RUN_AND_BUILD_TIME"
         type  = "SECRET"
       }
     }
