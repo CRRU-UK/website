@@ -124,6 +124,18 @@ describe("getCatalogueList", () => {
       skip: 30,
     });
   });
+
+  it("Throws error on invalid catalogue type", async () => {
+    await expect(
+      getCatalogueList(
+        // @ts-expect-error Invalid catalogue type
+        "foo-bar",
+        { page: 1 },
+      ),
+    ).rejects.toThrow("Unknown catalogue type: foo-bar");
+
+    expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(0);
+  });
 });
 
 describe("getBottlenoseDolphinCatalogueItem", () => {
