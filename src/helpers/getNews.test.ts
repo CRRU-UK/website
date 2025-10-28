@@ -17,7 +17,6 @@ const mockedEntries = {
   slug: "test-slug",
   date: "test date",
   category: "test category",
-  keywords: ["test-keyword-1", "test-keyword-2"],
   content: "test content",
   description: "test description",
   image: "test image",
@@ -55,26 +54,4 @@ it("Gets news articles with default limit", async () => {
     order: ["-fields.date"],
     limit: 1000,
   });
-});
-
-it("Gets new articles with no keywords", async () => {
-  (contentfulDeliveryClient.getEntries as jest.Mock).mockImplementation(() => ({
-    items: [
-      {
-        fields: {
-          ...mockedEntries,
-          keywords: undefined,
-        },
-      },
-    ],
-  }));
-
-  const result = await getNews({ limit: 100 });
-
-  expect(result).toStrictEqual([
-    {
-      ...mockedEntries,
-      keywords: [],
-    },
-  ]);
 });

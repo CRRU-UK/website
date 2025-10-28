@@ -2,7 +2,7 @@
 
 import type { NextPage, GetServerSideProps } from "next";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Script from "next/script";
 
 import type { PageData } from "@/helpers/types";

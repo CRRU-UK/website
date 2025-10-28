@@ -1,7 +1,7 @@
 import type { Asset } from "contentful";
 import type { NextPage, GetServerSideProps } from "next";
 
-import React, { useState } from "react";
+import { useState } from "react";
 
 import type { FlattenedImage, PageData } from "@/helpers/types";
 

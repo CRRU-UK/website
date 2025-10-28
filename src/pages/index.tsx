@@ -1,7 +1,7 @@
 import type { NextPage, GetServerSideProps } from "next";
 import type { Asset, Entry } from "contentful";
 
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { OrganizationJsonLd } from "next-seo";
 import Head from "next/head";
 import Link from "next/link";

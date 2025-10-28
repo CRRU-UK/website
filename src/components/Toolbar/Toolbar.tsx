@@ -1,6 +1,6 @@
 import styles from "./Toolbar.module.scss";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import type { CatalogueAPIResponse, CatalogueBasicInfo } from "@/helpers/types";
 
@@ -23,6 +23,7 @@ const Toolbar = ({ catalogue, previous, next }: Props) => {
 
   useEffect(() => {
     if (search === "") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setData(null);
       return;
     }
@@ -67,7 +68,7 @@ const Toolbar = ({ catalogue, previous, next }: Props) => {
           </li>
         ));
 
-  const controlButton = (data: CatalogueBasicInfo | null, type: "previous" | "next") => {
+  const controlButton = (info: CatalogueBasicInfo | null, type: "previous" | "next") => {
     const classes = [styles.button];
 
     if (type === "previous") {
@@ -78,7 +79,7 @@ const Toolbar = ({ catalogue, previous, next }: Props) => {
 
     const text = type === "previous" ? "Previous" : "Next";
 
-    if (!data) {
+    if (!info) {
       classes.push(styles["button-disabled"]);
 
       return (
@@ -89,7 +90,7 @@ const Toolbar = ({ catalogue, previous, next }: Props) => {
     }
 
     return (
-      <Link href={`/research/catalogues/${catalogue}/${data.slug}`} className={classes.join(" ")}>
+      <Link href={`/research/catalogues/${catalogue}/${info.slug}`} className={classes.join(" ")}>
         <span>{text}</span>
       </Link>
     );
