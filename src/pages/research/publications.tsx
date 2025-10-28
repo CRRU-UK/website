@@ -1,7 +1,7 @@
 import type { NextPage, GetServerSideProps } from "next";
 import type { AssetFile } from "contentful";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 import Image from "next/image";

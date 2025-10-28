@@ -14,7 +14,7 @@ const recommendedConfigs = [
   pluginJS.configs.recommended,
   ...pluginTS.configs.recommended,
   pluginReact.configs.flat.recommended,
-  pluginReactHooks.configs["recommended-latest"],
+  pluginReactHooks.configs.flat.recommended,
   pluginJsxA11y.flatConfigs.recommended,
   pluginJest.configs["flat/recommended"],
 
@@ -27,7 +27,6 @@ const recommendedConfigs = [
     rules: {
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",
-      ...pluginReactHooks.configs.recommended.rules,
       ...pluginNext.configs.recommended.rules,
       ...pluginNext.configs["core-web-vitals"].rules,
     },

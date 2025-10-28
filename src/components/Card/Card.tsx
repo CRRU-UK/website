@@ -2,8 +2,6 @@ import Link from "next/link";
 
 import { Catalogues } from "@/helpers/constants";
 
-import React from "react";
-
 import styles from "./Card.module.scss";
 
 interface Props {

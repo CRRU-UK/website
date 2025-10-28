@@ -43,7 +43,6 @@ export type NewsArticle = {
   slug: string;
   date: string;
   category: string;
-  keywords: Array<string>;
   content: Document;
   description: string;
   image: FlattenedImage;
@@ -149,7 +148,6 @@ export type ContentTypeNews = {
     slug: EntryFieldTypes.Symbol;
     date: EntryFieldTypes.Date;
     category: EntryFieldTypes.Symbol;
-    keywords: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
     content: EntryFieldTypes.RichText;
     description: EntryFieldTypes.Symbol;
     image: EntryFieldTypes.AssetLink;

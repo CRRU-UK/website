@@ -2,7 +2,7 @@
 
 import type { NextPage, GetServerSideProps } from "next";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
 import type { PageData, CatalogueAPIResponse } from "@/helpers/types";
