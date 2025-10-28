@@ -1,7 +1,7 @@
 import type { AppProps } from "next/app";
 
 import Head from "next/head";
-import { DefaultSeo } from "next-seo";
+import { generateDefaultSeo } from "next-seo/pages";
 
 import { ContentfulLivePreviewProvider } from "@contentful/live-preview/react";
 
@@ -32,7 +32,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <meta name="theme-color" content="#000" />
 
         {/* SEO */}
-        <DefaultSeo {...DEFAULT_SEO_OPTIONS} />
+        {generateDefaultSeo(DEFAULT_SEO_OPTIONS)}
       </Head>
 
       <Header />

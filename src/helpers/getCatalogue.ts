@@ -63,23 +63,23 @@ const getCatalogueList = async (
       content_type: ContentTypes.CatalogueBottlenoseDolphin,
       ...query,
     });
-  }
-
-  if (catalogue === Catalogues.MinkeWhale) {
+  } else if (catalogue === Catalogues.MinkeWhale) {
     result = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueMinkeWhale>({
       content_type: ContentTypes.CatalogueMinkeWhale,
       ...query,
     });
+  } else {
+    throw new Error(`Unknown catalogue type: ${catalogue}`);
   }
 
-  const items = result!.items.map((entry) => reduceCatalogueItem(entry));
+  const items = result.items.map((entry) => reduceCatalogueItem(entry));
 
   return {
     meta: {
       pageSize: CATALOGUE_RESULTS_LIMIT,
       currentPage: page,
-      totalPages: Math.ceil(result!.total / CATALOGUE_RESULTS_LIMIT),
-      totalItems: result!.total,
+      totalPages: Math.ceil(result.total / CATALOGUE_RESULTS_LIMIT),
+      totalItems: result.total,
     },
     items,
   };

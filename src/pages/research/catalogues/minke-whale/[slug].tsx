@@ -1,5 +1,5 @@
 import type { NextPage, GetServerSideProps } from "next";
-import type { ParsedUrlQuery } from "querystring";
+import type { ParsedUrlQuery } from "node:querystring";
 
 import { useRouter } from "next/router";
 

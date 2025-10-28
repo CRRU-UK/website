@@ -19,7 +19,7 @@ interface PageProps {
 const Page: NextPage<PageProps> = ({ data }) => (
   <>
     <CourseJsonLd
-      courseName={sitemap["pam-training"].title}
+      name={sitemap["pam-training"].title}
       description={data.description ?? ""}
       provider={{
         name: DEFAULT_SITE_NAME,

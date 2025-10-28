@@ -29,7 +29,6 @@ const getNews = async ({ limit = 1000 }: Options): Promise<Array<NewsArticle>> =
     slug: fields.slug,
     date: fields.date,
     category: fields.category,
-    keywords: fields.keywords ?? [],
     content: fields.content,
     description: fields.description,
     image: flattenImageAssetFields(fields.image as Asset),

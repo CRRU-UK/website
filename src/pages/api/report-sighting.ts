@@ -24,7 +24,7 @@ const schema = joi.object({
 
 const mailerTransporter = nodemailer.createTransport({
   host: String(process.env.NODE_SMTP_HOST),
-  port: parseInt(String(process.env.NODE_SMTP_PORT), 10),
+  port: Number.parseInt(String(process.env.NODE_SMTP_PORT), 10),
   auth: {
     user: String(process.env.NODE_SMTP_USERNAME),
     pass: String(process.env.NODE_SMTP_PASSWORD),
