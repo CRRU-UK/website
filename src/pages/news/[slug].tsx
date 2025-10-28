@@ -2,13 +2,12 @@ import type { NextPage, GetServerSideProps } from "next";
 import type { ParsedUrlQuery } from "querystring";
 import type { Asset } from "contentful";
 
-import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import {
   useContentfulInspectorMode,
   useContentfulLiveUpdates,
 } from "@contentful/live-preview/react";
-import { NewsArticleJsonLd } from "next-seo";
+import { ArticleJsonLd } from "next-seo";
 
 import type { NewsArticle, ContentTypeNews } from "@/helpers/types";
 
@@ -34,7 +33,6 @@ const Page: NextPage<PageProps> = ({
   slug,
   date,
   category,
-  keywords,
   content,
   description,
   image,
@@ -71,20 +69,20 @@ const Page: NextPage<PageProps> = ({
         breadcrumbs={pageBreadcrumbs}
       />
 
-      <NewsArticleJsonLd
+      <ArticleJsonLd
+        type="NewsArticle"
         url={`${DEFAULT_SITE_DOMAIN}${pagePath}`}
-        title={pageTitle}
-        images={[image.url]}
-        section={category}
-        keywords={keywords.join(",")}
-        dateCreated={formattedDate}
+        headline={pageTitle}
+        image={[image.url]}
         datePublished={formattedDate}
         dateModified={formattedDate}
-        authorName={[{ name: DEFAULT_SITE_NAME, url: DEFAULT_SITE_DOMAIN }]}
-        publisherName={DEFAULT_SITE_NAME}
-        publisherLogo={`${DEFAULT_SITE_DOMAIN}/images/logo.png`}
+        author={[{ name: DEFAULT_SITE_NAME, url: DEFAULT_SITE_DOMAIN }]}
+        publisher={{
+          "@type": "Organization",
+          name: DEFAULT_SITE_NAME,
+          logo: `${DEFAULT_SITE_DOMAIN}/images/logo.png`,
+        }}
         description={description}
-        body={documentToPlainTextString(content)}
       />
 
       <Hero title={pageTitle} subtitle={sitemap.news.title} plain />
@@ -155,7 +153,6 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
       slug: fields.slug,
       date: fields.date,
       category: fields.category,
-      keywords: fields.keywords || [],
       content: fields.content,
       description: fields.description,
       image: flattenImageAssetFields(fields.image as Asset),

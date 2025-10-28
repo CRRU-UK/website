@@ -99,12 +99,11 @@ const Page: NextPage<PageProps> = ({ homepage, newsArticles }: PageProps) => {
       </Head>
 
       <OrganizationJsonLd
-        type="NGO"
+        type="Organization"
         name={DEFAULT_SITE_NAME}
         alternateName={DEFAULT_SITE_ALTERNATE_NAME}
         description={DEFAULT_SITE_DESCRIPTION}
         url={DEFAULT_SITE_DOMAIN}
-        id="https://crru.org.uk/about"
         logo="https://crru.org.uk/images/logo.png"
         foundingDate="1999"
         address={{
@@ -119,7 +118,6 @@ const Page: NextPage<PageProps> = ({ homepage, newsArticles }: PageProps) => {
             telephone: "+44-0126-185-1696",
             contactType: "General",
             email: "info@crru.org.uk",
-            availableLanguage: ["English"],
           },
         ]}
         sameAs={SOCIAL_MEDIA_ACCOUNTS}

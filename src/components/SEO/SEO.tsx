@@ -1,4 +1,5 @@
-import { NextSeo, LogoJsonLd, BreadcrumbJsonLd, SocialProfileJsonLd } from "next-seo";
+import { BreadcrumbJsonLd } from "next-seo";
+import { generateNextSeo } from "next-seo/pages";
 
 import type { SitemapItem } from "@/helpers/types";
 
@@ -7,7 +8,6 @@ import {
   DEFAULT_SITE_DESCRIPTION,
   DEFAULT_SITE_DOMAIN,
   DEFAULT_SEO_IMAGE,
-  SOCIAL_MEDIA_ACCOUNTS,
 } from "@/helpers/constants";
 
 interface Props {
@@ -29,38 +29,29 @@ const SEO = ({ page, type = "website", images = DEFAULT_SEO_IMAGE, breadcrumbs }
 
   return (
     <>
-      <NextSeo
-        titleTemplate={`%s - ${DEFAULT_SITE_NAME}`}
-        defaultTitle={DEFAULT_SITE_NAME}
-        title={title}
-        description={description}
-        canonical={pageCanonicalURL}
-        themeColor="#000000"
-        openGraph={{
+      {generateNextSeo({
+        titleTemplate: `%s - ${DEFAULT_SITE_NAME}`,
+        defaultTitle: DEFAULT_SITE_NAME,
+        title,
+        description,
+        canonical: pageCanonicalURL,
+        themeColor: "#000000",
+        openGraph: {
           type,
           url: pageCanonicalURL,
           title,
           description,
           images,
           siteName: DEFAULT_SITE_NAME,
-        }}
-      />
-
-      <LogoJsonLd logo={`${DEFAULT_SITE_DOMAIN}/images/logo.png`} url={DEFAULT_SITE_DOMAIN} />
+        },
+      })}
 
       <BreadcrumbJsonLd
-        itemListElements={breadcrumbs.map((item, index) => ({
+        items={breadcrumbs.map((item, index) => ({
           position: index + 1,
           name: item.title,
           item: `${DEFAULT_SITE_DOMAIN}${item.path}`,
         }))}
-      />
-
-      <SocialProfileJsonLd
-        type="Organization"
-        name={DEFAULT_SITE_NAME}
-        url={DEFAULT_SITE_DOMAIN}
-        sameAs={SOCIAL_MEDIA_ACCOUNTS}
       />
     </>
   );
