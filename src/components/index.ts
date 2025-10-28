@@ -1,39 +1,18 @@
-import Breadcrumbs from "./Breadcrumbs/Breadcrumbs";
-import Button from "./Button/Button";
-import Card from "./Card/Card";
-import Filters from "./Filters/Filters";
-import Gallery from "./Gallery/Gallery";
-import Highlight from "./Highlight/Highlight";
-import ImageCaption from "./ImageCaption/ImageCaption";
-import ImageRow from "./ImageRow/ImageRow";
-import ListItem from "./ListItem/ListItem";
-import Loading from "./Loading/Loading";
-import News from "./News/News";
-import Note from "./Note/Note";
-import SEO from "./SEO/SEO";
-import Social from "./Social/Social";
-import Timeline from "./Timeline/Timeline";
-import Tooltip from "./Tooltip/Tooltip";
-import Tree from "./Tree/Tree";
-import Toolbar from "./Toolbar/Toolbar";
-
-export {
-  Breadcrumbs,
-  Button,
-  Card,
-  Filters,
-  Gallery,
-  Highlight,
-  ImageCaption,
-  ImageRow,
-  ListItem,
-  Loading,
-  News,
-  Note,
-  SEO,
-  Social,
-  Timeline,
-  Tooltip,
-  Tree,
-  Toolbar,
-};
+export { default as Breadcrumbs } from "./Breadcrumbs/Breadcrumbs";
+export { default as Button } from "./Button/Button";
+export { default as Card } from "./Card/Card";
+export { default as Filters } from "./Filters/Filters";
+export { default as Gallery } from "./Gallery/Gallery";
+export { default as Highlight } from "./Highlight/Highlight";
+export { default as ImageCaption } from "./ImageCaption/ImageCaption";
+export { default as ImageRow } from "./ImageRow/ImageRow";
+export { default as ListItem } from "./ListItem/ListItem";
+export { default as Loading } from "./Loading/Loading";
+export { default as News } from "./News/News";
+export { default as Note } from "./Note/Note";
+export { default as SEO } from "./SEO/SEO";
+export { default as Social } from "./Social/Social";
+export { default as Timeline } from "./Timeline/Timeline";
+export { default as Tooltip } from "./Tooltip/Tooltip";
+export { default as Tree } from "./Tree/Tree";
+export { default as Toolbar } from "./Toolbar/Toolbar";

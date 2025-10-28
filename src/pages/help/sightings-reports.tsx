@@ -19,7 +19,7 @@ const UseSightingsForm = () => {
   const [success, setSuccess] = useState<boolean>(false);
   const [errorMessages, setErrorMessages] = useState<Array<string>>([]);
 
-  const resetChallenge = () => (window as any)?.turnstile?.reset();
+  const resetChallenge = () => (globalThis as any)?.turnstile?.reset();
 
   const currentDate = new Date();
   const defaultDate = currentDate.toISOString().substring(0, 10);

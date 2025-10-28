@@ -1,5 +1,5 @@
 import type { NextPage, GetServerSideProps } from "next";
-import type { ParsedUrlQuery } from "querystring";
+import type { ParsedUrlQuery } from "node:querystring";
 import type { Asset } from "contentful";
 import type { Document } from "@contentful/rich-text-types";
 
@@ -161,7 +161,7 @@ const Page: NextPage<PageProps> = ({
               {genus}
             </span>
           </li>
-          <li className={!wide ? styles.wide : ""}>
+          <li className={wide ? "" : styles.wide}>
             <strong>Species:</strong>
             <span
               {...previewProps({

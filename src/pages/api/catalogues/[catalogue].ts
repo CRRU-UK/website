@@ -2,9 +2,8 @@
 
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { Catalogues } from "@/helpers/constants";
+import { Catalogues, COMMON_CACHE_DIRECTIVES } from "@/helpers/constants";
 import { getCatalogueList } from "@/helpers/getCatalogue";
-import { COMMON_CACHE_DIRECTIVES } from "@/helpers/constants";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (process.env.NODE_ENV === "production") {
@@ -28,7 +27,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(400).send("Missing `page` param");
   }
 
-  const pageNumber = parseInt(String(pageQuery), 10);
+  const pageNumber = Number.parseInt(String(pageQuery), 10);
 
   // TODO: Replace with joi?
   if (String(pageQuery).includes(".") || Number.isNaN(pageNumber) || pageNumber <= 0) {
