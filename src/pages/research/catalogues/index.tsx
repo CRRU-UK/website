@@ -35,7 +35,7 @@ const updateURL = ({ catalogue, page, search }: UpdateURLProps) => {
   }
 
   newURL = newURL.toString();
-  history.replaceState({ ...window.history.state, as: newURL, url: newURL }, "", newURL);
+  history.replaceState({ ...globalThis.history.state, as: newURL, url: newURL }, "", newURL);
 };
 
 interface PageProps {
@@ -56,7 +56,7 @@ const Page: NextPage<PageProps> = ({ pageData }: PageProps) => {
 
   const paramPage = searchParams.get("page");
   if (paramPage) {
-    initPage = parseInt(paramPage);
+    initPage = Number.parseInt(paramPage);
   }
 
   const paramSearch = searchParams.get("search");
