@@ -16,7 +16,7 @@
 
 ## Introduction
 
-Source code for the [crru.org.uk](https://crru.org.uk) website – built in NextJS, TypeScript, Jest, React, and SCSS; with infrastructure managed with Terraform.
+Source code for the [crru.org.uk](https://crru.org.uk) website – built in NextJS, TypeScript, Vitest, React, and SCSS; with infrastructure managed with Terraform.
 
 The website primarily uses Contentful as the main source of data.
 
@@ -70,8 +70,8 @@ Below are the NPM commands that can be used for development:
 | `start`           | Starts the app (requires `build` to be run) on port 3000.        |
 | `build`           | Builds the app for production.                                   |
 | `dev`             | Runs the app in development mode on port 3000.                   |
-| `test`            | Runs `test:linting`, `test:types`, and `test:jest` sequentially. |
+| `test`            | Runs `test:linting`, `test:types`, and `test:unit` sequentially. |
 | `test:linting`    | Runs ESLint, Prettier, and Stylelint tests.                      |
 | `test:types`      | Runs TypeScript tests.                                           |
-| `test:jest`       | Runs unit and integration tests and generates a coverage report. |
-| `test:jest:watch` | Same as `test:jest` but runs it in watch mode.                   |
+| `test:unit`       | Runs unit and integration tests and generates a coverage report. |
+| `test:unit:watch` | Same as `test:unit` but runs it in watch mode.                   |

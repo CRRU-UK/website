@@ -1,16 +1,13 @@
 import "@testing-library/jest-dom";
 
-import { act } from "react";
 import { render } from "@testing-library/react";
-import { axe, toHaveNoViolations } from "jest-axe";
+import { act } from "react";
+import { describe, expect, it } from "vitest";
+import { axe } from "vitest-axe";
 
 import type { CatalogueBottlenoseDolphin } from "@/helpers/types";
 
 import Tree from "./Tree";
-
-beforeAll(() => {
-  expect.extend(toHaveNoViolations);
-});
 
 const mockedEntryData = {
   birthYear: null,
@@ -34,28 +31,30 @@ const mockedMotherCalvesData = {
   calves: [],
 };
 
-it("Passes accessibility with default props", async () =>
-  act(async () => {
-    const { container } = render(
-      <Tree
-        // @ts-expect-error String of enum value
-        type="bottlenose-dolphin"
-        data={
-          {
-            ...mockedMotherCalvesData,
-            entry: {
-              ...mockedEntryData,
-              id: "mocked id",
-              reference: "mocked reference",
-              name: "mocked name",
-              slug: "mocked slug",
-            },
-          } as CatalogueBottlenoseDolphin
-        }
-      />,
-    );
+describe(Tree, () => {
+  it("passes accessibility with default props", async () =>
+    act(async () => {
+      const { container } = render(
+        <Tree
+          // @ts-expect-error String of enum value
+          type="bottlenose-dolphin"
+          data={
+            {
+              ...mockedMotherCalvesData,
+              entry: {
+                ...mockedEntryData,
+                id: "mocked id",
+                reference: "mocked reference",
+                name: "mocked name",
+                slug: "mocked slug",
+              },
+            } as CatalogueBottlenoseDolphin
+          }
+        />,
+      );
 
-    const results = await axe(container);
+      const results = await axe(container);
 
-    expect(results).toHaveNoViolations();
-  }));
+      expect(results).toHaveNoViolations();
+    }));
+});

@@ -1,27 +1,27 @@
-import type { NextPage, GetServerSideProps } from "next";
-import type { ParsedUrlQuery } from "node:querystring";
 import type { Asset } from "contentful";
+import type { GetServerSideProps, NextPage } from "next";
+import type { ParsedUrlQuery } from "node:querystring";
 
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import {
   useContentfulInspectorMode,
   useContentfulLiveUpdates,
 } from "@contentful/live-preview/react";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { ArticleJsonLd } from "next-seo";
 
-import type { NewsArticle, ContentTypeNews } from "@/helpers/types";
+import type { ContentTypeNews, NewsArticle } from "@/helpers/types";
 
 import sitemap from "@/data/sitemap.json";
 
-import { ContentTypes, DEFAULT_SITE_NAME, DEFAULT_SITE_DOMAIN, LOCALE } from "@/helpers/constants";
-import pageRenderOptions from "@/helpers/rendering";
+import { ContentTypes, DEFAULT_SITE_DOMAIN, DEFAULT_SITE_NAME, LOCALE } from "@/helpers/constants";
 import { contentfulDeliveryClient, contentfulPreviewClient } from "@/helpers/contentful";
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 import { formatDateRelative } from "@/helpers/formatDate";
+import pageRenderOptions from "@/helpers/rendering";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
-import Hero from "@/components/Hero/Hero";
 import { Breadcrumbs, SEO } from "@/components";
+import Hero from "@/components/Hero/Hero";
 
 interface PageProps extends NewsArticle {
   id: string;

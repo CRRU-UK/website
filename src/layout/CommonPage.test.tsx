@@ -2,22 +2,19 @@
 
 import "@testing-library/jest-dom";
 
-import { act } from "react";
 import { render } from "@testing-library/react";
-import { axe, toHaveNoViolations } from "jest-axe";
+import { act } from "react";
+import { expect, it, vi } from "vitest";
+import { axe } from "vitest-axe";
 
 import CommonPage from "./CommonPage";
 
-jest.mock("@contentful/live-preview/react", () => ({
-  useContentfulInspectorMode: () => jest.fn(),
-  useContentfulLiveUpdates: jest.fn((item) => item),
+vi.mock("@contentful/live-preview/react", () => ({
+  useContentfulInspectorMode: () => vi.fn<() => void>(),
+  useContentfulLiveUpdates: vi.fn((item) => item),
 }));
 
-beforeAll(() => {
-  expect.extend(toHaveNoViolations);
-});
-
-it("Passes accessibility with default props", async () =>
+it("passes accessibility with default props", async () =>
   act(async () => {
     const { container } = render(
       <CommonPage
@@ -32,7 +29,7 @@ it("Passes accessibility with default props", async () =>
     expect(results).toHaveNoViolations();
   }));
 
-it("Passes accessibility with optional props", async () =>
+it("passes accessibility with optional props", async () =>
   act(async () => {
     const { container } = render(
       <CommonPage

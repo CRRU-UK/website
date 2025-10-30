@@ -1,14 +1,15 @@
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { contentfulDeliveryClient } from "./contentful";
 
 import getNews from "./getNews";
 
-jest.mock("./flattenAssetFields", () => ({
-  flattenImageAssetFields: jest.fn((item) => item),
+vi.mock(import("./flattenAssetFields"), () => ({
+  flattenImageAssetFields: vi.fn((item) => item),
 }));
 
-jest.mock("./contentful", () => ({
+vi.mock(import("./contentful"), () => ({
   contentfulDeliveryClient: {
-    getEntries: jest.fn(),
+    getEntries: vi.fn<() => void>(),
   },
 }));
 
@@ -23,35 +24,37 @@ const mockedEntries = {
 };
 
 beforeEach(() => {
-  (contentfulDeliveryClient.getEntries as jest.Mock).mockImplementation(() => ({
+  vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(() => ({
     items: [{ fields: mockedEntries }],
   }));
 });
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
-it("Gets news articles", async () => {
-  const result = await getNews({ limit: 12 });
+describe(getNews, () => {
+  it("gets news articles", async () => {
+    const result = await getNews({ limit: 12 });
 
-  expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
-  expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(1, {
-    content_type: "newsArticle",
-    order: ["-fields.date"],
-    limit: 12,
+    expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
+    expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(1, {
+      content_type: "newsArticle",
+      order: ["-fields.date"],
+      limit: 12,
+    });
+
+    expect(result).toStrictEqual([mockedEntries]);
   });
 
-  expect(result).toStrictEqual([mockedEntries]);
-});
+  it("gets news articles with default limit", async () => {
+    await getNews({});
 
-it("Gets news articles with default limit", async () => {
-  await getNews({});
-
-  expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
-  expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(1, {
-    content_type: "newsArticle",
-    order: ["-fields.date"],
-    limit: 1000,
+    expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
+    expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(1, {
+      content_type: "newsArticle",
+      order: ["-fields.date"],
+      limit: 1000,
+    });
   });
 });

@@ -1,34 +1,66 @@
+import eslint from "@eslint/js";
+import next from "@next/eslint-plugin-next";
+import vitest from "@vitest/eslint-plugin";
+import jsxA11y from "eslint-plugin-jsx-a11y";
+import prettier from "eslint-plugin-prettier/recommended";
+import react from "eslint-plugin-react";
+import reactHooks from "eslint-plugin-react-hooks";
+import { defineConfig } from "eslint/config";
 import globals from "globals";
-
-import pluginJS from "@eslint/js";
-import pluginTS from "typescript-eslint";
-import pluginReact from "eslint-plugin-react";
-import pluginReactHooks from "eslint-plugin-react-hooks";
-import pluginJsxA11y from "eslint-plugin-jsx-a11y";
-import pluginJest from "eslint-plugin-jest";
-import pluginNext from "@next/eslint-plugin-next";
-
-import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
+import tseslint from "typescript-eslint";
 
 const recommendedConfigs = [
-  pluginJS.configs.recommended,
-  ...pluginTS.configs.recommended,
-  pluginReact.configs.flat.recommended,
-  pluginReactHooks.configs.flat.recommended,
-  pluginJsxA11y.flatConfigs.recommended,
-  pluginJest.configs["flat/recommended"],
-
-  // Custom config until packages support flat configs
+  eslint.configs.recommended,
+  tseslint.configs.recommended,
+  react.configs.flat.recommended,
+  reactHooks.configs.flat.recommended,
+  jsxA11y.flatConfigs.recommended,
+  {
+    plugins: {
+      tseslint,
+    },
+    languageOptions: {
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+  },
+  {
+    files: ["**/*.test.ts", "**/*.test.tsx"],
+    plugins: {
+      vitest,
+    },
+    rules: {
+      ...vitest.configs.all.rules,
+      "vitest/prefer-expect-assertions": ["off"],
+      "vitest/consistent-test-it": ["off"],
+      "vitest/no-hooks": ["off"],
+      "vitest/require-mock-type-parameters": ["off"],
+    },
+    settings: {
+      vitest: {
+        typecheck: true,
+      },
+    },
+    languageOptions: {
+      globals: {
+        ...vitest.environments.env.globals,
+      },
+    },
+  },
   {
     files: ["src/**/*.{js,ts,jsx,tsx}"],
     plugins: {
-      "@next/next": pluginNext,
+      "react-hooks": reactHooks,
+      "@next/next": next,
     },
     rules: {
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",
-      ...pluginNext.configs.recommended.rules,
-      ...pluginNext.configs["core-web-vitals"].rules,
+      ...reactHooks.configs.recommended.rules,
+      ...next.configs.recommended.rules,
+      ...next.configs["core-web-vitals"].rules,
     },
   },
 ];
@@ -57,4 +89,4 @@ const customConfigs = [
   },
 ];
 
-export default [...recommendedConfigs, ...customConfigs, eslintPluginPrettierRecommended];
+export default defineConfig(recommendedConfigs, customConfigs, prettier);

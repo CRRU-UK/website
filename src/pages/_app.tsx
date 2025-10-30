@@ -1,14 +1,14 @@
 import type { AppProps } from "next/app";
 
-import Head from "next/head";
 import { generateDefaultSeo } from "next-seo/pages";
+import Head from "next/head";
 
 import { ContentfulLivePreviewProvider } from "@contentful/live-preview/react";
 
 import "../scss/globals.scss";
 
-import Header from "@/layout/Header";
 import Footer from "@/layout/Footer";
+import Header from "@/layout/Header";
 
 import { DEFAULT_SEO_OPTIONS, LOCALE } from "@/helpers/constants";
 

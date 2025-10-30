@@ -1,16 +1,13 @@
 import "@testing-library/jest-dom";
 
-import { act } from "react";
 import { render } from "@testing-library/react";
-import { axe, toHaveNoViolations } from "jest-axe";
+import { act } from "react";
+import { expect, it } from "vitest";
+import { axe } from "vitest-axe";
 
 import Footer from "./Footer";
 
-beforeAll(() => {
-  expect.extend(toHaveNoViolations);
-});
-
-it("Passes accessibility", async () =>
+it("passes accessibility", async () =>
   act(async () => {
     const { container } = render(<Footer />);
 

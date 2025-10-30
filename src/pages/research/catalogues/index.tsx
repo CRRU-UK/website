@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import type { NextPage, GetServerSideProps } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 
-import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
-import type { PageData, CatalogueAPIResponse } from "@/helpers/types";
+import type { CatalogueAPIResponse, PageData } from "@/helpers/types";
 
 import sitemap from "@/data/sitemap.json";
 

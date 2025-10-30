@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { describe, expect, it } from "vitest";
 import { flattenImageAssetFields, flattenVideoAssetFields } from "./flattenAssetFields";
 
-describe("flattenImageAssetFields", () => {
+describe(flattenImageAssetFields, () => {
   const mockedImageFields = {
     file: {
       url: "//example.com/test-url",
@@ -15,7 +16,7 @@ describe("flattenImageAssetFields", () => {
     },
   };
 
-  it("Flattens asset field", () => {
+  it("flattens asset field", () => {
     const result = flattenImageAssetFields({
       fields: {
         ...mockedImageFields,
@@ -31,7 +32,7 @@ describe("flattenImageAssetFields", () => {
     });
   });
 
-  it("Flattens asset field without description", () => {
+  it("flattens asset field without description", () => {
     const result = flattenImageAssetFields({
       fields: mockedImageFields,
     } as any);
@@ -45,7 +46,7 @@ describe("flattenImageAssetFields", () => {
   });
 });
 
-describe("flattenVideoAssetFields", () => {
+describe(flattenVideoAssetFields, () => {
   const mockedImageFields = {
     file: {
       url: "//example.com/test-url",
@@ -53,7 +54,7 @@ describe("flattenVideoAssetFields", () => {
     },
   };
 
-  it("Flattens asset field", () => {
+  it("flattens asset field", () => {
     const result = flattenVideoAssetFields({
       fields: mockedImageFields,
     } as any);

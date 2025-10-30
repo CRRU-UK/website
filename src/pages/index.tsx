@@ -1,20 +1,20 @@
-import type { NextPage, GetServerSideProps } from "next";
 import type { Asset, Entry } from "contentful";
+import type { GetServerSideProps, NextPage } from "next";
 
-import { useRef, useState, useEffect } from "react";
 import { OrganizationJsonLd } from "next-seo";
 import Head from "next/head";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 import type {
   ContentTypeHomepage,
-  FlattenedImage,
-  FlattenedVideo,
-  NewsArticle,
   ContentTypeNews,
   ContentTypePageContent,
   ContentTypeSpeciesPage,
+  FlattenedImage,
+  FlattenedVideo,
+  NewsArticle,
 } from "@/helpers/types";
 
 import sitemap from "@/data/sitemap.json";
@@ -26,10 +26,10 @@ import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import {
   ContentTypes,
-  DEFAULT_SITE_NAME,
   DEFAULT_SITE_ALTERNATE_NAME,
   DEFAULT_SITE_DESCRIPTION,
   DEFAULT_SITE_DOMAIN,
+  DEFAULT_SITE_NAME,
   SOCIAL_MEDIA_ACCOUNTS,
 } from "@/helpers/constants";
 

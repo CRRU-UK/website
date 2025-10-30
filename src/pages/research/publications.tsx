@@ -1,23 +1,23 @@
-import type { NextPage, GetServerSideProps } from "next";
 import type { AssetFile } from "contentful";
+import type { GetServerSideProps, NextPage } from "next";
 
+import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
-import Link from "next/link";
-import Image from "next/image";
 
-import type { PageData, ContentTypeScientificPublication, FlattenedImage } from "@/helpers/types";
+import type { ContentTypeScientificPublication, FlattenedImage, PageData } from "@/helpers/types";
 
 import sitemap from "@/data/sitemap.json";
 
-import getPageContent from "@/helpers/getPageContent";
 import { ContentTypes, ScientificPublicationCategories } from "@/helpers/constants";
 import { contentfulDeliveryClient } from "@/helpers/contentful";
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
+import getPageContent from "@/helpers/getPageContent";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
-import CommonPage from "@/layout/CommonPage";
 import { Filters } from "@/components";
+import CommonPage from "@/layout/CommonPage";
 
 import styles from "./publications.module.scss";
 

@@ -25,12 +25,12 @@
     ]
   },
   "include": [
+    "vitest.setup.ts",
     "next-env.d.ts",
-    "jest.config.ts",
     "src/**/*.ts",
     "src/**/*.tsx",
     ".next/types/**/*.ts",
     "__tests__/**/*.ts"
   ],
-  "exclude": ["node_modules", "jest.config.ts", "jest.setup.ts", "jest.env.ts"]
+  "exclude": ["node_modules", "vitest.config.ts"]
 }

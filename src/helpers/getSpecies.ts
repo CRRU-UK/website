@@ -1,6 +1,6 @@
 import type { Asset } from "contentful";
 
-import type { SpeciesEntry, ContentTypeSpeciesPage } from "./types";
+import type { ContentTypeSpeciesPage, SpeciesEntry } from "./types";
 
 import { ContentTypes } from "./constants";
 

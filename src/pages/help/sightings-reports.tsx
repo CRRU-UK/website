@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import type { NextPage, GetServerSideProps } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 
-import { useState } from "react";
 import Script from "next/script";
+import { useState } from "react";
 
 import type { PageData } from "@/helpers/types";
 

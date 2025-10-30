@@ -1,4 +1,4 @@
-import type { PageModule, ContentTypePageModule } from "./types";
+import type { ContentTypePageModule, PageModule } from "./types";
 
 import { ContentTypes } from "./constants";
 import { contentfulDeliveryClient } from "./contentful";

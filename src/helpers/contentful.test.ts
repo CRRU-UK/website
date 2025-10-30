@@ -1,21 +1,22 @@
 import * as contentful from "contentful";
+import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 
-jest.mock("contentful", () => ({
-  createClient: jest.fn(() => ({
-    withoutUnresolvableLinks: jest.fn(),
+vi.mock(import("contentful"), () => ({
+  createClient: vi.fn(() => ({
+    withoutUnresolvableLinks: vi.fn<() => void>(),
   })),
 }));
 
-beforeAll(() => {
-  require("./contentful"); // eslint-disable-line @typescript-eslint/no-require-imports
-});
+describe(contentful.createClient, () => {
+  beforeAll(() => {
+    require("./contentful"); // eslint-disable-line @typescript-eslint/no-require-imports
+  });
 
-afterEach(() => {
-  jest.clearAllMocks();
-});
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
 
-describe("Contentful Helpers", () => {
-  it("Mocks createClient", () => {
+  it("mocks createClient", () => {
     expect(contentful.createClient).toHaveBeenCalledTimes(2);
 
     expect(contentful.createClient).toHaveBeenNthCalledWith(1, {
