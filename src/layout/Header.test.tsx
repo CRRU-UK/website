@@ -7,7 +7,7 @@ import { axe } from "vitest-axe";
 
 import Header from "./Header";
 
-vi.mock(import("next/router"), () => ({
+vi.mock("next/router", () => ({
   useRouter: vi.fn(() => ({
     events: {
       on: vi.fn<() => void>(),
@@ -21,5 +21,5 @@ it("passes accessibility", async () =>
 
     const results = await axe(container);
 
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   }));

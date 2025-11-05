@@ -10,7 +10,7 @@ import { getCatalogueList } from "@/helpers/getCatalogue";
 
 import handler from "../src/pages/api/catalogues/[catalogue]";
 
-vi.mock(import("@/helpers/getCatalogue"), () => ({
+vi.mock("@/helpers/getCatalogue", () => ({
   getCatalogueList: vi.fn(() => ({ foo: "bar" })),
 }));
 

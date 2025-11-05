@@ -8,7 +8,7 @@
 
 import { withSentryConfig } from "@sentry/nextjs";
 
-import redirects from "./redirects.json" with { type: "json" };
+import redirects from "./redirects.json";
 
 const CSPHeader = [
   `default-src 'self'`,

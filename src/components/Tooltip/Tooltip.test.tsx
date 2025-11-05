@@ -12,6 +12,6 @@ describe(Tooltip, () => {
 
     const results = await axe(container);
 
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

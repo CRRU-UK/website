@@ -1,7 +1,7 @@
 import * as contentful from "contentful";
 import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 
-vi.mock(import("contentful"), () => ({
+vi.mock("contentful", () => ({
   createClient: vi.fn(() => ({
     withoutUnresolvableLinks: vi.fn<() => void>(),
   })),

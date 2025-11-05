@@ -25,12 +25,15 @@
     ]
   },
   "include": [
-    "vitest.setup.ts",
     "next-env.d.ts",
+    "next.config.js",
+    "eslint.config.mjs",
+    "sentry.*.config.ts",
+    "vitest.*.mts",
     "src/**/*.ts",
     "src/**/*.tsx",
     ".next/types/**/*.ts",
     "__tests__/**/*.ts"
   ],
-  "exclude": ["node_modules", "vitest.config.ts"]
+  "exclude": ["node_modules"]
 }

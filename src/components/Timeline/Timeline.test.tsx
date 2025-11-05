@@ -14,7 +14,7 @@ describe(Timeline, () => {
 
       const results = await axe(container);
 
-      expect(results).toHaveNoViolations();
+      expect(results.violations).toHaveLength(0);
     }));
 
   it("displays single timeline", async () =>
@@ -23,7 +23,7 @@ describe(Timeline, () => {
 
       const results = await axe(container);
 
-      expect(results).toHaveNoViolations();
+      expect(results.violations).toHaveLength(0);
     }));
 
   it("returns null for no items", async () =>
@@ -32,6 +32,6 @@ describe(Timeline, () => {
 
       const results = await axe(container);
 
-      expect(results).toHaveNoViolations();
+      expect(results.violations).toHaveLength(0);
     }));
 });

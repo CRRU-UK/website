@@ -3,12 +3,12 @@ import { contentfulDeliveryClient, contentfulPreviewClient } from "./contentful"
 
 import getPageContent from "./getPageContent";
 
-vi.mock(import("./flattenAssetFields"), () => ({
+vi.mock("./flattenAssetFields", () => ({
   flattenImageAssetFields: vi.fn((item) => item),
   flattenVideoAssetFields: vi.fn((item) => item),
 }));
 
-vi.mock(import("./contentful"), () => ({
+vi.mock("./contentful", () => ({
   contentfulDeliveryClient: {
     getEntries: vi.fn<() => void>(),
   },

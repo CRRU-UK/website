@@ -29,7 +29,7 @@ describe(Breadcrumbs, () => {
 
       const results = await axe(container);
 
-      expect(results).toHaveNoViolations();
+      expect(results.violations).toHaveLength(0);
     }));
 
   it("passes accessibility with optional props", async () =>
@@ -52,7 +52,7 @@ describe(Breadcrumbs, () => {
 
       const results = await axe(container);
 
-      expect(results).toHaveNoViolations();
+      expect(results.violations).toHaveLength(0);
     }));
 
   it.each(["wide", "inline"])("passes accessibility with different styles", async (style) =>
@@ -61,7 +61,7 @@ describe(Breadcrumbs, () => {
 
       const results = await axe(container);
 
-      expect(results).toHaveNoViolations();
+      expect(results.violations).toHaveLength(0);
     }),
   );
 });

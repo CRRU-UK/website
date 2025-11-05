@@ -26,7 +26,7 @@ it("passes accessibility with default props", async () =>
 
     const results = await axe(container);
 
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   }));
 
 it("passes accessibility with optional props", async () =>
@@ -42,5 +42,5 @@ it("passes accessibility with optional props", async () =>
 
     const results = await axe(container);
 
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   }));

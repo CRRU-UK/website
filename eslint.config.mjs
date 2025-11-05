@@ -37,6 +37,8 @@ const recommendedConfigs = [
       "vitest/consistent-test-it": ["off"],
       "vitest/no-hooks": ["off"],
       "vitest/require-mock-type-parameters": ["off"],
+      "vitest/prefer-import-in-mock": ["off"],
+      "vitest/require-top-level-describe": ["off"],
     },
     settings: {
       vitest: {

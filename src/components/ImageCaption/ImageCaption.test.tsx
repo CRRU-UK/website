@@ -14,7 +14,7 @@ describe(ImageCaption, () => {
 
     const results = await axe(container);
 
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 
   it("passes accessibility with optional props", async () => {
@@ -22,6 +22,6 @@ describe(ImageCaption, () => {
 
     const results = await axe(container);
 
-    expect(results).toHaveNoViolations();
+    expect(results.violations).toHaveLength(0);
   });
 });

@@ -14,7 +14,7 @@ describe(ListItem, () => {
 
       const results = await axe(container);
 
-      expect(results).toHaveNoViolations();
+      expect(results.violations).toHaveLength(0);
     }));
 
   it("passes accessibility with optional props", async () =>
@@ -39,7 +39,7 @@ describe(ListItem, () => {
 
       const results = await axe(container);
 
-      expect(results).toHaveNoViolations();
+      expect(results.violations).toHaveLength(0);
     }));
 
   it("passes accessibility with no link and category style", async () =>
@@ -61,6 +61,6 @@ describe(ListItem, () => {
 
       const results = await axe(container);
 
-      expect(results).toHaveNoViolations();
+      expect(results.violations).toHaveLength(0);
     }));
 });

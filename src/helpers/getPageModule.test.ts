@@ -3,7 +3,7 @@ import { contentfulDeliveryClient } from "./contentful";
 
 import getPageModule from "./getPageModule";
 
-vi.mock(import("./contentful"), () => ({
+vi.mock("./contentful", () => ({
   contentfulDeliveryClient: {
     getEntries: vi.fn<() => void>(),
   },
