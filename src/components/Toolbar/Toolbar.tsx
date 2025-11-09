@@ -60,7 +60,7 @@ const Toolbar = ({ catalogue, previous, next }: Props) => {
           <li key={item.id}>
             <Card
               type={catalogue}
-              id={`#${item.id}`}
+              title={`#${item.id}`}
               name={item?.name ? String(item.name) : undefined}
               reference={item?.reference ? `#${item.reference}` : undefined}
               link={`/research/catalogues/${catalogue}/${item.slug}`}

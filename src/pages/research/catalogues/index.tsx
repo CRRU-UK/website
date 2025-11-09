@@ -168,7 +168,7 @@ const Page: NextPage<PageProps> = ({ pageData }: PageProps) => {
               <li key={item.id}>
                 <Card
                   type={catalogue}
-                  id={item.id}
+                  title={item.id}
                   name={item.name ?? undefined}
                   reference={item?.reference ? `#${item.reference}` : undefined}
                   link={`/research/catalogues/${catalogue}/${item.slug}`}
