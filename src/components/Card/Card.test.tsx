@@ -12,7 +12,7 @@ describe(Card, () => {
         <Card
           // @ts-expect-error String of enum value
           type="bottlenose-dolphin"
-          id="mocked title"
+          title="mocked title"
           link="/mocked-link"
         />,
       );
@@ -28,7 +28,7 @@ describe(Card, () => {
         <Card
           // @ts-expect-error String of enum value
           type="minke-whale"
-          id="mocked title"
+          title="mocked title"
           reference="mocked subtitle"
           name="mocked name"
           link="/mocked-link"
