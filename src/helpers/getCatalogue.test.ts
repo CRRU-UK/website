@@ -61,10 +61,13 @@ describe(getCatalogueList, () => {
     ["bottlenose-dolphin", "catalogueBottlenoseDolphin"],
     ["minke-whale", "catalogueMinkeWhale"],
   ])("returns catalogue entries (%p)", async (catalogue, contentType) => {
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(() => ({
-      total: 100,
-      items: mockedEntries,
-    }));
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+      () =>
+        ({
+          total: 100,
+          items: mockedEntries,
+        }) as any,
+    );
 
     const result = await getCatalogueList(
       // @ts-expect-error String of enum value
@@ -105,10 +108,13 @@ describe(getCatalogueList, () => {
   });
 
   it("returns catalogue entries with search", async () => {
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(() => ({
-      total: 100,
-      items: mockedEntries,
-    }));
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+      () =>
+        ({
+          total: 100,
+          items: mockedEntries,
+        }) as any,
+    );
 
     await getCatalogueList(
       // @ts-expect-error String of enum value
@@ -145,24 +151,30 @@ describe(getBottlenoseDolphinCatalogueItem, () => {
   });
 
   it("gets catalogue item with default fields", async () => {
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementationOnce(() => ({
-      items: [
-        {
-          sys: {
-            id: "mocked-entry-id",
-            updatedAt: "mocked-updated-at",
-          },
-          fields: {
-            id: "mocked-id",
-            slug: "mocked-slug",
-          },
-        },
-      ],
-    }));
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementationOnce(
+      () =>
+        ({
+          items: [
+            {
+              sys: {
+                id: "mocked-entry-id",
+                updatedAt: "mocked-updated-at",
+              },
+              fields: {
+                id: "mocked-id",
+                slug: "mocked-slug",
+              },
+            },
+          ],
+        }) as any,
+    );
 
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementationOnce(() => ({
-      items: [],
-    }));
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementationOnce(
+      () =>
+        ({
+          items: [],
+        }) as any,
+    );
 
     const result = await getBottlenoseDolphinCatalogueItem("mocked-slug");
 
@@ -202,59 +214,65 @@ describe(getBottlenoseDolphinCatalogueItem, () => {
   });
 
   it("gets catalogue item with all fields", async () => {
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementationOnce(() => ({
-      items: [
-        {
-          sys: {
-            id: "mocked-entry-id",
-            updatedAt: "mocked-updated-at",
-          },
-          fields: {
-            id: "mocked-id",
-            reference: "mocked-au-id",
-            name: "mocked name",
-            slug: "mocked-slug",
-            birthYear: "mocked birth year",
-            sex: "mocked sex",
-            totalRecaptures: 5,
-            yearsRecaptured: ["mocked recapture 1"],
-            totalCalves: "mocked total calves",
-            leftDorsalFin: "mocked-left-dorsal-fin",
-            rightDorsalFin: "mocked-right-dorsal-fin",
-            otherImages: ["mocked-other-image-1"],
-            mother: {
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementationOnce(
+      () =>
+        ({
+          items: [
+            {
+              sys: {
+                id: "mocked-entry-id",
+                updatedAt: "mocked-updated-at",
+              },
               fields: {
-                id: "mocked-mother-id-1",
-                reference: "mocked-mother-reference-1",
-                name: "mocked-mother-name-1",
-                slug: "mocked-mother-slug-1",
+                id: "mocked-id",
+                reference: "mocked-au-id",
+                name: "mocked name",
+                slug: "mocked-slug",
+                birthYear: "mocked birth year",
+                sex: "mocked sex",
+                totalRecaptures: 5,
+                yearsRecaptured: ["mocked recapture 1"],
+                totalCalves: "mocked total calves",
+                leftDorsalFin: "mocked-left-dorsal-fin",
+                rightDorsalFin: "mocked-right-dorsal-fin",
+                otherImages: ["mocked-other-image-1"],
+                mother: {
+                  fields: {
+                    id: "mocked-mother-id-1",
+                    reference: "mocked-mother-reference-1",
+                    name: "mocked-mother-name-1",
+                    slug: "mocked-mother-slug-1",
+                  },
+                },
+                previousEntry: { fields: mockedPreviousEntryFields },
+                nextEntry: { fields: mockedNextEntryFields },
               },
             },
-            previousEntry: { fields: mockedPreviousEntryFields },
-            nextEntry: { fields: mockedNextEntryFields },
-          },
-        },
-      ],
-    }));
+          ],
+        }) as any,
+    );
 
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementationOnce(() => ({
-      items: [
-        {
-          fields: {
-            id: "mocked-calf-id-1",
-            reference: "mocked-calf-reference-1",
-            name: "mocked-calf-name-1",
-            slug: "mocked-calf-slug-1",
-          },
-        },
-        {
-          fields: {
-            id: "mocked-calf-id-2",
-            slug: "mocked-calf-slug-2",
-          },
-        },
-      ],
-    }));
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementationOnce(
+      () =>
+        ({
+          items: [
+            {
+              fields: {
+                id: "mocked-calf-id-1",
+                reference: "mocked-calf-reference-1",
+                name: "mocked-calf-name-1",
+                slug: "mocked-calf-slug-1",
+              },
+            },
+            {
+              fields: {
+                id: "mocked-calf-id-2",
+                slug: "mocked-calf-slug-2",
+              },
+            },
+          ],
+        }) as any,
+    );
 
     const result = await getBottlenoseDolphinCatalogueItem("mocked-slug");
 
@@ -300,9 +318,12 @@ describe(getBottlenoseDolphinCatalogueItem, () => {
   });
 
   it("returns null for no catalogue item", async () => {
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(() => ({
-      items: [],
-    }));
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+      () =>
+        ({
+          items: [],
+        }) as any,
+    );
 
     const result = await getBottlenoseDolphinCatalogueItem("mocked-slug");
 
@@ -318,15 +339,18 @@ describe(getBottlenoseDolphinItemEntrySlug, () => {
   });
 
   it("gets slug from entry by ID", async () => {
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(() => ({
-      items: [
-        {
-          fields: {
-            slug: "mocked-slug",
-          },
-        },
-      ],
-    }));
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+      () =>
+        ({
+          items: [
+            {
+              fields: {
+                slug: "mocked-slug",
+              },
+            },
+          ],
+        }) as any,
+    );
 
     const result = await getBottlenoseDolphinItemEntrySlug("mocked-id");
 
@@ -341,9 +365,12 @@ describe(getBottlenoseDolphinItemEntrySlug, () => {
   });
 
   it("handles no matching entries", async () => {
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(() => ({
-      items: [],
-    }));
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+      () =>
+        ({
+          items: [],
+        }) as any,
+    );
 
     const result = await getBottlenoseDolphinItemEntrySlug("mocked-id");
 
@@ -357,20 +384,23 @@ describe(getMinkeWhaleCatalogueItem, () => {
   });
 
   it("gets catalogue item with default fields", async () => {
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementationOnce(() => ({
-      items: [
-        {
-          sys: {
-            id: "mocked-entry-id",
-            updatedAt: "mocked-updated-at",
-          },
-          fields: {
-            id: "mocked-id",
-            slug: "mocked-slug",
-          },
-        },
-      ],
-    }));
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementationOnce(
+      () =>
+        ({
+          items: [
+            {
+              sys: {
+                id: "mocked-entry-id",
+                updatedAt: "mocked-updated-at",
+              },
+              fields: {
+                id: "mocked-id",
+                slug: "mocked-slug",
+              },
+            },
+          ],
+        }) as any,
+    );
 
     const result = await getMinkeWhaleCatalogueItem("mocked-slug");
 
@@ -399,28 +429,31 @@ describe(getMinkeWhaleCatalogueItem, () => {
   });
 
   it("gets catalogue item with all fields", async () => {
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementationOnce(() => ({
-      items: [
-        {
-          sys: {
-            id: "mocked-entry-id",
-            updatedAt: "mocked-updated-at",
-          },
-          fields: {
-            id: "mocked-id",
-            reference: "mocked-au-id",
-            name: "mocked name",
-            slug: "mocked-slug",
-            totalRecaptures: 5,
-            yearsRecaptured: ["mocked recapture 1"],
-            leftDorsalFin: "mocked-left-dorsal-fin",
-            rightDorsalFin: "mocked-right-dorsal-fin",
-            previousEntry: { fields: mockedPreviousEntryFields },
-            nextEntry: { fields: mockedNextEntryFields },
-          },
-        },
-      ],
-    }));
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementationOnce(
+      () =>
+        ({
+          items: [
+            {
+              sys: {
+                id: "mocked-entry-id",
+                updatedAt: "mocked-updated-at",
+              },
+              fields: {
+                id: "mocked-id",
+                reference: "mocked-au-id",
+                name: "mocked name",
+                slug: "mocked-slug",
+                totalRecaptures: 5,
+                yearsRecaptured: ["mocked recapture 1"],
+                leftDorsalFin: "mocked-left-dorsal-fin",
+                rightDorsalFin: "mocked-right-dorsal-fin",
+                previousEntry: { fields: mockedPreviousEntryFields },
+                nextEntry: { fields: mockedNextEntryFields },
+              },
+            },
+          ],
+        }) as any,
+    );
 
     const result = await getMinkeWhaleCatalogueItem("mocked-slug");
 
@@ -442,9 +475,12 @@ describe(getMinkeWhaleCatalogueItem, () => {
   });
 
   it("returns null for no catalogue item", async () => {
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(() => ({
-      items: [],
-    }));
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+      () =>
+        ({
+          items: [],
+        }) as any,
+    );
 
     const result = await getMinkeWhaleCatalogueItem("mocked-slug");
 
@@ -458,15 +494,18 @@ describe(getMinkeWhaleItemEntrySlug, () => {
   });
 
   it("gets slug from entry by ID", async () => {
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(() => ({
-      items: [
-        {
-          fields: {
-            slug: "mocked-slug",
-          },
-        },
-      ],
-    }));
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+      () =>
+        ({
+          items: [
+            {
+              fields: {
+                slug: "mocked-slug",
+              },
+            },
+          ],
+        }) as any,
+    );
 
     const result = await getMinkeWhaleItemEntrySlug("mocked-id");
 
@@ -481,9 +520,12 @@ describe(getMinkeWhaleItemEntrySlug, () => {
   });
 
   it("handles no matching entries", async () => {
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(() => ({
-      items: [],
-    }));
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+      () =>
+        ({
+          items: [],
+        }) as any,
+    );
 
     const result = await getMinkeWhaleItemEntrySlug("mocked-id");
 

@@ -1,5 +1,3 @@
-import "@testing-library/jest-dom";
-
 import type { Props } from "./Breadcrumbs";
 
 import { render } from "@testing-library/react";

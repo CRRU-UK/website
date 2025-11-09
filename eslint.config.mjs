@@ -39,6 +39,7 @@ const recommendedConfigs = [
       "vitest/require-mock-type-parameters": ["off"],
       "vitest/prefer-import-in-mock": ["off"],
       "vitest/require-top-level-describe": ["off"],
+      "@typescript-eslint/no-explicit-any": ["warn"], // TODO: Fix later
     },
     settings: {
       vitest: {

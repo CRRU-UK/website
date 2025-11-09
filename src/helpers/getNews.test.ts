@@ -24,9 +24,12 @@ const mockedEntries = {
 };
 
 beforeEach(() => {
-  vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(() => ({
-    items: [{ fields: mockedEntries }],
-  }));
+  vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+    () =>
+      ({
+        items: [{ fields: mockedEntries }],
+      }) as any,
+  );
 });
 
 afterEach(() => {

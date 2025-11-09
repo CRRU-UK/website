@@ -19,16 +19,19 @@ afterEach(() => {
 
 describe(getPageModule, () => {
   it("returns page module entry with all properties", async () => {
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(() => ({
-      items: [
-        {
-          fields: {
-            ...mockedEntryFields,
-            data: "test data",
-          },
-        },
-      ],
-    }));
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+      () =>
+        ({
+          items: [
+            {
+              fields: {
+                ...mockedEntryFields,
+                data: "test data",
+              },
+            },
+          ],
+        }) as any,
+    );
 
     const result = await getPageModule("mocked-id");
 
@@ -46,13 +49,16 @@ describe(getPageModule, () => {
   });
 
   it("returns page module entry with missing properties", async () => {
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(() => ({
-      items: [
-        {
-          fields: mockedEntryFields,
-        },
-      ],
-    }));
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+      () =>
+        ({
+          items: [
+            {
+              fields: mockedEntryFields,
+            },
+          ],
+        }) as any,
+    );
 
     const result = await getPageModule("mocked-id");
 
@@ -63,9 +69,12 @@ describe(getPageModule, () => {
   });
 
   it("returns null for no entries", async () => {
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(() => ({
-      items: [],
-    }));
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+      () =>
+        ({
+          items: [],
+        }) as any,
+    );
 
     const result = await getPageModule("mocked-id");
 

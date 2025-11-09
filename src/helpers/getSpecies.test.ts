@@ -33,16 +33,19 @@ afterEach(() => {
 
 describe(getSpecies, () => {
   it("returns species with all properties", async () => {
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(() => ({
-      items: [
-        {
-          fields: {
-            ...mockedEntryFields,
-            subfamily: "test subfamily",
-          },
-        },
-      ],
-    }));
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+      () =>
+        ({
+          items: [
+            {
+              fields: {
+                ...mockedEntryFields,
+                subfamily: "test subfamily",
+              },
+            },
+          ],
+        }) as any,
+    );
 
     const result = await getSpecies();
 
@@ -62,13 +65,16 @@ describe(getSpecies, () => {
   });
 
   it("returns species with missing properties", async () => {
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(() => ({
-      items: [
-        {
-          fields: mockedEntryFields,
-        },
-      ],
-    }));
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+      () =>
+        ({
+          items: [
+            {
+              fields: mockedEntryFields,
+            },
+          ],
+        }) as any,
+    );
 
     const result = await getSpecies();
 
