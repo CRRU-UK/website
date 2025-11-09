@@ -1,4 +1,4 @@
-import type { NextPage, GetServerSideProps } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 
 import Link from "next/link";
 
@@ -9,8 +9,8 @@ import sitemap from "@/data/sitemap.json";
 import getPageContent from "@/helpers/getPageContent";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
-import Hero from "@/components/Hero/Hero";
 import { Breadcrumbs, SEO } from "@/components";
+import Hero from "@/components/Hero/Hero";
 
 interface PageProps {
   pageImage: PageData["image"];

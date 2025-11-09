@@ -1,10 +1,11 @@
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { contentfulDeliveryClient } from "./contentful";
 
 import getPageModule from "./getPageModule";
 
-jest.mock("./contentful", () => ({
+vi.mock("./contentful", () => ({
   contentfulDeliveryClient: {
-    getEntries: jest.fn(),
+    getEntries: vi.fn<() => void>(),
   },
 }));
 
@@ -13,59 +14,70 @@ const mockedEntryFields = {
 };
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
-it("Returns page module entry with all properties", async () => {
-  (contentfulDeliveryClient.getEntries as jest.Mock).mockImplementation(() => ({
-    items: [
-      {
-        fields: {
-          ...mockedEntryFields,
-          data: "test data",
-        },
-      },
-    ],
-  }));
+describe(getPageModule, () => {
+  it("returns page module entry with all properties", async () => {
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+      () =>
+        ({
+          items: [
+            {
+              fields: {
+                ...mockedEntryFields,
+                data: "test data",
+              },
+            },
+          ],
+        }) as any,
+    );
 
-  const result = await getPageModule("mocked-id");
+    const result = await getPageModule("mocked-id");
 
-  expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
-  expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(1, {
-    content_type: "pageModule",
-    "fields.id": "mocked-id",
-    limit: 1,
+    expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
+    expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(1, {
+      content_type: "pageModule",
+      "fields.id": "mocked-id",
+      limit: 1,
+    });
+
+    expect(result).toStrictEqual({
+      content: "test content",
+      data: "test data",
+    });
   });
 
-  expect(result).toStrictEqual({
-    content: "test content",
-    data: "test data",
+  it("returns page module entry with missing properties", async () => {
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+      () =>
+        ({
+          items: [
+            {
+              fields: mockedEntryFields,
+            },
+          ],
+        }) as any,
+    );
+
+    const result = await getPageModule("mocked-id");
+
+    expect(result).toStrictEqual({
+      content: "test content",
+      data: null,
+    });
   });
-});
 
-it("Returns page module entry with missing properties", async () => {
-  (contentfulDeliveryClient.getEntries as jest.Mock).mockImplementation(() => ({
-    items: [
-      {
-        fields: mockedEntryFields,
-      },
-    ],
-  }));
+  it("returns null for no entries", async () => {
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+      () =>
+        ({
+          items: [],
+        }) as any,
+    );
 
-  const result = await getPageModule("mocked-id");
+    const result = await getPageModule("mocked-id");
 
-  expect(result).toStrictEqual({
-    content: "test content",
-    data: null,
+    expect(result).toBeNull();
   });
-});
-
-it("Returns null for no entries", async () => {
-  (contentfulDeliveryClient.getEntries as jest.Mock).mockImplementation(() => ({
-    items: [],
-  }));
-
-  const result = await getPageModule("mocked-id");
-
-  expect(result).toBe(null);
 });

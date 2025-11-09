@@ -1,14 +1,6 @@
-// @ts-check
-
-/**
- * Note: We are using the JavaScript version of the config instead of the TypeScript one as NextJS
- * does not seem to detect that TypeScript is installed when being run and attempts to install it -
- * causing a long delay in the startup time which causes health checks to fail.
- */
-
 import { withSentryConfig } from "@sentry/nextjs";
 
-import redirects from "./redirects.json" with { type: "json" };
+import redirects from "./redirects.json";
 
 const CSPHeader = [
   `default-src 'self'`,
@@ -62,7 +54,7 @@ const nextConfig = {
     silenceDeprecations: ["legacy-js-api"],
   },
   images: {
-    qualities: [100, 90],
+    qualities: [75, 90, 100],
     remotePatterns: [
       {
         protocol: "https",

@@ -1,15 +1,15 @@
-import type { Entry, Asset } from "contentful";
+import type { Asset, Entry } from "contentful";
 
 import type {
   CatalogueAPIResponse,
   CatalogueBasicInfo,
   CatalogueBottlenoseDolphin,
-  ContentTypeCatalogueBottlenoseDolphin,
   CatalogueMinkeWhale,
+  ContentTypeCatalogueBottlenoseDolphin,
   ContentTypeCatalogueMinkeWhale,
 } from "./types";
 
-import { Catalogues, ContentTypes, CATALOGUE_RESULTS_LIMIT } from "./constants";
+import { CATALOGUE_RESULTS_LIMIT, Catalogues, ContentTypes } from "./constants";
 
 import { contentfulDeliveryClient } from "./contentful";
 import { flattenImageAssetFields } from "./flattenAssetFields";
@@ -245,9 +245,9 @@ const getMinkeWhaleItemEntrySlug = async (
 };
 
 export {
-  getCatalogueList,
   getBottlenoseDolphinCatalogueItem,
   getBottlenoseDolphinItemEntrySlug,
+  getCatalogueList,
   getMinkeWhaleCatalogueItem,
   getMinkeWhaleItemEntrySlug,
 };

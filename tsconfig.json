@@ -12,7 +12,7 @@
     "moduleResolution": "nodenext",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "baseUrl": ".",
     "paths": {
@@ -26,11 +26,14 @@
   },
   "include": [
     "next-env.d.ts",
-    "jest.config.ts",
+    "next.config.ts",
+    "eslint.config.mjs",
+    "sentry.*.config.ts",
+    "vitest.*.mts",
     "src/**/*.ts",
     "src/**/*.tsx",
     ".next/types/**/*.ts",
     "__tests__/**/*.ts"
   ],
-  "exclude": ["node_modules", "jest.config.ts", "jest.setup.ts", "jest.env.ts"]
+  "exclude": ["node_modules"]
 }

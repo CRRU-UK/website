@@ -1,4 +1,4 @@
-import type { NextPage, GetServerSideProps } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 
 import type { PageData } from "@/helpers/types";
 
@@ -6,7 +6,7 @@ import Head from "next/head";
 
 import sitemap from "@/data/sitemap.json";
 
-import { DEFAULT_SITE_NAME, DEFAULT_SITE_DOMAIN } from "@/helpers/constants";
+import { DEFAULT_SITE_DOMAIN, DEFAULT_SITE_NAME } from "@/helpers/constants";
 import getPageContent from "@/helpers/getPageContent";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
 

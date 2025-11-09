@@ -4,10 +4,10 @@ import { generateNextSeo } from "next-seo/pages";
 import type { SitemapItem } from "@/helpers/types";
 
 import {
-  DEFAULT_SITE_NAME,
+  DEFAULT_SEO_IMAGE,
   DEFAULT_SITE_DESCRIPTION,
   DEFAULT_SITE_DOMAIN,
-  DEFAULT_SEO_IMAGE,
+  DEFAULT_SITE_NAME,
 } from "@/helpers/constants";
 
 interface Props {

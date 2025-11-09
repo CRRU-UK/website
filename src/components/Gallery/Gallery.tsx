@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 
-import { useState, useEffect, useRef, createRef } from "react";
+import { createRef, useEffect, useRef, useState } from "react";
 
 import type { FlattenedImage } from "@/helpers/types";
 

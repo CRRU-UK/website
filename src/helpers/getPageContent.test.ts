@@ -1,152 +1,167 @@
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { contentfulDeliveryClient, contentfulPreviewClient } from "./contentful";
 
 import getPageContent from "./getPageContent";
 
-jest.mock("./flattenAssetFields", () => ({
-  flattenImageAssetFields: jest.fn((item) => item),
-  flattenVideoAssetFields: jest.fn((item) => item),
+vi.mock("./flattenAssetFields", () => ({
+  flattenImageAssetFields: vi.fn((item) => item),
+  flattenVideoAssetFields: vi.fn((item) => item),
 }));
 
-jest.mock("./contentful", () => ({
+vi.mock("./contentful", () => ({
   contentfulDeliveryClient: {
-    getEntries: jest.fn(),
+    getEntries: vi.fn<() => void>(),
   },
   contentfulPreviewClient: {
-    getEntries: jest.fn(),
+    getEntries: vi.fn<() => void>(),
   },
 }));
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
-it("Returns page content entry with defaults", async () => {
-  (contentfulDeliveryClient.getEntries as jest.Mock).mockImplementation(() => ({
-    items: [
-      {
-        sys: { id: "test-id" },
-        fields: {
-          description: "test description",
-          content: "test content",
-          data: { foo: "bar" },
-          image: "test image",
-          background: "test background",
-          references: ["test-reference-1", "test-reference-2"],
-        },
-      },
-    ],
-  }));
+describe(getPageContent, () => {
+  it("returns page content entry with defaults", async () => {
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+      () =>
+        ({
+          items: [
+            {
+              sys: { id: "test-id" },
+              fields: {
+                description: "test description",
+                content: "test content",
+                data: { foo: "bar" },
+                image: "test image",
+                background: "test background",
+                references: ["test-reference-1", "test-reference-2"],
+              },
+            },
+          ],
+        }) as any,
+    );
 
-  const result = await getPageContent("/mocked/path");
+    const result = await getPageContent("/mocked/path");
 
-  expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
-  expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(1, {
-    content_type: "page",
-    "fields.path": "/mocked/path",
-    limit: 1,
-    include: 2,
+    expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
+    expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(1, {
+      content_type: "page",
+      "fields.path": "/mocked/path",
+      limit: 1,
+      include: 2,
+    });
+
+    expect(contentfulPreviewClient.getEntries).toHaveBeenCalledTimes(0);
+
+    expect(result).toStrictEqual({
+      id: "test-id",
+      description: "test description",
+      content: "test content",
+      data: { foo: "bar" },
+      image: "test image",
+      background: "test background",
+    });
   });
 
-  expect(contentfulPreviewClient.getEntries).toHaveBeenCalledTimes(0);
+  it("returns page content entry with options", async () => {
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+      () =>
+        ({
+          items: [
+            {
+              sys: { id: "test-id" },
+              fields: {
+                description: "test description",
+                content: "test content",
+                data: { foo: "bar" },
+                image: "test image",
+                background: "test background",
+                references: ["test-reference-1", "test-reference-2"],
+              },
+            },
+          ],
+        }) as any,
+    );
 
-  expect(result).toStrictEqual({
-    id: "test-id",
-    description: "test description",
-    content: "test content",
-    data: { foo: "bar" },
-    image: "test image",
-    background: "test background",
-  });
-});
+    const result = await getPageContent("/mocked/path", { references: true });
 
-it("Returns page content entry with options", async () => {
-  (contentfulDeliveryClient.getEntries as jest.Mock).mockImplementation(() => ({
-    items: [
-      {
-        sys: { id: "test-id" },
-        fields: {
-          description: "test description",
-          content: "test content",
-          data: { foo: "bar" },
-          image: "test image",
-          background: "test background",
-          references: ["test-reference-1", "test-reference-2"],
-        },
-      },
-    ],
-  }));
-
-  const result = await getPageContent("/mocked/path", { references: true });
-
-  expect(result).toStrictEqual({
-    id: "test-id",
-    description: "test description",
-    content: "test content",
-    data: { foo: "bar" },
-    image: "test image",
-    background: "test background",
-    references: ["test-reference-1", "test-reference-2"],
-  });
-});
-
-it("Returns page content entry using preview client", async () => {
-  (contentfulPreviewClient.getEntries as jest.Mock).mockImplementation(() => ({
-    items: [
-      {
-        sys: { id: "test-id" },
-        fields: {
-          description: "test description",
-          content: "test content",
-          data: { foo: "bar" },
-          image: "test image",
-          background: "test background",
-          references: ["test-reference-1", "test-reference-2"],
-        },
-      },
-    ],
-  }));
-
-  const result = await getPageContent("/mocked/path", { preview: true });
-
-  expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(0);
-
-  expect(contentfulPreviewClient.getEntries).toHaveBeenCalledTimes(1);
-  expect(contentfulPreviewClient.getEntries).toHaveBeenNthCalledWith(1, {
-    content_type: "page",
-    "fields.path": "/mocked/path",
-    limit: 1,
-    include: 2,
+    expect(result).toStrictEqual({
+      id: "test-id",
+      description: "test description",
+      content: "test content",
+      data: { foo: "bar" },
+      image: "test image",
+      background: "test background",
+      references: ["test-reference-1", "test-reference-2"],
+    });
   });
 
-  expect(result).toStrictEqual({
-    id: "test-id",
-    description: "test description",
-    content: "test content",
-    data: { foo: "bar" },
-    image: "test image",
-    background: "test background",
+  it("returns page content entry using preview client", async () => {
+    vi.mocked(contentfulPreviewClient.getEntries).mockImplementation(
+      () =>
+        ({
+          items: [
+            {
+              sys: { id: "test-id" },
+              fields: {
+                description: "test description",
+                content: "test content",
+                data: { foo: "bar" },
+                image: "test image",
+                background: "test background",
+                references: ["test-reference-1", "test-reference-2"],
+              },
+            },
+          ],
+        }) as any,
+    );
+
+    const result = await getPageContent("/mocked/path", { preview: true });
+
+    expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(0);
+
+    expect(contentfulPreviewClient.getEntries).toHaveBeenCalledTimes(1);
+    expect(contentfulPreviewClient.getEntries).toHaveBeenNthCalledWith(1, {
+      content_type: "page",
+      "fields.path": "/mocked/path",
+      limit: 1,
+      include: 2,
+    });
+
+    expect(result).toStrictEqual({
+      id: "test-id",
+      description: "test description",
+      content: "test content",
+      data: { foo: "bar" },
+      image: "test image",
+      background: "test background",
+    });
   });
-});
 
-it("Returns page content entry with missing fields", async () => {
-  (contentfulDeliveryClient.getEntries as jest.Mock).mockImplementation(() => ({
-    items: [
-      {
-        sys: { id: "test-id" },
-        fields: {},
-      },
-    ],
-  }));
+  it("returns page content entry with missing fields", async () => {
+    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+      () =>
+        ({
+          items: [
+            {
+              sys: { id: "test-id" },
+              fields: {},
+            },
+          ],
+        }) as any,
+    );
 
-  const result = await getPageContent("/mocked/path", { references: true });
+    const result = await getPageContent("/mocked/path", { references: true });
 
-  expect(result).toStrictEqual({
-    id: "test-id",
-    description: null,
-    content: null,
-    data: null,
-    image: null,
-    background: null,
-    references: null,
+    expect(result).toStrictEqual({
+      id: "test-id",
+      description: null,
+      content: null,
+      data: null,
+      image: null,
+      background: null,
+      references: null,
+    });
   });
 });

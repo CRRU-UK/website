@@ -1,10 +1,10 @@
-import type { NextPage, GetServerSideProps } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 
 import sitemap from "@/data/sitemap.json";
 
 import { DEFAULT_SITE_DOMAIN } from "@/helpers/constants";
-import getSpecies from "@/helpers/getSpecies";
 import getNews from "@/helpers/getNews";
+import getSpecies from "@/helpers/getSpecies";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 const Page: NextPage = () => <>Sitemap</>;

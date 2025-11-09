@@ -6,14 +6,14 @@ import styles from "./Card.module.scss";
 
 interface Props {
   type: Catalogues;
-  id: string;
+  title: string;
   name?: string;
   reference?: string;
   link: string;
   disabled?: boolean;
 }
 
-const Card = ({ type, id, reference, name, link, disabled = false }: Props) => {
+const Card = ({ type, title, reference, name, link, disabled = false }: Props) => {
   const classes = [styles.card, styles["no-image"]];
 
   if (type === Catalogues.BottlenoseDolphin) {
@@ -33,7 +33,7 @@ const Card = ({ type, id, reference, name, link, disabled = false }: Props) => {
       <span className={styles.icon}></span>
       <span className={styles.text}>
         <span className={styles.id}>
-          <b>{id}</b>
+          <b>{title}</b>
           {reference && <span className={styles.reference}>{reference}</span>}
         </span>
         <span className={styles.name}>{name ?? <i>Unnamed</i>}</span>

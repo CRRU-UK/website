@@ -1,15 +1,15 @@
 /* istanbul ignore file */
 
-import type { Asset, AssetFile } from "contentful";
 import type { Node } from "@contentful/rich-text-types";
+import type { Asset, AssetFile } from "contentful";
 
 import { NodeRenderer, documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
-import pageRenderOptions from "@/helpers/rendering/index";
 import { EmbeddedContentEntries } from "@/helpers/constants";
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
+import pageRenderOptions from "@/helpers/rendering/index";
 
-import { Gallery, ImageRow, Highlight, Note } from "@/components";
+import { Gallery, Highlight, ImageRow, Note } from "@/components";
 
 const renderGallery = (data: Node["data"]) => {
   const images = data.target.fields.images.map((item: Asset) => flattenImageAssetFields(item));

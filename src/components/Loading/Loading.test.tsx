@@ -1,23 +1,20 @@
-import "@testing-library/jest-dom";
-
-import { act } from "react";
 import { render } from "@testing-library/react";
-import { axe, toHaveNoViolations } from "jest-axe";
+import { act } from "react";
+import { describe, expect, it } from "vitest";
+import { axe } from "vitest-axe";
 
 import Loading from "./Loading";
 
-beforeAll(() => {
-  expect.extend(toHaveNoViolations);
+describe(Loading, () => {
+  it("passes accessibility", async () =>
+    act(async () => {
+      const { container } = render(
+        // @ts-expect-error String of enum value
+        <Loading type="bottlenose-dolphin" />,
+      );
+
+      const results = await axe(container);
+
+      expect(results.violations).toHaveLength(0);
+    }));
 });
-
-it("Passes accessibility", async () =>
-  act(async () => {
-    const { container } = render(
-      // @ts-expect-error String of enum value
-      <Loading type="bottlenose-dolphin" />,
-    );
-
-    const results = await axe(container);
-
-    expect(results).toHaveNoViolations();
-  }));
