@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import type { NextPage, GetServerSideProps } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 
-import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
-import type { PageData, CatalogueAPIResponse } from "@/helpers/types";
+import type { CatalogueAPIResponse, PageData } from "@/helpers/types";
 
 import sitemap from "@/data/sitemap.json";
 
@@ -168,7 +168,7 @@ const Page: NextPage<PageProps> = ({ pageData }: PageProps) => {
               <li key={item.id}>
                 <Card
                   type={catalogue}
-                  id={item.id}
+                  title={item.id}
                   name={item.name ?? undefined}
                   reference={item?.reference ? `#${item.reference}` : undefined}
                   link={`/research/catalogues/${catalogue}/${item.slug}`}

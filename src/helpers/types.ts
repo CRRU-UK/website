@@ -1,5 +1,5 @@
-import type { Entry, EntryFieldTypes } from "contentful";
 import type { Document } from "@contentful/rich-text-types";
+import type { Entry, EntryFieldTypes } from "contentful";
 
 import { ContentTypes } from "./constants";
 

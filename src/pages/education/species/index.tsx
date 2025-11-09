@@ -1,4 +1,4 @@
-import type { NextPage, GetServerSideProps } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 
 import type { PageData } from "@/helpers/types";
 
@@ -8,8 +8,8 @@ import getPageContent from "@/helpers/getPageContent";
 import getSpecies from "@/helpers/getSpecies";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
-import CommonPage from "@/layout/CommonPage";
 import { Button } from "@/components";
+import CommonPage from "@/layout/CommonPage";
 
 import styles from "./index.module.scss";
 

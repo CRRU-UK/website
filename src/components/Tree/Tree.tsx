@@ -21,7 +21,7 @@ const Tree = ({ type, data }: Props) => {
     motherElement = (
       <Card
         type={type}
-        id={`#${mother.id}`}
+        title={`#${mother.id}`}
         name={mother?.name ? String(mother.name) : undefined}
         reference={mother?.reference ? `#${mother.reference}` : undefined}
         link={`/research/catalogues/bottlenose-dolphin/${mother.slug}`}
@@ -38,7 +38,7 @@ const Tree = ({ type, data }: Props) => {
             {index === 0 && <span className={styles.last}>Last recorded calf</span>}
             <Card
               type={type}
-              id={`#${item.id}`}
+              title={`#${item.id}`}
               reference={item?.reference ? `#${item.reference}` : undefined}
               name={item?.name ?? undefined}
               link={item.slug}
@@ -61,7 +61,7 @@ const Tree = ({ type, data }: Props) => {
       <li className={styles.name}>
         <Card
           type={type}
-          id={`#${entry.id}`}
+          title={`#${entry.id}`}
           reference={entry?.reference ? `#${entry.reference}` : undefined}
           name={entry.name ?? undefined}
           link={""}

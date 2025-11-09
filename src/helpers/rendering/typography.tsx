@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 
-import { BLOCKS } from "@contentful/rich-text-types";
 import { NodeRenderer } from "@contentful/rich-text-react-renderer";
+import { BLOCKS } from "@contentful/rich-text-types";
 
 const renderHeading1: NodeRenderer = (data, children) => (
   <p className="large">

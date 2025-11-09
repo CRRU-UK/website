@@ -13,6 +13,6 @@ export { default as Note } from "./Note/Note";
 export { default as SEO } from "./SEO/SEO";
 export { default as Social } from "./Social/Social";
 export { default as Timeline } from "./Timeline/Timeline";
+export { default as Toolbar } from "./Toolbar/Toolbar";
 export { default as Tooltip } from "./Tooltip/Tooltip";
 export { default as Tree } from "./Tree/Tree";
-export { default as Toolbar } from "./Toolbar/Toolbar";

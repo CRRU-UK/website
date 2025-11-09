@@ -1,10 +1,10 @@
-import type { NextPage, GetServerSideProps } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import type { ParsedUrlQuery } from "node:querystring";
 
 import { useRouter } from "next/router";
 
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 import type { CatalogueBottlenoseDolphin } from "@/helpers/types";
 
@@ -18,7 +18,7 @@ import {
 } from "@/helpers/getCatalogue";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
-import { Breadcrumbs, SEO, Timeline, Tooltip, Tree, Toolbar } from "@/components";
+import { Breadcrumbs, SEO, Timeline, Toolbar, Tooltip, Tree } from "@/components";
 
 import styles from "../[slug].module.scss";
 

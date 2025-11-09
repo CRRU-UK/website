@@ -1,4 +1,4 @@
-import type { PageData, ContentTypePageContent } from "./types";
+import type { ContentTypePageContent, PageData } from "./types";
 
 import { ContentTypes } from "./constants";
 import { contentfulDeliveryClient, contentfulPreviewClient } from "./contentful";

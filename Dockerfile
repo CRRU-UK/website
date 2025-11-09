@@ -19,7 +19,7 @@ RUN npm ci && npm run build
 
 # Clean app
 FROM build
-RUN rm -rf src/ jest.config.ts next-env.d.ts package-lock.json testEnvironment.ts tsconfig.json
+RUN rm -rf src/ vitest.config.mts next-env.d.ts package-lock.json testEnvironment.ts tsconfig.json
 RUN npm prune --omit=dev
 
 EXPOSE 3000

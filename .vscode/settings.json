@@ -2,6 +2,10 @@
   "files.insertFinalNewline": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.rulers": [100],
+  "editor.formatOnSave": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "sonarlint.connectedMode.project": {
     "connectionId": "crru",
     "projectKey": "CRRU-UK_website"

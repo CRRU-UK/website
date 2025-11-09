@@ -1,10 +1,10 @@
-import type { NextPage, GetServerSideProps } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import type { ParsedUrlQuery } from "node:querystring";
 
 import { useRouter } from "next/router";
 
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 import type { CatalogueMinkeWhale } from "@/helpers/types";
 
@@ -15,7 +15,7 @@ import { formatDateMonth } from "@/helpers/formatDate";
 import { getMinkeWhaleCatalogueItem, getMinkeWhaleItemEntrySlug } from "@/helpers/getCatalogue";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
-import { Breadcrumbs, SEO, Timeline, Tooltip, Toolbar } from "@/components";
+import { Breadcrumbs, SEO, Timeline, Toolbar, Tooltip } from "@/components";
 
 import styles from "../[slug].module.scss";
 

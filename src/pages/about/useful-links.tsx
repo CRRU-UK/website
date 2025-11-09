@@ -1,5 +1,5 @@
 import type { Asset } from "contentful";
-import type { NextPage, GetServerSideProps } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 
 import { useState } from "react";
 
@@ -7,13 +7,13 @@ import type { FlattenedImage, PageData } from "@/helpers/types";
 
 import sitemap from "@/data/sitemap.json";
 
-import getPageContent from "@/helpers/getPageContent";
 import { UsefulLinksCategories } from "@/helpers/constants";
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
+import getPageContent from "@/helpers/getPageContent";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
+import { Filters, ListItem } from "@/components";
 import CommonPage from "@/layout/CommonPage";
-import { ListItem, Filters } from "@/components";
 
 type LinksDataReduced = {
   title: string;

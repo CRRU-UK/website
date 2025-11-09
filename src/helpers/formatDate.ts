@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
 import localizedFormat from "dayjs/plugin/localizedFormat";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 import "dayjs/locale/en-gb";
 
@@ -37,4 +37,4 @@ const formatDateRelative = (date: string, currentDate?: string): string => {
  */
 const formatDateMonth = (date: string): string => dayjs(date).format("MMMM YYYY");
 
-export { formatDateRelative, formatDateMonth };
+export { formatDateMonth, formatDateRelative };
