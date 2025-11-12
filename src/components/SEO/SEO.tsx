@@ -1,5 +1,6 @@
 import { BreadcrumbJsonLd } from "next-seo";
 import { generateNextSeo } from "next-seo/pages";
+import Head from "next/head";
 
 import type { SitemapItem } from "@/helpers/types";
 
@@ -28,7 +29,7 @@ const SEO = ({ page, type = "website", images = DEFAULT_SEO_IMAGE, breadcrumbs }
   const pageCanonicalURL = `${DEFAULT_SITE_DOMAIN}${path}`;
 
   return (
-    <>
+    <Head>
       {generateNextSeo({
         titleTemplate: `%s - ${DEFAULT_SITE_NAME}`,
         defaultTitle: DEFAULT_SITE_NAME,
@@ -53,7 +54,7 @@ const SEO = ({ page, type = "website", images = DEFAULT_SEO_IMAGE, breadcrumbs }
           item: `${DEFAULT_SITE_DOMAIN}${item.path}`,
         }))}
       />
-    </>
+    </Head>
   );
 };
 
