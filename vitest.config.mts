@@ -5,14 +5,15 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   plugins: [tsconfigPaths(), react()],
   test: {
+    watch: false,
     environment: "jsdom",
     coverage: {
       enabled: true,
       cleanOnRerun: true,
       provider: "v8",
-      reporter: ["text", "json", "html"],
+      reporter: ["lcov"],
       include: ["src/**/*.ts"],
-      exclude: ["src/**/*.gen.ts"],
+      exclude: ["src/**/*.gen.ts", "src/instrumentation*.ts"],
     },
     setupFiles: "vitest.setup.mts",
   },
