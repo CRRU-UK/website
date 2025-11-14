@@ -9,7 +9,7 @@
     "test:linting": "eslint . && prettier . --check && stylelint 'src/**/*.scss'",
     "test:types": "tsc --noEmit",
     "test:unit": "vitest",
-    "test:unit:watch": "npm run test:unit -- --watchAll"
+    "test:unit:watch": "npm run test:unit -- --watch"
   },
   "dependencies": {
     "@contentful/live-preview": "^4.6.56",
