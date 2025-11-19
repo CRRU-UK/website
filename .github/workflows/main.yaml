@@ -55,7 +55,10 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3.1.2
         with:
-          terraform_version: 1.10.5
+          terraform_version: 1.14.0
 
       - name: Test formatting
         run: terraform fmt -list=true -check -recursive -diff
+
+      - name: Test validation
+        run: terraform validate
