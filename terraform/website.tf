@@ -12,6 +12,10 @@ locals {
   ])
 }
 
+output "egress_ips" {
+  value = digitalocean_app.website_app.dedicated_ips
+}
+
 resource "digitalocean_app" "website_app" {
   spec {
     name   = "website"
