@@ -1,7 +1,7 @@
 locals {
   app_name = "app"
 
-  egress_ips = toset([for ip in digitalocean_app.website_app.dedicated_ips : ip.ip_address])
+  egress_ips = toset([for ip in data.digitalocean_app.website_app_data.dedicated_ips : ip.ip_address])
 
   image_cache_directives = join(", ", [
     "public",
@@ -204,6 +204,10 @@ resource "digitalocean_app" "website_app" {
       }
     }
   }
+}
+
+data "digitalocean_app" "website_app_data" {
+  app_id = digitalocean_app.website_app.id
 }
 
 resource "cloudflare_turnstile_widget" "website_challenge" {
