@@ -202,10 +202,6 @@ resource "digitalocean_app" "website_app" {
   }
 }
 
-data "digitalocean_app" "website_app_data" {
-  app_id = digitalocean_app.website_app.id
-}
-
 resource "cloudflare_turnstile_widget" "website_challenge" {
   account_id = var.cloudflare_account_id
 
