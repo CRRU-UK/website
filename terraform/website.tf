@@ -1,6 +1,8 @@
 locals {
   app_name = "app"
 
+  egress_ips = toset([for ip in data.digitalocean_app.website_app_data.dedicated_ips : ip.ip_address])
+
   image_cache_directives = join(", ", [
     "public",
     "max-age=18000",                  # 5 minutes
@@ -217,11 +219,11 @@ resource "cloudflare_turnstile_widget" "website_challenge" {
 resource "cloudflare_dns_record" "website_dns_apex" {
   zone_id = var.cloudflare_zone_id
 
-  for_each = data.digitalocean_app.website_app_data.dedicated_ips
+  for_each = local.egress_ips
 
   name    = "@"
   type    = "A"
-  content = each.value.ip
+  content = each.key
   ttl     = 1
   proxied = true
   comment = "Website (apex)"
@@ -230,11 +232,11 @@ resource "cloudflare_dns_record" "website_dns_apex" {
 resource "cloudflare_dns_record" "website_dns_www" {
   zone_id = var.cloudflare_zone_id
 
-  for_each = data.digitalocean_app.website_app_data.dedicated_ips
+  for_each = local.egress_ips
 
   name    = "www"
   type    = "A"
-  content = each.value.ip
+  content = each.key
   ttl     = 1
   proxied = true
   comment = "Website (www)"
