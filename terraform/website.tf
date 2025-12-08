@@ -1,7 +1,7 @@
 locals {
   app_name = "app"
 
-  egress_ips = toset([for ip in data.digitalocean_app.website_app.dedicated_ips : ip.ip_address])
+  egress_ips = toset([for ip in digitalocean_app.website_app.dedicated_ips : ip.ip_address])
 
   image_cache_directives = join(", ", [
     "public",
