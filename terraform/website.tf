@@ -13,7 +13,7 @@ locals {
 }
 
 output "egress_ips" {
-  value = digitalocean_app.website_app.dedicated_ips
+  value = data.digitalocean_app.website_app_data.dedicated_ips
 }
 
 resource "digitalocean_app" "website_app" {
