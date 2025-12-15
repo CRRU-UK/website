@@ -17,7 +17,7 @@ jobs:
       - name: Purge everything
         run: >
           curl -X POST --no-progress-meter --fail-with-body
-          -H 'Content-Type: application/json'
-          -H 'Authorization: Bearer $CLOUDFLARE_TOKEN'
+          -H "Content-Type: application/json"
+          -H "Authorization: Bearer $CLOUDFLARE_TOKEN"
           -d '{ "purge_everything": true }'
           https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache
