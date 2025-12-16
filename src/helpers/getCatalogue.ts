@@ -212,6 +212,8 @@ const getMinkeWhaleCatalogueItem = async (slug: string): Promise<CatalogueMinkeW
       rightDorsalFin: entry.fields?.rightDorsalFin
         ? flattenImageAssetFields(entry.fields.rightDorsalFin)
         : null,
+      otherImages:
+        entry.fields.otherImages?.map((item) => flattenImageAssetFields(item as Asset)) ?? [],
       lastUpdated: entry.sys.updatedAt,
     },
     previous: entry.fields.previousEntry ? reduceCatalogueItem(entry.fields.previousEntry) : null,

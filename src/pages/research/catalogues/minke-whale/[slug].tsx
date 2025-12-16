@@ -42,13 +42,14 @@ const Page: NextPage<PageProps> = ({ catalogueData }: PageProps) => {
     yearsRecaptured,
     leftDorsalFin,
     rightDorsalFin,
+    otherImages,
     lastUpdated,
   } = catalogueData.entry;
 
   const title = name ? `#${id} (${name})` : `#${id}`;
   const pageDescription = `CRRU Minke Whale catalogue entry for ${title}.`;
   const path = `/research/catalogues/${Catalogues.MinkeWhale}/${slug}`;
-  const image = leftDorsalFin ?? rightDorsalFin;
+  const image = otherImages?.[0] ?? leftDorsalFin ?? rightDorsalFin;
   const breadcrumbs = [
     sitemap.research,
     {
@@ -189,6 +190,27 @@ const Page: NextPage<PageProps> = ({ catalogueData }: PageProps) => {
                   noImage
                 )}
               </li>
+
+              {otherImages.length > 0 && (
+                <li
+                  className={[styles["info-item-full"], styles["info-item-other-images"]].join(" ")}
+                >
+                  <b>Other Images</b>
+                  <ul>
+                    {otherImages.map((item) => (
+                      <li key={item.url}>
+                        <Image
+                          src={item.url}
+                          width={item.width}
+                          height={item.height}
+                          alt={`General photo of ${name}`}
+                          className={styles.image}
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              )}
             </ul>
           </div>
         </article>
