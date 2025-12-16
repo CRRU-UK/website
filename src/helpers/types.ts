@@ -112,6 +112,7 @@ export type CatalogueMinkeWhale = {
     yearsRecaptured: Array<string> | null;
     leftDorsalFin: FlattenedImage | null;
     rightDorsalFin: FlattenedImage | null;
+    otherImages: Array<FlattenedImage> | [];
     lastUpdated: string;
   };
   previous: CatalogueBasicInfo | null;
@@ -273,6 +274,7 @@ export type ContentTypeCatalogueMinkeWhale = {
     yearsRecaptured: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
     leftDorsalFin?: EntryFieldTypes.AssetLink;
     rightDorsalFin?: EntryFieldTypes.AssetLink;
+    otherImages?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
     previousEntry?: EntryFieldTypes.EntryLink<ContentTypeCatalogueMinkeWhale>;
     nextEntry?: EntryFieldTypes.EntryLink<ContentTypeCatalogueMinkeWhale>;
   };
