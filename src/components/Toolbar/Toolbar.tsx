@@ -101,7 +101,7 @@ const Toolbar = ({ catalogue, previous, next }: Props) => {
       <div className={searchClasses.join(" ")}>
         <input
           type="search"
-          placeholder="Search by name, ID, reference, birth year..."
+          placeholder="Search name, ID, reference, birth year..."
           onChange={({ target }) => handleSearchChange((target as HTMLInputElement).value)}
         />
 
