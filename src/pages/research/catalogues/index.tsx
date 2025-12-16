@@ -138,7 +138,7 @@ const Page: NextPage<PageProps> = ({ pageData }: PageProps) => {
       <Filters
         search={{
           callback: handleSearchChange,
-          label: "Search by name, ID, reference birth year...",
+          label: "Search by name, ID, reference, birth year...",
           defaultValue: search,
         }}
         dropdowns={[
