@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -11,7 +11,6 @@ import sitemap from "@/data/sitemap.json";
 
 import { Catalogues } from "@/helpers/constants";
 import getPageContent from "@/helpers/getPageContent";
-import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -184,17 +183,11 @@ const Page: NextPage<PageProps> = ({ pageData }: PageProps) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const preview = ctx?.query.preview === "true";
-  const pageData = await getPageContent(sitemap.catalogues.path, { preview });
-
-  if (!preview) {
-    setPageCacheHeaders(ctx);
-  }
+export const getStaticProps: GetStaticProps = async () => {
+  const pageData = await getPageContent(sitemap.catalogues.path);
 
   return {
     props: {
-      preview,
       pageData,
     },
   };

@@ -2,15 +2,10 @@
 
 import { render } from "@testing-library/react";
 import { act } from "react";
-import { expect, it, vi } from "vitest";
+import { expect, it } from "vitest";
 import { axe } from "vitest-axe";
 
 import CommonPage from "./CommonPage";
-
-vi.mock("@contentful/live-preview/react", () => ({
-  useContentfulInspectorMode: () => vi.fn<() => void>(),
-  useContentfulLiveUpdates: vi.fn((item) => item),
-}));
 
 it("passes accessibility with default props", async () =>
   act(async () => {

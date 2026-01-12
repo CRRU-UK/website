@@ -1,4 +1,4 @@
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 
 import Link from "next/link";
 
@@ -8,7 +8,6 @@ import sitemap from "@/data/sitemap.json";
 
 import getPageContent from "@/helpers/getPageContent";
 import getSpecies from "@/helpers/getSpecies";
-import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -164,20 +163,14 @@ const Page: NextPage<PageProps> = ({ pageData, speciesData }: PageProps) => (
   </CommonPage>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const preview = ctx?.query.preview === "true";
+export const getStaticProps: GetStaticProps = async () => {
   const [pageData, speciesData] = await Promise.all([
-    getPageContent(sitemap.sitemap.path, { preview: preview }),
+    getPageContent(sitemap.sitemap.path),
     getSpecies(),
   ]);
 
-  if (!preview) {
-    setPageCacheHeaders(ctx);
-  }
-
   return {
     props: {
-      preview,
       pageData,
       speciesData,
     },

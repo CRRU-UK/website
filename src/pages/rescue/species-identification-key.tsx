@@ -1,4 +1,4 @@
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 
 import Link from "next/link";
 
@@ -7,7 +7,6 @@ import type { PageData } from "@/helpers/types";
 import sitemap from "@/data/sitemap.json";
 
 import getPageContent from "@/helpers/getPageContent";
-import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import { Breadcrumbs, SEO } from "@/components";
 import Hero from "@/components/Hero/Hero";
@@ -631,17 +630,11 @@ const Page: NextPage<PageProps> = ({ pageImage }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const preview = ctx?.query.preview === "true";
-  const pageData = await getPageContent(sitemap["species-identification-key"].path, { preview });
-
-  if (!preview) {
-    setPageCacheHeaders(ctx);
-  }
+export const getStaticProps: GetStaticProps = async () => {
+  const pageData = await getPageContent(sitemap["species-identification-key"].path);
 
   return {
     props: {
-      preview,
       pageImage: pageData.image,
     },
   };

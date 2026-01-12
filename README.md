@@ -51,7 +51,6 @@ The following environment variables should be provided when running the server (
 | `NODE_CONTENTFUL_SPACE_ID`                  | Contentful space ID.                  |
 | `NODE_CONTENTFUL_ENVIRONMENT`               | Contentful environment.               |
 | `NODE_CONTENTFUL_DELIVERY_API_TOKEN`        | Contentful Delivery API access token. |
-| `NODE_CONTENTFUL_PREVIEW_API_TOKEN`         | Contentful Preview API access token.  |
 | `NODE_CONTENTFUL_ENVIRONMENT`               | Contentful environment.               |
 | `NEXT_PUBLIC_CLOUDFLARE_CHALLENGE_SITE_KEY` | Cloudflare Turnstile site key.        |
 | `NODE_CLOUDFLARE_CHALLENGE_SECRET_KEY`      | Cloudflare Turnstile secret key.      |

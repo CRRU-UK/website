@@ -1,5 +1,5 @@
 import type { Asset } from "contentful";
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 
 import Image from "next/image";
 
@@ -9,7 +9,6 @@ import sitemap from "@/data/sitemap.json";
 
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 import getPageContent from "@/helpers/getPageContent";
-import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -69,10 +68,8 @@ const Page: NextPage<PageProps> = ({ pageData, personData }) => (
   </CommonPage>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const preview = ctx?.query.preview === "true";
+export const getStaticProps: GetStaticProps = async () => {
   const data = await getPageContent(sitemap["meet-the-team"].path, {
-    preview,
     references: true,
   });
 
@@ -87,13 +84,8 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
       image: flattenImageAssetFields(fields.image as Asset),
     })) ?? null;
 
-  if (!preview) {
-    setPageCacheHeaders(ctx);
-  }
-
   return {
     props: {
-      preview,
       pageData: {
         content,
         image,

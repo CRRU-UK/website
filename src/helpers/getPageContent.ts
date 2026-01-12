@@ -1,12 +1,11 @@
 import type { ContentTypePageContent, PageData } from "./types";
 
 import { ContentTypes } from "./constants";
-import { contentfulDeliveryClient, contentfulPreviewClient } from "./contentful";
+import contentful from "./contentful";
 import { flattenImageAssetFields } from "./flattenAssetFields";
 
 interface Options {
   references?: boolean;
-  preview?: boolean;
 }
 
 /**
@@ -15,12 +14,7 @@ interface Options {
  * @returns Species page entries.
  */
 const getPageContent = async (path: string, options?: Options): Promise<PageData> => {
-  let client = contentfulDeliveryClient;
-  if (options?.preview) {
-    client = contentfulPreviewClient;
-  }
-
-  const { items } = await client.getEntries<ContentTypePageContent>({
+  const { items } = await contentful.getEntries<ContentTypePageContent>({
     content_type: ContentTypes.PageContent,
     "fields.path": path,
     limit: 1,

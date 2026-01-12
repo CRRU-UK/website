@@ -3,18 +3,14 @@ import type { AppProps } from "next/app";
 import { generateDefaultSeo } from "next-seo/pages";
 import Head from "next/head";
 
-import { ContentfulLivePreviewProvider } from "@contentful/live-preview/react";
-
 import "../scss/globals.scss";
 
 import Footer from "@/layout/Footer";
 import Header from "@/layout/Header";
 
-import { DEFAULT_SEO_OPTIONS, LOCALE } from "@/helpers/constants";
+import { DEFAULT_SEO_OPTIONS } from "@/helpers/constants";
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const preview = pageProps.preview || false;
-
   return (
     <>
       <Head>
@@ -38,13 +34,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <Header />
 
       <main>
-        <ContentfulLivePreviewProvider
-          locale={LOCALE}
-          enableInspectorMode={preview}
-          enableLiveUpdates={preview}
-        >
-          <Component {...pageProps} />
-        </ContentfulLivePreviewProvider>
+        <Component {...pageProps} />
       </main>
 
       <Footer />

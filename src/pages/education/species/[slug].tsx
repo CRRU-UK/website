@@ -1,21 +1,15 @@
 import type { Document } from "@contentful/rich-text-types";
 import type { Asset } from "contentful";
-import type { GetServerSideProps, NextPage } from "next";
-import type { ParsedUrlQuery } from "node:querystring";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 
-import {
-  useContentfulInspectorMode,
-  useContentfulLiveUpdates,
-} from "@contentful/live-preview/react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
-import { setPageCacheHeaders } from "@/helpers/setHeaders";
 import type { ContentTypeSpeciesPage, PageData } from "@/helpers/types";
 
 import sitemap from "@/data/sitemap.json";
 
-import { ContentTypes, LOCALE } from "@/helpers/constants";
-import { contentfulDeliveryClient, contentfulPreviewClient } from "@/helpers/contentful";
+import { ContentTypes } from "@/helpers/constants";
+import contentful from "@/helpers/contentful";
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 import pageRenderOptions from "@/helpers/rendering";
 
@@ -40,7 +34,6 @@ interface PageProps {
 }
 
 const Page: NextPage<PageProps> = ({
-  id,
   name,
   description,
   slug,
@@ -61,20 +54,6 @@ const Page: NextPage<PageProps> = ({
     sitemap["cetacean-fact-files"],
     { title: name, path: `/education/species/${slug}` },
   ];
-
-  const previewProps = useContentfulInspectorMode();
-  const previewData = useContentfulLiveUpdates({
-    sys: { id },
-    fields: {
-      order: { [LOCALE]: order },
-      suborder: { [LOCALE]: suborder },
-      family: { [LOCALE]: family },
-      subfamily: { [LOCALE]: subfamily },
-      genus: { [LOCALE]: genus },
-      species: { [LOCALE]: species },
-      content: { [LOCALE]: content },
-    },
-  });
 
   return (
     <>
@@ -106,93 +85,42 @@ const Page: NextPage<PageProps> = ({
         <ul className={styles.taxonomy}>
           <li>
             <strong>Order:</strong>
-            <span
-              {...previewProps({
-                entryId: previewData.sys.id,
-                fieldId: "order",
-              })}
-            >
-              {order}
-            </span>
+            <span>{order}</span>
           </li>
           <li>
             <strong>Suborder:</strong>
-            <span
-              {...previewProps({
-                entryId: previewData.sys.id,
-                fieldId: "suborder",
-              })}
-            >
-              {suborder}
-            </span>
+            <span>{suborder}</span>
           </li>
           <li>
             <strong>Family:</strong>
-            <span
-              {...previewProps({
-                entryId: previewData.sys.id,
-                fieldId: "family",
-              })}
-            >
-              {family}
-            </span>
+            <span>{family}</span>
           </li>
           {subfamily && (
             <li>
               <strong>Subfamily:</strong>
-              <span
-                {...previewProps({
-                  entryId: previewData.sys.id,
-                  fieldId: "subfamily",
-                })}
-              >
-                {subfamily}
-              </span>
+              <span>{subfamily}</span>
             </li>
           )}
           <li>
             <strong>Genus:</strong>
-            <span
-              {...previewProps({
-                entryId: previewData.sys.id,
-                fieldId: "genus",
-              })}
-            >
-              {genus}
-            </span>
+            <span>{genus}</span>
           </li>
           <li className={wide ? "" : styles.wide}>
             <strong>Species:</strong>
-            <span
-              {...previewProps({
-                entryId: previewData.sys.id,
-                fieldId: "species",
-              })}
-            >
+            <span>
               <em>{speciesName}</em> ({speciesYear}
             </span>
           </li>
         </ul>
 
-        <span {...previewProps({ entryId: previewData.sys.id, fieldId: "content" })}>
-          {documentToReactComponents(content, pageRenderOptions)}
-        </span>
+        <span>{documentToReactComponents(content, pageRenderOptions)}</span>
       </article>
     </>
   );
 };
 
-interface PageParams extends ParsedUrlQuery {
-  slug: string;
-}
-
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const preview = ctx?.query.preview === "true";
-
-  const { slug } = ctx.params as PageParams;
-
-  const client = preview ? contentfulPreviewClient : contentfulDeliveryClient;
-  const { items } = await client.getEntries<ContentTypeSpeciesPage>({
+export const getStaticProps: GetStaticProps = async () => {
+  const { items } = await contentful.getEntries<ContentTypeSpeciesPage>({
     content_type: ContentTypes.SpeciesPage,
     "fields.slug": slug,
     limit: 1,
@@ -204,13 +132,8 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
 
   const [{ sys, fields }] = items;
 
-  if (!preview) {
-    setPageCacheHeaders(ctx);
-  }
-
   return {
     props: {
-      preview,
       id: sys.id,
       name: fields.name,
       description: fields.description,
@@ -225,6 +148,10 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
       image: flattenImageAssetFields(fields.image as Asset),
     },
   };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return { paths: [], fallback: "blocking" };
 };
 
 export default Page;

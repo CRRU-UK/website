@@ -115,13 +115,6 @@ resource "digitalocean_app" "website_app" {
       }
 
       env {
-        key   = "NODE_CONTENTFUL_PREVIEW_API_TOKEN"
-        value = var.contentful_preview_api_token
-        scope = "RUN_TIME"
-        type  = "SECRET"
-      }
-
-      env {
         key   = "NEXT_PUBLIC_CLOUDFLARE_CHALLENGE_SITE_KEY"
         value = cloudflare_turnstile_widget.website_challenge.id
         scope = "BUILD_TIME"

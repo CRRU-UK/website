@@ -4,7 +4,7 @@ import type { ContentTypeNews, NewsArticle } from "./types";
 
 import { ContentTypes } from "./constants";
 
-import { contentfulDeliveryClient } from "./contentful";
+import contentful from "./contentful";
 import { flattenImageAssetFields } from "./flattenAssetFields";
 
 interface Options {
@@ -18,7 +18,7 @@ interface Options {
  * @returns News article entries.
  */
 const getNews = async ({ limit = 1000 }: Options): Promise<Array<NewsArticle>> => {
-  const { items } = await contentfulDeliveryClient.getEntries<ContentTypeNews>({
+  const { items } = await contentful.getEntries<ContentTypeNews>({
     content_type: ContentTypes.NewsArticle,
     order: ["-fields.date"],
     limit,

@@ -45,6 +45,7 @@ const isProduction = process.env.NODE_ENV === "production";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
   reactStrictMode: true,
   poweredByHeader: false,
   experimental: {
@@ -74,33 +75,6 @@ const nextConfig = {
           {
             key: "X-Content-Type-Options",
             value: "nosniff",
-          },
-        ],
-      },
-      {
-        source: "/:path*",
-        has: [
-          {
-            type: "query",
-            key: "preview",
-            value: "true",
-          },
-        ],
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "no-store",
-          },
-          {
-            key: "X-Frame-Options",
-            value: "SAMEORIGIN https://app.contentful.com",
-          },
-          {
-            key: "Content-Security-Policy",
-            value: CSPHeader.replace(
-              `frame-ancestors 'none'`,
-              `frame-ancestors 'self' https://app.contentful.com`,
-            ),
           },
         ],
       },

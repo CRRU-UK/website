@@ -1,4 +1,4 @@
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 
 import { CourseJsonLd } from "next-seo";
 
@@ -8,7 +8,6 @@ import sitemap from "@/data/sitemap.json";
 
 import { DEFAULT_SITE_DOMAIN, DEFAULT_SITE_NAME } from "@/helpers/constants";
 import getPageContent from "@/helpers/getPageContent";
-import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -37,17 +36,11 @@ const Page: NextPage<PageProps> = ({ data }) => (
   </>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const preview = ctx?.query.preview === "true";
-  const data = await getPageContent(sitemap["mmo-training"].path, { preview });
-
-  if (!preview) {
-    setPageCacheHeaders(ctx);
-  }
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await getPageContent(sitemap["mmo-training"].path);
 
   return {
     props: {
-      preview,
       data,
     },
   };

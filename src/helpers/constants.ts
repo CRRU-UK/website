@@ -44,8 +44,6 @@ export const SOCIAL_MEDIA_ACCOUNTS = [
 
 // Contentful
 
-export const LOCALE = "en-GB";
-
 export enum ContentTypes {
   Homepage = "homepage",
   PageContent = "page",

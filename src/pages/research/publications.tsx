@@ -1,5 +1,5 @@
 import type { AssetFile } from "contentful";
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -14,7 +14,6 @@ import { ContentTypes, ScientificPublicationCategories } from "@/helpers/constan
 import { contentfulDeliveryClient } from "@/helpers/contentful";
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 import getPageContent from "@/helpers/getPageContent";
-import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import { Filters } from "@/components";
 import CommonPage from "@/layout/CommonPage";
@@ -156,9 +155,8 @@ const Page: NextPage<PageProps> = ({ pageData, publicationsData }) => (
   </CommonPage>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const preview = ctx?.query.preview === "true";
-  const pageData = await getPageContent(sitemap.publications.path, { preview });
+export const getStaticProps: GetStaticProps = async () => {
+  const pageData = await getPageContent(sitemap.publications.path);
 
   const publicationsData =
     await contentfulDeliveryClient.getEntries<ContentTypeScientificPublication>({
@@ -175,13 +173,8 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
     image: item.fields?.image ? flattenImageAssetFields(item.fields.image) : null,
   }));
 
-  if (!preview) {
-    setPageCacheHeaders(ctx);
-  }
-
   return {
     props: {
-      preview,
       pageData,
       publicationsData: publicationsDataReduced,
     },

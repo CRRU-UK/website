@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { contentfulDeliveryClient, contentfulPreviewClient } from "./contentful";
+import contentful from "./contentful";
 
 import getPageContent from "./getPageContent";
 
@@ -9,12 +9,9 @@ vi.mock("./flattenAssetFields", () => ({
 }));
 
 vi.mock("./contentful", () => ({
-  contentfulDeliveryClient: {
+  default: vi.fn(() => ({
     getEntries: vi.fn<() => void>(),
-  },
-  contentfulPreviewClient: {
-    getEntries: vi.fn<() => void>(),
-  },
+  })),
 }));
 
 afterEach(() => {
@@ -23,7 +20,7 @@ afterEach(() => {
 
 describe(getPageContent, () => {
   it("returns page content entry with defaults", async () => {
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+    vi.mocked(contentful.getEntries).mockImplementation(
       () =>
         ({
           items: [
@@ -44,15 +41,13 @@ describe(getPageContent, () => {
 
     const result = await getPageContent("/mocked/path");
 
-    expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(1);
-    expect(contentfulDeliveryClient.getEntries).toHaveBeenNthCalledWith(1, {
+    expect(contentful.getEntries).toHaveBeenCalledTimes(1);
+    expect(contentful.getEntries).toHaveBeenNthCalledWith(1, {
       content_type: "page",
       "fields.path": "/mocked/path",
       limit: 1,
       include: 2,
     });
-
-    expect(contentfulPreviewClient.getEntries).toHaveBeenCalledTimes(0);
 
     expect(result).toStrictEqual({
       id: "test-id",
@@ -65,7 +60,7 @@ describe(getPageContent, () => {
   });
 
   it("returns page content entry with options", async () => {
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+    vi.mocked(contentful.getEntries).mockImplementation(
       () =>
         ({
           items: [
@@ -97,50 +92,8 @@ describe(getPageContent, () => {
     });
   });
 
-  it("returns page content entry using preview client", async () => {
-    vi.mocked(contentfulPreviewClient.getEntries).mockImplementation(
-      () =>
-        ({
-          items: [
-            {
-              sys: { id: "test-id" },
-              fields: {
-                description: "test description",
-                content: "test content",
-                data: { foo: "bar" },
-                image: "test image",
-                background: "test background",
-                references: ["test-reference-1", "test-reference-2"],
-              },
-            },
-          ],
-        }) as any,
-    );
-
-    const result = await getPageContent("/mocked/path", { preview: true });
-
-    expect(contentfulDeliveryClient.getEntries).toHaveBeenCalledTimes(0);
-
-    expect(contentfulPreviewClient.getEntries).toHaveBeenCalledTimes(1);
-    expect(contentfulPreviewClient.getEntries).toHaveBeenNthCalledWith(1, {
-      content_type: "page",
-      "fields.path": "/mocked/path",
-      limit: 1,
-      include: 2,
-    });
-
-    expect(result).toStrictEqual({
-      id: "test-id",
-      description: "test description",
-      content: "test content",
-      data: { foo: "bar" },
-      image: "test image",
-      background: "test background",
-    });
-  });
-
   it("returns page content entry with missing fields", async () => {
-    vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
+    vi.mocked(contentful.getEntries).mockImplementation(
       () =>
         ({
           items: [

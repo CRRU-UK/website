@@ -1,11 +1,7 @@
 import type { Asset } from "contentful";
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import type { ParsedUrlQuery } from "node:querystring";
 
-import {
-  useContentfulInspectorMode,
-  useContentfulLiveUpdates,
-} from "@contentful/live-preview/react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { ArticleJsonLd } from "next-seo";
 
@@ -13,12 +9,11 @@ import type { ContentTypeNews, NewsArticle } from "@/helpers/types";
 
 import sitemap from "@/data/sitemap.json";
 
-import { ContentTypes, DEFAULT_SITE_DOMAIN, DEFAULT_SITE_NAME, LOCALE } from "@/helpers/constants";
-import { contentfulDeliveryClient, contentfulPreviewClient } from "@/helpers/contentful";
+import { ContentTypes, DEFAULT_SITE_DOMAIN, DEFAULT_SITE_NAME } from "@/helpers/constants";
+import contentful from "@/helpers/contentful";
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 import { formatDateRelative } from "@/helpers/formatDate";
 import pageRenderOptions from "@/helpers/rendering";
-import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import { Breadcrumbs, SEO } from "@/components";
 import Hero from "@/components/Hero/Hero";
@@ -28,7 +23,6 @@ interface PageProps extends NewsArticle {
 }
 
 const Page: NextPage<PageProps> = ({
-  id,
   title,
   slug,
   date,
@@ -41,12 +35,6 @@ const Page: NextPage<PageProps> = ({
   const pageBody = documentToReactComponents(content, pageRenderOptions);
   const pagePath = `/news/${slug}`;
   const pageBreadcrumbs = [sitemap.news, { title: pageTitle, description, path: pagePath }];
-
-  const previewProps = useContentfulInspectorMode();
-  const previewData = useContentfulLiveUpdates({
-    sys: { id },
-    fields: { content: { [LOCALE]: content } },
-  });
 
   const formattedDate = new Date(date).toISOString();
 
@@ -90,30 +78,13 @@ const Page: NextPage<PageProps> = ({
       <Breadcrumbs items={pageBreadcrumbs} />
 
       <ul className="details">
-        <li
-          className="date"
-          title={date}
-          {...previewProps({ entryId: previewData.sys.id, fieldId: "date" })}
-        >
+        <li className="date" title={date}>
           {formatDateRelative(date)}
         </li>
-        <li
-          className="category"
-          {...previewProps({
-            entryId: previewData.sys.id,
-            fieldId: "category",
-          })}
-        >
-          {category}
-        </li>
+        <li className="category">{category}</li>
       </ul>
 
-      <article
-        className="content"
-        {...previewProps({ entryId: previewData.sys.id, fieldId: "content" })}
-      >
-        {pageBody}
-      </article>
+      <article className="content">{pageBody}</article>
     </>
   );
 };
@@ -122,12 +93,10 @@ interface PageParams extends ParsedUrlQuery {
   slug: string;
 }
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const preview = ctx?.query.preview === "true";
+export const getStaticProps: GetStaticProps = async (ctx) => {
   const { slug } = ctx.params as PageParams;
 
-  const client = preview ? contentfulPreviewClient : contentfulDeliveryClient;
-  const { items } = await client.getEntries<ContentTypeNews>({
+  const { items } = await contentful.getEntries<ContentTypeNews>({
     content_type: ContentTypes.NewsArticle,
     "fields.slug": slug,
     limit: 1,
@@ -141,13 +110,8 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
 
   const [{ sys, fields }] = items;
 
-  if (!preview) {
-    setPageCacheHeaders(ctx);
-  }
-
   return {
     props: {
-      preview,
       id: sys.id,
       title: fields.title,
       slug: fields.slug,
@@ -158,6 +122,10 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
       image: flattenImageAssetFields(fields.image as Asset),
     },
   };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return { paths: [], fallback: "blocking" };
 };
 
 export default Page;

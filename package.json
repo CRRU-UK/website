@@ -12,7 +12,6 @@
     "test:unit:watch": "npm run test:unit -- --watch"
   },
   "dependencies": {
-    "@contentful/live-preview": "^4.9.0",
     "@contentful/rich-text-plain-text-renderer": "^17.1.6",
     "@contentful/rich-text-react-renderer": "^16.1.6",
     "@sentry/nextjs": "^10.32.1",

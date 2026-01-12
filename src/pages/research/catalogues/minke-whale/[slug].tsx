@@ -1,4 +1,4 @@
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import type { ParsedUrlQuery } from "node:querystring";
 
 import { useRouter } from "next/router";
@@ -13,7 +13,6 @@ import sitemap from "@/data/sitemap.json";
 import { Catalogues } from "@/helpers/constants";
 import { formatDateMonth } from "@/helpers/formatDate";
 import { getMinkeWhaleCatalogueItem, getMinkeWhaleItemEntrySlug } from "@/helpers/getCatalogue";
-import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import { Breadcrumbs, SEO, Timeline, Toolbar, Tooltip } from "@/components";
 
@@ -236,7 +235,7 @@ interface PageParams extends ParsedUrlQuery {
   slug: string;
 }
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
+export const getStaticProps: GetStaticProps = async () => {
   const { slug } = ctx.params as PageParams;
 
   const catalogueData = await getMinkeWhaleCatalogueItem(slug);
@@ -257,13 +256,15 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
     return { notFound: true };
   }
 
-  setPageCacheHeaders(ctx);
-
   return {
     props: {
       catalogueData,
     },
   };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return { paths: [], fallback: "blocking" };
 };
 
 export default Page;

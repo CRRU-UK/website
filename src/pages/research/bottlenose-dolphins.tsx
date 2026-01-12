@@ -1,11 +1,10 @@
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 
 import type { PageData } from "@/helpers/types";
 
 import sitemap from "@/data/sitemap.json";
 
 import getPageContent from "@/helpers/getPageContent";
-import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -22,17 +21,11 @@ const Page: NextPage<PageProps> = ({ data }) => (
   />
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const preview = ctx?.query.preview === "true";
-  const data = await getPageContent(sitemap["bottlenose-dolphin-studies"].path, { preview });
-
-  if (!preview) {
-    setPageCacheHeaders(ctx);
-  }
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await getPageContent(sitemap["bottlenose-dolphin-studies"].path);
 
   return {
     props: {
-      preview,
       data,
     },
   };

@@ -1,5 +1,5 @@
 import type { Asset, Entry } from "contentful";
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 
 import { OrganizationJsonLd } from "next-seo";
 import Head from "next/head";
@@ -19,10 +19,9 @@ import type {
 
 import sitemap from "@/data/sitemap.json";
 
-import { contentfulDeliveryClient, contentfulPreviewClient } from "@/helpers/contentful";
+import contentful from "@/helpers/contentful";
 import { flattenImageAssetFields, flattenVideoAssetFields } from "@/helpers/flattenAssetFields";
 import getNews from "@/helpers/getNews";
-import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import {
   ContentTypes,
@@ -207,16 +206,9 @@ const Page: NextPage<PageProps> = ({ homepage, newsArticles }: PageProps) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const preview = ctx?.query.preview === "true";
-
-  let client = contentfulDeliveryClient;
-  if (preview) {
-    client = contentfulPreviewClient;
-  }
-
+export const getStaticProps: GetStaticProps = async () => {
   const [homepageData, newsArticles] = await Promise.all([
-    client.getEntries<ContentTypeHomepage>({
+    contentful.getEntries<ContentTypeHomepage>({
       content_type: ContentTypes.Homepage,
       limit: 1,
       include: 2,
@@ -250,13 +242,8 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
     return "";
   };
 
-  if (!preview) {
-    setPageCacheHeaders(ctx);
-  }
-
   return {
     props: {
-      preview,
       homepage: {
         heroVideos: fields.heroVideos.map((item) => flattenVideoAssetFields(item as Asset)),
         heroImage: flattenImageAssetFields(fields.heroImage as Asset),

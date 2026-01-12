@@ -25,11 +25,6 @@ variable "contentful_delivery_api_token" {
   sensitive = true
 }
 
-variable "contentful_preview_api_token" {
-  type      = string
-  sensitive = true
-}
-
 variable "smtp_host" {
   type      = string
   sensitive = true

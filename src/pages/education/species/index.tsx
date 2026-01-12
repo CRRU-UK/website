@@ -1,4 +1,4 @@
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 
 import type { PageData } from "@/helpers/types";
 
@@ -6,7 +6,6 @@ import sitemap from "@/data/sitemap.json";
 
 import getPageContent from "@/helpers/getPageContent";
 import getSpecies from "@/helpers/getSpecies";
-import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import { Button } from "@/components";
 import CommonPage from "@/layout/CommonPage";
@@ -40,20 +39,14 @@ const Page: NextPage<PageProps> = ({ pageData, speciesData }) => (
   </CommonPage>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const preview = ctx?.query.preview === "true";
+export const getStaticProps: GetStaticProps = async () => {
   const [pageData, speciesData] = await Promise.all([
-    getPageContent(sitemap["cetacean-fact-files"].path, { preview }),
+    getPageContent(sitemap["cetacean-fact-files"].path),
     getSpecies(),
   ]);
 
-  if (!preview) {
-    setPageCacheHeaders(ctx);
-  }
-
   return {
     props: {
-      preview,
       pageData,
       speciesData: speciesData.map(({ name, slug }) => ({ name, slug })),
     },

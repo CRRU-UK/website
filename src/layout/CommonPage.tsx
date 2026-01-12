@@ -1,14 +1,9 @@
 import type React from "react";
 
-import {
-  useContentfulInspectorMode,
-  useContentfulLiveUpdates,
-} from "@contentful/live-preview/react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 
 import type { PageData, SitemapItem } from "@/helpers/types";
 
-import { LOCALE } from "@/helpers/constants";
 import pageRenderOptions from "@/helpers/rendering";
 
 import { Breadcrumbs, SEO } from "@/components";
@@ -25,12 +20,6 @@ interface Props {
 
 const CommonPage = ({ page, parent, breadcrumbs, data, children, wide = false }: Props) => {
   const backgroundImage = data?.background?.url ? `url(${data.background.url})` : undefined;
-
-  const previewProps = useContentfulInspectorMode();
-  const previewData = useContentfulLiveUpdates({
-    sys: { id: data.id },
-    fields: { content: { [LOCALE]: data.content } },
-  });
 
   return (
     <>
@@ -54,14 +43,7 @@ const CommonPage = ({ page, parent, breadcrumbs, data, children, wide = false }:
 
       <Breadcrumbs items={breadcrumbs} style={wide ? "wide" : "normal"} />
 
-      <article
-        className={`content ${wide ? "wide" : ""}`}
-        style={{ backgroundImage }}
-        {...previewProps({
-          entryId: previewData.sys.id as string,
-          fieldId: "content",
-        })}
-      >
+      <article className={`content ${wide ? "wide" : ""}`} style={{ backgroundImage }}>
         {data.content && documentToReactComponents(data.content, pageRenderOptions)}
         {children}
       </article>

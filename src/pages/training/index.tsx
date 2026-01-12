@@ -1,4 +1,4 @@
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 
 import type { PageData } from "@/helpers/types";
 
@@ -8,7 +8,6 @@ import sitemap from "@/data/sitemap.json";
 
 import { DEFAULT_SITE_DOMAIN, DEFAULT_SITE_NAME } from "@/helpers/constants";
 import getPageContent from "@/helpers/getPageContent";
-import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -36,9 +35,8 @@ const Page: NextPage<PageProps> = ({ data, courseSchema }) => (
   </>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const preview = ctx?.query.preview === "true";
-  const data = await getPageContent(sitemap.training.path, { preview });
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await getPageContent(sitemap.training.path);
 
   const subPages = [
     sitemap["summer-training-placements"],
@@ -46,9 +44,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
     sitemap["pam-training"],
   ];
 
-  const subPageData = await Promise.all(
-    subPages.map(({ path }) => getPageContent(path, { preview })),
-  );
+  const subPageData = await Promise.all(subPages.map(({ path }) => getPageContent(path)));
 
   const courseSchema = subPageData.map((item, index) => ({
     "@type": "ListItem",
@@ -67,13 +63,8 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
     },
   }));
 
-  if (!preview) {
-    setPageCacheHeaders(ctx);
-  }
-
   return {
     props: {
-      preview,
       data,
       courseSchema,
     },

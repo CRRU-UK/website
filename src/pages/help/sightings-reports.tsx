@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 
 import Script from "next/script";
 import { useState } from "react";
@@ -10,7 +10,6 @@ import type { PageData } from "@/helpers/types";
 import sitemap from "@/data/sitemap.json";
 
 import getPageContent from "@/helpers/getPageContent";
-import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -264,17 +263,11 @@ const Page: NextPage<PageProps> = ({ data }) => (
   </CommonPage>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
-  const preview = ctx?.query.preview === "true";
-  const data = await getPageContent(sitemap.sightings.path, { preview });
-
-  if (!preview) {
-    setPageCacheHeaders(ctx);
-  }
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await getPageContent(sitemap.sightings.path);
 
   return {
     props: {
-      preview,
       data,
     },
   };

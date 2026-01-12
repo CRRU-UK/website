@@ -1,11 +1,10 @@
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 
 import type { NewsArticle } from "@/helpers/types";
 
 import sitemap from "@/data/sitemap.json";
 
 import getNews from "@/helpers/getNews";
-import { setPageCacheHeaders } from "@/helpers/setHeaders";
 
 import { Breadcrumbs, News, SEO } from "@/components";
 import Hero from "@/components/Hero/Hero";
@@ -44,10 +43,8 @@ const Page: NextPage<PageProps> = ({ data }) => (
   </>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {
+export const getStaticProps: GetStaticProps = async () => {
   const data = await getNews({ limit: 1000 });
-
-  setPageCacheHeaders(ctx);
 
   return {
     props: {
