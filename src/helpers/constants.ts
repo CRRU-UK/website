@@ -10,11 +10,6 @@ export const DEFAULT_SITE_DESCRIPTION =
   "The Cetacean Research & Rescue Unit (CRRU) is dedicated to the research, conservation and protection of cetaceans (whales, dolphins, and porpoises) in northeast Scotland.";
 
 export const DEFAULT_SEO_OPTIONS = {
-  twitter: {
-    handle: "@CRRU",
-    site: "@CRRU",
-    cardType: "summary_large_image",
-  },
   openGraph: {
     type: "website",
     locale: "en_GB",
@@ -37,7 +32,6 @@ export const SOCIAL_MEDIA_ACCOUNTS = [
   "https://instagram.com/crru.org.uk",
   "https://facebook.com/crru.org.uk",
   "https://bsky.app/profile/crru.org.uk",
-  "https://twitter.com/CRRU",
   "https://youtube.com/@crruorguk",
   "https://linkedin.com/company/cetacean-research-&-rescue-unit-crru-",
 ];
