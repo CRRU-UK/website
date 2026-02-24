@@ -1,11 +1,9 @@
 variable "cloudflare_account_id" {
-  type      = string
-  sensitive = true
+  type = string
 }
 
 variable "cloudflare_zone_id" {
-  type      = string
-  sensitive = true
+  type = string
 }
 
 variable "website_domain" {
