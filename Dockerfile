@@ -15,13 +15,12 @@ ARG SENTRY_PROJECT
 ENV SENTRY_PROJECT=$SENTRY_PROJECT
 ARG SENTRY_DSN
 ENV SENTRY_DSN=$SENTRY_DSN
-RUN npm ci && npm run build
+RUN npm ci --include=dev && npm run build
 
 # Clean app
 FROM build
 RUN rm -rf src/ vitest.config.mts next-env.d.ts package-lock.json testEnvironment.ts tsconfig.json
 RUN npm prune --omit=dev
-RUN npm install typescript -P
 
 EXPOSE 3000
 CMD ["npm", "start"]
