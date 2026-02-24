@@ -134,5 +134,4 @@ export default withSentryConfig(nextConfig, {
   project: process.env.SENTRY_PROJECT,
   widenClientFileUpload: true,
   silent: !process.env.CI,
-  disableLogger: true,
 });
