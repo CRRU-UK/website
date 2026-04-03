@@ -1,16 +1,13 @@
-import type { AppProps } from "next/app";
-
-import { generateDefaultSeo } from "next-seo/pages";
-import Head from "next/head";
-
 import { ContentfulLivePreviewProvider } from "@contentful/live-preview/react";
+import type { AppProps } from "next/app";
+import Head from "next/head";
+import { generateDefaultSeo } from "next-seo/pages";
 
 import "../scss/globals.scss";
 
+import { DEFAULT_SEO_OPTIONS, LOCALE } from "@/helpers/constants";
 import Footer from "@/layout/Footer";
 import Header from "@/layout/Header";
-
-import { DEFAULT_SEO_OPTIONS, LOCALE } from "@/helpers/constants";
 
 const App = ({ Component, pageProps }: AppProps) => {
   const preview = pageProps.preview || false;

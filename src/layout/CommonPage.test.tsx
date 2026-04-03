@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { render } from "@testing-library/react";
 import { act } from "react";
 import { expect, it, vi } from "vitest";

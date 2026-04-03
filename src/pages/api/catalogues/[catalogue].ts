@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import { Catalogues, COMMON_CACHE_DIRECTIVES } from "@/helpers/constants";

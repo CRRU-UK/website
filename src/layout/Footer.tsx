@@ -1,9 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-
-import sitemap from "@/data/sitemap.json";
-
 import { Social } from "@/components";
+import sitemap from "@/data/sitemap.json";
 
 const Footer = () => (
   <>

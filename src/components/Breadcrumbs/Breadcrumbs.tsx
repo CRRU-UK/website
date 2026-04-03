@@ -1,8 +1,6 @@
 import Link from "next/link";
-
-import type { SitemapItem } from "@/helpers/types";
-
 import sitemap from "@/data/sitemap.json";
+import type { SitemapItem } from "@/helpers/types";
 
 import styles from "./Breadcrumbs.module.scss";
 

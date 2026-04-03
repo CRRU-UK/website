@@ -1,14 +1,10 @@
 import type { GetServerSideProps, NextPage } from "next";
-
-import type { NewsArticle } from "@/helpers/types";
-
-import sitemap from "@/data/sitemap.json";
-
-import getNews from "@/helpers/getNews";
-import { setPageCacheHeaders } from "@/helpers/setHeaders";
-
 import { Breadcrumbs, News, SEO } from "@/components";
 import Hero from "@/components/Hero/Hero";
+import sitemap from "@/data/sitemap.json";
+import getNews from "@/helpers/getNews";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
+import type { NewsArticle } from "@/helpers/types";
 
 interface PageProps {
   data: Array<NewsArticle>;

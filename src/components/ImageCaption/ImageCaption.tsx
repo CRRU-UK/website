@@ -1,8 +1,7 @@
 /* istanbul ignore file */
 
-import { useState } from "react";
-
 import Image from "next/image";
+import { useState } from "react";
 
 import styles from "./ImageCaption.module.scss";
 

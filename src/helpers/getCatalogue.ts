@@ -1,5 +1,7 @@
 import type { Asset, Entry } from "contentful";
-
+import { CATALOGUE_RESULTS_LIMIT, Catalogues, ContentTypes } from "./constants";
+import { contentfulDeliveryClient } from "./contentful";
+import { flattenImageAssetFields } from "./flattenAssetFields";
 import type {
   CatalogueAPIResponse,
   CatalogueBasicInfo,
@@ -8,11 +10,6 @@ import type {
   ContentTypeCatalogueBottlenoseDolphin,
   ContentTypeCatalogueMinkeWhale,
 } from "./types";
-
-import { CATALOGUE_RESULTS_LIMIT, Catalogues, ContentTypes } from "./constants";
-
-import { contentfulDeliveryClient } from "./contentful";
-import { flattenImageAssetFields } from "./flattenAssetFields";
 
 /**
  * Reduces bottlenose dolphin catalogue entry.
@@ -56,7 +53,12 @@ const getCatalogueList = async (
     query.query = search;
   }
 
-  let result;
+  let result: Awaited<
+    ReturnType<
+      | typeof contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>
+      | typeof contentfulDeliveryClient.getEntries<ContentTypeCatalogueMinkeWhale>
+    >
+  >;
 
   if (catalogue === Catalogues.BottlenoseDolphin) {
     result = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>({

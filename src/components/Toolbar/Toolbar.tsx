@@ -1,14 +1,10 @@
-import styles from "./Toolbar.module.scss";
-
-import { useEffect, useState } from "react";
-
-import type { CatalogueAPIResponse, CatalogueBasicInfo } from "@/helpers/types";
-
 import Link from "next/link";
 
-import { Catalogues } from "@/helpers/constants";
-
+import { useEffect, useState } from "react";
 import { Card, Loading } from "@/components";
+import type { Catalogues } from "@/helpers/constants";
+import type { CatalogueAPIResponse, CatalogueBasicInfo } from "@/helpers/types";
+import styles from "./Toolbar.module.scss";
 
 interface Props {
   catalogue: Catalogues;
@@ -23,7 +19,6 @@ const Toolbar = ({ catalogue, previous, next }: Props) => {
 
   useEffect(() => {
     if (search === "") {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setData(null);
       return;
     }

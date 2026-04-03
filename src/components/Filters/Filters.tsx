@@ -1,7 +1,7 @@
 import styles from "./Filters.module.scss";
 
 interface UseSearchProps {
-  callback: Function; // eslint-disable-line @typescript-eslint/no-unsafe-function-type
+  callback: Function;
   label?: string;
   defaultValue?: string;
 }
@@ -25,7 +25,7 @@ interface DropdownProps {
     text: string;
     value: string;
   }>;
-  callback: Function; // eslint-disable-line @typescript-eslint/no-unsafe-function-type
+  callback: Function;
 }
 
 const UseDropdown = ({ name, defaultValue, options, callback }: DropdownProps) => (

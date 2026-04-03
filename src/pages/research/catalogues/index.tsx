@@ -1,21 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import type { GetServerSideProps, NextPage } from "next";
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-
-import type { CatalogueAPIResponse, PageData } from "@/helpers/types";
+import { Card, Filters, Loading } from "@/components";
 
 import sitemap from "@/data/sitemap.json";
 
 import { Catalogues } from "@/helpers/constants";
 import getPageContent from "@/helpers/getPageContent";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
-
+import type { CatalogueAPIResponse, PageData } from "@/helpers/types";
 import CommonPage from "@/layout/CommonPage";
-
-import { Card, Filters, Loading } from "@/components";
 
 import styles from "./index.module.scss";
 

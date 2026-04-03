@@ -1,6 +1,5 @@
-import styles from "./Loading.module.scss";
-
 import { Catalogues } from "@/helpers/constants";
+import styles from "./Loading.module.scss";
 
 interface Props {
   type: Catalogues;
@@ -14,6 +13,8 @@ const Loading = ({ type }: Props) => (
     width="100"
     xmlns="http://www.w3.org/2000/svg"
     className={styles.loading}
+    role="img"
+    aria-label="Loading"
   >
     {type === Catalogues.BottlenoseDolphin ? (
       <path

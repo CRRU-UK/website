@@ -34,7 +34,7 @@ const Gallery = ({ images }: Props) => {
     cachedRef.addEventListener("scroll", scrollEvent);
 
     return () => cachedRef.removeEventListener("scroll", scrollEvent);
-  }, [scrollRef]);
+  }, []);
 
   const imagesRefs = images.map((item) => ({
     ...item,

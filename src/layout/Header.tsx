@@ -2,12 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
-import type { SitemapItem } from "@/helpers/types";
+import { Social } from "@/components";
 
 import sitemap from "@/data/sitemap.json";
-
-import { Social } from "@/components";
+import type { SitemapItem } from "@/helpers/types";
 
 const breakpointMobileMenu = 800;
 
@@ -272,7 +270,7 @@ const Header = () => {
 
       <Social short />
 
-      <button className="burger" onClick={toggleMenu} onKeyDown={toggleMenu}>
+      <button type="button" className="burger" onClick={toggleMenu} onKeyDown={toggleMenu}>
         <svg
           fill="none"
           height="48"
@@ -280,6 +278,8 @@ const Header = () => {
           width="64"
           xmlns="http://www.w3.org/2000/svg"
           className="burger-icon"
+          role="img"
+          aria-label="Menu"
         >
           <path
             d="m2 14c2.03077 2.1662 5.46923 2.1662 7.5 0 2.0308-2.1662 5.4692-2.1662 7.5 0 2.0308 2.1662 5.4692 2.1662 7.5 0 2.0308-2.1662 5.4692-2.1662 7.5 0 2.0308 2.1662 5.4692 2.1662 7.5 0 2.0308-2.1662 5.4692-2.1662 7.5 0 2.0308 2.1662 5.4692 2.1662 7.5 0 2.0308-2.1662 5.4692-2.1662 7.5 0"
@@ -310,6 +310,7 @@ const Header = () => {
 
       {submenu !== Submenus.None && (
         <button
+          type="button"
           className="back"
           onClick={() => setSubmenu(Submenus.None)}
           onKeyDown={() => setSubmenu(Submenus.None)}
@@ -320,6 +321,8 @@ const Header = () => {
             viewBox="0 0 64 64"
             width="64"
             xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label="Back"
           >
             <path
               clipRule="evenodd"

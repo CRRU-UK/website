@@ -1,14 +1,12 @@
 import type { GetServerSideProps, NextPage } from "next";
-
-import type { PageData } from "@/helpers/types";
+import { Button } from "@/components";
 
 import sitemap from "@/data/sitemap.json";
 
 import getPageContent from "@/helpers/getPageContent";
 import getSpecies from "@/helpers/getSpecies";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
-
-import { Button } from "@/components";
+import type { PageData } from "@/helpers/types";
 import CommonPage from "@/layout/CommonPage";
 
 import styles from "./index.module.scss";

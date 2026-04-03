@@ -1,12 +1,9 @@
-import type { GetServerSideProps, NextPage } from "next";
 import type { ParsedUrlQuery } from "node:querystring";
-
-import { useRouter } from "next/router";
-
+import type { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-
-import type { CatalogueMinkeWhale } from "@/helpers/types";
+import { useRouter } from "next/router";
+import { Breadcrumbs, SEO, Timeline, Toolbar, Tooltip } from "@/components";
 
 import sitemap from "@/data/sitemap.json";
 
@@ -14,8 +11,7 @@ import { Catalogues } from "@/helpers/constants";
 import { formatDateMonth } from "@/helpers/formatDate";
 import { getMinkeWhaleCatalogueItem, getMinkeWhaleItemEntrySlug } from "@/helpers/getCatalogue";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
-
-import { Breadcrumbs, SEO, Timeline, Toolbar, Tooltip } from "@/components";
+import type { CatalogueMinkeWhale } from "@/helpers/types";
 
 import styles from "../[slug].module.scss";
 

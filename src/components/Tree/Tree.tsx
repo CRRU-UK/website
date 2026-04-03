@@ -1,10 +1,7 @@
-import styles from "./Tree.module.scss";
-
-import type { CatalogueBottlenoseDolphin } from "@/helpers/types";
-
-import { Catalogues } from "@/helpers/constants";
-
 import { Card } from "@/components";
+import type { Catalogues } from "@/helpers/constants";
+import type { CatalogueBottlenoseDolphin } from "@/helpers/types";
+import styles from "./Tree.module.scss";
 
 interface Props {
   type: Catalogues.BottlenoseDolphin;

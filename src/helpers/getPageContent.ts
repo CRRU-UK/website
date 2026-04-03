@@ -1,8 +1,7 @@
-import type { ContentTypePageContent, PageData } from "./types";
-
 import { ContentTypes } from "./constants";
 import { contentfulDeliveryClient, contentfulPreviewClient } from "./contentful";
 import { flattenImageAssetFields } from "./flattenAssetFields";
+import type { ContentTypePageContent, PageData } from "./types";
 
 interface Options {
   references?: boolean;

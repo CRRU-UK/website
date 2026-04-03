@@ -5,8 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
-
-import type { ContentTypeScientificPublication, FlattenedImage, PageData } from "@/helpers/types";
+import { Filters } from "@/components";
 
 import sitemap from "@/data/sitemap.json";
 
@@ -15,8 +14,7 @@ import { contentfulDeliveryClient } from "@/helpers/contentful";
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 import getPageContent from "@/helpers/getPageContent";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
-
-import { Filters } from "@/components";
+import type { ContentTypeScientificPublication, FlattenedImage, PageData } from "@/helpers/types";
 import CommonPage from "@/layout/CommonPage";
 
 import styles from "./publications.module.scss";

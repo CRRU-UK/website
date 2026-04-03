@@ -1,7 +1,6 @@
-import type { ContentTypePageModule, PageModule } from "./types";
-
 import { ContentTypes } from "./constants";
 import { contentfulDeliveryClient } from "./contentful";
+import type { ContentTypePageModule, PageModule } from "./types";
 
 /**
  * Queries and returns a page module entry from Contentful.

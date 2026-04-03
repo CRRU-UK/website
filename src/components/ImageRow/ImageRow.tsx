@@ -1,4 +1,4 @@
-import ImageCaption, { ImageCaptionProps } from "../ImageCaption/ImageCaption";
+import ImageCaption, { type ImageCaptionProps } from "../ImageCaption/ImageCaption";
 
 import styles from "./ImageRow.module.scss";
 

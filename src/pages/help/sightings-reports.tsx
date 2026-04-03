@@ -1,16 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import type { GetServerSideProps, NextPage } from "next";
 
 import Script from "next/script";
 import { useState } from "react";
-
-import type { PageData } from "@/helpers/types";
-
 import sitemap from "@/data/sitemap.json";
-
 import getPageContent from "@/helpers/getPageContent";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
+import type { PageData } from "@/helpers/types";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -50,7 +46,7 @@ const UseSightingsForm = () => {
       "cf-turnstile-response": event.target["cf-turnstile-response"].value,
     });
 
-    let request;
+    let request: Response | undefined;
 
     try {
       request = await fetch("/api/report-sighting", {

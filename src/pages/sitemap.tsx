@@ -1,14 +1,11 @@
 import type { GetServerSideProps, NextPage } from "next";
 
 import Link from "next/link";
-
-import type { PageData, SitemapItem } from "@/helpers/types";
-
 import sitemap from "@/data/sitemap.json";
-
 import getPageContent from "@/helpers/getPageContent";
 import getSpecies from "@/helpers/getSpecies";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
+import type { PageData, SitemapItem } from "@/helpers/types";
 
 import CommonPage from "@/layout/CommonPage";
 

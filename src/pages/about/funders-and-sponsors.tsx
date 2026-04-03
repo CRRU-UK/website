@@ -1,15 +1,13 @@
 import type { Asset } from "contentful";
 import type { GetServerSideProps, NextPage } from "next";
-
-import type { FlattenedImage, PageData } from "@/helpers/types";
+import { ListItem } from "@/components";
 
 import sitemap from "@/data/sitemap.json";
 
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 import getPageContent from "@/helpers/getPageContent";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
-
-import { ListItem } from "@/components";
+import type { FlattenedImage, PageData } from "@/helpers/types";
 import CommonPage from "@/layout/CommonPage";
 
 type SponsorsDataReduced = {

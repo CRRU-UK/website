@@ -1,16 +1,14 @@
-import type { Document } from "@contentful/rich-text-types";
-import type { Asset } from "contentful";
-import type { GetServerSideProps, NextPage } from "next";
 import type { ParsedUrlQuery } from "node:querystring";
-
 import {
   useContentfulInspectorMode,
   useContentfulLiveUpdates,
 } from "@contentful/live-preview/react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-
-import { setPageCacheHeaders } from "@/helpers/setHeaders";
-import type { ContentTypeSpeciesPage, PageData } from "@/helpers/types";
+import type { Document } from "@contentful/rich-text-types";
+import type { Asset } from "contentful";
+import type { GetServerSideProps, NextPage } from "next";
+import { Breadcrumbs, SEO } from "@/components";
+import Hero from "@/components/Hero/Hero";
 
 import sitemap from "@/data/sitemap.json";
 
@@ -18,9 +16,8 @@ import { ContentTypes, LOCALE } from "@/helpers/constants";
 import { contentfulDeliveryClient, contentfulPreviewClient } from "@/helpers/contentful";
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 import pageRenderOptions from "@/helpers/rendering";
-
-import { Breadcrumbs, SEO } from "@/components";
-import Hero from "@/components/Hero/Hero";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
+import type { ContentTypeSpeciesPage, PageData } from "@/helpers/types";
 
 import styles from "./[slug].module.scss";
 

@@ -1,9 +1,8 @@
-import type { Props } from "./Breadcrumbs";
-
 import { render } from "@testing-library/react";
 import { act } from "react";
 import { describe, expect, it } from "vitest";
 import { axe } from "vitest-axe";
+import type { Props } from "./Breadcrumbs";
 
 import Breadcrumbs from "./Breadcrumbs";
 
@@ -60,6 +59,5 @@ describe(Breadcrumbs, () => {
       const results = await axe(container);
 
       expect(results.violations).toHaveLength(0);
-    }),
-  );
+    }));
 });

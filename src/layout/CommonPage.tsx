@@ -1,18 +1,14 @@
-import type React from "react";
-
 import {
   useContentfulInspectorMode,
   useContentfulLiveUpdates,
 } from "@contentful/live-preview/react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-
-import type { PageData, SitemapItem } from "@/helpers/types";
-
-import { LOCALE } from "@/helpers/constants";
-import pageRenderOptions from "@/helpers/rendering";
-
+import type React from "react";
 import { Breadcrumbs, SEO } from "@/components";
 import Hero from "@/components/Hero/Hero";
+import { LOCALE } from "@/helpers/constants";
+import pageRenderOptions from "@/helpers/rendering";
+import type { PageData, SitemapItem } from "@/helpers/types";
 
 interface Props {
   page: SitemapItem;

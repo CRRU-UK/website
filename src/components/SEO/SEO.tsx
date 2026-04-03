@@ -1,15 +1,13 @@
+import Head from "next/head";
 import { BreadcrumbJsonLd } from "next-seo";
 import { generateNextSeo } from "next-seo/pages";
-import Head from "next/head";
-
-import type { SitemapItem } from "@/helpers/types";
-
 import {
   DEFAULT_SEO_IMAGE,
   DEFAULT_SITE_DESCRIPTION,
   DEFAULT_SITE_DOMAIN,
   DEFAULT_SITE_NAME,
 } from "@/helpers/constants";
+import type { SitemapItem } from "@/helpers/types";
 
 interface Props {
   page: SitemapItem;

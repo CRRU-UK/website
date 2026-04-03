@@ -1,15 +1,12 @@
 /* istanbul ignore file */
 
+import { documentToReactComponents, type NodeRenderer } from "@contentful/rich-text-react-renderer";
 import type { Node } from "@contentful/rich-text-types";
 import type { Asset, AssetFile } from "contentful";
-
-import { NodeRenderer, documentToReactComponents } from "@contentful/rich-text-react-renderer";
-
+import { Gallery, Highlight, ImageRow, Note } from "@/components";
 import { EmbeddedContentEntries } from "@/helpers/constants";
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 import pageRenderOptions from "@/helpers/rendering/index";
-
-import { Gallery, Highlight, ImageRow, Note } from "@/components";
 
 const renderGallery = (data: Node["data"]) => {
   const images = data.target.fields.images.map((item: Asset) => flattenImageAssetFields(item));
@@ -82,7 +79,6 @@ const renderModule = (data: Node["data"]) => {
           name="submit"
           alt="PayPal - The safer, easier way to pay online."
         />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           alt=""
           src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_GB/i/scr/pixel.gif"

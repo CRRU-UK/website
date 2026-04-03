@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import styles from "./Note.module.scss";
 
 interface Props {

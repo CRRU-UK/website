@@ -1,12 +1,9 @@
-import type { GetServerSideProps, NextPage } from "next";
 import type { ParsedUrlQuery } from "node:querystring";
-
-import { useRouter } from "next/router";
-
+import type { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-
-import type { CatalogueBottlenoseDolphin } from "@/helpers/types";
+import { useRouter } from "next/router";
+import { Breadcrumbs, SEO, Timeline, Toolbar, Tooltip, Tree } from "@/components";
 
 import sitemap from "@/data/sitemap.json";
 
@@ -17,8 +14,7 @@ import {
   getBottlenoseDolphinItemEntrySlug,
 } from "@/helpers/getCatalogue";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
-
-import { Breadcrumbs, SEO, Timeline, Toolbar, Tooltip, Tree } from "@/components";
+import type { CatalogueBottlenoseDolphin } from "@/helpers/types";
 
 import styles from "../[slug].module.scss";
 
