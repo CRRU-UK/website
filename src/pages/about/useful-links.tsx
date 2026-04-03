@@ -60,6 +60,7 @@ const Page: NextPage<PageProps> = ({ pageData, linksData }) => {
       page={sitemap["useful-links"]}
       parent={sitemap.about}
     >
+      {/* biome-ignore lint/complexity/noUselessFragments: fragment needed to satisfy children type */}
       <>
         <Filters
           dropdowns={[

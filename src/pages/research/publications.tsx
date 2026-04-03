@@ -123,7 +123,7 @@ const UsePublicationsContent = (data: Array<PublicationDataReduced>) => {
               text: value,
               value: key,
             })),
-            callback: setCategory,
+            callback: (value: string) => setCategory(value as keyof typeof categories),
           },
         ]}
         search={{ callback: setSearch }}

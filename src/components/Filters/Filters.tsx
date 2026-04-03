@@ -1,7 +1,7 @@
 import styles from "./Filters.module.scss";
 
 interface UseSearchProps {
-  callback: Function;
+  callback: (value: string) => void;
   defaultValue?: string;
   label?: string;
 }
@@ -19,7 +19,7 @@ const UseSearch = ({ callback, label = "Search...", defaultValue }: UseSearchPro
 );
 
 interface DropdownProps {
-  callback: Function;
+  callback: (value: string) => void;
   defaultValue?: string;
   name: string;
   options: Array<{

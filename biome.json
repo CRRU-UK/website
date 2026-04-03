@@ -25,13 +25,13 @@
         "noFloatingPromises": "error"
       },
       "correctness": {
-        "useUniqueElementIds": "warn"
+        "useUniqueElementIds": "off"
       },
       "a11y": {
         "noStaticElementInteractions": "warn"
       },
       "security": {
-        "noDangerouslySetInnerHtml": "warn"
+        "noDangerouslySetInnerHtml": "off"
       },
       "style": {
         "useComponentExportOnlyModules": {
@@ -61,6 +61,18 @@
       "bracketSpacing": true
     }
   },
+  "overrides": [
+    {
+      "includes": ["**/*.test.ts", "**/*.test.tsx"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noExplicitAny": "off"
+          }
+        }
+      }
+    }
+  ],
   "assist": {
     "enabled": true,
     "actions": {

@@ -32,7 +32,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(400).send("`page` param must be an integer greater than 0");
   }
 
-  const query: any = {
+  const query: { page: number; search?: string } = {
     page: pageNumber,
   };
 

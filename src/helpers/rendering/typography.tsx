@@ -3,25 +3,25 @@
 import type { NodeRenderer } from "@contentful/rich-text-react-renderer";
 import { BLOCKS } from "@contentful/rich-text-types";
 
-const renderHeading1: NodeRenderer = (data, children) => (
+const renderHeading1: NodeRenderer = (_data, children) => (
   <p className="large">
     <strong>{children}</strong>
   </p>
 );
 
-const renderHeading2: NodeRenderer = (data, children) => (
+const renderHeading2: NodeRenderer = (_data, children) => (
   <p className="medium">
     <strong>{children}</strong>
   </p>
 );
 
-const renderHeading3: NodeRenderer = (data, children) => (
+const renderHeading3: NodeRenderer = (_data, children) => (
   <p className="small">
     <strong>{children}</strong>
   </p>
 );
 
-const renderParagraph: NodeRenderer = (data, children) => {
+const renderParagraph: NodeRenderer = (_data, children) => {
   if (!children?.toString().trim()) {
     return null;
   }

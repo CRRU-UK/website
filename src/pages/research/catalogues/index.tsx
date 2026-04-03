@@ -45,13 +45,13 @@ const Page: NextPage<PageProps> = ({ pageData }: PageProps) => {
   const searchParams = useSearchParams();
 
   const paramCatalogue = searchParams.get("catalogue");
-  if (paramCatalogue && Object.values(Catalogues).includes(paramCatalogue as any)) {
+  if (paramCatalogue && Object.values<string>(Catalogues).includes(paramCatalogue)) {
     initCatalogue = paramCatalogue as Catalogues;
   }
 
   const paramPage = searchParams.get("page");
   if (paramPage) {
-    initPage = Number.parseInt(paramPage);
+    initPage = Number.parseInt(paramPage, 10);
   }
 
   const paramSearch = searchParams.get("search");
@@ -88,9 +88,9 @@ const Page: NextPage<PageProps> = ({ pageData }: PageProps) => {
     return () => clearTimeout(timeout);
   }, [catalogue, page, search]);
 
-  const handleCatalogueChange = (value: Catalogues) => {
+  const handleCatalogueChange = (value: string) => {
     setPage(1);
-    setCatalogue(value);
+    setCatalogue(value as Catalogues);
   };
 
   const handleSearchChange = (value: string) => {
@@ -159,7 +159,7 @@ const Page: NextPage<PageProps> = ({ pageData }: PageProps) => {
 
         {!loading && data?.items && (
           <ul className={styles.list}>
-            {data.items.map((item: any) => (
+            {data.items.map((item) => (
               <li key={item.id}>
                 <Card
                   link={`/research/catalogues/${catalogue}/${item.slug}`}
