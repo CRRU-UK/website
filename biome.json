@@ -34,7 +34,12 @@
         "noDangerouslySetInnerHtml": "warn"
       },
       "style": {
-        "useComponentExportOnlyModules": "warn"
+        "useComponentExportOnlyModules": {
+          "level": "warn",
+          "options": {
+            "allowExportNames": ["getServerSideProps"]
+          }
+        }
       }
     },
     "domains": {
