@@ -565,14 +565,12 @@ header > .burger {
   }
 }
 
-/* stylelint-disable-next-line selector-max-id */
-header > .burger > .burger-icon > #whale {
+header > .burger > .burger-icon > .burger-icon-whale {
   transform: translateY(70%);
   transition: transform 0.6s variables.$global-transition-ease-in-out-back;
 }
 
-/* stylelint-disable-next-line selector-max-id */
-body.menu header > .burger > .burger-icon > #whale {
+body.menu header > .burger > .burger-icon > .burger-icon-whale {
   transform: translateY(0);
 }
 

@@ -1,11 +1,8 @@
 import type { GetServerSideProps, NextPage } from "next";
-
-import type { PageData } from "@/helpers/types";
-
 import sitemap from "@/data/sitemap.json";
-
 import getPageContent from "@/helpers/getPageContent";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
+import type { PageData } from "@/helpers/types";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -14,7 +11,7 @@ interface PageProps {
 }
 
 const Page: NextPage<PageProps> = ({ data }) => (
-  <CommonPage page={sitemap.help} breadcrumbs={[sitemap.help]} data={data} />
+  <CommonPage breadcrumbs={[sitemap.help]} data={data} page={sitemap.help} />
 );
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {

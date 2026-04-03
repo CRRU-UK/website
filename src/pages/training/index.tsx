@@ -1,27 +1,22 @@
 import type { GetServerSideProps, NextPage } from "next";
-
-import type { PageData } from "@/helpers/types";
-
 import Head from "next/head";
-
 import sitemap from "@/data/sitemap.json";
-
 import { DEFAULT_SITE_DOMAIN, DEFAULT_SITE_NAME } from "@/helpers/constants";
 import getPageContent from "@/helpers/getPageContent";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
+import type { PageData } from "@/helpers/types";
 
 import CommonPage from "@/layout/CommonPage";
 
 interface PageProps {
-  data: PageData;
   courseSchema: object;
+  data: PageData;
 }
 
 const Page: NextPage<PageProps> = ({ data, courseSchema }) => (
   <>
     <Head>
       <script
-        type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
@@ -29,10 +24,11 @@ const Page: NextPage<PageProps> = ({ data, courseSchema }) => (
             itemListElement: courseSchema,
           }),
         }}
+        type="application/ld+json"
       />
     </Head>
 
-    <CommonPage page={sitemap.training} breadcrumbs={[sitemap.training]} data={data} />
+    <CommonPage breadcrumbs={[sitemap.training]} data={data} page={sitemap.training} />
   </>
 );
 

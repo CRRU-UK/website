@@ -26,12 +26,12 @@ const Tooltip = ({ text }: TooltipProps) => {
       role="tooltip"
     >
       <button
-        type="button"
-        title="Tooltip"
+        aria-expanded={open}
         className={buttonClasses.join(" ")}
         onKeyDown={() => {}}
-        aria-expanded={open}
         tabIndex={0}
+        title="Tooltip"
+        type="button"
       />
       <span className={textClasses.join(" ")}>{text}</span>
     </span>

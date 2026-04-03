@@ -1,26 +1,24 @@
+import Head from "next/head";
 import { BreadcrumbJsonLd } from "next-seo";
 import { generateNextSeo } from "next-seo/pages";
-import Head from "next/head";
-
-import type { SitemapItem } from "@/helpers/types";
-
 import {
   DEFAULT_SEO_IMAGE,
   DEFAULT_SITE_DESCRIPTION,
   DEFAULT_SITE_DOMAIN,
   DEFAULT_SITE_NAME,
 } from "@/helpers/constants";
+import type { SitemapItem } from "@/helpers/types";
 
 interface Props {
-  page: SitemapItem;
-  type?: "website" | "article";
+  breadcrumbs: Array<SitemapItem>;
   images?: Array<{
     url: string;
     width?: number;
     height?: number;
     alt?: string;
   }>;
-  breadcrumbs: Array<SitemapItem>;
+  page: SitemapItem;
+  type?: "website" | "article";
 }
 
 const SEO = ({ page, type = "website", images = DEFAULT_SEO_IMAGE, breadcrumbs }: Props) => {

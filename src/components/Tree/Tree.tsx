@@ -1,14 +1,11 @@
+import { Card } from "@/components";
+import type { Catalogues } from "@/helpers/constants";
+import type { CatalogueBottlenoseDolphin } from "@/helpers/types";
 import styles from "./Tree.module.scss";
 
-import type { CatalogueBottlenoseDolphin } from "@/helpers/types";
-
-import { Catalogues } from "@/helpers/constants";
-
-import { Card } from "@/components";
-
 interface Props {
-  type: Catalogues.BottlenoseDolphin;
   data: CatalogueBottlenoseDolphin;
+  type: Catalogues.BottlenoseDolphin;
 }
 
 const Tree = ({ type, data }: Props) => {
@@ -20,11 +17,11 @@ const Tree = ({ type, data }: Props) => {
   if (mother) {
     motherElement = (
       <Card
-        type={type}
-        title={`#${mother.id}`}
+        link={`/research/catalogues/bottlenose-dolphin/${mother.slug}`}
         name={mother?.name ? String(mother.name) : undefined}
         reference={mother?.reference ? `#${mother.reference}` : undefined}
-        link={`/research/catalogues/bottlenose-dolphin/${mother.slug}`}
+        title={`#${mother.id}`}
+        type={type}
       />
     );
   }
@@ -37,11 +34,11 @@ const Tree = ({ type, data }: Props) => {
           <li key={item.id}>
             {index === 0 && <span className={styles.last}>Last recorded calf</span>}
             <Card
-              type={type}
-              title={`#${item.id}`}
-              reference={item?.reference ? `#${item.reference}` : undefined}
-              name={item?.name ?? undefined}
               link={item.slug}
+              name={item?.name ?? undefined}
+              reference={item?.reference ? `#${item.reference}` : undefined}
+              title={`#${item.id}`}
+              type={type}
             />
           </li>
         ))}
@@ -60,12 +57,12 @@ const Tree = ({ type, data }: Props) => {
 
       <li className={styles.name}>
         <Card
-          type={type}
-          title={`#${entry.id}`}
-          reference={entry?.reference ? `#${entry.reference}` : undefined}
-          name={entry.name ?? undefined}
-          link={""}
           disabled
+          link={""}
+          name={entry.name ?? undefined}
+          reference={entry?.reference ? `#${entry.reference}` : undefined}
+          title={`#${entry.id}`}
+          type={type}
         />
       </li>
 

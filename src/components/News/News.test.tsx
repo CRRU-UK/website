@@ -30,6 +30,8 @@ describe(News, () => {
     act(async () => {
       const { container } = render(
         <News
+          category="test category"
+          date="2022-01-01"
           image={{
             src: "//example.com/test-image.jpg",
             width: 100,
@@ -38,8 +40,6 @@ describe(News, () => {
           }}
           link="/test-link"
           title="test title"
-          date="2022-01-01"
-          category="test category"
         />,
       );
 

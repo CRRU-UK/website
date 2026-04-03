@@ -10,10 +10,10 @@ describe(Card, () => {
     act(async () => {
       const { container } = render(
         <Card
+          link="/mocked-link"
+          title="mocked title"
           // @ts-expect-error String of enum value
           type="bottlenose-dolphin"
-          title="mocked title"
-          link="/mocked-link"
         />,
       );
 
@@ -26,12 +26,12 @@ describe(Card, () => {
     act(async () => {
       const { container } = render(
         <Card
+          link="/mocked-link"
+          name="mocked name"
+          reference="mocked subtitle"
+          title="mocked title"
           // @ts-expect-error String of enum value
           type="minke-whale"
-          title="mocked title"
-          reference="mocked subtitle"
-          name="mocked name"
-          link="/mocked-link"
         />,
       );
 

@@ -16,7 +16,7 @@ dayjs.extend(localizedFormat);
  * @returns Formatted date as relative time (up to two weeks).
  */
 const formatDateRelative = (date: string, currentDate?: string): string => {
-  let formattedDate;
+  let formattedDate: string;
 
   const targetDate = dayjs(date);
   const now = dayjs(currentDate ?? undefined);

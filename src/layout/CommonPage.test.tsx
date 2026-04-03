@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { render } from "@testing-library/react";
 import { act } from "react";
 import { expect, it, vi } from "vitest";
@@ -16,9 +14,9 @@ it("passes accessibility with default props", async () =>
   act(async () => {
     const { container } = render(
       <CommonPage
-        page={{ title: "test-title", path: "/test-path" }}
         breadcrumbs={[{ title: "test-title", path: "/test-path" }]}
         data={{ image: { url: "/test-url.jpg" } } as any}
+        page={{ title: "test-title", path: "/test-path" }}
       />,
     );
 
@@ -31,10 +29,10 @@ it("passes accessibility with optional props", async () =>
   act(async () => {
     const { container } = render(
       <CommonPage
-        page={{ title: "test-title", path: "/test-path" }}
-        parent={{ title: "test-parent-title", path: "/test-parent-path" }}
         breadcrumbs={[{ title: "test-title", path: "/test-path" }]}
         data={{} as any}
+        page={{ title: "test-title", path: "/test-path" }}
+        parent={{ title: "test-parent-title", path: "/test-parent-path" }}
       />,
     );
 

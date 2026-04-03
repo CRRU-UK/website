@@ -1,11 +1,8 @@
 import type { Asset } from "contentful";
-
-import type { ContentTypeNews, NewsArticle } from "./types";
-
 import { ContentTypes } from "./constants";
-
 import { contentfulDeliveryClient } from "./contentful";
 import { flattenImageAssetFields } from "./flattenAssetFields";
+import type { ContentTypeNews, NewsArticle } from "./types";
 
 interface Options {
   limit?: number;

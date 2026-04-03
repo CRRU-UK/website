@@ -2,14 +2,11 @@ import type { Asset } from "contentful";
 import type { GetServerSideProps, NextPage } from "next";
 
 import Image from "next/image";
-
-import type { FlattenedImage, PageData } from "@/helpers/types";
-
 import sitemap from "@/data/sitemap.json";
-
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 import getPageContent from "@/helpers/getPageContent";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
+import type { FlattenedImage, PageData } from "@/helpers/types";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -28,11 +25,11 @@ const renderPerson = (data: PersonDataReduced) => (
   <section className={styles.item} key={data.name}>
     <div className={styles.left}>
       <Image
-        src={data.image.url}
-        width={data.image.width}
-        height={data.image.height}
         alt={`Photo of ${data.name}.`}
         className={styles.image}
+        height={data.image.height}
+        src={data.image.url}
+        width={data.image.width}
       />
     </div>
 
@@ -60,10 +57,10 @@ interface PageProps {
 
 const Page: NextPage<PageProps> = ({ pageData, personData }) => (
   <CommonPage
-    page={sitemap["meet-the-team"]}
-    parent={sitemap.about}
     breadcrumbs={[sitemap.about, sitemap["meet-the-team"]]}
     data={pageData}
+    page={sitemap["meet-the-team"]}
+    parent={sitemap.about}
   >
     {personData ? personData.map((item) => renderPerson(item)) : undefined}
   </CommonPage>

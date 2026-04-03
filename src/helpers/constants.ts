@@ -1,3 +1,5 @@
+// biome-ignore-all lint/style/useLiteralEnumMembers: tightly couple Contentful content type IDs
+
 // Defaults
 
 export const DEFAULT_SITE_NAME = "CRRU";

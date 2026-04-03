@@ -1,16 +1,14 @@
+// biome-ignore-all lint/correctness/useUniqueElementIds: IDs are predetermined here for anchors
+
 import type { GetServerSideProps, NextPage } from "next";
 
 import Link from "next/link";
-
-import type { PageData } from "@/helpers/types";
-
-import sitemap from "@/data/sitemap.json";
-
-import getPageContent from "@/helpers/getPageContent";
-import { setPageCacheHeaders } from "@/helpers/setHeaders";
-
 import { Breadcrumbs, SEO } from "@/components";
 import Hero from "@/components/Hero/Hero";
+import sitemap from "@/data/sitemap.json";
+import getPageContent from "@/helpers/getPageContent";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
+import type { PageData } from "@/helpers/types";
 
 interface PageProps {
   pageImage: PageData["image"];
@@ -22,7 +20,7 @@ const Page: NextPage<PageProps> = ({ pageImage }) => {
   return (
     <>
       <SEO
-        page={sitemap["species-identification-key"]}
+        breadcrumbs={pageBreadcrumbs}
         images={
           pageImage
             ? [
@@ -34,13 +32,13 @@ const Page: NextPage<PageProps> = ({ pageImage }) => {
               ]
             : undefined
         }
-        breadcrumbs={pageBreadcrumbs}
+        page={sitemap["species-identification-key"]}
       />
 
       <Hero
-        title={sitemap["species-identification-key"].title}
-        subtitle={sitemap.rescue.title}
         background={pageImage?.url}
+        subtitle={sitemap.rescue.title}
+        title={sitemap["species-identification-key"].title}
       />
 
       <Breadcrumbs items={pageBreadcrumbs} />

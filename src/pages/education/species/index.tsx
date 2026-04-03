@@ -1,14 +1,12 @@
 import type { GetServerSideProps, NextPage } from "next";
-
-import type { PageData } from "@/helpers/types";
+import { Button } from "@/components";
 
 import sitemap from "@/data/sitemap.json";
 
 import getPageContent from "@/helpers/getPageContent";
 import getSpecies from "@/helpers/getSpecies";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
-
-import { Button } from "@/components";
+import type { PageData } from "@/helpers/types";
 import CommonPage from "@/layout/CommonPage";
 
 import styles from "./index.module.scss";
@@ -25,15 +23,15 @@ interface PageProps {
 
 const Page: NextPage<PageProps> = ({ pageData, speciesData }) => (
   <CommonPage
-    page={sitemap["cetacean-fact-files"]}
-    parent={sitemap.education}
     breadcrumbs={[sitemap.education, sitemap["cetacean-fact-files"]]}
     data={pageData}
+    page={sitemap["cetacean-fact-files"]}
+    parent={sitemap.education}
   >
     <ul className={styles["contents-table"]}>
       {speciesData.map(({ name, slug }) => (
         <li key={slug}>
-          <Button text={name} link={`/education/species/${slug}`} />
+          <Button link={`/education/species/${slug}`} text={name} />
         </li>
       ))}
     </ul>

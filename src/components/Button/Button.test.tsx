@@ -8,7 +8,7 @@ import Button from "./Button";
 describe(Button, () => {
   it("passes accessibility with default props", async () =>
     act(async () => {
-      const { container } = render(<Button text="test text" link="/test-link" />);
+      const { container } = render(<Button link="/test-link" text="test text" />);
 
       const results = await axe(container);
 
@@ -17,7 +17,7 @@ describe(Button, () => {
 
   it("passes accessibility with optional props", async () =>
     act(async () => {
-      const { container } = render(<Button text="test text" link="/test-link" external inline />);
+      const { container } = render(<Button external inline link="/test-link" text="test text" />);
 
       const results = await axe(container);
 

@@ -1,15 +1,12 @@
 /* istanbul ignore file */
 
+import { documentToReactComponents, type NodeRenderer } from "@contentful/rich-text-react-renderer";
 import type { Node } from "@contentful/rich-text-types";
 import type { Asset, AssetFile } from "contentful";
-
-import { NodeRenderer, documentToReactComponents } from "@contentful/rich-text-react-renderer";
-
+import { Gallery, Highlight, ImageRow, Note } from "@/components";
 import { EmbeddedContentEntries } from "@/helpers/constants";
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 import pageRenderOptions from "@/helpers/rendering/index";
-
-import { Gallery, Highlight, ImageRow, Note } from "@/components";
 
 const renderGallery = (data: Node["data"]) => {
   const images = data.target.fields.images.map((item: Asset) => flattenImageAssetFields(item));
@@ -21,7 +18,9 @@ const renderImageRow = (data: Node["data"]) => {
   const images = data.target.fields.images.map(({ fields }: Asset) => ({
     src: `https:${(fields.file as AssetFile).url}`,
     caption: fields.description,
+    // biome-ignore lint/style/noNonNullAssertion: image assets always have dimensions
     width: (fields.file as AssetFile).details.image!.width,
+    // biome-ignore lint/style/noNonNullAssertion: image assets always have dimensions
     height: (fields.file as AssetFile).details.image!.height,
   }));
 
@@ -61,33 +60,33 @@ const renderColumns = (data: Node["data"]) => {
 
 const renderVideo = (data: Node["data"]) => (
   <iframe
-    width="560"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
     height="315"
     src={data.target.fields.url}
     title="YouTube video player"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowFullScreen
+    width="560"
   />
 );
 
 const renderModule = (data: Node["data"]) => {
   if (data.target.fields.id === "membership-paypal-button") {
     return (
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" className="paypal">
-        <input type="hidden" name="cmd" value="_s-xclick" />
-        <input type="hidden" name="hosted_button_id" value="68DD5VDPDK3TQ" />
+      <form action="https://www.paypal.com/cgi-bin/webscr" className="paypal" method="post">
+        <input name="cmd" type="hidden" value="_s-xclick" />
+        <input name="hosted_button_id" type="hidden" value="68DD5VDPDK3TQ" />
         <input
-          type="image"
-          src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_GB/i/btn/btn_subscribe_SM.gif"
-          name="submit"
           alt="PayPal - The safer, easier way to pay online."
+          name="submit"
+          src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_GB/i/btn/btn_subscribe_SM.gif"
+          type="image"
         />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
+        {/* biome-ignore lint/performance/noImgElement: external PayPal tracking pixel */}
         <img
           alt=""
+          height="1"
           src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_GB/i/scr/pixel.gif"
           width="1"
-          height="1"
         />
       </form>
     );

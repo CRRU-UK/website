@@ -1,17 +1,16 @@
 /* istanbul ignore file */
 
-import { useState } from "react";
-
 import Image from "next/image";
+import { useState } from "react";
 
 import styles from "./ImageCaption.module.scss";
 
 export interface ImageCaptionProps {
+  alt?: string;
+  caption?: string;
+  height: number;
   src: string;
   width: number;
-  height: number;
-  caption?: string;
-  alt?: string;
 }
 
 const Caption = (caption: string) => {
@@ -31,13 +30,13 @@ const Caption = (caption: string) => {
       onMouseLeave={() => setOpen(false)}
     >
       <button
-        type="button"
+        aria-expanded={open}
+        aria-label="Caption"
         className={buttonClasses.join(" ")}
         onKeyDown={() => {}}
-        title="Caption"
-        aria-label="Caption"
-        aria-expanded={open}
         tabIndex={0}
+        title="Caption"
+        type="button"
       />
       <span className={textClasses.join(" ")}>{caption}</span>
     </figcaption>
@@ -48,12 +47,12 @@ const ImageCaption = ({ src, width, height, caption, alt }: ImageCaptionProps) =
   <figure className={styles.image}>
     {caption && Caption(caption)}
     <Image
-      src={src}
-      width={width}
-      height={height}
-      title={caption ?? ""}
       alt={alt ?? ""}
+      height={height}
+      src={src}
       style={{ maxWidth: width }}
+      title={caption ?? ""}
+      width={width}
     />
   </figure>
 );

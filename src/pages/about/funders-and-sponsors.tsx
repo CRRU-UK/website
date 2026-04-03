@@ -1,15 +1,13 @@
 import type { Asset } from "contentful";
 import type { GetServerSideProps, NextPage } from "next";
-
-import type { FlattenedImage, PageData } from "@/helpers/types";
+import { ListItem } from "@/components";
 
 import sitemap from "@/data/sitemap.json";
 
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 import getPageContent from "@/helpers/getPageContent";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
-
-import { ListItem } from "@/components";
+import type { FlattenedImage, PageData } from "@/helpers/types";
 import CommonPage from "@/layout/CommonPage";
 
 type SponsorsDataReduced = {
@@ -27,19 +25,19 @@ interface PageProps {
 
 const Page: NextPage<PageProps> = ({ pageData, sponsorsData }) => (
   <CommonPage
-    page={sitemap.sponsors}
-    parent={sitemap.about}
     breadcrumbs={[sitemap.about, sitemap.sponsors]}
     data={pageData}
+    page={sitemap.sponsors}
+    parent={sitemap.about}
   >
     {sponsorsData
       ? sponsorsData.map((item) => (
           <ListItem
-            key={item.name}
-            title={item.name}
             description={item.description}
-            link={item.url}
             image={item.image}
+            key={item.name}
+            link={item.url}
+            title={item.name}
           />
         ))
       : undefined}

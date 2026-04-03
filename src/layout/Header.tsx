@@ -2,12 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
-import type { SitemapItem } from "@/helpers/types";
+import { Social } from "@/components";
 
 import sitemap from "@/data/sitemap.json";
-
-import { Social } from "@/components";
+import type { SitemapItem } from "@/helpers/types";
 
 const breakpointMobileMenu = 800;
 
@@ -28,12 +26,12 @@ const SubmenuItem = ({ active, data }: SubmenuItemProps) => (
   <ul className={`submenu ${active ? "active" : ""}`}>
     <li className="header mobile">{data.parent}</li>
     {data.items.map(({ title, path, mobile = false, external = false }) => (
-      <li key={path} className={mobile ? "mobile" : ""}>
+      <li className={mobile ? "mobile" : ""} key={path}>
         <Link
+          className={external ? "external" : ""}
           href={path}
           rel={external ? "noopener noreferrer" : undefined}
           target={external ? "_blank" : undefined}
-          className={external ? "external" : ""}
         >
           <span className="text">{title}</span>
         </Link>
@@ -172,32 +170,32 @@ const Header = () => {
   return (
     <header>
       <div className="actions">
-        <Link href={sitemap.shop.path} className="shop">
+        <Link className="shop" href={sitemap.shop.path}>
           Shop
         </Link>
-        <Link href={sitemap.donate.path} className="donate">
+        <Link className="donate" href={sitemap.donate.path}>
           Donate
         </Link>
-        <Link href={sitemap.news.path} className="news">
+        <Link className="news" href={sitemap.news.path}>
           News
         </Link>
-        <Link href={sitemap.sightings.path} className="sighting">
+        <Link className="sighting" href={sitemap.sightings.path}>
           Report A Sighting
         </Link>
-        <Link href={sitemap.stranded.path} className="stranding">
+        <Link className="stranding" href={sitemap.stranded.path}>
           Report A <br /> Stranding
         </Link>
       </div>
 
-      <Link href={sitemap.home.path} className="logo">
+      <Link className="logo" href={sitemap.home.path}>
         <Image
-          src="/images/header/logo-header.png"
-          width={200}
-          height={200}
-          title="CRRU"
           alt="CRRU logo"
+          height={200}
           priority
           quality={100}
+          src="/images/header/logo-header.png"
+          title="CRRU"
+          width={200}
         />
       </Link>
 
@@ -272,14 +270,21 @@ const Header = () => {
 
       <Social short />
 
-      <button className="burger" onClick={toggleMenu} onKeyDown={toggleMenu}>
+      <button
+        aria-label="Menu"
+        className="burger"
+        onClick={toggleMenu}
+        onKeyDown={toggleMenu}
+        type="button"
+      >
         <svg
+          aria-hidden="true"
+          className="burger-icon"
           fill="none"
           height="48"
           viewBox="0 0 64 48"
           width="64"
           xmlns="http://www.w3.org/2000/svg"
-          className="burger-icon"
         >
           <path
             d="m2 14c2.03077 2.1662 5.46923 2.1662 7.5 0 2.0308-2.1662 5.4692-2.1662 7.5 0 2.0308 2.1662 5.4692 2.1662 7.5 0 2.0308-2.1662 5.4692-2.1662 7.5 0 2.0308 2.1662 5.4692 2.1662 7.5 0 2.0308-2.1662 5.4692-2.1662 7.5 0 2.0308 2.1662 5.4692 2.1662 7.5 0 2.0308-2.1662 5.4692-2.1662 7.5 0"
@@ -294,9 +299,9 @@ const Header = () => {
             strokeWidth="3"
           />
           <path
+            className="burger-icon-whale"
             d="m19.845 25.2345c7.4508 3.474 7.9963 8.1523 7.5342 11.7654l9.2795.0001c-.4296-3.3798.2163-7.7552 7.5865-11.7654 11.2513-6.1371 8.5745-18.75909 8.241-21.48225-.2813-2.32254-1.4105-2.0334-2.5397-.8754-4.0957 5.64648-14.0742.98317-17.9465 9.12305-3.871-8.13997-13.7689-3.47666-17.8562-9.12314-1.1292-1.15791-2.2584-1.44714-2.5482.8754-.3321 2.72325-3.34951 16.06554 8.2494 21.48224z"
             fill="#0060c2"
-            id="whale"
           />
           <path d="m0 34h64v14h-64z" fill="#000" />
           <path
@@ -310,11 +315,14 @@ const Header = () => {
 
       {submenu !== Submenus.None && (
         <button
+          aria-label="Close menu"
           className="back"
           onClick={() => setSubmenu(Submenus.None)}
           onKeyDown={() => setSubmenu(Submenus.None)}
+          type="button"
         >
           <svg
+            aria-hidden="true"
             fill="none"
             height="64"
             viewBox="0 0 64 64"

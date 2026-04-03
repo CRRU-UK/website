@@ -5,8 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
-
-import type { ContentTypeScientificPublication, FlattenedImage, PageData } from "@/helpers/types";
+import { Filters } from "@/components";
 
 import sitemap from "@/data/sitemap.json";
 
@@ -15,8 +14,7 @@ import { contentfulDeliveryClient } from "@/helpers/contentful";
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 import getPageContent from "@/helpers/getPageContent";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
-
-import { Filters } from "@/components";
+import type { ContentTypeScientificPublication, FlattenedImage, PageData } from "@/helpers/types";
 import CommonPage from "@/layout/CommonPage";
 
 import styles from "./publications.module.scss";
@@ -46,8 +44,8 @@ const PublicationEntry = ({
   if (attachment) {
     download = (
       <Link
-        href={`https:${attachment}`}
         className={styles.download}
+        href={`https:${attachment}`}
         rel="noopener noreferrer"
         target="_blank"
       >
@@ -67,14 +65,14 @@ const PublicationEntry = ({
     categoryClasses.push(styles["category-theses"]);
 
   return (
-    <article key={description} className={styles.item}>
+    <article className={styles.item} key={description}>
       {image && (
         <Image
-          src={image.url}
           alt={image.alt ?? "Publication cover image."}
-          width={image.width}
-          height={image.height}
           className={styles.image}
+          height={image.height}
+          src={image.url}
+          width={image.width}
         />
       )}
       <div className={styles.wrapper}>
@@ -118,7 +116,6 @@ const UsePublicationsContent = (data: Array<PublicationDataReduced>) => {
   return (
     <>
       <Filters
-        search={{ callback: setSearch }}
         dropdowns={[
           {
             name: "Categories",
@@ -126,9 +123,10 @@ const UsePublicationsContent = (data: Array<PublicationDataReduced>) => {
               text: value,
               value: key,
             })),
-            callback: setCategory,
+            callback: (value: string) => setCategory(value as keyof typeof categories),
           },
         ]}
+        search={{ callback: setSearch }}
       />
 
       <div className={styles.info}>
@@ -146,10 +144,10 @@ const UsePublicationsContent = (data: Array<PublicationDataReduced>) => {
 
 const Page: NextPage<PageProps> = ({ pageData, publicationsData }) => (
   <CommonPage
-    page={sitemap.publications}
-    parent={sitemap.research}
     breadcrumbs={[sitemap.research, sitemap.publications]}
     data={pageData}
+    page={sitemap.publications}
+    parent={sitemap.research}
     wide
   >
     {UsePublicationsContent(publicationsData)}

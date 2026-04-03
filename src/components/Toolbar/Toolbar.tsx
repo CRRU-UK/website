@@ -1,19 +1,15 @@
-import styles from "./Toolbar.module.scss";
-
-import { useEffect, useState } from "react";
-
-import type { CatalogueAPIResponse, CatalogueBasicInfo } from "@/helpers/types";
-
 import Link from "next/link";
 
-import { Catalogues } from "@/helpers/constants";
-
+import { useEffect, useState } from "react";
 import { Card, Loading } from "@/components";
+import type { Catalogues } from "@/helpers/constants";
+import type { CatalogueAPIResponse, CatalogueBasicInfo } from "@/helpers/types";
+import styles from "./Toolbar.module.scss";
 
 interface Props {
   catalogue: Catalogues;
-  previous: CatalogueBasicInfo | null;
   next: CatalogueBasicInfo | null;
+  previous: CatalogueBasicInfo | null;
 }
 
 const Toolbar = ({ catalogue, previous, next }: Props) => {
@@ -23,7 +19,6 @@ const Toolbar = ({ catalogue, previous, next }: Props) => {
 
   useEffect(() => {
     if (search === "") {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setData(null);
       return;
     }
@@ -59,11 +54,11 @@ const Toolbar = ({ catalogue, previous, next }: Props) => {
       : data?.items.map((item) => (
           <li key={item.id}>
             <Card
-              type={catalogue}
-              title={`#${item.id}`}
+              link={`/research/catalogues/${catalogue}/${item.slug}`}
               name={item?.name ? String(item.name) : undefined}
               reference={item?.reference ? `#${item.reference}` : undefined}
-              link={`/research/catalogues/${catalogue}/${item.slug}`}
+              title={`#${item.id}`}
+              type={catalogue}
             />
           </li>
         ));
@@ -90,7 +85,7 @@ const Toolbar = ({ catalogue, previous, next }: Props) => {
     }
 
     return (
-      <Link href={`/research/catalogues/${catalogue}/${info.slug}`} className={classes.join(" ")}>
+      <Link className={classes.join(" ")} href={`/research/catalogues/${catalogue}/${info.slug}`}>
         <span>{text}</span>
       </Link>
     );
@@ -100,15 +95,15 @@ const Toolbar = ({ catalogue, previous, next }: Props) => {
     <section className={styles.toolbar}>
       <div className={searchClasses.join(" ")}>
         <input
-          type="search"
-          placeholder="Search name, ID, reference, birth year..."
           onChange={({ target }) => handleSearchChange((target as HTMLInputElement).value)}
+          placeholder="Search name, ID, reference, birth year..."
+          type="search"
         />
 
         {showResults && (
           <ul className={styles.results}>
             {loading ? (
-              <li className={styles["loading"]}>
+              <li className={styles.loading}>
                 <Loading type={catalogue} />
               </li>
             ) : (

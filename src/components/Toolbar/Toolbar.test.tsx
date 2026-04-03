@@ -10,10 +10,10 @@ describe(Toolbar, () => {
     act(async () => {
       const { container } = render(
         <Toolbar
+          next={null}
+          previous={null}
           // @ts-expect-error String of enum value
           type="bottlenose-dolphin"
-          previous={null}
-          next={null}
         />,
       );
 
@@ -33,10 +33,10 @@ describe(Toolbar, () => {
 
       const { container } = render(
         <Toolbar
+          next={mockedData}
+          previous={mockedData}
           // @ts-expect-error String of enum value
           type="bottlenose-dolphin"
-          previous={mockedData}
-          next={mockedData}
         />,
       );
 

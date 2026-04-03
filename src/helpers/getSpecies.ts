@@ -1,11 +1,8 @@
 import type { Asset } from "contentful";
-
-import type { ContentTypeSpeciesPage, SpeciesEntry } from "./types";
-
 import { ContentTypes } from "./constants";
-
 import { contentfulDeliveryClient } from "./contentful";
 import { flattenImageAssetFields } from "./flattenAssetFields";
+import type { ContentTypeSpeciesPage, SpeciesEntry } from "./types";
 
 /**
  * Queries and returns species page entries from Contentful.

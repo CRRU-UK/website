@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import { Catalogues, COMMON_CACHE_DIRECTIVES } from "@/helpers/constants";
@@ -34,7 +32,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(400).send("`page` param must be an integer greater than 0");
   }
 
-  const query: any = {
+  const query: { page: number; search?: string } = {
     page: pageNumber,
   };
 

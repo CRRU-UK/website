@@ -34,7 +34,7 @@ const Gallery = ({ images }: Props) => {
     cachedRef.addEventListener("scroll", scrollEvent);
 
     return () => cachedRef.removeEventListener("scroll", scrollEvent);
-  }, [scrollRef]);
+  }, []);
 
   const imagesRefs = images.map((item) => ({
     ...item,
@@ -67,8 +67,8 @@ const Gallery = ({ images }: Props) => {
   };
 
   const imageElements = imagesRefs.map((item) => (
-    <div key={item.url} className={styles.item} ref={item.ref as React.RefObject<HTMLDivElement>}>
-      <ImageCaption src={item.url} width={1000} height={750} caption={item.alt ?? ""} />
+    <div className={styles.item} key={item.url} ref={item.ref as React.RefObject<HTMLDivElement>}>
+      <ImageCaption caption={item.alt ?? ""} height={750} src={item.url} width={1000} />
     </div>
   ));
 
@@ -80,14 +80,14 @@ const Gallery = ({ images }: Props) => {
 
     return (
       <button
-        key={item.url}
-        type="button"
+        aria-label={`Image ${index + 1}`}
         className={classes.join(" ")}
+        key={item.url}
         onClick={() => scrollToSlide(index)}
         onKeyDown={() => {}}
-        title={`Image ${index + 1}`}
-        aria-label={`Image ${index + 1}`}
         tabIndex={0}
+        title={`Image ${index + 1}`}
+        type="button"
       />
     );
   });
@@ -96,25 +96,25 @@ const Gallery = ({ images }: Props) => {
     <div className={styles.gallery}>
       <div className={styles.pagination}>
         <button
-          type="button"
+          aria-label="Previous slide"
           className={`${styles["pagination-arrow"]} ${styles["pagination-arrow-previous"]}`}
           onClick={handlePreviousSlide}
           onKeyDown={() => {}}
-          title="Previous slide"
-          aria-label="Previous slide"
           tabIndex={0}
+          title="Previous slide"
+          type="button"
         />
 
         {paginationElements}
 
         <button
-          type="button"
+          aria-label="Previous slide"
           className={`${styles["pagination-arrow"]} ${styles["pagination-arrow-next"]}`}
           onClick={handleNextSlide}
           onKeyDown={() => {}}
-          title="Previous slide"
-          aria-label="Previous slide"
           tabIndex={0}
+          title="Previous slide"
+          type="button"
         />
       </div>
 

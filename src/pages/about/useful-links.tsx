@@ -2,8 +2,7 @@ import type { Asset } from "contentful";
 import type { GetServerSideProps, NextPage } from "next";
 
 import { useState } from "react";
-
-import type { FlattenedImage, PageData } from "@/helpers/types";
+import { Filters, ListItem } from "@/components";
 
 import sitemap from "@/data/sitemap.json";
 
@@ -11,8 +10,7 @@ import { UsefulLinksCategories } from "@/helpers/constants";
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 import getPageContent from "@/helpers/getPageContent";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
-
-import { Filters, ListItem } from "@/components";
+import type { FlattenedImage, PageData } from "@/helpers/types";
 import CommonPage from "@/layout/CommonPage";
 
 type LinksDataReduced = {
@@ -25,8 +23,8 @@ type LinksDataReduced = {
 };
 
 interface PageProps {
-  pageData: PageData;
   linksData: Array<LinksDataReduced> | null;
+  pageData: PageData;
 }
 
 const categories = ["All categories", ...Object.values(UsefulLinksCategories)];
@@ -45,23 +43,24 @@ const Page: NextPage<PageProps> = ({ pageData, linksData }) => {
 
       return (
         <ListItem
-          key={item.title}
-          title={item.title}
-          description={item.description}
-          link={item.url}
           category={{ text: item.category, style: categoryStyle ?? 1 }}
+          description={item.description}
           image={item.image ?? undefined}
+          key={item.title}
+          link={item.url}
+          title={item.title}
         />
       );
     });
 
   return (
     <CommonPage
-      page={sitemap["useful-links"]}
-      parent={sitemap.about}
       breadcrumbs={[sitemap.about, sitemap["useful-links"]]}
       data={pageData}
+      page={sitemap["useful-links"]}
+      parent={sitemap.about}
     >
+      {/* biome-ignore lint/complexity/noUselessFragments: fragment needed to satisfy children type */}
       <>
         <Filters
           dropdowns={[

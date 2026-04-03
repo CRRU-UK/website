@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import styles from "./Highlight.module.scss";
 
 interface Props {
-  children: any;
+  children: React.ReactNode;
   warning?: boolean;
 }
 

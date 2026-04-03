@@ -1,16 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+// biome-ignore-all lint/correctness/useUniqueElementIds: IDs are predetermined here
 
 import type { GetServerSideProps, NextPage } from "next";
 
 import Script from "next/script";
 import { useState } from "react";
-
-import type { PageData } from "@/helpers/types";
-
 import sitemap from "@/data/sitemap.json";
-
 import getPageContent from "@/helpers/getPageContent";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
+import type { PageData } from "@/helpers/types";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -19,38 +16,42 @@ const UseSightingsForm = () => {
   const [success, setSuccess] = useState<boolean>(false);
   const [errorMessages, setErrorMessages] = useState<Array<string>>([]);
 
+  // biome-ignore lint/suspicious/noExplicitAny: Cloudflare Turnstile global has no type definitions
   const resetChallenge = () => (globalThis as any)?.turnstile?.reset();
 
   const currentDate = new Date();
   const defaultDate = currentDate.toISOString().substring(0, 10);
   const defaultTime = `${currentDate.getHours()}:${currentDate.getMinutes()}`;
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event: React.SubmitEvent) => {
     event.preventDefault();
 
     setLoading(true);
     setSuccess(false);
 
+    const form = event.target as HTMLFormElement;
+    const field = (name: string) => (form.elements.namedItem(name) as HTMLInputElement)?.value;
+
     const data = JSON.stringify({
-      name: event.target.name.value,
-      email: event.target.email.value,
-      date: event.target.date.value,
-      "time-start": event.target["time-start"].value,
-      "time-end": event.target["time-end"].value,
-      location: event.target.location.value,
-      species: event.target.species.value,
-      longitude: event.target.longitude.value ?? undefined,
-      latitude: event.target.latitude.value ?? undefined,
-      amount: event.target.amount.value ?? undefined,
-      "sea-state": event.target["sea-state"].value ?? undefined,
-      weather: event.target.weather.value ?? undefined,
-      depth: event.target.depth.value ?? undefined,
-      vessel: event.target.vessel.value ?? undefined,
-      notes: event.target.notes.value ?? undefined,
-      "cf-turnstile-response": event.target["cf-turnstile-response"].value,
+      name: field("name"),
+      email: field("email"),
+      date: field("date"),
+      "time-start": field("time-start"),
+      "time-end": field("time-end"),
+      location: field("location"),
+      species: field("species"),
+      longitude: field("longitude") || undefined,
+      latitude: field("latitude") || undefined,
+      amount: field("amount") || undefined,
+      "sea-state": field("sea-state") || undefined,
+      weather: field("weather") || undefined,
+      depth: field("depth") || undefined,
+      vessel: field("vessel") || undefined,
+      notes: field("notes") || undefined,
+      "cf-turnstile-response": field("cf-turnstile-response"),
     });
 
-    let request;
+    let request: Response | undefined;
 
     try {
       request = await fetch("/api/report-sighting", {
@@ -58,7 +59,7 @@ const UseSightingsForm = () => {
         headers: { "Content-Type": "application/json" },
         body: data,
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Unable to submit form:", error);
 
       setErrorMessages(["Unable to submit form, please try again"]);
@@ -93,64 +94,64 @@ const UseSightingsForm = () => {
 
   return (
     <>
-      <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
+      <Script async defer src="https://challenges.cloudflare.com/turnstile/v0/api.js" />
 
-      <form onSubmit={handleSubmit} className={loading ? "form-loading" : ""}>
+      <form className={loading ? "form-loading" : ""} onSubmit={handleSubmit}>
         <div className="form-columns">
           <label htmlFor="name">
             <span>Name of observer: *</span>
-            <input type="text" id="name" name="name" required disabled={loading} />
+            <input disabled={loading} id="name" name="name" required type="text" />
           </label>
 
           <label htmlFor="email">
             <span>Email: *</span>
-            <input type="email" id="email" name="email" required disabled={loading} />
+            <input disabled={loading} id="email" name="email" required type="email" />
           </label>
 
           <label htmlFor="date">
             <span>Date of sighting: *</span>
             <input
-              type="date"
+              defaultValue={defaultDate}
+              disabled={loading}
               id="date"
               name="date"
-              defaultValue={defaultDate}
               required
-              disabled={loading}
+              type="date"
             />
           </label>
 
           <label htmlFor="time-start">
             <span>Time (start): *</span>
             <input
-              type="time"
+              defaultValue={defaultTime}
+              disabled={loading}
               id="time-start"
               name="time-start"
-              defaultValue={defaultTime}
               required
-              disabled={loading}
+              type="time"
             />
           </label>
 
           <label htmlFor="time-end">
             <span>Time (end): *</span>
             <input
-              type="time"
+              defaultValue={defaultTime}
+              disabled={loading}
               id="time-end"
               name="time-end"
-              defaultValue={defaultTime}
               required
-              disabled={loading}
+              type="time"
             />
           </label>
 
           <label htmlFor="location">
             <span>Location / landmark: *</span>
-            <input type="text" id="location" name="location" required disabled={loading} />
+            <input disabled={loading} id="location" name="location" required type="text" />
           </label>
 
           <label htmlFor="species">
             <span>Species observed: *</span>
-            <select name="species" id="species" defaultValue="" disabled={loading}>
+            <select defaultValue="" disabled={loading} id="species" name="species">
               <option disabled value="">
                 Select an option
               </option>
@@ -176,22 +177,22 @@ const UseSightingsForm = () => {
 
           <label htmlFor="longitude">
             <span>Longitude:</span>
-            <input type="text" id="longitude" name="longitude" disabled={loading} />
+            <input disabled={loading} id="longitude" name="longitude" type="text" />
           </label>
 
           <label htmlFor="latitude">
             <span>Latitude:</span>
-            <input type="text" id="latitude" name="latitude" disabled={loading} />
+            <input disabled={loading} id="latitude" name="latitude" type="text" />
           </label>
 
           <label htmlFor="amount">
             <span>Number of animals present:</span>
-            <input type="number" id="amount" name="amount" disabled={loading} />
+            <input disabled={loading} id="amount" name="amount" type="number" />
           </label>
 
           <label htmlFor="sea-state">
             <span>Sea state:</span>
-            <select name="sea-state" id="sea-state" defaultValue="" disabled={loading}>
+            <select defaultValue="" disabled={loading} id="sea-state" name="sea-state">
               <option disabled value="">
                 Select an option
               </option>
@@ -205,7 +206,7 @@ const UseSightingsForm = () => {
 
           <label htmlFor="weather">
             <span>Weather conditions:</span>
-            <select name="weather" id="weather" defaultValue="" disabled={loading}>
+            <select defaultValue="" disabled={loading} id="weather" name="weather">
               <option disabled value="">
                 Select an option
               </option>
@@ -219,12 +220,12 @@ const UseSightingsForm = () => {
 
           <label htmlFor="depth">
             <span>Depth (from depth sounder, in meters):</span>
-            <input type="number" id="depth" name="depth" disabled={loading} />
+            <input disabled={loading} id="depth" name="depth" type="number" />
           </label>
 
           <label htmlFor="vessel">
             <span>Name of Vessel:</span>
-            <input type="text" id="vessel" name="vessel" disabled={loading} />
+            <input disabled={loading} id="vessel" name="vessel" type="text" />
           </label>
         </div>
 
@@ -233,7 +234,7 @@ const UseSightingsForm = () => {
             Additional notes (e.g. behaviour observed, direction of travel, composition of group
             i.e. number of adults and calves, other):
           </span>
-          <textarea id="notes" name="notes" rows={5} disabled={loading} />
+          <textarea disabled={loading} id="notes" name="notes" rows={5} />
         </label>
 
         <div
@@ -259,7 +260,7 @@ interface PageProps {
 }
 
 const Page: NextPage<PageProps> = ({ data }) => (
-  <CommonPage page={sitemap.sightings} breadcrumbs={[sitemap.sightings]} data={data}>
+  <CommonPage breadcrumbs={[sitemap.sightings]} data={data} page={sitemap.sightings}>
     {UseSightingsForm()}
   </CommonPage>
 );

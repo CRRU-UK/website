@@ -30,8 +30,10 @@ const renderEmbeddedEntriesAssets = ({ data }: Node) => {
   }
 
   if (contentType.startsWith("video")) {
-    // eslint-disable-next-line jsx-a11y/media-has-caption
-    return <video src={`https:${file.url}`} className="video" controls />;
+    return (
+      // biome-ignore lint/a11y/useMediaCaption: captions not available
+      <video className="video" controls src={`https:${file.url}`} />
+    );
   }
 
   return <Link href={`https:${file.url}`}>{title}</Link>;

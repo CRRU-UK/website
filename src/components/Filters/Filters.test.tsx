@@ -49,11 +49,6 @@ describe(Filters, () => {
     act(async () => {
       const { container } = render(
         <Filters
-          search={{
-            callback: vi.fn<() => void>(),
-            label: "mocked label",
-            defaultValue: "mocked default value",
-          }}
           dropdowns={[
             {
               name: "test name",
@@ -71,6 +66,11 @@ describe(Filters, () => {
               callback: vi.fn<() => void>(),
             },
           ]}
+          search={{
+            callback: vi.fn<() => void>(),
+            label: "mocked label",
+            defaultValue: "mocked default value",
+          }}
         />,
       );
 

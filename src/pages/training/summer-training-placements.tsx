@@ -1,14 +1,11 @@
 import type { GetServerSideProps, NextPage } from "next";
 
 import { CourseJsonLd } from "next-seo";
-
-import type { PageData } from "@/helpers/types";
-
 import sitemap from "@/data/sitemap.json";
-
 import { DEFAULT_SITE_DOMAIN, DEFAULT_SITE_NAME } from "@/helpers/constants";
 import getPageContent from "@/helpers/getPageContent";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
+import type { PageData } from "@/helpers/types";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -19,8 +16,8 @@ interface PageProps {
 const Page: NextPage<PageProps> = ({ data }) => (
   <>
     <CourseJsonLd
-      name={sitemap["summer-training-placements"].title}
       description={data.description ?? ""}
+      name={sitemap["summer-training-placements"].title}
       provider={{
         name: DEFAULT_SITE_NAME,
         url: `${DEFAULT_SITE_DOMAIN}${sitemap["summer-training-placements"].path}`,
@@ -29,10 +26,10 @@ const Page: NextPage<PageProps> = ({ data }) => (
     />
 
     <CommonPage
-      page={sitemap["summer-training-placements"]}
-      parent={sitemap.training}
       breadcrumbs={[sitemap.training, sitemap["summer-training-placements"]]}
       data={data}
+      page={sitemap["summer-training-placements"]}
+      parent={sitemap.training}
     />
   </>
 );

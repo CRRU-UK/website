@@ -6,6 +6,8 @@ import { formatDateRelative } from "@/helpers/formatDate";
 import styles from "./News.module.scss";
 
 interface Props {
+  category?: string;
+  date?: string;
   image: {
     src: string;
     width: number;
@@ -14,8 +16,6 @@ interface Props {
   };
   link: string;
   title: string;
-  date?: string;
-  category?: string;
 }
 
 const News = ({ link, image, title, date, category }: Props) => {
@@ -26,9 +26,9 @@ const News = ({ link, image, title, date, category }: Props) => {
 
   return (
     <article className={styles.news}>
-      <Link href={link} className="news">
+      <Link className="news" href={link}>
         <div className={styles["image-container"]}>
-          <Image src={imageURL} alt="" width={image.width} height={image.height} quality={90} />
+          <Image alt="" height={image.height} quality={90} src={imageURL} width={image.width} />
         </div>
         <h4>{title}</h4>
         <div className={styles.subtitles}>

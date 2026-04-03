@@ -5,12 +5,12 @@ import { Catalogues } from "@/helpers/constants";
 import styles from "./Card.module.scss";
 
 interface Props {
-  type: Catalogues;
-  title: string;
+  disabled?: boolean;
+  link: string;
   name?: string;
   reference?: string;
-  link: string;
-  disabled?: boolean;
+  title: string;
+  type: Catalogues;
 }
 
 const Card = ({ type, title, reference, name, link, disabled = false }: Props) => {
@@ -29,7 +29,7 @@ const Card = ({ type, title, reference, name, link, disabled = false }: Props) =
   }
 
   return (
-    <Link href={link} className={classes.join(" ")}>
+    <Link className={classes.join(" ")} href={link}>
       <span className={styles.icon}></span>
       <span className={styles.text}>
         <span className={styles.id}>

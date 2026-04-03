@@ -1,9 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-
-import sitemap from "@/data/sitemap.json";
-
 import { Social } from "@/components";
+import sitemap from "@/data/sitemap.json";
 
 const Footer = () => (
   <>
@@ -13,17 +11,17 @@ const Footer = () => (
 
     <footer>
       <Image
-        src="/images/footer/background-footer.png"
         alt=""
-        width={2400}
-        height={500}
         className="background"
+        height={500}
+        src="/images/footer/background-footer.png"
+        width={2400}
       />
 
       <div className="footer-wrapper">
         <div className="footer-left">
-          <Link href={sitemap.home.path} className="footer-logo">
-            <Image src="/images/footer/logo-footer.jpg" alt="CRRU logo" width={150} height={150} />
+          <Link className="footer-logo" href={sitemap.home.path}>
+            <Image alt="CRRU logo" height={150} src="/images/footer/logo-footer.jpg" width={150} />
           </Link>
 
           <div className="footer-left-content">
@@ -73,20 +71,20 @@ const Footer = () => (
                   target="_blank"
                 >
                   <Image
-                    src="/images/footer/logo-jlp-foundation.svg"
                     alt="John Lewis Partnership Foundation logo"
-                    width={144}
                     height={50}
+                    src="/images/footer/logo-jlp-foundation.svg"
+                    width={144}
                   />
                 </Link>
               </li>
               <li>
                 <Link href="https://www.bornfree.org.uk" rel="noopener noreferrer" target="_blank">
                   <Image
-                    src="/images/footer/logo-born-free.svg"
                     alt="Born Free UK logo"
-                    width={142}
                     height={50}
+                    src="/images/footer/logo-born-free.svg"
+                    width={142}
                   />
                 </Link>
               </li>
@@ -97,10 +95,10 @@ const Footer = () => (
                   target="_blank"
                 >
                   <Image
-                    src="/images/footer/logo-land-rover.svg"
                     alt="Land Rover logo"
-                    width={95}
                     height={50}
+                    src="/images/footer/logo-land-rover.svg"
+                    width={95}
                   />
                 </Link>
               </li>

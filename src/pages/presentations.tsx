@@ -1,11 +1,9 @@
 import type { GetServerSideProps, NextPage } from "next";
 
 import Head from "next/head";
-
-import type { PageData } from "@/helpers/types";
-
 import getPageContent from "@/helpers/getPageContent";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
+import type { PageData } from "@/helpers/types";
 
 import CommonPage from "@/layout/CommonPage";
 
@@ -21,10 +19,10 @@ const pageSitemap = {
 const Page: NextPage<PageProps> = ({ data }) => (
   <>
     <Head>
-      <meta name="robots" content="noindex,nofollow" />
+      <meta content="noindex,nofollow" name="robots" />
     </Head>
 
-    <CommonPage page={pageSitemap} breadcrumbs={[pageSitemap]} data={data} />
+    <CommonPage breadcrumbs={[pageSitemap]} data={data} page={pageSitemap} />
   </>
 );
 

@@ -1,15 +1,16 @@
 import * as Sentry from "@sentry/nextjs";
-import Error from "next/error";
+import NextError from "next/error";
 
 const CustomErrorComponent = (props: { statusCode: number }) => {
-  return <Error statusCode={props.statusCode} />;
+  return <NextError statusCode={props.statusCode} />;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-CustomErrorComponent.getInitialProps = async (contextData: any) => {
+CustomErrorComponent.getInitialProps = async (
+  contextData: Parameters<typeof NextError.getInitialProps>[0],
+) => {
   await Sentry.captureUnderscoreErrorException(contextData);
 
-  return Error.getInitialProps(contextData);
+  return NextError.getInitialProps(contextData);
 };
 
 export default CustomErrorComponent;

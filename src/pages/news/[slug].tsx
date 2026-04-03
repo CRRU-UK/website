@@ -1,27 +1,22 @@
-import type { Asset } from "contentful";
-import type { GetServerSideProps, NextPage } from "next";
 import type { ParsedUrlQuery } from "node:querystring";
-
 import {
   useContentfulInspectorMode,
   useContentfulLiveUpdates,
 } from "@contentful/live-preview/react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import type { Asset } from "contentful";
+import type { GetServerSideProps, NextPage } from "next";
 import { ArticleJsonLd } from "next-seo";
-
-import type { ContentTypeNews, NewsArticle } from "@/helpers/types";
-
+import { Breadcrumbs, SEO } from "@/components";
+import Hero from "@/components/Hero/Hero";
 import sitemap from "@/data/sitemap.json";
-
 import { ContentTypes, DEFAULT_SITE_DOMAIN, DEFAULT_SITE_NAME, LOCALE } from "@/helpers/constants";
 import { contentfulDeliveryClient, contentfulPreviewClient } from "@/helpers/contentful";
 import { flattenImageAssetFields } from "@/helpers/flattenAssetFields";
 import { formatDateRelative } from "@/helpers/formatDate";
 import pageRenderOptions from "@/helpers/rendering";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
-
-import { Breadcrumbs, SEO } from "@/components";
-import Hero from "@/components/Hero/Hero";
+import type { ContentTypeNews, NewsArticle } from "@/helpers/types";
 
 interface PageProps extends NewsArticle {
   id: string;
@@ -53,12 +48,7 @@ const Page: NextPage<PageProps> = ({
   return (
     <>
       <SEO
-        page={{
-          title: `${pageTitle} - ${sitemap.news.title}`,
-          description,
-          path: pagePath,
-        }}
-        type="article"
+        breadcrumbs={pageBreadcrumbs}
         images={[
           {
             url: image.url,
@@ -66,26 +56,31 @@ const Page: NextPage<PageProps> = ({
             height: image.height,
           },
         ]}
-        breadcrumbs={pageBreadcrumbs}
+        page={{
+          title: `${pageTitle} - ${sitemap.news.title}`,
+          description,
+          path: pagePath,
+        }}
+        type="article"
       />
 
       <ArticleJsonLd
-        type="NewsArticle"
-        url={`${DEFAULT_SITE_DOMAIN}${pagePath}`}
+        author={[{ name: DEFAULT_SITE_NAME, url: DEFAULT_SITE_DOMAIN }]}
+        dateModified={formattedDate}
+        datePublished={formattedDate}
+        description={description}
         headline={pageTitle}
         image={[image.url]}
-        datePublished={formattedDate}
-        dateModified={formattedDate}
-        author={[{ name: DEFAULT_SITE_NAME, url: DEFAULT_SITE_DOMAIN }]}
         publisher={{
           "@type": "Organization",
           name: DEFAULT_SITE_NAME,
           logo: `${DEFAULT_SITE_DOMAIN}/images/logo.png`,
         }}
-        description={description}
+        type="NewsArticle"
+        url={`${DEFAULT_SITE_DOMAIN}${pagePath}`}
       />
 
-      <Hero title={pageTitle} subtitle={sitemap.news.title} plain />
+      <Hero plain subtitle={sitemap.news.title} title={pageTitle} />
 
       <Breadcrumbs items={pageBreadcrumbs} />
 

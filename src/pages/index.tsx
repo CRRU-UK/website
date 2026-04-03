@@ -1,12 +1,25 @@
 import type { Asset, Entry } from "contentful";
 import type { GetServerSideProps, NextPage } from "next";
-
-import { OrganizationJsonLd } from "next-seo";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { OrganizationJsonLd } from "next-seo";
 import { useEffect, useRef, useState } from "react";
+import { News, SEO } from "@/components";
 
+import sitemap from "@/data/sitemap.json";
+import {
+  ContentTypes,
+  DEFAULT_SITE_ALTERNATE_NAME,
+  DEFAULT_SITE_DESCRIPTION,
+  DEFAULT_SITE_DOMAIN,
+  DEFAULT_SITE_NAME,
+  SOCIAL_MEDIA_ACCOUNTS,
+} from "@/helpers/constants";
+import { contentfulDeliveryClient, contentfulPreviewClient } from "@/helpers/contentful";
+import { flattenImageAssetFields, flattenVideoAssetFields } from "@/helpers/flattenAssetFields";
+import getNews from "@/helpers/getNews";
+import { setPageCacheHeaders } from "@/helpers/setHeaders";
 import type {
   ContentTypeHomepage,
   ContentTypeNews,
@@ -16,24 +29,6 @@ import type {
   FlattenedVideo,
   NewsArticle,
 } from "@/helpers/types";
-
-import sitemap from "@/data/sitemap.json";
-
-import { contentfulDeliveryClient, contentfulPreviewClient } from "@/helpers/contentful";
-import { flattenImageAssetFields, flattenVideoAssetFields } from "@/helpers/flattenAssetFields";
-import getNews from "@/helpers/getNews";
-import { setPageCacheHeaders } from "@/helpers/setHeaders";
-
-import {
-  ContentTypes,
-  DEFAULT_SITE_ALTERNATE_NAME,
-  DEFAULT_SITE_DESCRIPTION,
-  DEFAULT_SITE_DOMAIN,
-  DEFAULT_SITE_NAME,
-  SOCIAL_MEDIA_ACCOUNTS,
-} from "@/helpers/constants";
-
-import { News, SEO } from "@/components";
 
 import styles from "./index.module.scss";
 
@@ -76,16 +71,15 @@ const Page: NextPage<PageProps> = ({ homepage, newsArticles }: PageProps) => {
   return (
     <>
       <SEO
+        breadcrumbs={[sitemap.home]}
         page={{
           title: "Cetacean Research & Rescue Unit",
           path: sitemap.home.path,
         }}
-        breadcrumbs={[sitemap.home]}
       />
 
       <Head>
         <script
-          type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -95,17 +89,11 @@ const Page: NextPage<PageProps> = ({ homepage, newsArticles }: PageProps) => {
               url: DEFAULT_SITE_DOMAIN,
             }),
           }}
+          type="application/ld+json"
         />
       </Head>
 
       <OrganizationJsonLd
-        type="Organization"
-        name={DEFAULT_SITE_NAME}
-        alternateName={DEFAULT_SITE_ALTERNATE_NAME}
-        description={DEFAULT_SITE_DESCRIPTION}
-        url={DEFAULT_SITE_DOMAIN}
-        logo="https://crru.org.uk/images/logo.png"
-        foundingDate="1999"
         address={{
           streetAddress: "48 Seatown",
           addressLocality: "Banff",
@@ -113,6 +101,7 @@ const Page: NextPage<PageProps> = ({ homepage, newsArticles }: PageProps) => {
           postalCode: "AB45 3YQ",
           addressCountry: "GB",
         }}
+        alternateName={DEFAULT_SITE_ALTERNATE_NAME}
         contactPoint={[
           {
             telephone: "+44-0126-185-1696",
@@ -120,7 +109,13 @@ const Page: NextPage<PageProps> = ({ homepage, newsArticles }: PageProps) => {
             email: "info@crru.org.uk",
           },
         ]}
+        description={DEFAULT_SITE_DESCRIPTION}
+        foundingDate="1999"
+        logo="https://crru.org.uk/images/logo.png"
+        name={DEFAULT_SITE_NAME}
         sameAs={SOCIAL_MEDIA_ACCOUNTS}
+        type="Organization"
+        url={DEFAULT_SITE_DOMAIN}
       />
 
       <section className={styles.banner}>
@@ -129,55 +124,55 @@ const Page: NextPage<PageProps> = ({ homepage, newsArticles }: PageProps) => {
             Dedicated to the understanding, conservation and protection of cetaceans in Scottish
             waters
           </h1>
-          <Link href={sitemap.about.path} className={styles["banner-cta"]}>
+          <Link className={styles["banner-cta"]} href={sitemap.about.path}>
             Learn more
-            <svg fill="none" width="64" height="64" viewBox="0 0 64 64">
+            <svg aria-hidden="true" fill="none" height="64" viewBox="0 0 64 64" width="64">
               <path d="m29.1751 1.21006c1.5601-1.560149 4.0896-1.560149 5.6498 0l27.965 27.96504c.0145.0145.0288.029.0431.0437l.0423.0443.0064.0068c.3295.3515.5835.7482.7619 1.1692l.0025.0059c.186.4397.2955.9196.3118 1.4231l.0001.0076.0002.0016c.0018.0613.0018.1227.0018.184v.0048c-.0087.5055-.1108.9882-.2901 1.4314l-.0017.0039-.0007.0019c-.156.3847-.3744.7501-.6552 1.0805l-.0101.0115-.0038.0046-.0084.0096-.0203.0236c-.0144.0164-.0289.0326-.0436.0488l-.0066.007-.0024.0029-.0132.014-.0222.0243-.005.0051-.0013.0016c-.0141.0149-.0282.0297-.0424.0444l-.0431.0437-27.965 27.965c-1.5602 1.5602-4.0897 1.5602-5.6498 0-1.5601-1.5601-1.5601-4.0896 0-5.6498l21.1452-21.1452-46.28535.0001c-2.18431 0-3.9591882-1.753-3.9950025-3.9289v-.0661c0-2.2064 1.7886225-3.995 3.9950025-3.995h46.28535l-21.1452-21.14515c-1.5445-1.54455-1.56-4.03915-.0463-5.6027z" />
             </svg>
           </Link>
         </div>
 
         <button
+          aria-label={videoPlaying ? "Pause video" : "Play video"}
           className={`${styles["video-toggle"]} ${videoPlaying ? styles["video-toggle-playing"] : styles["video-toggle-paused"]}`}
           onClick={toggleVideoPlaying}
           onKeyDown={toggleVideoPlaying}
-          type="button"
           tabIndex={0}
           title={videoPlaying ? "Pause video" : "Play video"}
-          aria-label={videoPlaying ? "Pause video" : "Play video"}
+          type="button"
         />
 
-        <video poster={homepage.heroImage.url} ref={videoElement} playsInline autoPlay muted loop>
+        <video autoPlay loop muted playsInline poster={homepage.heroImage.url} ref={videoElement}>
           {homepage.heroVideos.map((item) => (
-            <source src={item.url} type={item.type} key={item.url} />
+            <source key={item.url} src={item.url} type={item.type} />
           ))}
         </video>
       </section>
 
       <section className={styles.highlights}>
-        <Link href={homepage.highlightLeftLink} className={styles["highlights-item"]}>
+        <Link className={styles["highlights-item"]} href={homepage.highlightLeftLink}>
           <span className={styles["highlights-item-title"]}>{homepage.highlightLeftTitle}</span>
           <span className={styles["highlights-item-subtitle"]}>
             {homepage.highlightLeftSubtitle}
           </span>
           <Image
-            src={homepage.highlightLeftImage.url}
             alt={homepage.highlightLeftImage.alt ?? ""}
-            width={1100}
             height={550}
+            src={homepage.highlightLeftImage.url}
+            width={1100}
           />
         </Link>
 
-        <Link href={homepage.highlightRightLink} className={styles["highlights-item"]}>
+        <Link className={styles["highlights-item"]} href={homepage.highlightRightLink}>
           <span className={styles["highlights-item-title"]}>{homepage.highlightRightTitle}</span>
           <span className={styles["highlights-item-subtitle"]}>
             {homepage.highlightRightSubtitle}
           </span>
           <Image
-            src={homepage.highlightRightImage.url}
             alt={homepage.highlightRightImage.alt ?? ""}
-            width={1100}
             height={550}
+            src={homepage.highlightRightImage.url}
+            width={1100}
           />
         </Link>
       </section>
@@ -188,17 +183,17 @@ const Page: NextPage<PageProps> = ({ homepage, newsArticles }: PageProps) => {
         <div className={styles["news-container"]}>
           {newsArticles.map((item) => (
             <News
-              key={item.slug}
-              link={`/news/${item.slug}`}
+              category={item.category}
+              date={item.date}
               image={{
                 src: item.image.url,
                 alt: item.image?.alt ?? "",
                 width: item.image.width,
                 height: item.image.height,
               }}
+              key={item.slug}
+              link={`/news/${item.slug}`}
               title={item.title}
-              date={item.date}
-              category={item.category}
             />
           ))}
         </div>

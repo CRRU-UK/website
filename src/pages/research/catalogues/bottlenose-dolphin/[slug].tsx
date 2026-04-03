@@ -1,12 +1,9 @@
-import type { GetServerSideProps, NextPage } from "next";
 import type { ParsedUrlQuery } from "node:querystring";
-
-import { useRouter } from "next/router";
-
+import type { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
-
-import type { CatalogueBottlenoseDolphin } from "@/helpers/types";
+import { useRouter } from "next/router";
+import { Breadcrumbs, SEO, Timeline, Toolbar, Tooltip, Tree } from "@/components";
 
 import sitemap from "@/data/sitemap.json";
 
@@ -17,23 +14,22 @@ import {
   getBottlenoseDolphinItemEntrySlug,
 } from "@/helpers/getCatalogue";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
-
-import { Breadcrumbs, SEO, Timeline, Toolbar, Tooltip, Tree } from "@/components";
+import type { CatalogueBottlenoseDolphin } from "@/helpers/types";
 
 import styles from "../[slug].module.scss";
 
 const Unknown = () => (
   <span
-    title="Catalogue data is not currently available for this entry and may be updated in the future."
     className={styles.unknown}
+    title="Catalogue data is not currently available for this entry and may be updated in the future."
   >
     <span>Unknown</span>
   </span>
 );
 
 interface PageProps {
-  catalogueData: CatalogueBottlenoseDolphin;
   ageText: string | null;
+  catalogueData: CatalogueBottlenoseDolphin;
 }
 
 const Page: NextPage<PageProps> = ({ catalogueData, ageText }: PageProps) => {
@@ -73,11 +69,6 @@ const Page: NextPage<PageProps> = ({ catalogueData, ageText }: PageProps) => {
   return (
     <>
       <SEO
-        page={{
-          title: `${title} - Bottlenose Dolphin - ${sitemap.catalogues.title}`,
-          description: pageDescription,
-          path,
-        }}
         breadcrumbs={breadcrumbs}
         images={
           image
@@ -90,19 +81,24 @@ const Page: NextPage<PageProps> = ({ catalogueData, ageText }: PageProps) => {
               ]
             : undefined
         }
+        page={{
+          title: `${title} - Bottlenose Dolphin - ${sitemap.catalogues.title}`,
+          description: pageDescription,
+          path,
+        }}
       />
 
       {/* key is needed to reset search state on navigation */}
       <Toolbar
         catalogue={Catalogues.BottlenoseDolphin}
-        previous={catalogueData.previous}
-        next={catalogueData.next}
         key={router.asPath}
+        next={catalogueData.next}
+        previous={catalogueData.previous}
       />
 
       <section className={styles.container}>
         <article className={styles.main}>
-          <Breadcrumbs style="inline" items={breadcrumbs} />
+          <Breadcrumbs items={breadcrumbs} style="inline" />
 
           <div className={styles.wrapper}>
             <h2 className={styles["icon-dolphin"]}>Bottlenose Dolphin</h2>
@@ -121,10 +117,10 @@ const Page: NextPage<PageProps> = ({ catalogueData, ageText }: PageProps) => {
                 </b>
                 {reference ? (
                   <Link
+                    className="external"
                     href="https://www.abdn.ac.uk/sbs/outreach/lighthouse/research/bottlenose-dolphins/"
                     rel="noopener noreferrer"
                     target="_blank"
-                    className="external"
                   >
                     {reference}
                   </Link>
@@ -192,11 +188,11 @@ const Page: NextPage<PageProps> = ({ catalogueData, ageText }: PageProps) => {
                 <b>Left Dorsal Fin</b>
                 {leftDorsalFin ? (
                   <Image
-                    src={leftDorsalFin.url}
-                    width={leftDorsalFin.width}
-                    height={leftDorsalFin.height}
                     alt="Left Dorsal Fin"
                     className={styles.image}
+                    height={leftDorsalFin.height}
+                    src={leftDorsalFin.url}
+                    width={leftDorsalFin.width}
                   />
                 ) : (
                   noImage
@@ -211,11 +207,11 @@ const Page: NextPage<PageProps> = ({ catalogueData, ageText }: PageProps) => {
                 <b>Right Dorsal Fin</b>
                 {rightDorsalFin ? (
                   <Image
-                    src={rightDorsalFin.url}
-                    width={rightDorsalFin.width}
-                    height={rightDorsalFin.height}
                     alt="Left Dorsal Fin"
                     className={styles.image}
+                    height={rightDorsalFin.height}
+                    src={rightDorsalFin.url}
+                    width={rightDorsalFin.width}
                   />
                 ) : (
                   noImage
@@ -231,11 +227,11 @@ const Page: NextPage<PageProps> = ({ catalogueData, ageText }: PageProps) => {
                     {otherImages.map((item) => (
                       <li key={item.url}>
                         <Image
-                          src={item.url}
-                          width={item.width}
-                          height={item.height}
                           alt={`General photo of ${name}`}
                           className={styles.image}
+                          height={item.height}
+                          src={item.url}
+                          width={item.width}
                         />
                       </li>
                     ))}
@@ -247,11 +243,11 @@ const Page: NextPage<PageProps> = ({ catalogueData, ageText }: PageProps) => {
         </article>
 
         <article className={styles.sidebar}>
-          <Tree type={Catalogues.BottlenoseDolphin} data={catalogueData} />
+          <Tree data={catalogueData} type={Catalogues.BottlenoseDolphin} />
 
           <Link
-            href={`${sitemap.catalogues.path}?catalogue=${Catalogues.BottlenoseDolphin}`}
             className={styles.back}
+            href={`${sitemap.catalogues.path}?catalogue=${Catalogues.BottlenoseDolphin}`}
           >
             Back to catalogue
           </Link>
