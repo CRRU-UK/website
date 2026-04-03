@@ -19,19 +19,19 @@ describe(ListItem, () => {
     act(async () => {
       const { container } = render(
         <ListItem
-          title="test title"
+          category={{
+            text: "test category",
+            style: 2,
+          }}
           description="test description"
-          link="test link"
           image={{
             url: "https://test-url.jpg",
             width: 100,
             height: 200,
             alt: "test alt",
           }}
-          category={{
-            text: "test category",
-            style: 2,
-          }}
+          link="test link"
+          title="test title"
         />,
       );
 
@@ -44,16 +44,16 @@ describe(ListItem, () => {
     act(async () => {
       const { container } = render(
         <ListItem
-          title="test title"
+          category={{
+            text: "test category",
+          }}
           image={{
             url: "https://test-url.jpg",
             width: 100,
             height: 200,
             alt: "test alt",
           }}
-          category={{
-            text: "test category",
-          }}
+          title="test title"
         />,
       );
 

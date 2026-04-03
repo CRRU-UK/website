@@ -3,10 +3,10 @@ import Image from "next/image";
 import styles from "./Hero.module.scss";
 
 interface Props {
-  title: string;
-  subtitle?: string;
   background?: string | null;
   plain?: boolean;
+  subtitle?: string;
+  title: string;
   wide?: boolean;
 }
 
@@ -27,7 +27,7 @@ const Hero = ({ title, subtitle, background, plain = false, wide = false }: Prop
         {subtitle && <h2>{subtitle}</h2>}
         <h1>{title}</h1>
       </div>
-      {background && <Image src={background} alt="" quality={90} priority fill />}
+      {background && <Image alt="" fill priority quality={90} src={background} />}
     </div>
   );
 };

@@ -23,15 +23,15 @@ interface PageProps {
 
 const Page: NextPage<PageProps> = ({ pageData, speciesData }) => (
   <CommonPage
-    page={sitemap["cetacean-fact-files"]}
-    parent={sitemap.education}
     breadcrumbs={[sitemap.education, sitemap["cetacean-fact-files"]]}
     data={pageData}
+    page={sitemap["cetacean-fact-files"]}
+    parent={sitemap.education}
   >
     <ul className={styles["contents-table"]}>
       {speciesData.map(({ name, slug }) => (
         <li key={slug}>
-          <Button text={name} link={`/education/species/${slug}`} />
+          <Button link={`/education/species/${slug}`} text={name} />
         </li>
       ))}
     </ul>

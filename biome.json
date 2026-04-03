@@ -20,19 +20,7 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
-      "nursery": {
-        "noFloatingPromises": "error"
-      },
-      "correctness": {
-        "useUniqueElementIds": "warn"
-      },
-      "a11y": {
-        "noStaticElementInteractions": "warn"
-      },
-      "style": {
-        "useComponentExportOnlyModules": "warn"
-      }
+      "recommended": true
     },
     "domains": {
       "react": "all",
@@ -57,7 +45,10 @@
     "enabled": true,
     "actions": {
       "source": {
-        "organizeImports": "on"
+        "organizeImports": "on",
+        "useSortedAttributes": "on",
+        "useSortedInterfaceMembers": "on",
+        "useSortedProperties": "on"
       }
     }
   }

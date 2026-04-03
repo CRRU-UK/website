@@ -8,7 +8,7 @@ interface Props {
 
 const ImageRow = ({ items }: Props) => {
   const images = items.map(({ src, width, height, caption }) => (
-    <ImageCaption key={src} src={src} width={width} height={height} caption={caption} />
+    <ImageCaption caption={caption} height={height} key={src} src={src} width={width} />
   ));
 
   return <div className={styles["image-row"]}>{images}</div>;

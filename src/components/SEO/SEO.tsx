@@ -10,15 +10,15 @@ import {
 import type { SitemapItem } from "@/helpers/types";
 
 interface Props {
-  page: SitemapItem;
-  type?: "website" | "article";
+  breadcrumbs: Array<SitemapItem>;
   images?: Array<{
     url: string;
     width?: number;
     height?: number;
     alt?: string;
   }>;
-  breadcrumbs: Array<SitemapItem>;
+  page: SitemapItem;
+  type?: "website" | "article";
 }
 
 const SEO = ({ page, type = "website", images = DEFAULT_SEO_IMAGE, breadcrumbs }: Props) => {

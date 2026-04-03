@@ -34,8 +34,6 @@ describe(Tree, () => {
     act(async () => {
       const { container } = render(
         <Tree
-          // @ts-expect-error String of enum value
-          type="bottlenose-dolphin"
           data={
             {
               ...mockedMotherCalvesData,
@@ -48,6 +46,8 @@ describe(Tree, () => {
               },
             } as CatalogueBottlenoseDolphin
           }
+          // @ts-expect-error String of enum value
+          type="bottlenose-dolphin"
         />,
       );
 

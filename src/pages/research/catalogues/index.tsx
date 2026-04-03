@@ -103,8 +103,8 @@ const Page: NextPage<PageProps> = ({ pageData }: PageProps) => {
     pageElements = [];
     for (let i = 0; i < data.meta.totalPages; i += 1) {
       pageElements.push(
-        <li key={i} className={i + 1 === page ? styles["current-page"] : undefined}>
-          <button type="button" onClick={() => setPage(i + 1)}>
+        <li className={i + 1 === page ? styles["current-page"] : undefined} key={i}>
+          <button onClick={() => setPage(i + 1)} type="button">
             {i + 1}
           </button>
         </li>,
@@ -123,19 +123,14 @@ const Page: NextPage<PageProps> = ({ pageData }: PageProps) => {
 
   return (
     <CommonPage
-      page={sitemap.catalogues}
-      parent={sitemap.research}
       breadcrumbs={[sitemap.research, sitemap.catalogues]}
       data={pageData}
+      page={sitemap.catalogues}
+      parent={sitemap.research}
     >
       <br />
 
       <Filters
-        search={{
-          callback: handleSearchChange,
-          label: "Search name, ID, reference, birth year...",
-          defaultValue: search,
-        }}
         dropdowns={[
           {
             name: "Catalogues",
@@ -150,6 +145,11 @@ const Page: NextPage<PageProps> = ({ pageData }: PageProps) => {
             callback: handleCatalogueChange,
           },
         ]}
+        search={{
+          callback: handleSearchChange,
+          label: "Search name, ID, reference, birth year...",
+          defaultValue: search,
+        }}
       />
 
       <div className={loading ? styles.loading : ""}>
@@ -162,11 +162,11 @@ const Page: NextPage<PageProps> = ({ pageData }: PageProps) => {
             {data.items.map((item: any) => (
               <li key={item.id}>
                 <Card
-                  type={catalogue}
-                  title={item.id}
+                  link={`/research/catalogues/${catalogue}/${item.slug}`}
                   name={item.name ?? undefined}
                   reference={item?.reference ? `#${item.reference}` : undefined}
-                  link={`/research/catalogues/${catalogue}/${item.slug}`}
+                  title={item.id}
+                  type={catalogue}
                 />
               </li>
             ))}

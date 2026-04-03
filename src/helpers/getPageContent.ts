@@ -4,8 +4,8 @@ import { flattenImageAssetFields } from "./flattenAssetFields";
 import type { ContentTypePageContent, PageData } from "./types";
 
 interface Options {
-  references?: boolean;
   preview?: boolean;
+  references?: boolean;
 }
 
 /**

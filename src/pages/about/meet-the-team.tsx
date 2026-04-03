@@ -25,11 +25,11 @@ const renderPerson = (data: PersonDataReduced) => (
   <section className={styles.item} key={data.name}>
     <div className={styles.left}>
       <Image
-        src={data.image.url}
-        width={data.image.width}
-        height={data.image.height}
         alt={`Photo of ${data.name}.`}
         className={styles.image}
+        height={data.image.height}
+        src={data.image.url}
+        width={data.image.width}
       />
     </div>
 
@@ -57,10 +57,10 @@ interface PageProps {
 
 const Page: NextPage<PageProps> = ({ pageData, personData }) => (
   <CommonPage
-    page={sitemap["meet-the-team"]}
-    parent={sitemap.about}
     breadcrumbs={[sitemap.about, sitemap["meet-the-team"]]}
     data={pageData}
+    page={sitemap["meet-the-team"]}
+    parent={sitemap.about}
   >
     {personData ? personData.map((item) => renderPerson(item)) : undefined}
   </CommonPage>

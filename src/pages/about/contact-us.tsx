@@ -14,10 +14,10 @@ interface PageProps {
 
 const Page: NextPage<PageProps> = ({ data }) => (
   <CommonPage
-    page={sitemap.contact}
-    parent={sitemap.about}
     breadcrumbs={[sitemap.about, sitemap.contact]}
     data={data}
+    page={sitemap.contact}
+    parent={sitemap.about}
   >
     <p>
       <strong>Email:</strong> <Link href="mailto:info@crru.org.uk">info@crru.org.uk</Link>
@@ -40,13 +40,13 @@ const Page: NextPage<PageProps> = ({ data }) => (
     </address>
 
     <iframe
-      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d278169.044684232!2d-2.5250101080536194!3d57.60332544890578!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4884f42b36bcf065%3A0xd89a7ef7e95f9f41!2sCetacean%20Research%20%26%20Rescue%20Unit!5e0!3m2!1sen!2suk!4v1682264934086!5m2!1sen!2suk"
-      width="600"
-      height="450"
       allowFullScreen
+      height="450"
       loading="lazy"
       referrerPolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d278169.044684232!2d-2.5250101080536194!3d57.60332544890578!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4884f42b36bcf065%3A0xd89a7ef7e95f9f41!2sCetacean%20Research%20%26%20Rescue%20Unit!5e0!3m2!1sen!2suk!4v1682264934086!5m2!1sen!2suk"
       title="Map"
+      width="600"
     />
   </CommonPage>
 );

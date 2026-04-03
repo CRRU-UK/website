@@ -11,7 +11,7 @@ interface PageProps {
 }
 
 const Page: NextPage<PageProps> = ({ data }) => (
-  <CommonPage page={sitemap.about} breadcrumbs={[sitemap.about]} data={data} />
+  <CommonPage breadcrumbs={[sitemap.about]} data={data} page={sitemap.about} />
 );
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => {

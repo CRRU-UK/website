@@ -18,7 +18,7 @@ const Page: NextPage<PageProps> = ({ pageImage }) => {
   return (
     <>
       <SEO
-        page={sitemap["species-identification-key"]}
+        breadcrumbs={pageBreadcrumbs}
         images={
           pageImage
             ? [
@@ -30,13 +30,13 @@ const Page: NextPage<PageProps> = ({ pageImage }) => {
               ]
             : undefined
         }
-        breadcrumbs={pageBreadcrumbs}
+        page={sitemap["species-identification-key"]}
       />
 
       <Hero
-        title={sitemap["species-identification-key"].title}
-        subtitle={sitemap.rescue.title}
         background={pageImage?.url}
+        subtitle={sitemap.rescue.title}
+        title={sitemap["species-identification-key"].title}
       />
 
       <Breadcrumbs items={pageBreadcrumbs} />

@@ -12,9 +12,9 @@ interface PageProps {
 
 const Page: NextPage<PageProps> = ({ data }) => (
   <>
-    <SEO page={sitemap.news} breadcrumbs={[sitemap.news]} />
+    <SEO breadcrumbs={[sitemap.news]} page={sitemap.news} />
 
-    <Hero title={sitemap.news.title} wide plain />
+    <Hero plain title={sitemap.news.title} wide />
 
     <Breadcrumbs items={[sitemap.news]} style="wide" />
 
@@ -22,17 +22,17 @@ const Page: NextPage<PageProps> = ({ data }) => (
       <div className="grid">
         {data.map((item) => (
           <News
-            key={item.slug}
-            link={`/news/${item.slug}`}
+            category={item.category}
+            date={item.date}
             image={{
               src: item.image.url,
               alt: "",
               width: item.image.width,
               height: item.image.height,
             }}
+            key={item.slug}
+            link={`/news/${item.slug}`}
             title={item.title}
-            date={item.date}
-            category={item.category}
           />
         ))}
       </div>

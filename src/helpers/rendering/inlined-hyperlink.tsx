@@ -10,8 +10,8 @@ const renderInlinedHyperlink = ({ content, data }: any) => {
 
   return (
     <Link
-      href={url}
       className={isExternal ? "external" : ""}
+      href={url}
       rel={isExternal ? "noopener noreferrer" : undefined}
       target={isExternal ? "_blank" : undefined}
     >

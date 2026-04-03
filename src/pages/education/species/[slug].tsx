@@ -22,18 +22,18 @@ import type { ContentTypeSpeciesPage, PageData } from "@/helpers/types";
 import styles from "./[slug].module.scss";
 
 interface PageProps {
-  id: string;
-  name: string;
-  description: string;
-  slug: string;
-  order: string;
-  suborder: string;
-  family: string;
-  subfamily: string | null;
-  genus: string;
-  species: string;
   content: Document;
+  description: string;
+  family: string;
+  genus: string;
+  id: string;
   image: PageData["image"];
+  name: string;
+  order: string;
+  slug: string;
+  species: string;
+  subfamily: string | null;
+  suborder: string;
 }
 
 const Page: NextPage<PageProps> = ({
@@ -76,11 +76,7 @@ const Page: NextPage<PageProps> = ({
   return (
     <>
       <SEO
-        page={{
-          title: `${name} - ${sitemap["cetacean-fact-files"].title}`,
-          description: String(description),
-          path: `/education/species/${slug}`,
-        }}
+        breadcrumbs={pageBreadcrumbs}
         images={
           image
             ? [
@@ -92,10 +88,14 @@ const Page: NextPage<PageProps> = ({
               ]
             : undefined
         }
-        breadcrumbs={pageBreadcrumbs}
+        page={{
+          title: `${name} - ${sitemap["cetacean-fact-files"].title}`,
+          description: String(description),
+          path: `/education/species/${slug}`,
+        }}
       />
 
-      <Hero title={name} subtitle={sitemap["cetacean-fact-files"].title} background={image?.url} />
+      <Hero background={image?.url} subtitle={sitemap["cetacean-fact-files"].title} title={name} />
 
       <Breadcrumbs items={pageBreadcrumbs} />
 

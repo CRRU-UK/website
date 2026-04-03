@@ -32,7 +32,7 @@ const renderEmbeddedEntriesAssets = ({ data }: Node) => {
   if (contentType.startsWith("video")) {
     return (
       // biome-ignore lint/a11y/useMediaCaption: captions not available
-      <video src={`https:${file.url}`} className="video" controls />
+      <video className="video" controls src={`https:${file.url}`} />
     );
   }
 

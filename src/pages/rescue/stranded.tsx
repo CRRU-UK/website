@@ -12,10 +12,10 @@ interface PageProps {
 
 const Page: NextPage<PageProps> = ({ data }) => (
   <CommonPage
-    page={sitemap.stranded}
-    parent={sitemap.rescue}
     breadcrumbs={[sitemap.rescue, sitemap.stranded]}
     data={data}
+    page={sitemap.stranded}
+    parent={sitemap.rescue}
   />
 );
 

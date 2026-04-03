@@ -3,10 +3,10 @@ import Link from "next/link";
 import styles from "./Button.module.scss";
 
 interface Props {
-  text: string;
-  link: string;
   external?: boolean;
   inline?: boolean;
+  link: string;
+  text: string;
 }
 
 const Button = ({ text, link, external = false, inline = false }: Props) => {
@@ -18,8 +18,8 @@ const Button = ({ text, link, external = false, inline = false }: Props) => {
 
   return (
     <Link
-      href={link}
       className={buttonStyles.join(" ")}
+      href={link}
       rel={external ? "noopener noreferrer" : undefined}
       target={external ? "_blank" : undefined}
     >

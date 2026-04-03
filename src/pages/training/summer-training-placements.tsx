@@ -16,8 +16,8 @@ interface PageProps {
 const Page: NextPage<PageProps> = ({ data }) => (
   <>
     <CourseJsonLd
-      name={sitemap["summer-training-placements"].title}
       description={data.description ?? ""}
+      name={sitemap["summer-training-placements"].title}
       provider={{
         name: DEFAULT_SITE_NAME,
         url: `${DEFAULT_SITE_DOMAIN}${sitemap["summer-training-placements"].path}`,
@@ -26,10 +26,10 @@ const Page: NextPage<PageProps> = ({ data }) => (
     />
 
     <CommonPage
-      page={sitemap["summer-training-placements"]}
-      parent={sitemap.training}
       breadcrumbs={[sitemap.training, sitemap["summer-training-placements"]]}
       data={data}
+      page={sitemap["summer-training-placements"]}
+      parent={sitemap.training}
     />
   </>
 );

@@ -12,10 +12,10 @@ interface PageProps {
 
 const Page: NextPage<PageProps> = ({ data }) => (
   <CommonPage
-    page={sitemap["minke-whale-studies"]}
-    parent={sitemap.research}
     breadcrumbs={[sitemap.research, sitemap["minke-whale-studies"]]}
     data={data}
+    page={sitemap["minke-whale-studies"]}
+    parent={sitemap.research}
   />
 );
 

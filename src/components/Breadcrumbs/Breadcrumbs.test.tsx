@@ -33,7 +33,6 @@ describe(Breadcrumbs, () => {
     act(async () => {
       const { container } = render(
         <Breadcrumbs
-          style="wide"
           items={[
             {
               title: "World",
@@ -44,6 +43,7 @@ describe(Breadcrumbs, () => {
               path: "/hello/foo",
             },
           ]}
+          style="wide"
         />,
       );
 
@@ -54,7 +54,7 @@ describe(Breadcrumbs, () => {
 
   it.each(["wide", "inline"])("passes accessibility with different styles", async (style) =>
     act(async () => {
-      const { container } = render(<Breadcrumbs style={style as Props["style"]} items={[]} />);
+      const { container } = render(<Breadcrumbs items={[]} style={style as Props["style"]} />);
 
       const results = await axe(container);
 

@@ -8,11 +8,7 @@ describe(SEO, () => {
   it("renders SEO tags with default props", async () => {
     const { container } = render(
       <SEO
-        page={{
-          title: "Foo",
-          description: "Bar",
-          path: "/hello/world",
-        }}
+        breadcrumbs={[]}
         images={[
           {
             url: "foo.jpg",
@@ -21,7 +17,11 @@ describe(SEO, () => {
             alt: "Bar",
           },
         ]}
-        breadcrumbs={[]}
+        page={{
+          title: "Foo",
+          description: "Bar",
+          path: "/hello/world",
+        }}
       />,
     );
 
@@ -33,11 +33,7 @@ describe(SEO, () => {
   it("renders SEO tags with optional props", async () => {
     const { container } = render(
       <SEO
-        page={{
-          title: "Foo",
-          path: "/hello/world",
-        }}
-        type="article"
+        breadcrumbs={[]}
         images={[
           {
             url: "foo.jpg",
@@ -46,7 +42,11 @@ describe(SEO, () => {
             alt: "Bar",
           },
         ]}
-        breadcrumbs={[]}
+        page={{
+          title: "Foo",
+          path: "/hello/world",
+        }}
+        type="article"
       />,
     );
 

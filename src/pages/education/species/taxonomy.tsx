@@ -12,10 +12,10 @@ interface PageProps {
 
 const Page: NextPage<PageProps> = ({ data }) => (
   <CommonPage
-    page={sitemap.taxonomy}
-    parent={sitemap["cetacean-fact-files"]}
     breadcrumbs={[sitemap.education, sitemap["cetacean-fact-files"], sitemap.taxonomy]}
     data={data}
+    page={sitemap.taxonomy}
+    parent={sitemap["cetacean-fact-files"]}
   />
 );
 

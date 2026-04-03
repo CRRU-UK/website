@@ -22,7 +22,7 @@ interface PageProps {
 }
 
 const Page: NextPage<PageProps> = ({ pageData, speciesData }: PageProps) => (
-  <CommonPage page={sitemap.sitemap} breadcrumbs={[sitemap.sitemap]} data={pageData}>
+  <CommonPage breadcrumbs={[sitemap.sitemap]} data={pageData} page={sitemap.sitemap}>
     <ul>
       <li>
         <ListItem item={sitemap.home} />

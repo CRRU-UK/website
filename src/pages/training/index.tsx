@@ -9,15 +9,14 @@ import type { PageData } from "@/helpers/types";
 import CommonPage from "@/layout/CommonPage";
 
 interface PageProps {
-  data: PageData;
   courseSchema: object;
+  data: PageData;
 }
 
 const Page: NextPage<PageProps> = ({ data, courseSchema }) => (
   <>
     <Head>
       <script
-        type="application/ld+json"
         // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD structured data
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
@@ -26,10 +25,11 @@ const Page: NextPage<PageProps> = ({ data, courseSchema }) => (
             itemListElement: courseSchema,
           }),
         }}
+        type="application/ld+json"
       />
     </Head>
 
-    <CommonPage page={sitemap.training} breadcrumbs={[sitemap.training]} data={data} />
+    <CommonPage breadcrumbs={[sitemap.training]} data={data} page={sitemap.training} />
   </>
 );
 

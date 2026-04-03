@@ -1,4 +1,3 @@
-
 import type { GetServerSideProps, NextPage } from "next";
 
 import Script from "next/script";
@@ -89,64 +88,64 @@ const UseSightingsForm = () => {
 
   return (
     <>
-      <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
+      <Script async defer src="https://challenges.cloudflare.com/turnstile/v0/api.js" />
 
-      <form onSubmit={handleSubmit} className={loading ? "form-loading" : ""}>
+      <form className={loading ? "form-loading" : ""} onSubmit={handleSubmit}>
         <div className="form-columns">
           <label htmlFor="name">
             <span>Name of observer: *</span>
-            <input type="text" id="name" name="name" required disabled={loading} />
+            <input disabled={loading} id="name" name="name" required type="text" />
           </label>
 
           <label htmlFor="email">
             <span>Email: *</span>
-            <input type="email" id="email" name="email" required disabled={loading} />
+            <input disabled={loading} id="email" name="email" required type="email" />
           </label>
 
           <label htmlFor="date">
             <span>Date of sighting: *</span>
             <input
-              type="date"
+              defaultValue={defaultDate}
+              disabled={loading}
               id="date"
               name="date"
-              defaultValue={defaultDate}
               required
-              disabled={loading}
+              type="date"
             />
           </label>
 
           <label htmlFor="time-start">
             <span>Time (start): *</span>
             <input
-              type="time"
+              defaultValue={defaultTime}
+              disabled={loading}
               id="time-start"
               name="time-start"
-              defaultValue={defaultTime}
               required
-              disabled={loading}
+              type="time"
             />
           </label>
 
           <label htmlFor="time-end">
             <span>Time (end): *</span>
             <input
-              type="time"
+              defaultValue={defaultTime}
+              disabled={loading}
               id="time-end"
               name="time-end"
-              defaultValue={defaultTime}
               required
-              disabled={loading}
+              type="time"
             />
           </label>
 
           <label htmlFor="location">
             <span>Location / landmark: *</span>
-            <input type="text" id="location" name="location" required disabled={loading} />
+            <input disabled={loading} id="location" name="location" required type="text" />
           </label>
 
           <label htmlFor="species">
             <span>Species observed: *</span>
-            <select name="species" id="species" defaultValue="" disabled={loading}>
+            <select defaultValue="" disabled={loading} id="species" name="species">
               <option disabled value="">
                 Select an option
               </option>
@@ -172,22 +171,22 @@ const UseSightingsForm = () => {
 
           <label htmlFor="longitude">
             <span>Longitude:</span>
-            <input type="text" id="longitude" name="longitude" disabled={loading} />
+            <input disabled={loading} id="longitude" name="longitude" type="text" />
           </label>
 
           <label htmlFor="latitude">
             <span>Latitude:</span>
-            <input type="text" id="latitude" name="latitude" disabled={loading} />
+            <input disabled={loading} id="latitude" name="latitude" type="text" />
           </label>
 
           <label htmlFor="amount">
             <span>Number of animals present:</span>
-            <input type="number" id="amount" name="amount" disabled={loading} />
+            <input disabled={loading} id="amount" name="amount" type="number" />
           </label>
 
           <label htmlFor="sea-state">
             <span>Sea state:</span>
-            <select name="sea-state" id="sea-state" defaultValue="" disabled={loading}>
+            <select defaultValue="" disabled={loading} id="sea-state" name="sea-state">
               <option disabled value="">
                 Select an option
               </option>
@@ -201,7 +200,7 @@ const UseSightingsForm = () => {
 
           <label htmlFor="weather">
             <span>Weather conditions:</span>
-            <select name="weather" id="weather" defaultValue="" disabled={loading}>
+            <select defaultValue="" disabled={loading} id="weather" name="weather">
               <option disabled value="">
                 Select an option
               </option>
@@ -215,12 +214,12 @@ const UseSightingsForm = () => {
 
           <label htmlFor="depth">
             <span>Depth (from depth sounder, in meters):</span>
-            <input type="number" id="depth" name="depth" disabled={loading} />
+            <input disabled={loading} id="depth" name="depth" type="number" />
           </label>
 
           <label htmlFor="vessel">
             <span>Name of Vessel:</span>
-            <input type="text" id="vessel" name="vessel" disabled={loading} />
+            <input disabled={loading} id="vessel" name="vessel" type="text" />
           </label>
         </div>
 
@@ -229,7 +228,7 @@ const UseSightingsForm = () => {
             Additional notes (e.g. behaviour observed, direction of travel, composition of group
             i.e. number of adults and calves, other):
           </span>
-          <textarea id="notes" name="notes" rows={5} disabled={loading} />
+          <textarea disabled={loading} id="notes" name="notes" rows={5} />
         </label>
 
         <div
@@ -255,7 +254,7 @@ interface PageProps {
 }
 
 const Page: NextPage<PageProps> = ({ data }) => (
-  <CommonPage page={sitemap.sightings} breadcrumbs={[sitemap.sightings]} data={data}>
+  <CommonPage breadcrumbs={[sitemap.sightings]} data={data} page={sitemap.sightings}>
     {UseSightingsForm()}
   </CommonPage>
 );

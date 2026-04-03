@@ -26,12 +26,12 @@ const SubmenuItem = ({ active, data }: SubmenuItemProps) => (
   <ul className={`submenu ${active ? "active" : ""}`}>
     <li className="header mobile">{data.parent}</li>
     {data.items.map(({ title, path, mobile = false, external = false }) => (
-      <li key={path} className={mobile ? "mobile" : ""}>
+      <li className={mobile ? "mobile" : ""} key={path}>
         <Link
+          className={external ? "external" : ""}
           href={path}
           rel={external ? "noopener noreferrer" : undefined}
           target={external ? "_blank" : undefined}
-          className={external ? "external" : ""}
         >
           <span className="text">{title}</span>
         </Link>
@@ -170,32 +170,32 @@ const Header = () => {
   return (
     <header>
       <div className="actions">
-        <Link href={sitemap.shop.path} className="shop">
+        <Link className="shop" href={sitemap.shop.path}>
           Shop
         </Link>
-        <Link href={sitemap.donate.path} className="donate">
+        <Link className="donate" href={sitemap.donate.path}>
           Donate
         </Link>
-        <Link href={sitemap.news.path} className="news">
+        <Link className="news" href={sitemap.news.path}>
           News
         </Link>
-        <Link href={sitemap.sightings.path} className="sighting">
+        <Link className="sighting" href={sitemap.sightings.path}>
           Report A Sighting
         </Link>
-        <Link href={sitemap.stranded.path} className="stranding">
+        <Link className="stranding" href={sitemap.stranded.path}>
           Report A <br /> Stranding
         </Link>
       </div>
 
-      <Link href={sitemap.home.path} className="logo">
+      <Link className="logo" href={sitemap.home.path}>
         <Image
-          src="/images/header/logo-header.png"
-          width={200}
-          height={200}
-          title="CRRU"
           alt="CRRU logo"
+          height={200}
           priority
           quality={100}
+          src="/images/header/logo-header.png"
+          title="CRRU"
+          width={200}
         />
       </Link>
 
@@ -270,16 +270,16 @@ const Header = () => {
 
       <Social short />
 
-      <button type="button" className="burger" onClick={toggleMenu} onKeyDown={toggleMenu}>
+      <button className="burger" onClick={toggleMenu} onKeyDown={toggleMenu} type="button">
         <svg
+          aria-label="Menu"
+          className="burger-icon"
           fill="none"
           height="48"
+          role="img"
           viewBox="0 0 64 48"
           width="64"
           xmlns="http://www.w3.org/2000/svg"
-          className="burger-icon"
-          role="img"
-          aria-label="Menu"
         >
           <path
             d="m2 14c2.03077 2.1662 5.46923 2.1662 7.5 0 2.0308-2.1662 5.4692-2.1662 7.5 0 2.0308 2.1662 5.4692 2.1662 7.5 0 2.0308-2.1662 5.4692-2.1662 7.5 0 2.0308 2.1662 5.4692 2.1662 7.5 0 2.0308-2.1662 5.4692-2.1662 7.5 0 2.0308 2.1662 5.4692 2.1662 7.5 0 2.0308-2.1662 5.4692-2.1662 7.5 0"
@@ -310,19 +310,19 @@ const Header = () => {
 
       {submenu !== Submenus.None && (
         <button
-          type="button"
           className="back"
           onClick={() => setSubmenu(Submenus.None)}
           onKeyDown={() => setSubmenu(Submenus.None)}
+          type="button"
         >
           <svg
+            aria-label="Close menu"
             fill="none"
             height="64"
+            role="img"
             viewBox="0 0 64 64"
             width="64"
             xmlns="http://www.w3.org/2000/svg"
-            role="img"
-            aria-label="Back"
           >
             <path
               clipRule="evenodd"

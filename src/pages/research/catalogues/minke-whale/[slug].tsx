@@ -17,8 +17,8 @@ import styles from "../[slug].module.scss";
 
 const Unknown = () => (
   <span
-    title="Catalogue data is not currently available for this entry and may be updated in the future."
     className={styles.unknown}
+    title="Catalogue data is not currently available for this entry and may be updated in the future."
   >
     <span>Unknown</span>
   </span>
@@ -62,11 +62,6 @@ const Page: NextPage<PageProps> = ({ catalogueData }: PageProps) => {
   return (
     <>
       <SEO
-        page={{
-          title: `${title} - Minke Whale - ${sitemap.catalogues.title}`,
-          description: pageDescription,
-          path,
-        }}
         breadcrumbs={breadcrumbs}
         images={
           image
@@ -79,19 +74,24 @@ const Page: NextPage<PageProps> = ({ catalogueData }: PageProps) => {
               ]
             : undefined
         }
+        page={{
+          title: `${title} - Minke Whale - ${sitemap.catalogues.title}`,
+          description: pageDescription,
+          path,
+        }}
       />
 
       {/* key is needed to reset search state on navigation */}
       <Toolbar
         catalogue={Catalogues.MinkeWhale}
-        previous={catalogueData.previous}
-        next={catalogueData.next}
         key={router.asPath}
+        next={catalogueData.next}
+        previous={catalogueData.previous}
       />
 
       <section className={styles.container}>
         <article className={styles.main}>
-          <Breadcrumbs style="inline" items={breadcrumbs} />
+          <Breadcrumbs items={breadcrumbs} style="inline" />
 
           <div className={styles.wrapper}>
             <h2 className={styles["icon-whale"]}>Minke Whale</h2>
@@ -110,10 +110,10 @@ const Page: NextPage<PageProps> = ({ catalogueData }: PageProps) => {
                 </b>
                 {reference ? (
                   <Link
+                    className="external"
                     href="https://hwdt.org/catalogue-minke-whale"
                     rel="noopener noreferrer"
                     target="_blank"
-                    className="external"
                   >
                     {reference}
                   </Link>
@@ -157,11 +157,11 @@ const Page: NextPage<PageProps> = ({ catalogueData }: PageProps) => {
                 <b>Left Dorsal Fin</b>
                 {leftDorsalFin ? (
                   <Image
-                    src={leftDorsalFin.url}
-                    width={leftDorsalFin.width}
-                    height={leftDorsalFin.height}
                     alt="Left Dorsal Fin"
                     className={styles.image}
+                    height={leftDorsalFin.height}
+                    src={leftDorsalFin.url}
+                    width={leftDorsalFin.width}
                   />
                 ) : (
                   noImage
@@ -176,11 +176,11 @@ const Page: NextPage<PageProps> = ({ catalogueData }: PageProps) => {
                 <b>Right Dorsal Fin</b>
                 {rightDorsalFin ? (
                   <Image
-                    src={rightDorsalFin.url}
-                    width={rightDorsalFin.width}
-                    height={rightDorsalFin.height}
                     alt="Left Dorsal Fin"
                     className={styles.image}
+                    height={rightDorsalFin.height}
+                    src={rightDorsalFin.url}
+                    width={rightDorsalFin.width}
                   />
                 ) : (
                   noImage
@@ -196,11 +196,11 @@ const Page: NextPage<PageProps> = ({ catalogueData }: PageProps) => {
                     {otherImages.map((item) => (
                       <li key={item.url}>
                         <Image
-                          src={item.url}
-                          width={item.width}
-                          height={item.height}
                           alt={`General photo of ${name}`}
                           className={styles.image}
+                          height={item.height}
+                          src={item.url}
+                          width={item.width}
                         />
                       </li>
                     ))}
@@ -215,8 +215,8 @@ const Page: NextPage<PageProps> = ({ catalogueData }: PageProps) => {
           <p className={styles["no-data"]}>No family data available</p>
 
           <Link
-            href={`${sitemap.catalogues.path}?catalogue=${Catalogues.MinkeWhale}`}
             className={styles.back}
+            href={`${sitemap.catalogues.path}?catalogue=${Catalogues.MinkeWhale}`}
           >
             Back to catalogue
           </Link>

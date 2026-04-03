@@ -23,8 +23,8 @@ type LinksDataReduced = {
 };
 
 interface PageProps {
-  pageData: PageData;
   linksData: Array<LinksDataReduced> | null;
+  pageData: PageData;
 }
 
 const categories = ["All categories", ...Object.values(UsefulLinksCategories)];
@@ -43,22 +43,22 @@ const Page: NextPage<PageProps> = ({ pageData, linksData }) => {
 
       return (
         <ListItem
-          key={item.title}
-          title={item.title}
-          description={item.description}
-          link={item.url}
           category={{ text: item.category, style: categoryStyle ?? 1 }}
+          description={item.description}
           image={item.image ?? undefined}
+          key={item.title}
+          link={item.url}
+          title={item.title}
         />
       );
     });
 
   return (
     <CommonPage
-      page={sitemap["useful-links"]}
-      parent={sitemap.about}
       breadcrumbs={[sitemap.about, sitemap["useful-links"]]}
       data={pageData}
+      page={sitemap["useful-links"]}
+      parent={sitemap.about}
     >
       <>
         <Filters

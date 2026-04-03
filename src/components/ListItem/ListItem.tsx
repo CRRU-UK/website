@@ -6,31 +6,31 @@ import type { FlattenedImage } from "@/helpers/types";
 import styles from "./ListItem.module.scss";
 
 interface Props {
-  title: string;
-  description?: string;
-  link?: string;
-  image?: FlattenedImage;
   category?: {
     text: string;
     style?: number;
   };
+  description?: string;
+  image?: FlattenedImage;
+  link?: string;
+  title: string;
 }
 
 const ListItem = ({ title, description, link, image, category }: Props) => {
   const imageElement = image ? (
     <Image
-      src={image.url}
-      width={image.width}
-      height={image.height}
       alt={`Image of ${title}.`}
       className={styles.image}
+      height={image.height}
+      src={image.url}
+      width={image.width}
     />
   ) : null;
 
   const titleElement = (
     <p className={styles.title}>
       {link ? (
-        <Link href={link} rel="noopener noreferrer" target="_blank" className="external">
+        <Link className="external" href={link} rel="noopener noreferrer" target="_blank">
           {title}
         </Link>
       ) : (

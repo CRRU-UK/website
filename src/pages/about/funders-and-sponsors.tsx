@@ -25,19 +25,19 @@ interface PageProps {
 
 const Page: NextPage<PageProps> = ({ pageData, sponsorsData }) => (
   <CommonPage
-    page={sitemap.sponsors}
-    parent={sitemap.about}
     breadcrumbs={[sitemap.about, sitemap.sponsors]}
     data={pageData}
+    page={sitemap.sponsors}
+    parent={sitemap.about}
   >
     {sponsorsData
       ? sponsorsData.map((item) => (
           <ListItem
-            key={item.name}
-            title={item.name}
             description={item.description}
-            link={item.url}
             image={item.image}
+            key={item.name}
+            link={item.url}
+            title={item.name}
           />
         ))
       : undefined}

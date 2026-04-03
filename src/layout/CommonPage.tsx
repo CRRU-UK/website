@@ -11,11 +11,11 @@ import pageRenderOptions from "@/helpers/rendering";
 import type { PageData, SitemapItem } from "@/helpers/types";
 
 interface Props {
+  breadcrumbs: Array<SitemapItem>;
+  children?: React.JSX.Element | React.JSX.Element[];
+  data: PageData;
   page: SitemapItem;
   parent?: SitemapItem;
-  breadcrumbs: Array<SitemapItem>;
-  data: PageData;
-  children?: React.JSX.Element | React.JSX.Element[];
   wide?: boolean;
 }
 
@@ -31,7 +31,6 @@ const CommonPage = ({ page, parent, breadcrumbs, data, children, wide = false }:
   return (
     <>
       <SEO
-        page={{ ...page, description: data.description ?? undefined }}
         breadcrumbs={breadcrumbs}
         images={
           data?.image
@@ -44,9 +43,10 @@ const CommonPage = ({ page, parent, breadcrumbs, data, children, wide = false }:
               ]
             : undefined
         }
+        page={{ ...page, description: data.description ?? undefined }}
       />
 
-      <Hero title={page.title} subtitle={parent?.title} background={data?.image?.url} wide={wide} />
+      <Hero background={data?.image?.url} subtitle={parent?.title} title={page.title} wide={wide} />
 
       <Breadcrumbs items={breadcrumbs} style={wide ? "wide" : "normal"} />
 

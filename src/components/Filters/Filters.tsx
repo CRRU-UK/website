@@ -2,42 +2,42 @@ import styles from "./Filters.module.scss";
 
 interface UseSearchProps {
   callback: Function;
-  label?: string;
   defaultValue?: string;
+  label?: string;
 }
 
 const UseSearch = ({ callback, label = "Search...", defaultValue }: UseSearchProps) => (
   <input
-    type="search"
+    autoComplete="off"
+    className={styles.search}
+    defaultValue={defaultValue}
     name="search"
     onInput={({ target }) => callback((target as HTMLInputElement).value)}
     placeholder={label}
-    className={styles.search}
-    defaultValue={defaultValue}
-    autoComplete="off"
+    type="search"
   />
 );
 
 interface DropdownProps {
-  name: string;
+  callback: Function;
   defaultValue?: string;
+  name: string;
   options: Array<{
     text: string;
     value: string;
   }>;
-  callback: Function;
 }
 
 const UseDropdown = ({ name, defaultValue, options, callback }: DropdownProps) => (
   <select
-    onInput={({ target }) => callback((target as HTMLSelectElement).value)}
-    defaultValue={defaultValue ?? options[0].value}
     className={styles.dropdown}
-    name={name}
+    defaultValue={defaultValue ?? options[0].value}
     key={name}
+    name={name}
+    onInput={({ target }) => callback((target as HTMLSelectElement).value)}
   >
     {options.map((option) => (
-      <option value={option.value} key={option.value}>
+      <option key={option.value} value={option.value}>
         {option.text}
       </option>
     ))}
@@ -45,8 +45,8 @@ const UseDropdown = ({ name, defaultValue, options, callback }: DropdownProps) =
 );
 
 interface Props {
-  search?: UseSearchProps;
   dropdowns?: Array<DropdownProps>;
+  search?: UseSearchProps;
 }
 
 const Filters = ({ search, dropdowns }: Props) => (
