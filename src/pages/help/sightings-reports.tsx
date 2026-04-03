@@ -1,3 +1,5 @@
+// biome-ignore-all lint/correctness/useUniqueElementIds: IDs are predetermined here
+
 import type { GetServerSideProps, NextPage } from "next";
 
 import Script from "next/script";
@@ -90,82 +92,66 @@ const UseSightingsForm = () => {
     </ul>
   );
 
-  const nameId = useId();
-  const emailId = useId();
-  const dateId = useId();
-  const timeStartId = useId();
-  const timeEndId = useId();
-  const locationId = useId();
-  const speciesId = useId();
-  const longitudeId = useId();
-  const latitudeId = useId();
-  const amountId = useId();
-  const seaStateId = useId();
-  const weatherId = useId();
-  const depthId = useId();
-  const vesselId = useId();
-  const notesId = useId();
-
   return (
     <>
       <Script async defer src="https://challenges.cloudflare.com/turnstile/v0/api.js" />
 
       <form className={loading ? "form-loading" : ""} onSubmit={handleSubmit}>
         <div className="form-columns">
-          <label htmlFor={nameId}>
+          <label htmlFor="name">
             <span>Name of observer: *</span>
-            <input disabled={loading} id={nameId} name="name" required type="text" />
+            <input disabled={loading} id="name" name="name" required type="text" />
           </label>
 
-          <label htmlFor={emailId}>
+          <label htmlFor="email">
             <span>Email: *</span>
-            <input disabled={loading} id={emailId} name="email" required type="email" />
+            <input disabled={loading} id="email" name="email" required type="email" />
           </label>
 
-          <label htmlFor={dateId}>
+          <label htmlFor="date">
             <span>Date of sighting: *</span>
             <input
               defaultValue={defaultDate}
               disabled={loading}
-              id={dateId}
+              id="date"
               name="date"
               required
               type="date"
             />
           </label>
 
-          <label htmlFor={timeStartId}>
+          <label htmlFor="time-start">
             <span>Time (start): *</span>
             <input
               defaultValue={defaultTime}
               disabled={loading}
-              id={timeStartId}
+              id="time-start"
               name="time-start"
               required
               type="time"
             />
           </label>
 
-          <label htmlFor={timeEndId}>
+          <label htmlFor="time-end">
             <span>Time (end): *</span>
             <input
               defaultValue={defaultTime}
               disabled={loading}
-              id={timeEndId}
+              id="time-end"
               name="time-end"
               required
               type="time"
             />
           </label>
 
-          <label htmlFor={locationId}>
+          <label htmlFor="location">
             <span>Location / landmark: *</span>
-            <input disabled={loading} id={locationId} name="location" required type="text" />
+            <input disabled={loading} id="location" name="location" required type="text" />
           </label>
 
-          <label htmlFor={speciesId}>
+          <label htmlFor="species">
             <span>Species observed: *</span>
-            <select defaultValue="" disabled={loading} id={speciesId} name="species">
+            <select defaultValue="" disabled={loading} id="species" name="species">
               <option disabled value="">
                 Select an option
               </option>
@@ -189,24 +175,24 @@ const UseSightingsForm = () => {
             </select>
           </label>
 
-          <label htmlFor={longitudeId}>
+          <label htmlFor="longitude">
             <span>Longitude:</span>
-            <input disabled={loading} id={longitudeId} name="longitude" type="text" />
+            <input disabled={loading} id="longitude" name="longitude" type="text" />
           </label>
 
-          <label htmlFor={latitudeId}>
+          <label htmlFor="latitude">
             <span>Latitude:</span>
-            <input disabled={loading} id={latitudeId} name="latitude" type="text" />
+            <input disabled={loading} id="latitude" name="latitude" type="text" />
           </label>
 
-          <label htmlFor={amountId}>
+          <label htmlFor="amount">
             <span>Number of animals present:</span>
-            <input disabled={loading} id={amountId} name="amount" type="number" />
+            <input disabled={loading} id="amount" name="amount" type="number" />
           </label>
 
-          <label htmlFor={seaStateId}>
+          <label htmlFor="sea-state">
             <span>Sea state:</span>
-            <select defaultValue="" disabled={loading} id={seaStateId} name="sea-state">
+            <select defaultValue="" disabled={loading} id="sea-state" name="sea-state">
               <option disabled value="">
                 Select an option
               </option>
@@ -218,9 +204,9 @@ const UseSightingsForm = () => {
             </select>
           </label>
 
-          <label htmlFor={weatherId}>
+          <label htmlFor="weather">
             <span>Weather conditions:</span>
-            <select defaultValue="" disabled={loading} id={weatherId} name="weather">
+            <select defaultValue="" disabled={loading} id="weather" name="weather">
               <option disabled value="">
                 Select an option
               </option>
@@ -232,23 +218,23 @@ const UseSightingsForm = () => {
             </select>
           </label>
 
-          <label htmlFor={depthId}>
+          <label htmlFor="depth">
             <span>Depth (from depth sounder, in meters):</span>
-            <input disabled={loading} id={depthId} name="depth" type="number" />
+            <input disabled={loading} id="depth" name="depth" type="number" />
           </label>
 
-          <label htmlFor={vesselId}>
+          <label htmlFor="vessel">
             <span>Name of Vessel:</span>
-            <input disabled={loading} id={vesselId} name="vessel" type="text" />
+            <input disabled={loading} id="vessel" name="vessel" type="text" />
           </label>
         </div>
 
-        <label htmlFor={notesId}>
+        <label htmlFor="notes">
           <span>
             Additional notes (e.g. behaviour observed, direction of travel, composition of group
             i.e. number of adults and calves, other):
           </span>
-          <textarea disabled={loading} id={notesId} name="notes" rows={5} />
+          <textarea disabled={loading} id="notes" name="notes" rows={5} />
         </label>
 
         <div
