@@ -6,6 +6,7 @@ class MyDocument extends Document {
       <Html dir="ltr" lang="en-GB">
         <Head />
         <body>
+          <div className="banner-30-years">Celebrating 30 years in conservation!</div>
           <Main />
           <NextScript />
         </body>
