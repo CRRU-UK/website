@@ -270,13 +270,18 @@ const Header = () => {
 
       <Social short />
 
-      <button className="burger" onClick={toggleMenu} onKeyDown={toggleMenu} type="button">
+      <button
+        aria-label="Menu"
+        className="burger"
+        onClick={toggleMenu}
+        onKeyDown={toggleMenu}
+        type="button"
+      >
         <svg
-          aria-label="Menu"
+          aria-hidden="true"
           className="burger-icon"
           fill="none"
           height="48"
-          role="img"
           viewBox="0 0 64 48"
           width="64"
           xmlns="http://www.w3.org/2000/svg"
@@ -294,9 +299,9 @@ const Header = () => {
             strokeWidth="3"
           />
           <path
+            className="burger-icon-whale"
             d="m19.845 25.2345c7.4508 3.474 7.9963 8.1523 7.5342 11.7654l9.2795.0001c-.4296-3.3798.2163-7.7552 7.5865-11.7654 11.2513-6.1371 8.5745-18.75909 8.241-21.48225-.2813-2.32254-1.4105-2.0334-2.5397-.8754-4.0957 5.64648-14.0742.98317-17.9465 9.12305-3.871-8.13997-13.7689-3.47666-17.8562-9.12314-1.1292-1.15791-2.2584-1.44714-2.5482.8754-.3321 2.72325-3.34951 16.06554 8.2494 21.48224z"
             fill="#0060c2"
-            id="whale"
           />
           <path d="m0 34h64v14h-64z" fill="#000" />
           <path
@@ -310,16 +315,16 @@ const Header = () => {
 
       {submenu !== Submenus.None && (
         <button
+          aria-label="Close menu"
           className="back"
           onClick={() => setSubmenu(Submenus.None)}
           onKeyDown={() => setSubmenu(Submenus.None)}
           type="button"
         >
           <svg
-            aria-label="Close menu"
+            aria-hidden="true"
             fill="none"
             height="64"
-            role="img"
             viewBox="0 0 64 64"
             width="64"
             xmlns="http://www.w3.org/2000/svg"

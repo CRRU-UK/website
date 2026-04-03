@@ -9,7 +9,9 @@ import type { FlattenedImage, FlattenedVideo } from "./types";
  */
 const flattenImageAssetFields = (field: Asset): FlattenedImage => ({
   url: `https:${(field.fields.file as AssetFile).url}`,
+  // biome-ignore lint/style/noNonNullAssertion: image assets always have dimensions
   width: (field.fields.file as AssetFile).details.image!.width,
+  // biome-ignore lint/style/noNonNullAssertion: image assets always have dimensions
   height: (field.fields.file as AssetFile).details.image!.height,
   alt: (field.fields.description as string) || null,
 });

@@ -18,7 +18,9 @@ const renderImageRow = (data: Node["data"]) => {
   const images = data.target.fields.images.map(({ fields }: Asset) => ({
     src: `https:${(fields.file as AssetFile).url}`,
     caption: fields.description,
+    // biome-ignore lint/style/noNonNullAssertion: image assets always have dimensions
     width: (fields.file as AssetFile).details.image!.width,
+    // biome-ignore lint/style/noNonNullAssertion: image assets always have dimensions
     height: (fields.file as AssetFile).details.image!.height,
   }));
 
@@ -79,6 +81,7 @@ const renderModule = (data: Node["data"]) => {
           src="https://www.paypalobjects.com/WEBSCR-640-20110401-1/en_GB/i/btn/btn_subscribe_SM.gif"
           type="image"
         />
+        {/* biome-ignore lint/performance/noImgElement: external PayPal tracking pixel */}
         <img
           alt=""
           height="1"

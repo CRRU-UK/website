@@ -24,9 +24,6 @@
       "nursery": {
         "noFloatingPromises": "error"
       },
-      "correctness": {
-        "useUniqueElementIds": "off"
-      },
       "a11y": {
         "noStaticElementInteractions": "warn"
       },

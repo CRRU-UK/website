@@ -7,15 +7,14 @@ interface Props {
 
 const Loading = ({ type }: Props) => (
   <svg
-    aria-label="Loading"
     className={styles.loading}
     fill="none"
     height="60"
-    role="img"
     viewBox="0 0 100 60"
     width="100"
     xmlns="http://www.w3.org/2000/svg"
   >
+    <title>Loading</title>
     {type === Catalogues.BottlenoseDolphin ? (
       <path
         className={styles.dolphin}

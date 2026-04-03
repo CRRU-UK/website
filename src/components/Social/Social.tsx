@@ -8,15 +8,15 @@ const Social = ({ short = false }: SocialProps) => (
   <ul className="social-links">
     <li>
       <Link
+        aria-label="Instagram"
         href="https://instagram.com/crru.org.uk"
         rel="noopener noreferrer"
         target="_blank"
         title="Instagram"
       >
         <svg
-          aria-label="Instagram"
+          aria-hidden="true"
           height="64"
-          role="img"
           viewBox="0 0 64 64"
           width="64"
           xmlns="http://www.w3.org/2000/svg"
@@ -33,15 +33,15 @@ const Social = ({ short = false }: SocialProps) => (
     </li>
     <li>
       <Link
+        aria-label="Facebook"
         href="https://facebook.com/crru.org.uk"
         rel="noopener noreferrer"
         target="_blank"
         title="Facebook"
       >
         <svg
-          aria-label="Facebook"
+          aria-hidden="true"
           height="64"
-          role="img"
           viewBox="0 0 64 64"
           width="64"
           xmlns="http://www.w3.org/2000/svg"
@@ -60,15 +60,15 @@ const Social = ({ short = false }: SocialProps) => (
     </li>
     <li>
       <Link
+        aria-label="Bluesky"
         href="https://bsky.app/profile/crru.org.uk"
         rel="noopener noreferrer"
         target="_blank"
         title="Bluesky"
       >
         <svg
-          aria-label="Bluesky"
+          aria-hidden="true"
           height="64"
-          role="img"
           viewBox="0 0 64 64"
           width="64"
           xmlns="http://www.w3.org/2000/svg"
@@ -83,15 +83,15 @@ const Social = ({ short = false }: SocialProps) => (
     </li>
     <li>
       <Link
+        aria-label="LinkedIn"
         href="https://linkedin.com/company/cetacean-research-&-rescue-unit-crru-"
         rel="noopener noreferrer"
         target="_blank"
         title="LinkedIn"
       >
         <svg
-          aria-label="LinkedIn"
+          aria-hidden="true"
           height="64"
-          role="img"
           viewBox="0 0 64 64"
           width="64"
           xmlns="http://www.w3.org/2000/svg"
@@ -111,15 +111,15 @@ const Social = ({ short = false }: SocialProps) => (
     {!short && (
       <li>
         <Link
+          aria-label="YouTube"
           href="https://youtube.com/@crruorguk"
           rel="noopener noreferrer"
           target="_blank"
           title="YouTube"
         >
           <svg
-            aria-label="YouTube"
+            aria-hidden="true"
             height="64"
-            role="img"
             viewBox="0 0 64 64"
             width="64"
             xmlns="http://www.w3.org/2000/svg"
@@ -144,15 +144,15 @@ const Social = ({ short = false }: SocialProps) => (
     {!short && (
       <li>
         <Link
+          aria-label="GitHub"
           href="https://github.com/CRRU-UK"
           rel="noopener noreferrer"
           target="_blank"
           title="GitHub"
         >
           <svg
-            aria-label="GitHub"
+            aria-hidden="true"
             height="64"
-            role="img"
             viewBox="0 0 64 64"
             width="64"
             xmlns="http://www.w3.org/2000/svg"
