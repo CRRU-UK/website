@@ -3,7 +3,7 @@
 import type { GetServerSideProps, NextPage } from "next";
 
 import Script from "next/script";
-import { useId, useState } from "react";
+import { useState } from "react";
 import sitemap from "@/data/sitemap.json";
 import getPageContent from "@/helpers/getPageContent";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
