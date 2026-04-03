@@ -103,7 +103,7 @@ const Toolbar = ({ catalogue, previous, next }: Props) => {
         {showResults && (
           <ul className={styles.results}>
             {loading ? (
-              <li className={styles["loading"]}>
+              <li className={styles.loading}>
                 <Loading type={catalogue} />
               </li>
             ) : (
