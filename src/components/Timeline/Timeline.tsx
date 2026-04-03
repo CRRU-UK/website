@@ -14,7 +14,7 @@ const Timeline = ({ items }: Props) => {
     classes.push(styles.single);
   }
 
-  const sortedItems = items.toSorted((a, b) => a.localeCompare(b));
+  const sortedItems = items.sort((a, b) => a.localeCompare(b));
 
   return (
     <ul className={classes.join(" ")}>
