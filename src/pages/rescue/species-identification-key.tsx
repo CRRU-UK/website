@@ -1,3 +1,5 @@
+// biome-ignore-all lint/correctness/useUniqueElementIds: IDs are predetermined here for anchors
+
 import type { GetServerSideProps, NextPage } from "next";
 
 import Link from "next/link";
