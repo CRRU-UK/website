@@ -98,12 +98,12 @@ const Page: NextPage<PageProps> = ({ catalogueData }: PageProps) => {
             <h1>{title}</h1>
 
             <ul className={styles.info}>
-              <li className={[styles["info-item-half"], styles["info-item-crru"]].join(" ")}>
+              <li className={[styles["info-item-crru"]].join(" ")}>
                 <b>CRRU ID #</b>
                 {id}
               </li>
 
-              <li className={[styles["info-item-half"], styles["info-item-hwdt"]].join(" ")}>
+              {/* <li className={[styles["info-item-half"], styles["info-item-hwdt"]].join(" ")}>
                 <b>
                   HWDT Ref #{" "}
                   <Tooltip text="Hebridean Whale and Dolphin Trust catalogue reference" />
@@ -120,18 +120,14 @@ const Page: NextPage<PageProps> = ({ catalogueData }: PageProps) => {
                 ) : (
                   "-"
                 )}
-              </li>
+              </li> */}
 
-              <li className={[styles["info-item-half"], styles["info-item-name"]].join(" ")}>
+              <li className={[styles["info-item-name"]].join(" ")}>
                 <b>Name</b>
-                {name ?? <i className={styles.unknown}>Unnamed</i>}
+                {name ?? <i className={styles.unkn2own}>Unnamed</i>}
               </li>
 
-              <li
-                className={[styles["info-item-half"], styles["info-item-total-recaptures"]].join(
-                  " ",
-                )}
-              >
+              <li className={[styles["info-item-total-recaptures"]].join(" ")}>
                 <b>No. of Recaptures</b>
                 {totalRecaptures ?? <Unknown />}
               </li>
