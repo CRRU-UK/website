@@ -15,7 +15,7 @@ jobs:
     name: Test app
 
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v6.0.3
         with:
           fetch-depth: 0
 
@@ -48,7 +48,7 @@ jobs:
     name: Test Terraform
 
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v6.0.3
         with:
           fetch-depth: 0
 
