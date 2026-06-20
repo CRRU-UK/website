@@ -153,7 +153,7 @@ const Page: NextPage<PageProps> = ({ pageData }: PageProps) => {
       />
 
       <div className={loading ? styles.loading : ""}>
-        {loading && <Loading type={catalogue} />}
+        {!!loading && <Loading type={catalogue} />}
 
         {!loading && infoText !== "" && <p className={styles.info}>{infoText}</p>}
 

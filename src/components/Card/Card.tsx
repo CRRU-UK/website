@@ -34,7 +34,7 @@ const Card = ({ type, title, reference, name, link, disabled = false }: Props) =
       <span className={styles.text}>
         <span className={styles.id}>
           <b>{title}</b>
-          {reference && <span className={styles.reference}>{reference}</span>}
+          {!!reference && <span className={styles.reference}>{reference}</span>}
         </span>
         <span className={styles.name}>{name ?? <i>Unnamed</i>}</span>
       </span>

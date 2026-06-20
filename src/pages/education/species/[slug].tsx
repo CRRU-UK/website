@@ -134,7 +134,7 @@ const Page: NextPage<PageProps> = ({
               {family}
             </span>
           </li>
-          {subfamily && (
+          {!!subfamily && (
             <li>
               <strong>Subfamily:</strong>
               <span

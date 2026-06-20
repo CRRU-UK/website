@@ -3,7 +3,7 @@ import type { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Breadcrumbs, SEO, Timeline, Toolbar, Tooltip } from "@/components";
+import { Breadcrumbs, SEO, Timeline, Toolbar } from "@/components";
 
 import sitemap from "@/data/sitemap.json";
 
@@ -31,7 +31,6 @@ interface PageProps {
 const Page: NextPage<PageProps> = ({ catalogueData }: PageProps) => {
   const {
     id,
-    reference,
     name,
     slug,
     totalRecaptures,

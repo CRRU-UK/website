@@ -146,7 +146,7 @@ const Page: NextPage<PageProps> = ({ catalogueData, ageText }: PageProps) => {
 
               <li className={styles["info-item-sex"]}>
                 <b>Sex</b>
-                {sex === "Unknown" ? <Unknown /> : sex}
+                {sex === "Unknown" ? <Unknown /> : String(sex)}
               </li>
 
               <li className={[styles["info-item-half"], styles["info-item-calves"]].join(" ")}>
