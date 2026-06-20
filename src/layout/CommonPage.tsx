@@ -12,7 +12,7 @@ import type { PageData, SitemapItem } from "@/helpers/types";
 
 interface Props {
   breadcrumbs: Array<SitemapItem>;
-  children?: React.JSX.Element | React.JSX.Element[];
+  children?: React.JSX.Element | Array<React.JSX.Element> | null;
   data: PageData;
   page: SitemapItem;
   parent?: SitemapItem;
@@ -58,7 +58,7 @@ const CommonPage = ({ page, parent, breadcrumbs, data, children, wide = false }:
           fieldId: "content",
         })}
       >
-        {data.content && documentToReactComponents(data.content, pageRenderOptions)}
+        {!!data.content && documentToReactComponents(data.content, pageRenderOptions)}
         {children}
       </article>
     </>

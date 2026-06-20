@@ -66,7 +66,7 @@ const PublicationEntry = ({
 
   return (
     <article className={styles.item} key={description}>
-      {image && (
+      {!!image && (
         <Image
           alt={image.alt ?? "Publication cover image."}
           className={styles.image}

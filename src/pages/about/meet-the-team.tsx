@@ -62,7 +62,7 @@ const Page: NextPage<PageProps> = ({ pageData, personData }) => (
     page={sitemap["meet-the-team"]}
     parent={sitemap.about}
   >
-    {personData ? personData.map((item) => renderPerson(item)) : undefined}
+    {personData ? personData.map((item) => renderPerson(item)) : null}
   </CommonPage>
 );
 

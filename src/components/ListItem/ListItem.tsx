@@ -51,7 +51,7 @@ const ListItem = ({ title, description, link, image, category }: Props) => {
 
   return (
     <section className={styles.item} key={title}>
-      {image && (
+      {!!image && (
         <div className={styles.side}>
           {link ? (
             <Link href={link} rel="noopener noreferrer" target="_blank">

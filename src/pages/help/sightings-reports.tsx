@@ -245,7 +245,7 @@ const UseSightingsForm = () => {
 
         {errorMessageElements}
 
-        {success && (
+        {!!success && (
           <span className="form-success">Sighting successfully submitted, thank you.</span>
         )}
 

@@ -44,7 +44,7 @@ const Toolbar = ({ catalogue, previous, next }: Props) => {
     searchClasses.push(styles.active);
   }
 
-  const showResults = loading || data;
+  const showResults = loading || data !== null;
 
   const noResultsElement = <li className={styles["no-results"]}>No results</li>;
 
@@ -100,7 +100,7 @@ const Toolbar = ({ catalogue, previous, next }: Props) => {
           type="search"
         />
 
-        {showResults && (
+        {!!showResults && (
           <ul className={styles.results}>
             {loading ? (
               <li className={styles.loading}>

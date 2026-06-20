@@ -52,7 +52,7 @@ interface Props {
 const Filters = ({ search, dropdowns }: Props) => (
   <div className={styles.filters}>
     {dropdowns?.map((item) => UseDropdown(item))}
-    {search && UseSearch(search)}
+    {!!search && UseSearch(search)}
   </div>
 );
 

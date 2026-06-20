@@ -24,10 +24,10 @@ const Hero = ({ title, subtitle, background, plain = false, wide = false }: Prop
   return (
     <div className={classes.join(" ")}>
       <div className={`${styles["hero-container"]} ${wide ? styles.wide : ""}`}>
-        {subtitle && <h2>{subtitle}</h2>}
+        {!!subtitle && <h2>{subtitle}</h2>}
         <h1>{title}</h1>
       </div>
-      {background && <Image alt="" fill priority quality={90} src={background} />}
+      {!!background && <Image alt="" fill priority quality={90} src={background} />}
     </div>
   );
 };

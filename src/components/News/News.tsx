@@ -32,12 +32,12 @@ const News = ({ link, image, title, date, category }: Props) => {
         </div>
         <h4>{title}</h4>
         <div className={styles.subtitles}>
-          {date && (
+          {!!date && (
             <p className={styles.date} title={date}>
               {formatDateRelative(date)}
             </p>
           )}
-          {category && <p className={styles.category}>{category}</p>}
+          {!!category && <p className={styles.category}>{category}</p>}
         </div>
       </Link>
     </article>

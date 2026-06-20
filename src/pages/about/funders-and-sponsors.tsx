@@ -40,7 +40,7 @@ const Page: NextPage<PageProps> = ({ pageData, sponsorsData }) => (
             title={item.name}
           />
         ))
-      : undefined}
+      : null}
   </CommonPage>
 );
 
