@@ -12,11 +12,11 @@
     "test:unit:watch": "npm run test:unit -- --watch"
   },
   "dependencies": {
-    "@contentful/live-preview": "^4.10.8",
+    "@contentful/live-preview": "^4.10.9",
     "@contentful/rich-text-plain-text-renderer": "^17.2.1",
     "@contentful/rich-text-react-renderer": "^16.2.1",
-    "@sentry/nextjs": "^10.58.0",
-    "contentful": "^11.12.5",
+    "@sentry/nextjs": "^10.61.0",
+    "contentful": "^11.12.6",
     "dayjs": "^1.11.21",
     "joi": "^18.2.3",
     "next": "^16.2.9",
@@ -28,12 +28,12 @@
     "typescript": "^6.0.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.0",
+    "@biomejs/biome": "2.5.1",
     "@testing-library/react": "^16.3.2",
-    "@types/node": "^26.0.0",
+    "@types/node": "^26.0.1",
     "@types/nodemailer": "^8.0.1",
     "@types/react": "^19.2.17",
-    "@vitejs/plugin-react": "^6.0.2",
+    "@vitejs/plugin-react": "^6.0.3",
     "@vitest/coverage-v8": "^4.1.9",
     "identity-obj-proxy": "^3.0.0",
     "jsdom": "^29.1.1",
