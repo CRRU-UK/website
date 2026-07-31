@@ -1,0 +1,52 @@
+import { render } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+import { axe } from "vitest-axe";
+
+import type { CatalogueFamilyNode } from "@/helpers/types";
+
+import PopulationMap from "./PopulationMap";
+
+const node = (id: string, calves: Array<CatalogueFamilyNode> = []): CatalogueFamilyNode => ({
+  id,
+  reference: `mocked ${id} reference`,
+  name: `mocked ${id} name`,
+  slug: `mocked-${id}-slug`,
+  calves,
+});
+
+// Covers :only-child, an odd number of siblings, and three generations of nesting
+const mockedTrees = [
+  node("a", [node("b", [node("c")])]),
+  node("d", [node("e"), node("f"), node("g")]),
+];
+
+// jsdom does not implement scrollIntoView, which the deep link uses to centre the map
+Element.prototype.scrollIntoView = () => {};
+
+// Deliberately not wrapped in `act`, unlike the other component tests in this repo: `render` inside
+// an async `act` callback has not committed by the time the callback body runs, so `container` is
+// still empty and any assertion against it passes vacuously.
+describe(PopulationMap, () => {
+  it("passes accessibility with default props", async () => {
+    const { container } = render(<PopulationMap trees={mockedTrees} />);
+
+    const results = await axe(container);
+
+    expect(results.violations).toHaveLength(0);
+  });
+
+  it("marks only the deep-linked animal", () => {
+    const { container } = render(<PopulationMap entry="mocked-c-slug" trees={mockedTrees} />);
+
+    const focused = container.querySelectorAll('[class*="focused"]');
+
+    expect(focused).toHaveLength(1);
+    expect(focused[0].querySelector("a")?.getAttribute("href")).toContain("mocked-c-slug");
+  });
+
+  it("marks nothing when the deep link matches no animal", () => {
+    const { container } = render(<PopulationMap entry="not-on-the-map" trees={mockedTrees} />);
+
+    expect(container.querySelectorAll('[class*="focused"]')).toHaveLength(0);
+  });
+});

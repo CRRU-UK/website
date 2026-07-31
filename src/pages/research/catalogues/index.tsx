@@ -161,13 +161,7 @@ const Page: NextPage<PageProps> = ({ pageData }: PageProps) => {
           <ul className={styles.list}>
             {data.items.map((item) => (
               <li key={item.id}>
-                <Card
-                  link={`/research/catalogues/${catalogue}/${item.slug}`}
-                  name={item.name ?? undefined}
-                  reference={item?.reference ? `#${item.reference}` : undefined}
-                  title={item.id}
-                  type={catalogue}
-                />
+                <Card catalogue={catalogue} entry={item} />
               </li>
             ))}
           </ul>

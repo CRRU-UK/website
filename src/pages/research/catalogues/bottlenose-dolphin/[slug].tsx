@@ -245,12 +245,23 @@ const Page: NextPage<PageProps> = ({ catalogueData, ageText }: PageProps) => {
         <article className={styles.sidebar}>
           <Tree data={catalogueData} type={Catalogues.BottlenoseDolphin} />
 
-          <Link
-            className={styles.back}
-            href={`${sitemap.catalogues.path}?catalogue=${Catalogues.BottlenoseDolphin}`}
-          >
-            Back to catalogue
-          </Link>
+          <div className={styles["sidebar-links"]}>
+            {(!!catalogueData.mother || catalogueData.calves.length > 0) && (
+              <Link
+                className={styles["map-link"]}
+                href={`${sitemap["population-map"].path}?entry=${encodeURIComponent(slug)}`}
+              >
+                View on population map
+              </Link>
+            )}
+
+            <Link
+              className={styles.back}
+              href={`${sitemap.catalogues.path}?catalogue=${Catalogues.BottlenoseDolphin}`}
+            >
+              Back to catalogue
+            </Link>
+          </div>
         </article>
       </section>
 

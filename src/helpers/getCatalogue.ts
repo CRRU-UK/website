@@ -1,4 +1,5 @@
 import type { Asset, Entry } from "contentful";
+import buildFamilyForest from "./buildFamilyForest";
 import { CATALOGUE_RESULTS_LIMIT, Catalogues, ContentTypes } from "./constants";
 import { contentfulDeliveryClient } from "./contentful";
 import { flattenImageAssetFields } from "./flattenAssetFields";
@@ -6,6 +7,8 @@ import type {
   CatalogueAPIResponse,
   CatalogueBasicInfo,
   CatalogueBottlenoseDolphin,
+  CatalogueFamilyEntry,
+  CatalogueFamilyNode,
   CatalogueMinkeWhale,
   ContentTypeCatalogueBottlenoseDolphin,
   ContentTypeCatalogueMinkeWhale,
@@ -159,6 +162,57 @@ const getBottlenoseDolphinCatalogueItem = async (
 };
 
 /**
+ * Gets every bottlenose dolphin family tree from Contentful. Queries every entry rather than
+ * filtering on `fields.mother[exists]`: `select` does not apply to the `includes` block, so
+ * filtering would pull in unreduced mother entries for no benefit. With every entry in `items`
+ * there is nothing to resolve from `includes` at all.
+ * @returns Family trees, ordered by the `id` field of their root.
+ */
+const getBottlenoseDolphinFamilyForest = async (): Promise<Array<CatalogueFamilyNode>> => {
+  const entries: Array<CatalogueFamilyEntry> = [];
+
+  let skip = 0;
+  let total = 0;
+
+  do {
+    const result = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>(
+      {
+        content_type: ContentTypes.CatalogueBottlenoseDolphin,
+        select: [
+          "sys.id",
+          "fields.id",
+          "fields.reference",
+          "fields.name",
+          "fields.slug",
+          "fields.mother",
+        ],
+        order: ["fields.id", "sys.id"], // `sys.id` breaks ties so paging cannot skip or repeat
+        limit: 1000, // Contentful Delivery API maximum
+        skip,
+      },
+    );
+
+    total = result.total;
+    skip += result.items.length;
+
+    for (const entry of result.items) {
+      entries.push({
+        key: entry.sys.id,
+        motherKey: entry.fields.mother?.sys.id ?? null,
+        info: reduceCatalogueItem(entry),
+      });
+    }
+
+    // Defensive: never spin if the API returns an empty page
+    if (!result.items.length) {
+      break;
+    }
+  } while (skip < total);
+
+  return buildFamilyForest(entries);
+};
+
+/**
  * Gets slug of bottlenose dolphin entry by ID.
  * @param id Entry `id` field value.
  * @returns Bottlenose dolphin catalogue entry slug.
@@ -250,6 +304,7 @@ const getMinkeWhaleItemEntrySlug = async (
 
 export {
   getBottlenoseDolphinCatalogueItem,
+  getBottlenoseDolphinFamilyForest,
   getBottlenoseDolphinItemEntrySlug,
   getCatalogueList,
   getMinkeWhaleCatalogueItem,

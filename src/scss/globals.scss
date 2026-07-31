@@ -215,7 +215,7 @@ main .details > .category::before {
   align-items: center;
   align-content: center;
   width: 100%;
-  height: 40px;
+  height: variables.$global-banner-height-large;
   font-weight: 700;
   font-size: variables.$global-font-size-small;
   color: variables.$global-color-body;
@@ -223,7 +223,7 @@ main .details > .category::before {
 
   @include variables.breakpoint("small") {
     font-size: 12px;
-    height: 30px;
+    height: variables.$global-banner-height-small;
   }
 }
 

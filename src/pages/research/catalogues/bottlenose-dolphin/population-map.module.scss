@@ -1,0 +1,63 @@
+@use "../../../../scss/variables";
+
+.page {
+  --banner-height: 0px;
+
+  display: flex;
+  flex-direction: column;
+  height: calc(100dvh - #{variables.$global-header-height-large} - var(--banner-height));
+
+  @include variables.breakpoint(variables.$global-breakpoint-medium) {
+    height: calc(100dvh - #{variables.$global-header-height-medium} - var(--banner-height));
+  }
+
+  @include variables.breakpoint(variables.$global-breakpoint-small) {
+    height: calc(100dvh - #{variables.$global-header-height-small} - var(--banner-height));
+  }
+}
+
+:global(body):has(:global(.banner-30-years)) .page {
+  --banner-height: #{variables.$global-banner-height-large};
+
+  @include variables.breakpoint(variables.$global-breakpoint-small) {
+    --banner-height: #{variables.$global-banner-height-small};
+  }
+}
+
+.intro {
+  flex: none;
+  padding-bottom: 10px;
+}
+
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.intro > .wrapper {
+  padding: 0 variables.$global-padding-large;
+
+  @include variables.breakpoint(variables.$global-breakpoint-medium) {
+    padding: 0 variables.$global-padding-medium;
+  }
+
+  @include variables.breakpoint(variables.$global-breakpoint-small) {
+    padding: 0 variables.$global-padding-small;
+  }
+}
+
+.intro p {
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 24px;
+  color: variables.$global-color-body-dark;
+
+  @include variables.breakpoint(variables.$global-breakpoint-small) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}

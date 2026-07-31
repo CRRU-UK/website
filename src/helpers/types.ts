@@ -80,6 +80,18 @@ export type CatalogueBasicInfo = {
   slug: string;
 };
 
+// A single animal and its descendants, used by the `<PopulationMap />` component
+export type CatalogueFamilyNode = CatalogueBasicInfo & {
+  calves: Array<CatalogueFamilyNode>;
+};
+
+// Contentful-agnostic input to `buildFamilyForest`, keyed on Contentful entry IDs
+export type CatalogueFamilyEntry = {
+  info: CatalogueBasicInfo;
+  key: string;
+  motherKey: string | null;
+};
+
 export type CatalogueBottlenoseDolphin = {
   entry: {
     id: string;

@@ -1,16 +1,24 @@
 import { ContentfulLivePreviewProvider } from "@contentful/live-preview/react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { generateDefaultSeo } from "next-seo/pages";
 
 import "../scss/globals.scss";
+
+import sitemap from "@/data/sitemap.json";
 
 import { DEFAULT_SEO_OPTIONS, LOCALE } from "@/helpers/constants";
 import Footer from "@/layout/Footer";
 import Header from "@/layout/Header";
 
+// Pages that fill the viewport and so have nothing below them to scroll to
+const FULL_HEIGHT_PATHS: Array<string> = [sitemap["population-map"].path];
+
 const App = ({ Component, pageProps }: AppProps) => {
   const preview = pageProps.preview || false;
+
+  const { pathname } = useRouter();
 
   return (
     <>
@@ -44,7 +52,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         </ContentfulLivePreviewProvider>
       </main>
 
-      <Footer />
+      {!FULL_HEIGHT_PATHS.includes(pathname) && <Footer />}
     </>
   );
 };

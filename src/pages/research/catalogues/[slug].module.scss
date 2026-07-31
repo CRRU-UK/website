@@ -442,3 +442,21 @@ $sidebar-size-medium: 480px;
     }
   }
 }
+
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > a + a {
+    margin-top: variables.$global-spacing-small;
+  }
+}
+
+.map-link {
+  @extend .back;
+
+  &::before {
+    transform: rotate(90deg);
+  }
+}

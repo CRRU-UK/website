@@ -1,0 +1,236 @@
+@use "sass:math";
+@use "../Card/card";
+@use "../../scss/variables";
+
+$card-shadow: card.$shadow;
+
+$generation-gap-large: variables.$global-catalogue-tree-spacing-large;
+$generation-gap-medium: variables.$global-catalogue-tree-spacing-medium;
+$generation-gap-small: variables.$global-catalogue-tree-spacing-small;
+
+$sibling-gutter: variables.$global-catalogue-tree-gutter;
+
+$tree-gap: variables.$global-spacing-large * 2;
+
+$line-size: variables.$global-catalogue-tree-line-size;
+$line-color: variables.$global-color-catalogue-line;
+$line-color-active: variables.$global-color-primary-dark;
+
+// The widest single tree is ~3360px. Wrapping against 6000px turns 58 trees into ~10 rows, giving a
+// roughly square area to pan around instead of a 50,000px strip. flex-wrap needs a definite width.
+$canvas-width: 6000px;
+
+$half-line: math.floor(math.div($line-size, 2));
+$half-gutter: math.div($sibling-gutter, 2);
+$half-gap-large: math.div($generation-gap-large, 2);
+$half-gap-medium: math.div($generation-gap-medium, 2);
+$half-gap-small: math.div($generation-gap-small, 2);
+
+// Wrapper
+
+.wrapper {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.map {
+  cursor: grab;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  border-top: 2px solid variables.$global-color-catalogue;
+  user-select: none;
+  background: top left repeat url("../../../public/images/catalogue-background.svg")
+    variables.$global-color-catalogue-light;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+// Controls
+
+.controls {
+  z-index: 10;
+  position: absolute;
+  top: variables.$global-spacing-small;
+  right: variables.$global-spacing-small;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.controls > button {
+  $size: 44px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $size;
+  height: $size;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  border-radius: variables.$global-border-radius;
+  border: 2px solid variables.$global-color-catalogue;
+  background: variables.$global-color-background;
+
+  &:hover:not(:disabled) {
+    border-color: variables.$global-color-primary-dark;
+    color: variables.$global-color-primary-dark;
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.4;
+  }
+}
+
+// Canvas
+
+// Every list element below carries one of these classes, which is enough to beat the global list
+// styles in scss/layout/content.scss without a blanket `.canvas li` reset — that reset would
+// out-specify `.node` and drop its sibling gutter.
+.canvas {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: $tree-gap;
+  margin: 0;
+  padding: $tree-gap;
+  width: $canvas-width;
+  list-style: none;
+}
+
+// Nodes
+
+.node {
+  position: relative;
+  display: flex;
+  flex: none; // size to max(card, subtree) so the card centres over its descendants
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0 $half-gutter; // half the sibling gutter, so adjacent bars meet exactly
+  list-style: none;
+}
+
+.children {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start; // every generation starts on the same baseline
+  margin: 0;
+  padding: ($card-shadow + $half-gap-large) 0 0;
+  list-style: none;
+
+  @include variables.breakpoint(variables.$global-breakpoint-medium) {
+    padding-top: $card-shadow + $half-gap-medium;
+  }
+
+  @include variables.breakpoint(variables.$global-breakpoint-small) {
+    padding-top: $card-shadow + $half-gap-small;
+  }
+}
+
+// Descender, from the mother's card down to the sibling bar. Offset past the card's shadow.
+.children::before {
+  content: "";
+  position: absolute;
+  top: $card-shadow;
+  left: calc(50% - #{$half-line});
+  width: $line-size;
+  height: $half-gap-large;
+  background: $line-color;
+
+  @include variables.breakpoint(variables.$global-breakpoint-medium) {
+    height: $half-gap-medium;
+  }
+
+  @include variables.breakpoint(variables.$global-breakpoint-small) {
+    height: $half-gap-small;
+  }
+}
+
+.children > .node {
+  padding-top: $half-gap-large;
+
+  @include variables.breakpoint(variables.$global-breakpoint-medium) {
+    padding-top: $half-gap-medium;
+  }
+
+  @include variables.breakpoint(variables.$global-breakpoint-small) {
+    padding-top: $half-gap-small;
+  }
+}
+
+.children > .node::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: $line-size;
+  background: $line-color;
+}
+
+.children > .node:first-child::after {
+  left: calc(50% - #{$half-line});
+}
+
+.children > .node:last-child::after {
+  right: calc(50% - #{$half-line});
+}
+
+.children > .node:only-child::after {
+  content: none;
+}
+
+.children > .node::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(50% - #{$half-line});
+  width: $line-size;
+  height: $half-gap-large;
+  background: $line-color;
+
+  @include variables.breakpoint(variables.$global-breakpoint-medium) {
+    height: $half-gap-medium;
+  }
+
+  @include variables.breakpoint(variables.$global-breakpoint-small) {
+    height: $half-gap-small;
+  }
+}
+
+.node:has(> .children > .node > a:hover) > .children {
+  &::before,
+  > .node::after {
+    background: $line-color-active;
+  }
+}
+
+.node:has(> a:hover) {
+  &::before {
+    background: $line-color-active;
+  }
+
+  > .children {
+    &::before,
+    > .node::before,
+    > .node::after {
+      background: $line-color-active;
+    }
+  }
+}
+
+.focused > a {
+  border-color: variables.$global-color-primary-dark;
+  box-shadow: 0 $card-shadow 0 variables.$global-color-primary-light;
+}

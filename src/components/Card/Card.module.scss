@@ -1,10 +1,12 @@
 @use "sass:color";
+
+@use "./card";
 @use "../../scss/variables";
 
-$height-large: 70px;
-$height-medium: 60px;
-$height-small: 50px;
-$bottom-border-size: 5px;
+$height-large: card.$height-large;
+$height-medium: card.$height-medium;
+$height-small: card.$height-small;
+$bottom-border-size: card.$shadow;
 
 .card {
   position: relative;
@@ -67,6 +69,19 @@ $bottom-border-size: 5px;
       min-width: $icon-size-small;
       min-height: $icon-size-small;
     }
+  }
+}
+
+.fixed {
+  flex: none;
+  width: card.$width-large;
+
+  @include variables.breakpoint(variables.$global-breakpoint-medium) {
+    width: card.$width-medium;
+  }
+
+  @include variables.breakpoint(variables.$global-breakpoint-small) {
+    width: card.$width-small;
   }
 }
 
