@@ -1,5 +1,5 @@
 import type { Asset, Entry } from "contentful";
-import buildFamilyForest from "./buildFamilyForest";
+import buildFamilyTrees from "./buildFamilyTrees";
 import { CATALOGUE_RESULTS_LIMIT, Catalogues, ContentTypes } from "./constants";
 import { contentfulDeliveryClient } from "./contentful";
 import { flattenImageAssetFields } from "./flattenAssetFields";
@@ -168,7 +168,7 @@ const getBottlenoseDolphinCatalogueItem = async (
  * there is nothing to resolve from `includes` at all.
  * @returns Family trees, ordered by the `id` field of their root.
  */
-const getBottlenoseDolphinFamilyForest = async (): Promise<Array<CatalogueFamilyNode>> => {
+const getBottlenoseDolphinFamilyTrees = async (): Promise<Array<CatalogueFamilyNode>> => {
   const entries: Array<CatalogueFamilyEntry> = [];
 
   let skip = 0;
@@ -184,6 +184,7 @@ const getBottlenoseDolphinFamilyForest = async (): Promise<Array<CatalogueFamily
           "fields.reference",
           "fields.name",
           "fields.slug",
+          "fields.birthYear",
           "fields.mother",
         ],
         order: ["fields.id", "sys.id"], // `sys.id` breaks ties so paging cannot skip or repeat
@@ -197,6 +198,7 @@ const getBottlenoseDolphinFamilyForest = async (): Promise<Array<CatalogueFamily
 
     for (const entry of result.items) {
       entries.push({
+        birthYear: entry.fields?.birthYear ? String(entry.fields.birthYear) : null,
         key: entry.sys.id,
         motherKey: entry.fields.mother?.sys.id ?? null,
         info: reduceCatalogueItem(entry),
@@ -209,7 +211,7 @@ const getBottlenoseDolphinFamilyForest = async (): Promise<Array<CatalogueFamily
     }
   } while (skip < total);
 
-  return buildFamilyForest(entries);
+  return buildFamilyTrees(entries);
 };
 
 /**
@@ -304,7 +306,7 @@ const getMinkeWhaleItemEntrySlug = async (
 
 export {
   getBottlenoseDolphinCatalogueItem,
-  getBottlenoseDolphinFamilyForest,
+  getBottlenoseDolphinFamilyTrees,
   getBottlenoseDolphinItemEntrySlug,
   getCatalogueList,
   getMinkeWhaleCatalogueItem,

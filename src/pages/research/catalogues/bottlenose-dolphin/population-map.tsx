@@ -5,7 +5,7 @@ import { Breadcrumbs, PopulationMap, SEO } from "@/components";
 import sitemap from "@/data/sitemap.json";
 
 import { Catalogues } from "@/helpers/constants";
-import { getBottlenoseDolphinFamilyForest } from "@/helpers/getCatalogue";
+import { getBottlenoseDolphinFamilyTrees } from "@/helpers/getCatalogue";
 import getPageContent from "@/helpers/getPageContent";
 import pageRenderOptions from "@/helpers/rendering";
 import { setPageCacheHeaders } from "@/helpers/setHeaders";
@@ -16,12 +16,12 @@ import styles from "./population-map.module.scss";
 const page = sitemap["population-map"];
 
 interface PageProps {
-  entry: string | null;
+  id: string | null;
   pageData: PageData;
   trees: Array<CatalogueFamilyNode>;
 }
 
-const Page: NextPage<PageProps> = ({ entry, pageData, trees }: PageProps) => {
+const Page: NextPage<PageProps> = ({ id, pageData, trees }: PageProps) => {
   const breadcrumbs = [
     sitemap.research,
     {
@@ -48,7 +48,7 @@ const Page: NextPage<PageProps> = ({ entry, pageData, trees }: PageProps) => {
           </div>
         </div>
 
-        <PopulationMap entry={entry} trees={trees} />
+        <PopulationMap focusId={id} trees={trees} />
       </section>
     </>
   );
@@ -59,7 +59,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
 
   const [pageData, trees] = await Promise.all([
     getPageContent(page.path, { preview }),
-    getBottlenoseDolphinFamilyForest(),
+    getBottlenoseDolphinFamilyTrees(),
   ]);
 
   if (!preview) {
@@ -69,7 +69,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
   return {
     props: {
       preview,
-      entry: typeof ctx.query.entry === "string" ? ctx.query.entry : null,
+      id: typeof ctx.query.id === "string" ? ctx.query.id : null,
       pageData,
       trees,
     },

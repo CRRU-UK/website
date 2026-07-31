@@ -11,6 +11,7 @@ const node = (id: string, calves: Array<CatalogueFamilyNode> = []): CatalogueFam
   reference: `mocked ${id} reference`,
   name: `mocked ${id} name`,
   slug: `mocked-${id}-slug`,
+  birthYear: "2015",
   calves,
 });
 
@@ -36,7 +37,7 @@ describe(PopulationMap, () => {
   });
 
   it("marks only the deep-linked animal", () => {
-    const { container } = render(<PopulationMap entry="mocked-c-slug" trees={mockedTrees} />);
+    const { container } = render(<PopulationMap focusId="c" trees={mockedTrees} />);
 
     const focused = container.querySelectorAll('[class*="focused"]');
 
@@ -45,7 +46,7 @@ describe(PopulationMap, () => {
   });
 
   it("marks nothing when the deep link matches no animal", () => {
-    const { container } = render(<PopulationMap entry="not-on-the-map" trees={mockedTrees} />);
+    const { container } = render(<PopulationMap focusId="not-on-the-map" trees={mockedTrees} />);
 
     expect(container.querySelectorAll('[class*="focused"]')).toHaveLength(0);
   });

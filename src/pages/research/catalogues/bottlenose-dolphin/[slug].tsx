@@ -49,6 +49,8 @@ const Page: NextPage<PageProps> = ({ catalogueData, ageText }: PageProps) => {
     lastUpdated,
   } = catalogueData.entry;
 
+  const isOnPopulationMap = !!catalogueData.mother || catalogueData.calves.length > 0;
+
   const title = name ? `#${id} (${name})` : `#${id}`;
   const pageDescription = `CRRU Bottlenose Dolphin catalogue entry for ${title}.`;
   const path = `/research/catalogues/${Catalogues.BottlenoseDolphin}/${slug}`;
@@ -246,14 +248,14 @@ const Page: NextPage<PageProps> = ({ catalogueData, ageText }: PageProps) => {
           <Tree data={catalogueData} type={Catalogues.BottlenoseDolphin} />
 
           <div className={styles["sidebar-links"]}>
-            {(!!catalogueData.mother || catalogueData.calves.length > 0) && (
+            {isOnPopulationMap ? (
               <Link
                 className={styles["map-link"]}
-                href={`${sitemap["population-map"].path}?entry=${encodeURIComponent(slug)}`}
+                href={`${sitemap["population-map"].path}?id=${encodeURIComponent(id)}`}
               >
                 View on population map
               </Link>
-            )}
+            ) : null}
 
             <Link
               className={styles.back}

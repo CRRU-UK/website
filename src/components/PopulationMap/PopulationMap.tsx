@@ -18,24 +18,27 @@ const DRAG_THRESHOLD = 5;
 const ZOOM_STEPS = [0.4, 0.55, 0.7, 0.85, 1];
 
 interface NodeProps {
-  entry?: string | null;
+  focusId?: string | null;
   node: CatalogueFamilyNode;
 }
 
-const TreeNode = ({ entry, node }: NodeProps): ReactElement => {
+const TreeNode = ({ focusId, node }: NodeProps): ReactElement => {
   const classes = [styles.node];
-  if (node.slug === entry) {
+  if (node.id === focusId) {
     classes.push(styles.focused);
   }
 
   return (
     <li className={classes.join(" ")}>
+      {/* Sits on the line descending from the mother, hidden by CSS on roots, which have no line */}
+      {!!node.birthYear && <span className={styles.year}>{node.birthYear}</span>}
+
       <Card catalogue={Catalogues.BottlenoseDolphin} entry={node} size="fixed" />
 
       {node.calves.length > 0 && (
         <ul className={styles.children}>
           {node.calves.map((calf) => (
-            <TreeNode entry={entry} key={calf.slug} node={calf} />
+            <TreeNode focusId={focusId} key={calf.slug} node={calf} />
           ))}
         </ul>
       )}
@@ -44,11 +47,11 @@ const TreeNode = ({ entry, node }: NodeProps): ReactElement => {
 };
 
 interface Props {
-  entry?: string | null;
+  focusId?: string | null;
   trees: Array<CatalogueFamilyNode>;
 }
 
-const PopulationMap = ({ entry, trees }: Props) => {
+const PopulationMap = ({ focusId, trees }: Props) => {
   const mapRef = useRef<HTMLElement>(null);
 
   // Panning lives entirely in a ref, so dragging never re-renders
@@ -59,14 +62,14 @@ const PopulationMap = ({ entry, trees }: Props) => {
 
   // Centre a deep-linked animal
   useEffect(() => {
-    if (!entry) {
+    if (!focusId) {
       return;
     }
 
     mapRef.current
       ?.querySelector(`.${styles.focused}`)
       ?.scrollIntoView({ block: "center", inline: "center" });
-  }, [entry]);
+  }, [focusId]);
 
   // Keep the centre of the viewport in place
   useEffect(() => {
@@ -144,9 +147,9 @@ const PopulationMap = ({ entry, trees }: Props) => {
   };
 
   // Memoised so stepping the zoom does not re-render every card
-  const forest = useMemo(
-    () => trees.map((tree) => <TreeNode entry={entry} key={tree.slug} node={tree} />),
-    [entry, trees],
+  const familyTrees = useMemo(
+    () => trees.map((tree) => <TreeNode focusId={focusId} key={tree.slug} node={tree} />),
+    [focusId, trees],
   );
 
   return (
@@ -186,7 +189,7 @@ const PopulationMap = ({ entry, trees }: Props) => {
         tabIndex={0}
       >
         <ul className={styles.canvas} style={{ zoom: ZOOM_STEPS[zoom] }}>
-          {forest}
+          {familyTrees}
         </ul>
       </section>
     </div>

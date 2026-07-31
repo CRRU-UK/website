@@ -209,10 +209,45 @@ $half-gap-small: math.div($generation-gap-small, 2);
   }
 }
 
+.year {
+  z-index: 1;
+  position: absolute;
+  top: math.div($half-gap-large, 2);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0 5px;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 14px;
+  color: variables.$global-color-body-dark;
+  background: variables.$global-color-catalogue-light;
+
+  @include variables.breakpoint(variables.$global-breakpoint-medium) {
+    top: math.div($half-gap-medium, 2);
+  }
+
+  @include variables.breakpoint(variables.$global-breakpoint-small) {
+    top: math.div($half-gap-small, 2);
+    font-size: 10px;
+  }
+}
+
+.canvas > .node > .year {
+  display: none;
+}
+
+// Hovering a card lights every connector in that animal's immediate family: up to its mother, along
+// the whole sibling bar, and down to each of its own calves. Keyed on `> a:hover` rather than
+// `.node:hover`, because a node's box also spans its entire subtree and `:hover` matches up the tree.
 .node:has(> .children > .node > a:hover) > .children {
   &::before,
+  > .node::before,
   > .node::after {
     background: $line-color-active;
+  }
+
+  > .node > .year {
+    color: $line-color-active;
   }
 }
 
@@ -227,10 +262,39 @@ $half-gap-small: math.div($generation-gap-small, 2);
     > .node::after {
       background: $line-color-active;
     }
+
+    > .node > .year {
+      color: $line-color-active;
+    }
   }
 }
 
+// Deep-linked animal. Deliberately gold rather than green, so it never reads as a second hovered
+// card, and it keeps <Card />'s faux bottom border while the halo pulses out from underneath.
 .focused > a {
-  border-color: variables.$global-color-primary-dark;
-  box-shadow: 0 $card-shadow 0 variables.$global-color-primary-light;
+  border-color: variables.$global-color-secondary;
+  animation: pulse 2s ease-out infinite;
+}
+
+@keyframes pulse {
+  from {
+    box-shadow:
+      0 $card-shadow 0 variables.$global-color-secondary,
+      0 0 0 0 rgba(variables.$global-color-secondary, 0.7);
+  }
+
+  to {
+    box-shadow:
+      0 $card-shadow 0 variables.$global-color-secondary,
+      0 0 0 18px rgba(variables.$global-color-secondary, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .focused > a {
+    animation: none;
+    box-shadow:
+      0 $card-shadow 0 variables.$global-color-secondary,
+      0 0 0 4px rgba(variables.$global-color-secondary, 0.5);
+  }
 }
