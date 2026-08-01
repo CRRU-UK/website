@@ -181,7 +181,7 @@ const getBottlenoseDolphinFamilyTrees = async (): Promise<Array<CatalogueFamilyN
       "fields.name",
       "fields.slug",
       "fields.birthYear",
-      "fields.mother",
+      "fields.mother", // A single hop, so the API's default `include` of 1 resolves it
     ],
     order: ["fields.id"],
     limit: 1000, // Contentful Delivery API maximum
