@@ -18,13 +18,8 @@ const youngestFirst = (a: CatalogueFamilyNode, b: CatalogueFamilyNode): number =
     return Number(b.birthYear) - Number(a.birthYear);
   }
 
-  /**
-   * Numeric so a future four-digit ID still sorts above "999"; non-numeric IDs would make the
-   * subtraction NaN, which is an unstable comparator, so fall back to a string compare
-   */
-  const byId = Number(b.id) - Number(a.id);
-
-  return Number.isNaN(byId) ? b.id.localeCompare(a.id) : byId;
+  // Numeric so a future four-digit ID still sorts above "999"
+  return Number(b.id) - Number(a.id);
 };
 
 /**

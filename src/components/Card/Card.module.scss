@@ -3,11 +3,6 @@
 @use "./card";
 @use "../../scss/variables";
 
-$height-large: card.$height-large;
-$height-medium: card.$height-medium;
-$height-small: card.$height-small;
-$bottom-border-size: card.$shadow;
-
 .card {
   position: relative;
   display: flex;
@@ -15,34 +10,34 @@ $bottom-border-size: card.$shadow;
   align-items: center;
   padding: 10px 15px;
   width: 100%;
-  height: $height-large;
+  height: card.$height-large;
   border-radius: variables.$global-border-radius;
   font-size: 16px;
   line-height: 20px;
   color: variables.$global-color-body;
   text-decoration: none;
   border: 2px solid variables.$global-color-catalogue;
-  box-shadow: 0 $bottom-border-size 0
+  box-shadow: 0 card.$shadow 0
     color.adjust(variables.$global-color-catalogue, $lightness: 5%);
   background: variables.$global-color-background;
 
   @include variables.breakpoint("medium") {
     padding: 8px 12px;
-    height: $height-medium;
+    height: card.$height-medium;
     font-size: 14px;
     line-height: 16px;
   }
 
   @include variables.breakpoint("small") {
     padding: 6px 10px;
-    height: $height-small;
+    height: card.$height-small;
   }
 
   &:hover {
     color: inherit;
     text-decoration: none;
     border-color: variables.$global-color-primary-dark;
-    box-shadow: 0 $bottom-border-size 0 variables.$global-color-primary-light;
+    box-shadow: 0 card.$shadow 0 variables.$global-color-primary-light;
 
     .id > b {
       color: variables.$global-color-primary-dark;

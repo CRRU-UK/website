@@ -32,10 +32,11 @@ describe(buildFamilyTrees, () => {
     expect(result.map(({ id }) => id)).toEqual(["b"]);
   });
 
+  // Numeric IDs, because the calf order falls back to comparing them numerically
   it("nests calves under their mother", () => {
-    const result = buildFamilyTrees([entry("a"), entry("b", "a"), entry("c", "a")]);
+    const result = buildFamilyTrees([entry("100"), entry("101", "100"), entry("102", "100")]);
 
-    expect(result).toEqual([node("a", [node("c"), node("b")])]);
+    expect(result).toEqual([node("100", [node("102"), node("101")])]);
   });
 
   it("does not duplicate a calf as a root", () => {

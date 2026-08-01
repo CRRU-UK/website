@@ -166,50 +166,37 @@ const getBottlenoseDolphinCatalogueItem = async (
  * filtering on `fields.mother[exists]`: `select` does not apply to the `includes` block, so
  * filtering would pull in unreduced mother entries for no benefit. With every entry in `items`
  * there is nothing to resolve from `includes` at all.
- * @returns Family trees, ordered by the `id` field of their root.
+ * @returns Family trees, deepest first.
+ * @throws If the catalogue ever outgrows a single Contentful page.
  */
 const getBottlenoseDolphinFamilyTrees = async (): Promise<Array<CatalogueFamilyNode>> => {
-  const entries: Array<CatalogueFamilyEntry> = [];
+  const result = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>({
+    content_type: ContentTypes.CatalogueBottlenoseDolphin,
+    select: [
+      "sys.id",
+      "fields.id",
+      "fields.reference",
+      "fields.name",
+      "fields.slug",
+      "fields.birthYear",
+      "fields.mother",
+    ],
+    order: ["fields.id"],
+    limit: 1000, // Contentful Delivery API maximum
+  });
 
-  let skip = 0;
-  let total = 0;
-
-  do {
-    const result = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>(
-      {
-        content_type: ContentTypes.CatalogueBottlenoseDolphin,
-        select: [
-          "sys.id",
-          "fields.id",
-          "fields.reference",
-          "fields.name",
-          "fields.slug",
-          "fields.birthYear",
-          "fields.mother",
-        ],
-        order: ["fields.id", "sys.id"], // `sys.id` breaks ties so paging cannot skip or repeat
-        limit: 1000, // Contentful Delivery API maximum
-        skip,
-      },
+  if (result.total > result.items.length) {
+    throw new Error(
+      `Bottlenose dolphin catalogue returned ${result.items.length} of ${result.total} entries, so the family tree query now needs paging.`,
     );
+  }
 
-    total = result.total;
-    skip += result.items.length;
-
-    for (const entry of result.items) {
-      entries.push({
-        birthYear: entry.fields?.birthYear ? String(entry.fields.birthYear) : null,
-        key: entry.sys.id,
-        motherKey: entry.fields.mother?.sys.id ?? null,
-        info: reduceCatalogueItem(entry),
-      });
-    }
-
-    // Defensive: never spin if the API returns an empty page
-    if (!result.items.length) {
-      break;
-    }
-  } while (skip < total);
+  const entries: Array<CatalogueFamilyEntry> = result.items.map((entry) => ({
+    birthYear: entry.fields?.birthYear ? String(entry.fields.birthYear) : null,
+    key: entry.sys.id,
+    motherKey: entry.fields.mother?.sys.id ?? null,
+    info: reduceCatalogueItem(entry),
+  }));
 
   return buildFamilyTrees(entries);
 };
