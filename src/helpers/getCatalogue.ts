@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/nextjs";
 import type { Asset, Entry } from "contentful";
 import buildFamilyTrees from "./buildFamilyTrees";
 import { CATALOGUE_RESULTS_LIMIT, Catalogues, ContentTypes } from "./constants";
@@ -167,7 +168,8 @@ const getBottlenoseDolphinCatalogueItem = async (
  * filtering would pull in unreduced mother entries for no benefit. With every entry in `items`
  * there is nothing to resolve from `includes` at all.
  * @returns Family trees, deepest first.
- * @throws If the catalogue outgrows a single Contentful page, or if no mother links resolve.
+ * @throws If the catalogue outgrows a single Contentful page, which would render false roots for
+ * any calf whose mother fell on the far side of the cut.
  */
 const getBottlenoseDolphinFamilyTrees = async (): Promise<Array<CatalogueFamilyNode>> => {
   const result = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>({
@@ -200,9 +202,11 @@ const getBottlenoseDolphinFamilyTrees = async (): Promise<Array<CatalogueFamilyN
 
   const trees = buildFamilyTrees(entries);
 
+  // Either broken `fields.mother` links or none recorded yet
   if (entries.length > 0 && trees.length === 0) {
-    throw new Error(
-      `Bottlenose dolphin family tree query resolved no relationships across ${entries.length} entries, so mother links are no longer resolving.`,
+    Sentry.captureMessage(
+      `Bottlenose dolphin family tree query resolved no relationships across ${entries.length} entries. Either the catalogue has none recorded, or mother links have stopped resolving.`,
+      "warning",
     );
   }
 
