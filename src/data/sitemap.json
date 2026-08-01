@@ -35,6 +35,10 @@
     "title": "Photo-ID Catalogues",
     "path": "/research/catalogues"
   },
+  "population-map": {
+    "title": "Bottlenose Dolphin Population Map",
+    "path": "/research/catalogues/bottlenose-dolphin/population-map"
+  },
   "minke-whale-studies": {
     "title": "Minke Whale Research",
     "path": "/research/minke-whales"

@@ -1,26 +1,35 @@
 import Link from "next/link";
 
 import { Catalogues } from "@/helpers/constants";
+import type { CatalogueBasicInfo } from "@/helpers/types";
 
 import styles from "./Card.module.scss";
 
 interface Props {
+  catalogue: Catalogues;
   disabled?: boolean;
-  link: string;
-  name?: string;
-  reference?: string;
-  title: string;
-  type: Catalogues;
+  entry: CatalogueBasicInfo;
+  selected?: boolean;
+  /** `fill` takes the width of its container, `fixed` sets its own. */
+  size?: "fill" | "fixed";
 }
 
-const Card = ({ type, title, reference, name, link, disabled = false }: Props) => {
-  const classes = [styles.card, styles["no-image"]];
+const Card = ({ catalogue, entry, disabled = false, selected = false, size = "fill" }: Props) => {
+  const classes = [styles.card];
 
-  if (type === Catalogues.BottlenoseDolphin) {
+  if (size === "fixed") {
+    classes.push(styles.fixed);
+  }
+
+  if (selected) {
+    classes.push(styles.selected);
+  }
+
+  if (catalogue === Catalogues.BottlenoseDolphin) {
     classes.push(styles.dolphin);
   }
 
-  if (type === Catalogues.MinkeWhale) {
+  if (catalogue === Catalogues.MinkeWhale) {
     classes.push(styles.whale);
   }
 
@@ -29,14 +38,14 @@ const Card = ({ type, title, reference, name, link, disabled = false }: Props) =
   }
 
   return (
-    <Link className={classes.join(" ")} href={link}>
+    <Link className={classes.join(" ")} href={`/research/catalogues/${catalogue}/${entry.slug}`}>
       <span className={styles.icon}></span>
       <span className={styles.text}>
         <span className={styles.id}>
-          <b>{title}</b>
-          {!!reference && <span className={styles.reference}>{reference}</span>}
+          <b>{`#${entry.id}`}</b>
+          {!!entry.reference && <span className={styles.reference}>{`#${entry.reference}`}</span>}
         </span>
-        <span className={styles.name}>{name ?? <i>Unnamed</i>}</span>
+        <span className={styles.name}>{entry.name || <i>Unnamed</i>}</span>
       </span>
     </Link>
   );

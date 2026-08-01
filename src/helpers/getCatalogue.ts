@@ -1,4 +1,6 @@
+import * as Sentry from "@sentry/nextjs";
 import type { Asset, Entry } from "contentful";
+import buildFamilyTrees from "./buildFamilyTrees";
 import { CATALOGUE_RESULTS_LIMIT, Catalogues, ContentTypes } from "./constants";
 import { contentfulDeliveryClient } from "./contentful";
 import { flattenImageAssetFields } from "./flattenAssetFields";
@@ -6,6 +8,8 @@ import type {
   CatalogueAPIResponse,
   CatalogueBasicInfo,
   CatalogueBottlenoseDolphin,
+  CatalogueFamilyEntry,
+  CatalogueFamilyNode,
   CatalogueMinkeWhale,
   ContentTypeCatalogueBottlenoseDolphin,
   ContentTypeCatalogueMinkeWhale,
@@ -159,6 +163,57 @@ const getBottlenoseDolphinCatalogueItem = async (
 };
 
 /**
+ * Gets every bottlenose dolphin family tree from Contentful. Queries every entry rather than
+ * filtering on `fields.mother[exists]`: `select` does not apply to the `includes` block, so
+ * filtering would pull in unreduced mother entries for no benefit. With every entry in `items`
+ * there is nothing to resolve from `includes` at all.
+ * @returns Family trees, deepest first.
+ * @throws If the catalogue outgrows a single Contentful page, which would render false roots for
+ * any calf whose mother fell on the far side of the cut.
+ */
+const getBottlenoseDolphinFamilyTrees = async (): Promise<Array<CatalogueFamilyNode>> => {
+  const result = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>({
+    content_type: ContentTypes.CatalogueBottlenoseDolphin,
+    select: [
+      "sys.id",
+      "fields.id",
+      "fields.reference",
+      "fields.name",
+      "fields.slug",
+      "fields.birthYear",
+      "fields.mother", // A single hop, so the API's default `include` of 1 resolves it
+    ],
+    order: ["fields.id"],
+    limit: 1000, // Contentful Delivery API maximum
+  });
+
+  if (result.total > result.items.length) {
+    throw new Error(
+      `Bottlenose dolphin catalogue returned ${result.items.length} of ${result.total} entries, so the family tree query now needs paging.`,
+    );
+  }
+
+  const entries: Array<CatalogueFamilyEntry> = result.items.map((entry) => ({
+    birthYear: entry.fields?.birthYear ? String(entry.fields.birthYear) : null,
+    key: entry.sys.id,
+    motherKey: entry.fields.mother?.sys.id ?? null,
+    info: reduceCatalogueItem(entry),
+  }));
+
+  const trees = buildFamilyTrees(entries);
+
+  // Either broken `fields.mother` links or none recorded yet
+  if (entries.length > 0 && trees.length === 0) {
+    Sentry.captureMessage(
+      `Bottlenose dolphin family tree query resolved no relationships across ${entries.length} entries. Either the catalogue has none recorded, or mother links have stopped resolving.`,
+      "warning",
+    );
+  }
+
+  return trees;
+};
+
+/**
  * Gets slug of bottlenose dolphin entry by ID.
  * @param id Entry `id` field value.
  * @returns Bottlenose dolphin catalogue entry slug.
@@ -250,6 +305,7 @@ const getMinkeWhaleItemEntrySlug = async (
 
 export {
   getBottlenoseDolphinCatalogueItem,
+  getBottlenoseDolphinFamilyTrees,
   getBottlenoseDolphinItemEntrySlug,
   getCatalogueList,
   getMinkeWhaleCatalogueItem,

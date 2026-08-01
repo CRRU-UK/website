@@ -13,6 +13,9 @@ $global-catalogue-max-width: 2000px;
 $global-header-height-large: 100px;
 $global-header-height-medium: 80px;
 $global-header-height-small: 60px;
+$global-banner-height-large: 40px;
+$global-banner-height-small: 30px;
+
 $global-border-radius: 8px;
 $global-spacing-large: 40px;
 $global-spacing-medium: 30px;
@@ -20,6 +23,11 @@ $global-spacing-small: 20px;
 $global-padding-large: 40px;
 $global-padding-medium: 30px;
 $global-padding-small: 20px;
+
+$global-catalogue-tree-line-size: 3px;
+$global-catalogue-tree-spacing-large: 60px;
+$global-catalogue-tree-spacing-medium: 50px;
+$global-catalogue-tree-spacing-small: 40px;
 
 // Colours
 
@@ -35,6 +43,7 @@ $global-color-grey: #363636;
 $global-color-blue: #00366b;
 $global-color-red: #c0372b;
 $global-color-catalogue: #dedede;
+$global-color-catalogue-line: #9c9c9c;
 $global-color-catalogue-dark: #202027;
 $global-color-catalogue-light: #fafafa;
 

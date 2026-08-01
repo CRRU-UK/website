@@ -15,15 +15,7 @@ const Tree = ({ type, data }: Props) => {
 
   let motherElement = emptyElement;
   if (mother) {
-    motherElement = (
-      <Card
-        link={`/research/catalogues/bottlenose-dolphin/${mother.slug}`}
-        name={mother?.name ? String(mother.name) : undefined}
-        reference={mother?.reference ? `#${mother.reference}` : undefined}
-        title={`#${mother.id}`}
-        type={type}
-      />
-    );
+    motherElement = <Card catalogue={type} entry={mother} />;
   }
 
   let calvesElement = emptyElement;
@@ -33,13 +25,7 @@ const Tree = ({ type, data }: Props) => {
         {calves.map((item, index) => (
           <li key={item.id}>
             {index === 0 && <span className={styles.last}>Last recorded calf</span>}
-            <Card
-              link={item.slug}
-              name={item?.name ?? undefined}
-              reference={item?.reference ? `#${item.reference}` : undefined}
-              title={`#${item.id}`}
-              type={type}
-            />
+            <Card catalogue={type} entry={item} />
           </li>
         ))}
       </ul>
@@ -56,14 +42,7 @@ const Tree = ({ type, data }: Props) => {
       </li>
 
       <li className={styles.name}>
-        <Card
-          disabled
-          link={""}
-          name={entry.name ?? undefined}
-          reference={entry?.reference ? `#${entry.reference}` : undefined}
-          title={`#${entry.id}`}
-          type={type}
-        />
+        <Card catalogue={type} disabled entry={entry} />
       </li>
 
       <li className={styles.calves}>

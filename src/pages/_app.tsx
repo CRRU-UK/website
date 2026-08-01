@@ -1,9 +1,12 @@
 import { ContentfulLivePreviewProvider } from "@contentful/live-preview/react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { generateDefaultSeo } from "next-seo/pages";
 
 import "../scss/globals.scss";
+
+import sitemap from "@/data/sitemap.json";
 
 import { DEFAULT_SEO_OPTIONS, LOCALE } from "@/helpers/constants";
 import Footer from "@/layout/Footer";
@@ -11,6 +14,8 @@ import Header from "@/layout/Header";
 
 const App = ({ Component, pageProps }: AppProps) => {
   const preview = pageProps.preview || false;
+
+  const { pathname } = useRouter();
 
   return (
     <>
@@ -44,7 +49,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         </ContentfulLivePreviewProvider>
       </main>
 
-      <Footer />
+      {pathname !== sitemap["population-map"].path && <Footer />}
     </>
   );
 };

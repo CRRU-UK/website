@@ -1,16 +1,23 @@
 @use "sass:math";
+@use "../Card/card";
 @use "../../scss/variables";
 
-$tree-item-width-large: 200px;
-$tree-item-width-medium: 180px;
-$tree-item-width-small: 150px;
-$tree-item-spacing-large: 60px;
-$tree-item-spacing-medium: 50px;
-$tree-item-spacing-small: 40px;
+// Matches the card's fixed width: these list items and the dashed empty state must line up with it
+$tree-item-width-large: card.$width-large;
+$tree-item-width-medium: card.$width-medium;
+$tree-item-width-small: card.$width-small;
+
+$tree-item-spacing-large: variables.$global-catalogue-tree-spacing-large;
+$tree-item-spacing-medium: variables.$global-catalogue-tree-spacing-medium;
+$tree-item-spacing-small: variables.$global-catalogue-tree-spacing-small;
+
 $tree-row-gap: 20px;
+
 $tree-column-gap: 40px;
-$tree-line-size: 3px;
-$tree-line-color: #9c9c9c;
+
+$tree-line-size: variables.$global-catalogue-tree-line-size;
+$tree-line-color: variables.$global-color-catalogue-line;
+
 $tree-label-border-width: 5px;
 
 %tree-items {

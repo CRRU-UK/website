@@ -10,6 +10,7 @@ export { default as ListItem } from "./ListItem/ListItem";
 export { default as Loading } from "./Loading/Loading";
 export { default as News } from "./News/News";
 export { default as Note } from "./Note/Note";
+export { default as PopulationMap } from "./PopulationMap/PopulationMap";
 export { default as SEO } from "./SEO/SEO";
 export { default as Social } from "./Social/Social";
 export { default as Timeline } from "./Timeline/Timeline";

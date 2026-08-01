@@ -49,6 +49,12 @@ const Page: NextPage<PageProps> = ({ catalogueData, ageText }: PageProps) => {
     lastUpdated,
   } = catalogueData.entry;
 
+  // The map only draws animals that have a family, so there is nothing for the rest to deep link to
+  const isOnPopulationMap = !!catalogueData.mother || catalogueData.calves.length > 0;
+  const populationMapPath = isOnPopulationMap
+    ? `${sitemap["population-map"].path}?id=${encodeURIComponent(id)}`
+    : sitemap["population-map"].path;
+
   const title = name ? `#${id} (${name})` : `#${id}`;
   const pageDescription = `CRRU Bottlenose Dolphin catalogue entry for ${title}.`;
   const path = `/research/catalogues/${Catalogues.BottlenoseDolphin}/${slug}`;
@@ -243,14 +249,20 @@ const Page: NextPage<PageProps> = ({ catalogueData, ageText }: PageProps) => {
         </article>
 
         <article className={styles.sidebar}>
+          <Link className={styles["map-link"]} href={populationMapPath}>
+            Show population map
+          </Link>
+
           <Tree data={catalogueData} type={Catalogues.BottlenoseDolphin} />
 
-          <Link
-            className={styles.back}
-            href={`${sitemap.catalogues.path}?catalogue=${Catalogues.BottlenoseDolphin}`}
-          >
-            Back to catalogue
-          </Link>
+          <div className={styles["sidebar-links"]}>
+            <Link
+              className={styles.back}
+              href={`${sitemap.catalogues.path}?catalogue=${Catalogues.BottlenoseDolphin}`}
+            >
+              Back to catalogue
+            </Link>
+          </div>
         </article>
       </section>
 
