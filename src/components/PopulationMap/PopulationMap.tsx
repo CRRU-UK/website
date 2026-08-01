@@ -178,7 +178,7 @@ const PopulationMap = ({ focusId, trees }: Props) => {
       </div>
 
       <section
-        aria-label="Bottlenose dolphin population map. Drag to pan."
+        aria-label="Bottlenose dolphin population map"
         className={styles.map}
         onClickCapture={onClickCapture}
         onDragStart={(event) => event.preventDefault()} // anchors are natively draggable
@@ -188,8 +188,6 @@ const PopulationMap = ({ focusId, trees }: Props) => {
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         ref={mapRef}
-        // biome-ignore lint/a11y/noNoninteractiveTabindex: a scrollable region must be focusable so it can be panned with the arrow keys, per axe's scrollable-region-focusable rule
-        tabIndex={0}
       >
         <ul className={styles.canvas} style={{ zoom: ZOOM_STEPS[zoom] }}>
           {familyTrees}

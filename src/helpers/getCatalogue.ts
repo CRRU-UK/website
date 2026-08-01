@@ -167,7 +167,7 @@ const getBottlenoseDolphinCatalogueItem = async (
  * filtering would pull in unreduced mother entries for no benefit. With every entry in `items`
  * there is nothing to resolve from `includes` at all.
  * @returns Family trees, deepest first.
- * @throws If the catalogue ever outgrows a single Contentful page.
+ * @throws If the catalogue outgrows a single Contentful page, or if no mother links resolve.
  */
 const getBottlenoseDolphinFamilyTrees = async (): Promise<Array<CatalogueFamilyNode>> => {
   const result = await contentfulDeliveryClient.getEntries<ContentTypeCatalogueBottlenoseDolphin>({
@@ -198,7 +198,15 @@ const getBottlenoseDolphinFamilyTrees = async (): Promise<Array<CatalogueFamilyN
     info: reduceCatalogueItem(entry),
   }));
 
-  return buildFamilyTrees(entries);
+  const trees = buildFamilyTrees(entries);
+
+  if (entries.length > 0 && trees.length === 0) {
+    throw new Error(
+      `Bottlenose dolphin family tree query resolved no relationships across ${entries.length} entries, so mother links are no longer resolving.`,
+    );
+  }
+
+  return trees;
 };
 
 /**
