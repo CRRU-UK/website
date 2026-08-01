@@ -109,9 +109,9 @@ $riser-small: $half-gap-small + $riser-extra;
   flex-flow: row wrap;
   align-items: flex-start;
   align-content: flex-start;
-  gap: $tree-gap;
+  gap: $tree-gap * 2 $tree-gap;
   margin: 0;
-  padding: $tree-gap;
+  padding: $tree-gap * 2;
   width: $canvas-width;
   list-style: none;
 }
