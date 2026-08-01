@@ -23,17 +23,20 @@ interface NodeProps {
 }
 
 const TreeNode = ({ focusId, node }: NodeProps): ReactElement => {
-  const classes = [styles.node];
-  if (node.id === focusId) {
-    classes.push(styles.focused);
-  }
+  const selected = node.id === focusId;
 
   return (
-    <li className={classes.join(" ")}>
+    // The attribute is only a hook for the scroll below, the highlight itself is <Card />'s
+    <li className={styles.node} data-selected={selected || undefined}>
       {/* Sits on the line descending from the mother, hidden by CSS on roots, which have no line */}
       {!!node.birthYear && <span className={styles.year}>{node.birthYear}</span>}
 
-      <Card catalogue={Catalogues.BottlenoseDolphin} entry={node} size="fixed" />
+      <Card
+        catalogue={Catalogues.BottlenoseDolphin}
+        entry={node}
+        selected={selected}
+        size="fixed"
+      />
 
       {node.calves.length > 0 && (
         <ul className={styles.children}>
@@ -67,7 +70,7 @@ const PopulationMap = ({ focusId, trees }: Props) => {
     }
 
     mapRef.current
-      ?.querySelector(`.${styles.focused}`)
+      ?.querySelector("[data-selected] > a")
       ?.scrollIntoView({ block: "center", inline: "center" });
   }, [focusId]);
 

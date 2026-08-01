@@ -209,12 +209,14 @@ const Page: NextPage<PageProps> = ({ catalogueData }: PageProps) => {
         <article className={styles.sidebar}>
           <p className={styles["no-data"]}>No family data available</p>
 
-          <Link
-            className={styles.back}
-            href={`${sitemap.catalogues.path}?catalogue=${Catalogues.MinkeWhale}`}
-          >
-            Back to catalogue
-          </Link>
+          <div className={styles["sidebar-links"]}>
+            <Link
+              className={styles.back}
+              href={`${sitemap.catalogues.path}?catalogue=${Catalogues.MinkeWhale}`}
+            >
+              Back to catalogue
+            </Link>
+          </div>
         </article>
       </section>
 

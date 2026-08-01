@@ -8,9 +8,11 @@ $generation-gap-large: variables.$global-catalogue-tree-spacing-large;
 $generation-gap-medium: variables.$global-catalogue-tree-spacing-medium;
 $generation-gap-small: variables.$global-catalogue-tree-spacing-small;
 
-$sibling-gutter: variables.$global-catalogue-tree-gutter;
+// Tighter than the equivalent gap in <Tree />, which only ever shows two generations in a fixed
+// sidebar. Here whole families are laid out at once, so every pixel between cards widens the tree.
+$sibling-gutter: variables.$global-spacing-small;
 
-$tree-gap: variables.$global-spacing-large * 2;
+$tree-gap: variables.$global-spacing-large;
 
 $line-size: variables.$global-catalogue-tree-line-size;
 $line-color: variables.$global-color-catalogue-line;
@@ -25,6 +27,14 @@ $half-gutter: math.div($sibling-gutter, 2);
 $half-gap-large: math.div($generation-gap-large, 2);
 $half-gap-medium: math.div($generation-gap-medium, 2);
 $half-gap-small: math.div($generation-gap-small, 2);
+
+// The riser carries the birth year chip, so it runs longer than the descender above it to leave
+// even breathing room either side of the chip. Lengthening it here rather than raising the shared
+// spacing token keeps <Tree /> in the sidebar untouched.
+$riser-extra: 16px;
+$riser-large: $half-gap-large + $riser-extra;
+$riser-medium: $half-gap-medium + $riser-extra;
+$riser-small: $half-gap-small + $riser-extra;
 
 // Wrapper
 
@@ -158,14 +168,14 @@ $half-gap-small: math.div($generation-gap-small, 2);
 }
 
 .children > .node {
-  padding-top: $half-gap-large;
+  padding-top: $riser-large;
 
   @include variables.breakpoint(variables.$global-breakpoint-medium) {
-    padding-top: $half-gap-medium;
+    padding-top: $riser-medium;
   }
 
   @include variables.breakpoint(variables.$global-breakpoint-small) {
-    padding-top: $half-gap-small;
+    padding-top: $riser-small;
   }
 }
 
@@ -197,39 +207,51 @@ $half-gap-small: math.div($generation-gap-small, 2);
   top: 0;
   left: calc(50% - #{$half-line});
   width: $line-size;
-  height: $half-gap-large;
+  height: $riser-large;
   background: $line-color;
 
   @include variables.breakpoint(variables.$global-breakpoint-medium) {
-    height: $half-gap-medium;
+    height: $riser-medium;
   }
 
   @include variables.breakpoint(variables.$global-breakpoint-small) {
-    height: $half-gap-small;
+    height: $riser-small;
   }
 }
 
+// Matches the 'last known calf' chip on the catalogue pages. Centred on the span between the bottom
+// of the sibling bar and the top of the card, so the gaps above and below it are equal.
 .year {
   z-index: 1;
   position: absolute;
-  top: math.div($half-gap-large, 2);
+  top: math.div($riser-large + $line-size, 2);
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 0 5px;
+  padding: 4px 6px;
   font-weight: 700;
   font-size: 11px;
-  line-height: 14px;
-  color: variables.$global-color-body-dark;
-  background: variables.$global-color-catalogue-light;
+  line-height: 12px;
+  border-radius: 5px;
+  color: variables.$global-color-catalogue-light;
+  background: variables.$global-color-catalogue-dark;
 
   @include variables.breakpoint(variables.$global-breakpoint-medium) {
-    top: math.div($half-gap-medium, 2);
+    top: math.div($riser-medium + $line-size, 2);
   }
 
   @include variables.breakpoint(variables.$global-breakpoint-small) {
-    top: math.div($half-gap-small, 2);
+    top: math.div($riser-small + $line-size, 2);
+    padding: 3px 5px;
     font-size: 10px;
+    line-height: 11px;
   }
+}
+
+// An only child has no sibling bar, so the descender and riser run as one unbroken line and the chip
+// belongs at the midpoint of the whole run. That sits exactly half the riser's extra length above
+// where it would go on a riser alone, whatever the breakpoint.
+.children > .node:only-child > .year {
+  top: math.div($riser-extra, 2);
 }
 
 .canvas > .node > .year {
@@ -245,10 +267,6 @@ $half-gap-small: math.div($generation-gap-small, 2);
   > .node::after {
     background: $line-color-active;
   }
-
-  > .node > .year {
-    color: $line-color-active;
-  }
 }
 
 .node:has(> a:hover) {
@@ -262,39 +280,7 @@ $half-gap-small: math.div($generation-gap-small, 2);
     > .node::after {
       background: $line-color-active;
     }
-
-    > .node > .year {
-      color: $line-color-active;
-    }
   }
 }
 
-// Deep-linked animal. Deliberately gold rather than green, so it never reads as a second hovered
-// card, and it keeps <Card />'s faux bottom border while the halo pulses out from underneath.
-.focused > a {
-  border-color: variables.$global-color-secondary;
-  animation: pulse 2s ease-out infinite;
-}
-
-@keyframes pulse {
-  from {
-    box-shadow:
-      0 $card-shadow 0 variables.$global-color-secondary,
-      0 0 0 0 rgba(variables.$global-color-secondary, 0.7);
-  }
-
-  to {
-    box-shadow:
-      0 $card-shadow 0 variables.$global-color-secondary,
-      0 0 0 18px rgba(variables.$global-color-secondary, 0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .focused > a {
-    animation: none;
-    box-shadow:
-      0 $card-shadow 0 variables.$global-color-secondary,
-      0 0 0 4px rgba(variables.$global-color-secondary, 0.5);
-  }
-}
+// The deep-linked animal is highlighted by <Card />'s own `selected` styling, so nothing here.

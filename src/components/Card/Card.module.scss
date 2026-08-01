@@ -85,6 +85,23 @@ $bottom-border-size: card.$shadow;
   }
 }
 
+.selected {
+  background: variables.$global-color-primary-light;
+  animation: selected-pulse 1.2s ease-in-out 4;
+}
+
+@keyframes selected-pulse {
+  50% {
+    background-color: variables.$global-color-background;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .selected {
+    animation: none;
+  }
+}
+
 .dolphin > .icon {
   background-image: url("../../../public/images/icons/catalogues/dolphin.svg");
 }

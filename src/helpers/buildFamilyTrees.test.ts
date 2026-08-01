@@ -89,6 +89,29 @@ describe(buildFamilyTrees, () => {
     expect(result[0].calves.map(({ id }) => id)).toEqual(["1000", "999"]);
   });
 
+  it("returns the deepest trees first", () => {
+    const result = buildFamilyTrees([
+      entry("shallow"),
+      entry("shallow-calf", "shallow"),
+      entry("deep"),
+      entry("deep-calf", "deep"),
+      entry("deep-grandcalf", "deep-calf"),
+    ]);
+
+    expect(result.map(({ id }) => id)).toEqual(["deep", "shallow"]);
+  });
+
+  it("keeps trees of equal depth in their original order", () => {
+    const result = buildFamilyTrees([
+      entry("first"),
+      entry("first-calf", "first"),
+      entry("second"),
+      entry("second-calf", "second"),
+    ]);
+
+    expect(result.map(({ id }) => id)).toEqual(["first", "second"]);
+  });
+
   it("ignores a mother that is not in the set", () => {
     const result = buildFamilyTrees([entry("a", "missing"), entry("b", "a")]);
 

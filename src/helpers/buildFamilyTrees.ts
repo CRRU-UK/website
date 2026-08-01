@@ -28,12 +28,20 @@ const youngestFirst = (a: CatalogueFamilyNode, b: CatalogueFamilyNode): number =
 };
 
 /**
+ * Number of generations in a tree, which is what decides its rendered height.
+ * @param node Root of the tree to measure.
+ * @returns Generation count, counting the root itself as one.
+ */
+const generations = (node: CatalogueFamilyNode): number =>
+  node.calves.length === 0 ? 1 : 1 + Math.max(...node.calves.map(generations));
+
+/**
  * Builds family trees from a flat list of catalogue entries. Only animals that are part of a family
  * are included. A root must have at least one calf, so entries with neither a mother nor calves are
  * omitted. Self-links, mothers missing from the set, and mother cycles caused by bad data are
  * dropped.
  * @param entries Catalogue entries keyed on Contentful entry ID.
- * @returns Family trees, in the order their roots appear in `entries`.
+ * @returns Family trees, deepest first, then in the order their roots appear in `entries`.
  */
 const buildFamilyTrees = (entries: Array<CatalogueFamilyEntry>): Array<CatalogueFamilyNode> => {
   const byKey = new Map(entries.map((entry) => [entry.key, entry]));
@@ -75,10 +83,16 @@ const buildFamilyTrees = (entries: Array<CatalogueFamilyEntry>): Array<Catalogue
     };
   };
 
+  /**
+   * Sorts deepest trees first, so trees of similar height share a row on the map. In a wrapping
+   * flex layout, every row is as tall as its tallest item, so mixing short and tall trees causes
+   * excess vertical space. Sorting is stable, so trees of equal depth keep their `id` order.
+   */
   return entries
     .filter(({ key }) => !calves.has(key) && calvesOf.has(key))
     .map(({ key }) => build(key))
-    .filter((node): node is CatalogueFamilyNode => node !== null);
+    .filter((node): node is CatalogueFamilyNode => node !== null)
+    .sort((a, b) => generations(b) - generations(a));
 };
 
 export default buildFamilyTrees;

@@ -9,15 +9,20 @@ interface Props {
   catalogue: Catalogues;
   disabled?: boolean;
   entry: CatalogueBasicInfo;
+  selected?: boolean;
   /** `fill` takes the width of its container, `fixed` sets its own. */
   size?: "fill" | "fixed";
 }
 
-const Card = ({ catalogue, entry, disabled = false, size = "fill" }: Props) => {
+const Card = ({ catalogue, entry, disabled = false, selected = false, size = "fill" }: Props) => {
   const classes = [styles.card];
 
   if (size === "fixed") {
     classes.push(styles.fixed);
+  }
+
+  if (selected) {
+    classes.push(styles.selected);
   }
 
   if (catalogue === Catalogues.BottlenoseDolphin) {

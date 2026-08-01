@@ -338,13 +338,15 @@ $sections: (
 $sidebar-size-large: 580px;
 $sidebar-size-medium: 480px;
 
+// The inset the sidebar keeps around its top corners, which `.map-link` sits inside
+$sidebar-corner-inset: variables.$global-spacing-small;
+
 .sidebar {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   flex-shrink: 0;
-  padding: (variables.$global-padding-large * 2) 0 variables.$global-padding-large;
+  padding: $sidebar-corner-inset 0 variables.$global-padding-large;
   width: $sidebar-size-large;
   border-left: 2px solid variables.$global-color-catalogue;
   border-bottom: 2px solid variables.$global-color-catalogue;
@@ -359,12 +361,12 @@ $sidebar-size-medium: 480px;
   }
 
   @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
-    padding: (variables.$global-padding-medium * 2) 0 variables.$global-padding-medium;
+    padding: $sidebar-corner-inset 0 variables.$global-padding-medium;
     width: $sidebar-size-medium;
   }
 
   @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
-    padding: (variables.$global-padding-small * 2) 0 variables.$global-padding-small;
+    padding: $sidebar-corner-inset 0 variables.$global-padding-small;
     width: 100%;
     border-left: 0;
     border-radius: 0;
@@ -373,6 +375,7 @@ $sidebar-size-medium: 480px;
 }
 
 .no-data {
+  margin-top: variables.$global-padding-large;
   opacity: 0.7;
   font-size: 24px;
   font-weight: 700;
@@ -381,23 +384,22 @@ $sidebar-size-medium: 480px;
   color: variables.$global-color-catalogue-dark;
 
   @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
+    margin-top: variables.$global-padding-medium;
     font-size: 20px;
     line-height: 20px;
   }
 
   @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
+    margin-top: variables.$global-padding-small;
     font-size: 16px;
     line-height: 16px;
   }
 }
 
-.back {
-  $bottom-border-size: 5px;
-
+%sidebar-button {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
-  margin: (variables.$global-spacing-large * 2) auto 0;
   padding: 12px 15px;
   border-radius: variables.$global-border-radius;
   font-size: 16px;
@@ -407,12 +409,7 @@ $sidebar-size-medium: 480px;
   border: 2px solid variables.$global-color-catalogue;
   background: variables.$global-color-background;
 
-  @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
-    margin-top: (variables.$global-spacing-medium * 2);
-  }
-
   @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
-    margin-top: (variables.$global-spacing-small * 2);
     padding: 8px 10px;
     font-size: 12px;
     line-height: 12px;
@@ -431,9 +428,8 @@ $sidebar-size-medium: 480px;
     margin-right: 10px;
     min-width: 16px;
     min-height: 16px;
-    background: url("../../../../public/images/icons/large-arrow.svg") center center no-repeat;
+    background: center center no-repeat;
     background-size: contain;
-    transform: rotate(-90deg);
 
     @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
       margin-right: 8px;
@@ -443,7 +439,27 @@ $sidebar-size-medium: 480px;
   }
 }
 
+.back {
+  @extend %sidebar-button;
+
+  margin: (variables.$global-spacing-large * 2) auto 0;
+
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
+    margin-top: (variables.$global-spacing-medium * 2);
+  }
+
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
+    margin-top: (variables.$global-spacing-small * 2);
+  }
+
+  &::before {
+    background-image: url("../../../../public/images/icons/large-arrow.svg");
+    transform: rotate(-90deg);
+  }
+}
+
 .sidebar-links {
+  margin-top: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -454,9 +470,21 @@ $sidebar-size-medium: 480px;
 }
 
 .map-link {
-  @extend .back;
+  @extend %sidebar-button;
+
+  align-self: flex-end;
+  margin: 0 $sidebar-corner-inset variables.$global-spacing-large;
+
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-medium) {
+    margin-bottom: variables.$global-spacing-medium;
+  }
+
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
+    align-self: center;
+    margin: 0 auto variables.$global-spacing-medium;
+  }
 
   &::before {
-    transform: rotate(90deg);
+    background-image: url("../../../../public/images/icons/family-tree.svg");
   }
 }

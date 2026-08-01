@@ -39,15 +39,15 @@ describe(PopulationMap, () => {
   it("marks only the deep-linked animal", () => {
     const { container } = render(<PopulationMap focusId="c" trees={mockedTrees} />);
 
-    const focused = container.querySelectorAll('[class*="focused"]');
+    const selected = container.querySelectorAll("[data-selected]");
 
-    expect(focused).toHaveLength(1);
-    expect(focused[0].querySelector("a")?.getAttribute("href")).toContain("mocked-c-slug");
+    expect(selected).toHaveLength(1);
+    expect(selected[0].querySelector("a")?.getAttribute("href")).toContain("mocked-c-slug");
   });
 
   it("marks nothing when the deep link matches no animal", () => {
     const { container } = render(<PopulationMap focusId="not-on-the-map" trees={mockedTrees} />);
 
-    expect(container.querySelectorAll('[class*="focused"]')).toHaveLength(0);
+    expect(container.querySelectorAll("[data-selected]")).toHaveLength(0);
   });
 });
