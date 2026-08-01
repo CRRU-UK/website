@@ -24,9 +24,12 @@ const mockedTrees = [
 // jsdom does not implement scrollIntoView, which the deep link uses to centre the map
 Element.prototype.scrollIntoView = () => {};
 
-// Deliberately not wrapped in `act`, unlike the other component tests in this repo: `render` inside
-// an async `act` callback has not committed by the time the callback body runs, so `container` is
-// still empty and any assertion against it passes vacuously.
+/**
+ * Deliberately not wrapped in `act`, unlike the other component tests in this repo.
+ *
+ * `render` inside an async `act` callback has not committed by the time the callback
+ * body runs, so `container` is still empty and any assertion against it passes vacuously.
+ */
 describe(PopulationMap, () => {
   it("passes accessibility with default props", async () => {
     const { container } = render(<PopulationMap trees={mockedTrees} />);

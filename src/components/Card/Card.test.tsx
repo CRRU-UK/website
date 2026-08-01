@@ -13,8 +13,6 @@ const mockedEntry = {
   slug: "003-mocked-name",
 };
 
-// Not wrapped in `act`: `render` inside an async `act` callback has not committed when the callback
-// body runs, so `container` would still be empty and every assertion would pass vacuously.
 describe(Card, () => {
   it("passes accessibility with default props", async () => {
     const { container } = render(

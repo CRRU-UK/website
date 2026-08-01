@@ -8,8 +8,10 @@ $generation-gap-large: variables.$global-catalogue-tree-spacing-large;
 $generation-gap-medium: variables.$global-catalogue-tree-spacing-medium;
 $generation-gap-small: variables.$global-catalogue-tree-spacing-small;
 
-// Tighter than the equivalent gap in <Tree />, which only ever shows two generations in a fixed
-// sidebar. Here whole families are laid out at once, so every pixel between cards widens the tree.
+/**
+ * Tighter than the equivalent gap in <Tree />, which only ever shows two generations in a fixed
+ * sidebar. Here whole families are laid out at once, so every pixel between cards widens the tree.
+ */
 $sibling-gutter: variables.$global-spacing-small;
 
 $tree-gap: variables.$global-spacing-large;
@@ -18,8 +20,10 @@ $line-size: variables.$global-catalogue-tree-line-size;
 $line-color: variables.$global-color-catalogue-line;
 $line-color-active: variables.$global-color-primary-dark;
 
-// The widest single tree is ~3360px. Wrapping against 6000px turns 58 trees into ~10 rows, giving a
-// roughly square area to pan around instead of a 50,000px strip. flex-wrap needs a definite width.
+/**
+ * The widest single tree is ~3360px. Wrapping against 6000px turns 58 trees into ~10 rows, giving a
+ * roughly square area to pan around instead of a 50,000px strip. flex-wrap needs a definite width.
+ */
 $canvas-width: 6000px;
 
 $half-line: math.floor(math.div($line-size, 2));
@@ -28,9 +32,11 @@ $half-gap-large: math.div($generation-gap-large, 2);
 $half-gap-medium: math.div($generation-gap-medium, 2);
 $half-gap-small: math.div($generation-gap-small, 2);
 
-// The riser carries the birth year chip, so it runs longer than the descender above it to leave
-// even breathing room either side of the chip. Lengthening it here rather than raising the shared
-// spacing token keeps <Tree /> in the sidebar untouched.
+/**
+ * The riser carries the birth year chip, so it runs longer than the descender above it to leave
+ * even breathing room either side of the chip. Lengthening it here rather than raising the shared
+ * spacing token keeps <Tree /> in the sidebar untouched.
+ */
 $riser-extra: 16px;
 $riser-large: $half-gap-large + $riser-extra;
 $riser-medium: $half-gap-medium + $riser-extra;
@@ -101,9 +107,6 @@ $riser-small: $half-gap-small + $riser-extra;
 
 // Canvas
 
-// Every list element below carries one of these classes, which is enough to beat the global list
-// styles in scss/layout/content.scss without a blanket `.canvas li` reset — that reset would
-// out-specify `.node` and drop its sibling gutter.
 .canvas {
   display: flex;
   flex-flow: row wrap;
@@ -148,7 +151,9 @@ $riser-small: $half-gap-small + $riser-extra;
   }
 }
 
-// Descender, from the mother's card down to the sibling bar. Offset past the card's shadow.
+/**
+ * Descender, from the mother's card down to the sibling bar. Offset past the card's shadow.
+ */
 .children::before {
   content: "";
   position: absolute;
@@ -219,8 +224,10 @@ $riser-small: $half-gap-small + $riser-extra;
   }
 }
 
-// Matches the 'last known calf' chip on the catalogue pages. Centred on the span between the bottom
-// of the sibling bar and the top of the card, so the gaps above and below it are equal.
+/**
+ * Matches the 'last known calf' chip on the catalogue pages. Centred on the span between the bottom
+ * of the sibling bar and the top of the card, so the gaps above and below it are equal.
+ */
 .year {
   z-index: 1;
   position: absolute;
@@ -247,9 +254,6 @@ $riser-small: $half-gap-small + $riser-extra;
   }
 }
 
-// An only child has no sibling bar, so the descender and riser run as one unbroken line and the chip
-// belongs at the midpoint of the whole run. That sits exactly half the riser's extra length above
-// where it would go on a riser alone, whatever the breakpoint.
 .children > .node:only-child > .year {
   top: math.div($riser-extra, 2);
 }
@@ -258,9 +262,6 @@ $riser-small: $half-gap-small + $riser-extra;
   display: none;
 }
 
-// Hovering a card lights every connector in that animal's immediate family: up to its mother, along
-// the whole sibling bar, and down to each of its own calves. Keyed on `> a:hover` rather than
-// `.node:hover`, because a node's box also spans its entire subtree and `:hover` matches up the tree.
 .node:has(> .children > .node > a:hover) > .children {
   &::before,
   > .node::before,
@@ -282,5 +283,3 @@ $riser-small: $half-gap-small + $riser-extra;
     }
   }
 }
-
-// The deep-linked animal is highlighted by <Card />'s own `selected` styling, so nothing here.
