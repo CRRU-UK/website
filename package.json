@@ -15,7 +15,7 @@
     "@contentful/live-preview": "^4.10.20",
     "@contentful/rich-text-plain-text-renderer": "^17.2.1",
     "@contentful/rich-text-react-renderer": "^16.2.2",
-    "@sentry/nextjs": "^10.69.0",
+    "@sentry/nextjs": "^10.70.0",
     "contentful": "^11.12.9",
     "dayjs": "^1.11.21",
     "joi": "^18.2.3",
