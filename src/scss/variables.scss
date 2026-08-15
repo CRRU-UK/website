@@ -71,9 +71,7 @@ $global-transition-ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
     @media (max-width: $global-breakpoint-medium) {
       @content;
     }
-  }
-
-  @if $size == "small" {
+  } @else if $size == "small" {
     @media (max-width: $global-breakpoint-small) {
       @content;
     }
