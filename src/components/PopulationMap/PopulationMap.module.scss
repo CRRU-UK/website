@@ -59,7 +59,7 @@ $riser-small: $half-gap-small + $riser-extra;
   overscroll-behavior: contain;
   border-top: 2px solid variables.$global-color-catalogue;
   user-select: none;
-  background: top left repeat url("../../../public/images/catalogue-background.svg")
+  background: top left repeat local url("../../../public/images/catalogue-background.svg")
     variables.$global-color-catalogue-light;
 
   &:active {
@@ -70,38 +70,111 @@ $riser-small: $half-gap-small + $riser-extra;
 // Controls
 
 .controls {
+  pointer-events: none;
   z-index: 10;
   position: absolute;
-  top: variables.$global-spacing-small;
-  right: variables.$global-spacing-small;
+  inset: variables.$global-spacing-small;
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
   gap: 8px;
 }
 
 .controls > button {
   $size: 44px;
 
+  pointer-events: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   width: $size;
   height: $size;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 24px;
   border-radius: variables.$global-border-radius;
   border: 2px solid variables.$global-color-catalogue;
-  background: variables.$global-color-background;
+  background-color: variables.$global-color-background;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 20px;
 
   &:hover:not(:disabled) {
     border-color: variables.$global-color-primary-dark;
-    color: variables.$global-color-primary-dark;
   }
 
   &:disabled {
     cursor: default;
     opacity: 0.4;
+  }
+}
+
+.info {
+  margin-right: variables.$global-spacing-small - 8px;
+  background-image: url("../../../public/images/icons/tooltip.svg");
+}
+
+.zoom-out {
+  background-image: url("../../../public/images/icons/catalogues/zoom-out.svg");
+}
+
+.zoom-in {
+  background-image: url("../../../public/images/icons/catalogues/zoom-in.svg");
+}
+
+.fullscreen {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-image: url("../../../public/images/icons/catalogues/fullscreen-active.svg");
+
+  @include variables.breakpoint(variables.$global-breakpoint-small) {
+    display: none;
+  }
+}
+
+:fullscreen .fullscreen {
+  background-image: url("../../../public/images/icons/catalogues/fullscreen-exit.svg");
+}
+
+// Overlay
+
+.dialog {
+  margin: auto;
+  padding: variables.$global-spacing-small;
+  max-width: min(640px, 100% - #{variables.$global-spacing-small * 2});
+  border-radius: variables.$global-border-radius;
+  border: 2px solid variables.$global-color-catalogue;
+  background: variables.$global-color-background;
+
+  &::backdrop {
+    background: rgb(0 0 0 / 50%);
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: variables.$global-spacing-small;
+  margin-bottom: 15px;
+}
+
+.header > h2 {
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.close {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: variables.$global-border-radius;
+  border: 2px solid variables.$global-color-catalogue;
+  background: center center no-repeat
+    url("../../../public/images/icons/catalogues/close.svg");
+  background-size: 12px;
+
+  &:hover {
+    border-color: variables.$global-color-primary-dark;
   }
 }
 

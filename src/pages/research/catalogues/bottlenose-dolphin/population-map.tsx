@@ -41,14 +41,14 @@ const Page: NextPage<PageProps> = ({ id, pageData, trees }: PageProps) => {
       <section className={styles.page}>
         <div className={styles.intro}>
           <Breadcrumbs items={breadcrumbs} style="inline" />
-
-          <div className={styles.wrapper}>
-            <h1 className={styles.hidden}>{page.title}</h1>
-            {!!pageData.content && documentToReactComponents(pageData.content, pageRenderOptions)}
-          </div>
+          <h1 className={styles.hidden}>{page.title}</h1>
         </div>
 
-        <PopulationMap focusId={id} trees={trees} />
+        <PopulationMap focusId={id} trees={trees}>
+          <div className={styles.content}>
+            {!!pageData.content && documentToReactComponents(pageData.content, pageRenderOptions)}
+          </div>
+        </PopulationMap>
       </section>
     </>
   );
