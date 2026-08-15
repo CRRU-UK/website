@@ -112,6 +112,16 @@ const nextConfig = {
 
     return defaultHeaders;
   },
+  /**
+   * Next 16 treats the routes /sitemap and /sitemap.xml as app-router metadata routes even with no
+   * app dir, so the pages live under /site-map and are rewritten back.
+   */
+  async rewrites() {
+    return [
+      { source: "/sitemap", destination: "/site-map" },
+      { source: "/sitemap.xml", destination: "/site-map.xml" },
+    ];
+  },
   async redirects() {
     return [
       {
