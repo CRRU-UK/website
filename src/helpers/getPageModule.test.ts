@@ -13,6 +13,12 @@ const mockedEntryFields = {
   content: "test content",
 };
 
+// The helper reads entries back through stringifySafe, which the SDK mixes on at runtime
+const mockedResponse = (items: Array<unknown>) => ({
+  items,
+  stringifySafe: () => JSON.stringify({ items }),
+});
+
 afterEach(() => {
   vi.clearAllMocks();
 });
@@ -21,16 +27,14 @@ describe(getPageModule, () => {
   it("returns page module entry with all properties", async () => {
     vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
       () =>
-        ({
-          items: [
-            {
-              fields: {
-                ...mockedEntryFields,
-                data: "test data",
-              },
+        mockedResponse([
+          {
+            fields: {
+              ...mockedEntryFields,
+              data: "test data",
             },
-          ],
-        }) as any,
+          },
+        ]) as any,
     );
 
     const result = await getPageModule("mocked-id");
@@ -50,14 +54,7 @@ describe(getPageModule, () => {
 
   it("returns page module entry with missing properties", async () => {
     vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
-      () =>
-        ({
-          items: [
-            {
-              fields: mockedEntryFields,
-            },
-          ],
-        }) as any,
+      () => mockedResponse([{ fields: mockedEntryFields }]) as any,
     );
 
     const result = await getPageModule("mocked-id");
@@ -70,10 +67,7 @@ describe(getPageModule, () => {
 
   it("returns null for no entries", async () => {
     vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
-      () =>
-        ({
-          items: [],
-        }) as any,
+      () => mockedResponse([]) as any,
     );
 
     const result = await getPageModule("mocked-id");

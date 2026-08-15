@@ -1,5 +1,6 @@
 import { ContentTypes } from "./constants";
 import { contentfulDeliveryClient } from "./contentful";
+import parseSafe from "./parseSafe";
 import type { ContentTypePageModule, PageModule } from "./types";
 
 /**
@@ -8,11 +9,13 @@ import type { ContentTypePageModule, PageModule } from "./types";
  * @returns Species page entries.
  */
 const getPageModule = async (id: string): Promise<PageModule | null> => {
-  const { items } = await contentfulDeliveryClient.getEntries<ContentTypePageModule>({
+  const response = await contentfulDeliveryClient.getEntries<ContentTypePageModule>({
     content_type: ContentTypes.PageModule,
     "fields.id": id,
     limit: 1,
   });
+
+  const { items } = parseSafe(response);
 
   if (!items.length) {
     return null;

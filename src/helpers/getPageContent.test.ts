@@ -17,6 +17,24 @@ vi.mock("./contentful", () => ({
   },
 }));
 
+const mockedEntry = {
+  sys: { id: "test-id" },
+  fields: {
+    description: "test description",
+    content: "test content",
+    data: { foo: "bar" },
+    image: "test image",
+    background: "test background",
+    references: ["test-reference-1", "test-reference-2"],
+  },
+};
+
+// The helper reads entries back through stringifySafe, which the SDK mixes on at runtime
+const mockedResponse = (items: Array<unknown>) => ({
+  items,
+  stringifySafe: () => JSON.stringify({ items }),
+});
+
 afterEach(() => {
   vi.clearAllMocks();
 });
@@ -24,22 +42,7 @@ afterEach(() => {
 describe(getPageContent, () => {
   it("returns page content entry with defaults", async () => {
     vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
-      () =>
-        ({
-          items: [
-            {
-              sys: { id: "test-id" },
-              fields: {
-                description: "test description",
-                content: "test content",
-                data: { foo: "bar" },
-                image: "test image",
-                background: "test background",
-                references: ["test-reference-1", "test-reference-2"],
-              },
-            },
-          ],
-        }) as any,
+      () => mockedResponse([mockedEntry]) as any,
     );
 
     const result = await getPageContent("/mocked/path");
@@ -66,22 +69,7 @@ describe(getPageContent, () => {
 
   it("returns page content entry with options", async () => {
     vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
-      () =>
-        ({
-          items: [
-            {
-              sys: { id: "test-id" },
-              fields: {
-                description: "test description",
-                content: "test content",
-                data: { foo: "bar" },
-                image: "test image",
-                background: "test background",
-                references: ["test-reference-1", "test-reference-2"],
-              },
-            },
-          ],
-        }) as any,
+      () => mockedResponse([mockedEntry]) as any,
     );
 
     const result = await getPageContent("/mocked/path", { references: true });
@@ -99,22 +87,7 @@ describe(getPageContent, () => {
 
   it("returns page content entry using preview client", async () => {
     vi.mocked(contentfulPreviewClient.getEntries).mockImplementation(
-      () =>
-        ({
-          items: [
-            {
-              sys: { id: "test-id" },
-              fields: {
-                description: "test description",
-                content: "test content",
-                data: { foo: "bar" },
-                image: "test image",
-                background: "test background",
-                references: ["test-reference-1", "test-reference-2"],
-              },
-            },
-          ],
-        }) as any,
+      () => mockedResponse([mockedEntry]) as any,
     );
 
     const result = await getPageContent("/mocked/path", { preview: true });
@@ -141,15 +114,7 @@ describe(getPageContent, () => {
 
   it("returns page content entry with missing fields", async () => {
     vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
-      () =>
-        ({
-          items: [
-            {
-              sys: { id: "test-id" },
-              fields: {},
-            },
-          ],
-        }) as any,
+      () => mockedResponse([{ sys: { id: "test-id" }, fields: {} }]) as any,
     );
 
     const result = await getPageContent("/mocked/path", { references: true });

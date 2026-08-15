@@ -1,6 +1,7 @@
 import { ContentTypes } from "./constants";
 import { contentfulDeliveryClient, contentfulPreviewClient } from "./contentful";
 import { flattenImageAssetFields } from "./flattenAssetFields";
+import parseSafe from "./parseSafe";
 import type { ContentTypePageContent, PageData } from "./types";
 
 interface Options {
@@ -19,13 +20,14 @@ const getPageContent = async (path: string, options?: Options): Promise<PageData
     client = contentfulPreviewClient;
   }
 
-  const { items } = await client.getEntries<ContentTypePageContent>({
+  const response = await client.getEntries<ContentTypePageContent>({
     content_type: ContentTypes.PageContent,
     "fields.path": path,
     limit: 1,
     include: 2,
   });
 
+  const { items } = parseSafe(response);
   const [{ sys, fields }] = items;
 
   const pageData: PageData = {

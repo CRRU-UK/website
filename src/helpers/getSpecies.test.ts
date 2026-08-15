@@ -27,6 +27,12 @@ const mockedEntryFields = {
   image: "test image",
 };
 
+// The helper reads entries back through stringifySafe, which the SDK mixes on at runtime
+const mockedResponse = (items: Array<unknown>) => ({
+  items,
+  stringifySafe: () => JSON.stringify({ items }),
+});
+
 afterEach(() => {
   vi.clearAllMocks();
 });
@@ -35,16 +41,14 @@ describe(getSpecies, () => {
   it("returns species with all properties", async () => {
     vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
       () =>
-        ({
-          items: [
-            {
-              fields: {
-                ...mockedEntryFields,
-                subfamily: "test subfamily",
-              },
+        mockedResponse([
+          {
+            fields: {
+              ...mockedEntryFields,
+              subfamily: "test subfamily",
             },
-          ],
-        }) as any,
+          },
+        ]) as any,
     );
 
     const result = await getSpecies();
@@ -66,14 +70,7 @@ describe(getSpecies, () => {
 
   it("returns species with missing properties", async () => {
     vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
-      () =>
-        ({
-          items: [
-            {
-              fields: mockedEntryFields,
-            },
-          ],
-        }) as any,
+      () => mockedResponse([{ fields: mockedEntryFields }]) as any,
     );
 
     const result = await getSpecies();
