@@ -23,12 +23,15 @@ const mockedEntries = {
   image: "test image",
 };
 
+// The helper reads entries back through stringifySafe, which the SDK mixes on at runtime
+const mockedResponse = (items: Array<unknown>) => ({
+  items,
+  stringifySafe: () => JSON.stringify({ items }),
+});
+
 beforeEach(() => {
   vi.mocked(contentfulDeliveryClient.getEntries).mockImplementation(
-    () =>
-      ({
-        items: [{ fields: mockedEntries }],
-      }) as any,
+    () => mockedResponse([{ fields: mockedEntries }]) as any,
   );
 });
 

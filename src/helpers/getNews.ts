@@ -2,6 +2,7 @@ import type { Asset } from "contentful";
 import { ContentTypes } from "./constants";
 import { contentfulDeliveryClient } from "./contentful";
 import { flattenImageAssetFields } from "./flattenAssetFields";
+import parseSafe from "./parseSafe";
 import type { ContentTypeNews, NewsArticle } from "./types";
 
 interface Options {
@@ -15,11 +16,13 @@ interface Options {
  * @returns News article entries.
  */
 const getNews = async ({ limit = 1000 }: Options): Promise<Array<NewsArticle>> => {
-  const { items } = await contentfulDeliveryClient.getEntries<ContentTypeNews>({
+  const response = await contentfulDeliveryClient.getEntries<ContentTypeNews>({
     content_type: ContentTypes.NewsArticle,
     order: ["-fields.date"],
     limit,
   });
+
+  const { items } = parseSafe(response);
 
   const data = items.map(({ fields }) => ({
     title: fields.title,

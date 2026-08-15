@@ -2,6 +2,7 @@ import type { Asset } from "contentful";
 import { ContentTypes } from "./constants";
 import { contentfulDeliveryClient } from "./contentful";
 import { flattenImageAssetFields } from "./flattenAssetFields";
+import parseSafe from "./parseSafe";
 import type { ContentTypeSpeciesPage, SpeciesEntry } from "./types";
 
 /**
@@ -9,11 +10,13 @@ import type { ContentTypeSpeciesPage, SpeciesEntry } from "./types";
  * @returns Species page entries.
  */
 const getSpecies = async (): Promise<Array<SpeciesEntry>> => {
-  const { items } = await contentfulDeliveryClient.getEntries<ContentTypeSpeciesPage>({
+  const response = await contentfulDeliveryClient.getEntries<ContentTypeSpeciesPage>({
     content_type: ContentTypes.SpeciesPage,
     order: ["fields.name"],
     limit: 1000,
   });
+
+  const { items } = parseSafe(response);
 
   const data = items.map(({ fields }) => ({
     name: fields.name,
