@@ -37,20 +37,12 @@
   white-space: nowrap;
 }
 
-.intro > .wrapper {
-  padding: 0 variables.$global-padding-large;
 
-  @include variables.breakpoint(variables.$global-breakpoint-medium) {
-    padding: 0 variables.$global-padding-medium;
-  }
-
-  @include variables.breakpoint(variables.$global-breakpoint-small) {
-    padding: 0 variables.$global-padding-small;
-  }
+.content p + p {
+  margin-top: 10px;
 }
 
-.intro p {
-  margin-top: 10px;
+.content p {
   font-size: 16px;
   line-height: 24px;
   color: variables.$global-color-body-dark;

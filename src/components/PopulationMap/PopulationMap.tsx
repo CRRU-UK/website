@@ -2,6 +2,7 @@ import {
   type MouseEvent,
   type PointerEvent,
   type ReactElement,
+  type ReactNode,
   useEffect,
   useMemo,
   useRef,
@@ -50,12 +51,15 @@ const TreeNode = ({ focusId, node }: NodeProps): ReactElement => {
 };
 
 interface Props {
+  children?: ReactNode;
   focusId?: string | null;
   trees: Array<CatalogueFamilyNode>;
 }
 
-const PopulationMap = ({ focusId, trees }: Props) => {
+const PopulationMap = ({ children, focusId, trees }: Props) => {
   const mapRef = useRef<HTMLElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
   // Panning lives entirely in a ref, so dragging never re-renders
   const drag = useRef({ left: 0, moved: false, pointer: -1, top: 0, x: 0, y: 0 });
@@ -156,25 +160,41 @@ const PopulationMap = ({ focusId, trees }: Props) => {
   );
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} ref={wrapperRef}>
       <div className={styles.controls}>
         <button
+          aria-label="About"
+          className={styles.info}
+          onClick={() => dialogRef.current?.showModal()}
+          type="button"
+        />
+
+        <button
           aria-label="Zoom out"
+          className={styles["zoom-out"]}
           disabled={zoom === 0}
           onClick={() => setZoom((current) => Math.max(0, current - 1))}
           type="button"
-        >
-          &minus;
-        </button>
+        />
 
         <button
           aria-label="Zoom in"
+          className={styles["zoom-in"]}
           disabled={zoom === ZOOM_STEPS.length - 1}
           onClick={() => setZoom((current) => Math.min(ZOOM_STEPS.length - 1, current + 1))}
           type="button"
-        >
-          +
-        </button>
+        />
+
+        <button
+          aria-label="Toggle full screen"
+          className={styles.fullscreen}
+          onClick={() =>
+            document.fullscreenElement
+              ? document.exitFullscreen()
+              : wrapperRef.current?.requestFullscreen?.()
+          }
+          type="button"
+        />
       </div>
 
       <section
@@ -193,6 +213,21 @@ const PopulationMap = ({ focusId, trees }: Props) => {
           {familyTrees}
         </ul>
       </section>
+
+      <dialog aria-label="About" className={styles.dialog} ref={dialogRef}>
+        <div className={styles.header}>
+          <h2>About</h2>
+
+          <button
+            aria-label="Close"
+            className={styles.close}
+            onClick={() => dialogRef.current?.close()}
+            type="button"
+          />
+        </div>
+
+        {children}
+      </dialog>
     </div>
   );
 };

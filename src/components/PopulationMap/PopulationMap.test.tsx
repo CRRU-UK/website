@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { axe } from "vitest-axe";
 
@@ -21,8 +21,13 @@ const mockedTrees = [
   node("d", [node("e"), node("f"), node("g")]),
 ];
 
-// jsdom does not implement scrollIntoView, which the deep link uses to centre the map
+// jsdom does not implement scrollIntoView, which the deep link uses to centre the map...
 Element.prototype.scrollIntoView = () => {};
+
+// ...nor showModal, which the info button uses to open the overlay
+HTMLDialogElement.prototype.showModal = function showModal() {
+  this.open = true;
+};
 
 /**
  * Deliberately not wrapped in `act`, unlike the other component tests in this repo.
@@ -46,6 +51,22 @@ describe(PopulationMap, () => {
 
     expect(selected).toHaveLength(1);
     expect(selected[0].querySelector("a")?.getAttribute("href")).toContain("mocked-c-slug");
+  });
+
+  it("opens the overlay from the info button", () => {
+    // Scoped to `container` because this file's renders are never unmounted between tests
+    const { container } = render(
+      <PopulationMap trees={mockedTrees}>mocked overlay content</PopulationMap>,
+    );
+
+    const dialog = container.querySelector("dialog");
+
+    expect(dialog?.textContent).toContain("mocked overlay content");
+    expect(dialog?.open).toBe(false);
+
+    fireEvent.click(container.querySelector("[aria-label='About']") as Element);
+
+    expect(dialog?.open).toBe(true);
   });
 
   it("marks nothing when the deep link matches no animal", () => {
