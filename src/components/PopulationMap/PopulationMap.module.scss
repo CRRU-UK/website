@@ -67,6 +67,16 @@ $riser-small: $half-gap-small + $riser-extra;
   }
 }
 
+// Search
+
+.search {
+  z-index: 20;
+  position: absolute;
+  top: variables.$global-spacing-small;
+  left: variables.$global-spacing-small;
+  width: min(800px, calc(100% - 160px));
+}
+
 // Controls
 
 .controls {

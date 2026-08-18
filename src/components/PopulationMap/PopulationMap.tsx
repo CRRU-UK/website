@@ -1,17 +1,19 @@
+import { useRouter } from "next/router";
 import {
   type MouseEvent,
   type PointerEvent,
   type ReactElement,
   type ReactNode,
+  useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
 } from "react";
 
-import { Card } from "@/components";
+import { Card, CatalogueSearch } from "@/components";
 import { Catalogues } from "@/helpers/constants";
-import type { CatalogueFamilyNode } from "@/helpers/types";
+import type { CatalogueBasicInfo, CatalogueFamilyNode } from "@/helpers/types";
 
 import styles from "./PopulationMap.module.scss";
 
@@ -56,7 +58,9 @@ interface Props {
   trees: Array<CatalogueFamilyNode>;
 }
 
-const PopulationMap = ({ children, focusId, trees }: Props) => {
+const PopulationMap = ({ children, focusId: initialFocusId, trees }: Props) => {
+  const router = useRouter();
+
   const mapRef = useRef<HTMLElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -67,16 +71,49 @@ const PopulationMap = ({ children, focusId, trees }: Props) => {
   const [zoom, setZoom] = useState(ZOOM_STEPS.length - 1);
   const previousZoom = useRef(zoom);
 
-  // Centre a deep-linked animal
-  useEffect(() => {
-    if (!focusId) {
-      return;
-    }
+  // Drives the highlight and scroll, seeded from the ?id= deep link, then set by the search
+  const [focusId, setFocusId] = useState<string | null>(initialFocusId ?? null);
 
+  // Every animal on the map, so the search only offers ones it can actually scroll to
+  const mapIds = useMemo(() => {
+    const ids = new Set<string>();
+    const collect = (nodes: Array<CatalogueFamilyNode>) => {
+      for (const node of nodes) {
+        ids.add(node.id);
+        collect(node.calves);
+      }
+    };
+    collect(trees);
+    return ids;
+  }, [trees]);
+
+  const scrollToSelected = useCallback(() => {
     mapRef.current
       ?.querySelector("[data-selected] > a")
       ?.scrollIntoView({ block: "center", inline: "center" });
-  }, [focusId]);
+  }, []);
+
+  // Centre the deep-linked animal on load, and any later search selection
+  useEffect(() => {
+    if (focusId) {
+      scrollToSelected();
+    }
+  }, [focusId, scrollToSelected]);
+
+  const handleSelect = (item: CatalogueBasicInfo) => {
+    if (item.id === focusId) {
+      scrollToSelected();
+      return;
+    }
+
+    setFocusId(item.id);
+
+    // Silent sync so the selection is shareable
+    router.push({ query: { ...router.query, id: item.id } }, undefined, {
+      scroll: false,
+      shallow: true,
+    });
+  };
 
   // Keep the centre of the viewport in place
   useEffect(() => {
@@ -161,6 +198,14 @@ const PopulationMap = ({ children, focusId, trees }: Props) => {
 
   return (
     <div className={styles.wrapper} ref={wrapperRef}>
+      <div className={styles.search}>
+        <CatalogueSearch
+          catalogue={Catalogues.BottlenoseDolphin}
+          filter={(item) => mapIds.has(item.id)}
+          onSelect={handleSelect}
+        />
+      </div>
+
       <div className={styles.controls}>
         <button
           aria-label="About"
