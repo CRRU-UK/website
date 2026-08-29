@@ -27,7 +27,7 @@ interface PageProps {
 }
 
 export const TechnologySponsorsList = ({ data }: { data: TechnologySponsorsType | null }) => {
-  if (!data || data.length === 0) {
+  if (!Array.isArray(data) || data.length === 0) {
     return null;
   }
 
