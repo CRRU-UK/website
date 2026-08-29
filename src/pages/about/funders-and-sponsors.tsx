@@ -26,7 +26,7 @@ interface PageProps {
   technologySponsorsData: TechnologySponsorsType | null;
 }
 
-const TechnologySponsorsList = ({ data }: { data: TechnologySponsorsType | null }) => {
+export const TechnologySponsorsList = ({ data }: { data: TechnologySponsorsType | null }) => {
   if (!data) {
     return null;
   }
@@ -53,7 +53,7 @@ const TechnologySponsorsList = ({ data }: { data: TechnologySponsorsType | null 
   );
 };
 
-const SponsorsList = ({ data }: { data: Array<SponsorsDataReduced> | null }) => {
+export const SponsorsList = ({ data }: { data: Array<SponsorsDataReduced> | null }) => {
   if (!data) {
     return null;
   }
@@ -91,7 +91,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
 
   const { content, image, data: technologySponsors, background, description, references } = data;
 
-  const technologySponsorsData = technologySponsors as TechnologySponsorsType;
+  const technologySponsorsData = (technologySponsors as TechnologySponsorsType) ?? null;
 
   const sponsorsData =
     references?.map(({ fields }) => ({
