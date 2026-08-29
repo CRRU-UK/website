@@ -27,7 +27,7 @@ export type PageData = {
   id?: string;
   description: string | null;
   content: Document | null;
-  data?: object | null;
+  data?: object | Array<unknown> | null;
   image: FlattenedImage | null;
   background: FlattenedImage | null;
   references?: Array<Entry> | null;

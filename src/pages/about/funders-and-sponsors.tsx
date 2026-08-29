@@ -18,29 +18,66 @@ type SponsorsDataReduced = {
   background?: FlattenedImage;
 };
 
+type TechnologySponsorsType = Array<{ name: string; url: string }>;
+
 interface PageProps {
   pageData: PageData;
   sponsorsData: Array<SponsorsDataReduced> | null;
+  technologySponsorsData: TechnologySponsorsType | null;
 }
 
-const Page: NextPage<PageProps> = ({ pageData, sponsorsData }) => (
+export const TechnologySponsorsList = ({ data }: { data: TechnologySponsorsType | null }) => {
+  if (!Array.isArray(data) || data.length === 0) {
+    return null;
+  }
+
+  return (
+    <>
+      <hr />
+
+      <p>
+        Many thanks also to our technology partners and programmes which have provided support and
+        grants towards the software and systems that drive much of our research work:
+      </p>
+
+      <ul>
+        {data?.map(({ name, url }: { name: string; url: string }) => (
+          <li key={name}>
+            <a className="external" href={url} rel="noopener noreferrer" target="_blank">
+              {name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+};
+
+export const SponsorsList = ({ data }: { data: Array<SponsorsDataReduced> | null }) => {
+  if (!data || data.length === 0) {
+    return null;
+  }
+
+  return data.map((item) => (
+    <ListItem
+      description={item.description}
+      image={item.image}
+      key={item.name}
+      link={item.url}
+      title={item.name}
+    />
+  ));
+};
+
+const Page: NextPage<PageProps> = ({ pageData, sponsorsData, technologySponsorsData }) => (
   <CommonPage
     breadcrumbs={[sitemap.about, sitemap.sponsors]}
     data={pageData}
     page={sitemap.sponsors}
     parent={sitemap.about}
   >
-    {sponsorsData
-      ? sponsorsData.map((item) => (
-          <ListItem
-            description={item.description}
-            image={item.image}
-            key={item.name}
-            link={item.url}
-            title={item.name}
-          />
-        ))
-      : null}
+    <SponsorsList data={sponsorsData} />
+    <TechnologySponsorsList data={technologySponsorsData} />
   </CommonPage>
 );
 
@@ -52,7 +89,9 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
     preview,
   });
 
-  const { content, image, background, description, references } = data;
+  const { content, image, data: technologySponsors, background, description, references } = data;
+
+  const technologySponsorsData = (technologySponsors as TechnologySponsorsType) ?? null;
 
   const sponsorsData =
     references?.map(({ fields }) => ({
@@ -76,6 +115,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (ctx) => 
         description,
       },
       sponsorsData,
+      technologySponsorsData,
     },
   };
 };
