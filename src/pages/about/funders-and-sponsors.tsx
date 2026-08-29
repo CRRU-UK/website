@@ -27,7 +27,7 @@ interface PageProps {
 }
 
 export const TechnologySponsorsList = ({ data }: { data: TechnologySponsorsType | null }) => {
-  if (!data) {
+  if (!data || data.length === 0) {
     return null;
   }
 
@@ -54,7 +54,7 @@ export const TechnologySponsorsList = ({ data }: { data: TechnologySponsorsType 
 };
 
 export const SponsorsList = ({ data }: { data: Array<SponsorsDataReduced> | null }) => {
-  if (!data) {
+  if (!data || data.length === 0) {
     return null;
   }
 
