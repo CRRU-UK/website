@@ -41,7 +41,7 @@ export const TechnologySponsorsList = ({ data }: { data: TechnologySponsorsType 
       </p>
 
       <ul>
-        {data.map(({ name, url }: { name: string; url: string }) => (
+        {data?.map(({ name, url }: { name: string; url: string }) => (
           <li key={name}>
             <a className="external" href={url} rel="noopener noreferrer" target="_blank">
               {name}
