@@ -203,6 +203,8 @@ const PopulationMap = ({ children, focusId: initialFocusId, trees }: Props) => {
           catalogue={Catalogues.BottlenoseDolphin}
           filter={(item) => mapIds.has(item.id)}
           onSelect={handleSelect}
+          placeholder="Search population map..."
+          variant="floating"
         />
       </div>
 

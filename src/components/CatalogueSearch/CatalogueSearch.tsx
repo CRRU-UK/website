@@ -12,9 +12,17 @@ interface Props {
   filter?: (item: CatalogueBasicInfo) => boolean;
   /** When set, results are buttons calling this instead of navigating. */
   onSelect?: (item: CatalogueBasicInfo) => void;
+  placeholder?: string;
+  variant?: "floating" | "inline";
 }
 
-const CatalogueSearch = ({ catalogue, filter, onSelect }: Props) => {
+const CatalogueSearch = ({
+  catalogue,
+  filter,
+  onSelect,
+  placeholder = "Search catalogue by name, ID, reference...",
+  variant = "inline",
+}: Props) => {
   const [search, setSearch] = useState<string>("");
   const [data, setData] = useState<null | CatalogueAPIResponse>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -39,7 +47,7 @@ const CatalogueSearch = ({ catalogue, filter, onSelect }: Props) => {
     return () => clearTimeout(timeout);
   }, [search, catalogue]);
 
-  const searchClasses = [styles.search];
+  const searchClasses = [styles.search, styles[variant]];
   if (loading || data) {
     searchClasses.push(styles.active);
   }
@@ -73,7 +81,7 @@ const CatalogueSearch = ({ catalogue, filter, onSelect }: Props) => {
       <input
         aria-label="Search the catalogue"
         onChange={({ target }) => setSearch((target as HTMLInputElement).value)}
-        placeholder="Search name, ID, reference, birth year..."
+        placeholder={placeholder}
         type="search"
         value={search}
       />
