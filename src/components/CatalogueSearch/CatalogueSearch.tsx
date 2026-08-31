@@ -33,18 +33,28 @@ const CatalogueSearch = ({
       return;
     }
 
+    let cancelled = false;
+
     const getData = async () => {
       setLoading(true);
 
       const response = await fetch(`/api/catalogues/${catalogue}?search=${search}&page=1`);
-      const result: CatalogueAPIResponse = await response.json();
-      setData(result);
 
+      const result: CatalogueAPIResponse = await response.json();
+
+      if (cancelled) {
+        return;
+      }
+
+      setData(result);
       setLoading(false);
     };
 
     const timeout = setTimeout(getData, 500);
-    return () => clearTimeout(timeout);
+    return () => {
+      clearTimeout(timeout);
+      cancelled = true;
+    };
   }, [search, catalogue]);
 
   const searchClasses = [styles.search, styles[variant]];
