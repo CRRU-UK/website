@@ -30,6 +30,8 @@ const CatalogueSearch = ({
   useEffect(() => {
     if (search === "") {
       setData(null);
+      setLoading(false);
+
       return;
     }
 
