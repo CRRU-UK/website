@@ -12,10 +12,13 @@
   width: 100%;
   height: card.$height-large;
   border-radius: variables.$global-border-radius;
+  font-family: inherit;
   font-size: 16px;
   line-height: 20px;
   color: variables.$global-color-body;
+  text-align: left;
   text-decoration: none;
+  cursor: pointer;
   border: 2px solid variables.$global-color-catalogue;
   box-shadow: 0 card.$shadow 0
     color.adjust(variables.$global-color-catalogue, $lightness: 5%);

@@ -1,0 +1,138 @@
+@use "../../scss/variables";
+
+$results-spacing: 20px;
+
+.search {
+  z-index: 10;
+  position: relative;
+  height: variables.$global-catalogue-input-height;
+
+  > input {
+    z-index: 10;
+    position: relative;
+    padding: 0 10px 0 50px;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+    border: 2px solid variables.$global-color-catalogue;
+    border-radius: variables.$global-border-radius;
+    outline: 0;
+    background: 15px center no-repeat url("../../../public/images/icons/catalogues/search.svg")
+      variables.$global-color-background;
+
+    // Smaller text and icon on small screens, shared by both variants
+    @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
+      padding-left: 40px;
+      font-size: 14px;
+      background-position-x: 15px;
+      background-size: 15px 15px;
+    }
+
+    &:placeholder-shown {
+      text-overflow: ellipsis;
+    }
+
+    &:focus {
+      border-color: variables.$global-color-primary-dark;
+    }
+  }
+
+  > .results {
+    z-index: 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: $results-spacing $results-spacing;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    margin: 0;
+    padding: $results-spacing;
+    width: 100%;
+    max-height: 500px;
+    border: 2px solid variables.$global-color-primary-dark;
+    border-top: 0;
+    box-shadow: rgba(#000, 0.4) 0 0 30px 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    list-style: none;
+    background: #fff;
+    overflow: hidden;
+    overflow-y: scroll;
+
+    > li {
+      margin: 0;
+      width: 100%;
+    }
+
+    > li.no-results,
+    > li.loading {
+      width: 100%;
+      grid-column: 1 / -1;
+    }
+
+    > li.no-results {
+      font-size: 14px;
+      line-height: 14px;
+    }
+
+    > li.loading {
+      padding: 10px 0;
+    }
+
+    > li.loading > svg {
+      margin: 0 auto;
+    }
+  }
+
+  &.active > input {
+    box-shadow: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-color: variables.$global-color-primary-dark;
+  }
+}
+
+.inline {
+  width: 800px;
+
+  @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+  }
+
+  // Sheds its own border to sit flush inside the sticky toolbar
+  > input {
+    @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
+      border-color: transparent;
+      border-radius: 0;
+    }
+  }
+
+  > .results {
+    @include variables.breakpoint(variables.$global-catalogue-breakpoint-small) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding: variables.$global-padding-small;
+      gap: variables.$global-spacing-small variables.$global-spacing-small;
+      width: 100vw;
+      max-height: 320px;
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+  }
+}
+
+.floating {
+  width: 100%;
+
+  @include variables.breakpoint(variables.$global-breakpoint-small) {
+    height: variables.$global-catalogue-input-height-small;
+  }
+
+  > .results {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr));
+    max-height: 360px;
+  }
+}

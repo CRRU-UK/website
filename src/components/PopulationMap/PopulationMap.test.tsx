@@ -1,10 +1,17 @@
 import { fireEvent, render } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { axe } from "vitest-axe";
 
 import type { CatalogueFamilyNode } from "@/helpers/types";
 
 import PopulationMap from "./PopulationMap";
+
+vi.mock("next/router", () => ({
+  useRouter: vi.fn(() => ({
+    push: vi.fn(),
+    query: {},
+  })),
+}));
 
 const node = (id: string, calves: Array<CatalogueFamilyNode> = []): CatalogueFamilyNode => ({
   id,

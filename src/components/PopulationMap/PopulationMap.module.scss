@@ -67,6 +67,22 @@ $riser-small: $half-gap-small + $riser-extra;
   }
 }
 
+// Search
+
+.search {
+  z-index: 20;
+  position: absolute;
+  top: variables.$global-spacing-small;
+  left: variables.$global-spacing-small;
+  width: 460px;
+
+  @include variables.breakpoint(variables.$global-breakpoint-small) {
+    top: 10px;
+    left: 10px;
+    width: min(460px, calc(100% - 134px));
+  }
+}
+
 // Controls
 
 .controls {
@@ -79,10 +95,15 @@ $riser-small: $half-gap-small + $riser-extra;
   justify-content: flex-end;
   align-items: flex-start;
   gap: 8px;
+
+  @include variables.breakpoint(variables.$global-breakpoint-small) {
+    inset: 10px;
+    gap: 6px;
+  }
 }
 
 .controls > button {
-  $size: 44px;
+  $size: variables.$global-catalogue-input-height;
 
   pointer-events: auto;
   display: flex;
@@ -93,9 +114,21 @@ $riser-small: $half-gap-small + $riser-extra;
   border-radius: variables.$global-border-radius;
   border: 2px solid variables.$global-color-catalogue;
   background-color: variables.$global-color-background;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: 20px;
+
+  @include variables.breakpoint(variables.$global-breakpoint-small) {
+    width: variables.$global-catalogue-input-height-small;
+    height: variables.$global-catalogue-input-height-small;
+  }
+
+  // Icon on its own box so :disabled can fade it without touching the fill or border
+  &::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
 
   &:hover:not(:disabled) {
     border-color: variables.$global-color-primary-dark;
@@ -103,20 +136,29 @@ $riser-small: $half-gap-small + $riser-extra;
 
   &:disabled {
     cursor: default;
+    background-color: variables.$global-color-background-dark;
+  }
+
+  &:disabled::before {
     opacity: 0.4;
   }
 }
 
 .info {
-  margin-right: variables.$global-spacing-small - 8px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.info::before {
   background-image: url("../../../public/images/icons/tooltip.svg");
 }
 
-.zoom-out {
+.zoom-out::before {
   background-image: url("../../../public/images/icons/catalogues/zoom-out.svg");
 }
 
-.zoom-in {
+.zoom-in::before {
   background-image: url("../../../public/images/icons/catalogues/zoom-in.svg");
 }
 
@@ -124,14 +166,17 @@ $riser-small: $half-gap-small + $riser-extra;
   position: absolute;
   right: 0;
   bottom: 0;
-  background-image: url("../../../public/images/icons/catalogues/fullscreen-active.svg");
 
   @include variables.breakpoint(variables.$global-breakpoint-small) {
     display: none;
   }
 }
 
-:fullscreen .fullscreen {
+.fullscreen::before {
+  background-image: url("../../../public/images/icons/catalogues/fullscreen-active.svg");
+}
+
+:fullscreen .fullscreen::before {
   background-image: url("../../../public/images/icons/catalogues/fullscreen-exit.svg");
 }
 

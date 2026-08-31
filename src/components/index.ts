@@ -1,6 +1,7 @@
 export { default as Breadcrumbs } from "./Breadcrumbs/Breadcrumbs";
 export { default as Button } from "./Button/Button";
 export { default as Card } from "./Card/Card";
+export { default as CatalogueSearch } from "./CatalogueSearch/CatalogueSearch";
 export { default as Filters } from "./Filters/Filters";
 export { default as Gallery } from "./Gallery/Gallery";
 export { default as Highlight } from "./Highlight/Highlight";

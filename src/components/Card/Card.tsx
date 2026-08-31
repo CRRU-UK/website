@@ -9,12 +9,21 @@ interface Props {
   catalogue: Catalogues;
   disabled?: boolean;
   entry: CatalogueBasicInfo;
+  /** For non-link cards. */
+  onSelect?: () => void;
   selected?: boolean;
   /** `fill` takes the width of its container, `fixed` sets its own. */
   size?: "fill" | "fixed";
 }
 
-const Card = ({ catalogue, entry, disabled = false, selected = false, size = "fill" }: Props) => {
+const Card = ({
+  catalogue,
+  entry,
+  disabled = false,
+  onSelect,
+  selected = false,
+  size = "fill",
+}: Props) => {
   const classes = [styles.card];
 
   if (size === "fixed") {
@@ -37,8 +46,8 @@ const Card = ({ catalogue, entry, disabled = false, selected = false, size = "fi
     classes.push(styles.disabled);
   }
 
-  return (
-    <Link className={classes.join(" ")} href={`/research/catalogues/${catalogue}/${entry.slug}`}>
+  const content = (
+    <>
       <span className={styles.icon}></span>
       <span className={styles.text}>
         <span className={styles.id}>
@@ -47,6 +56,20 @@ const Card = ({ catalogue, entry, disabled = false, selected = false, size = "fi
         </span>
         <span className={styles.name}>{entry.name || <i>Unnamed</i>}</span>
       </span>
+    </>
+  );
+
+  if (onSelect) {
+    return (
+      <button className={classes.join(" ")} onClick={onSelect} type="button">
+        {content}
+      </button>
+    );
+  }
+
+  return (
+    <Link className={classes.join(" ")} href={`/research/catalogues/${catalogue}/${entry.slug}`}>
+      {content}
     </Link>
   );
 };
