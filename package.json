@@ -21,7 +21,7 @@
     "joi": "^18.2.5",
     "next": "^16.3.2",
     "next-seo": "^7.3.0",
-    "nodemailer": "^9.0.5",
+    "nodemailer": "^9.1.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-markdown": "^10.1.0"
