@@ -1,5 +1,7 @@
 // biome-ignore-all lint/style/useLiteralEnumMembers: tightly couple Contentful content type IDs
 
+import type { BrowserOptions } from "@sentry/nextjs";
+
 // Defaults
 
 export const DEFAULT_SITE_NAME = "CRRU";
@@ -103,3 +105,18 @@ export const COMMON_CACHE_DIRECTIVES = [
   "stale-while-revalidate=1209600", // 2 weeks
   "stale-if-error=604800", // 1 week
 ].join(", ");
+
+// https://github.com/getsentry/sentry-javascript/blob/11.6.0/MIGRATION.md#senddefaultpii-is-replaced-by-datacollection
+const SENTRY_PII_DENYLIST = { deny: ["forwarded", "-ip", "remote-", "via", "-user"] };
+
+export const SENTRY_DATA_COLLECTION = {
+  userInfo: false,
+  cookies: false,
+  httpHeaders: SENTRY_PII_DENYLIST,
+  httpBodies: [],
+  urlQueryParams: SENTRY_PII_DENYLIST,
+  genAI: { inputs: false, outputs: false },
+  databaseQueryData: false,
+  queues: false,
+  graphQL: { document: false, variables: false },
+} satisfies BrowserOptions["dataCollection"];
