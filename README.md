@@ -39,7 +39,7 @@ The app is made up of the following parts:
 ## Installation
 
 1. Clone the repository
-2. Ensure you are using Node version >= 24 (`nvm install 24` / `nvm use 24`)
+2. Ensure you are using Node version >= 26 (`nvm install 26` / `nvm use 26`)
 3. Install the dependencies by running [`npm ci`](https://docs.npmjs.com/cli/ci.html)
 4. If using VS Code install the [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint), and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions
 
