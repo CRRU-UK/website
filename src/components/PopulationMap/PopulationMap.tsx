@@ -100,7 +100,7 @@ const PopulationMap = ({ children, focusId: initialFocusId, trees }: Props) => {
     }
   }, [focusId, scrollToSelected]);
 
-  const handleSelect = (item: CatalogueBasicInfo) => {
+  const handleSelect = async (item: CatalogueBasicInfo) => {
     if (item.id === focusId) {
       scrollToSelected();
       return;
@@ -109,7 +109,7 @@ const PopulationMap = ({ children, focusId: initialFocusId, trees }: Props) => {
     setFocusId(item.id);
 
     // Silent sync so the selection is shareable
-    router.push({ query: { ...router.query, id: item.id } }, undefined, {
+    await router.push({ query: { ...router.query, id: item.id } }, undefined, {
       scroll: false,
       shallow: true,
     });
